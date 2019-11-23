@@ -1,0 +1,58 @@
+.gnav {
+  background-color: black;
+  -webkit-box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2);
+  box-shadow: 0 3px 3px -3px rgba(0, 0, 0, .2);
+}
+
+.gnav {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  width: 100%;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    li {
+      list-style: none;
+      font-family: "Open sans", sans-serif;
+      font-size: 17px;
+      padding: 0 25px;
+      letter-spacing: 0.5em;
+      a {
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        padding: 20px 0;
+        -webkit-transition: .3s;
+        -moz-transition: .3s;
+        -ms-transition: .3s;
+        -o-transition: .3s;
+        transition: .3s;
+        color:white;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
+//グローバルナビのアンダーライン
+.link::after {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: white;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+.link:hover::after {
+  bottom: 3px;
+  opacity: 1;
+  visibility: visible;
+}
