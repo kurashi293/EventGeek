@@ -1,3 +1,52 @@
 // Place all the styles related to the members controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.groundwork {
+  overflow-x:scroll;
+  .tab{
+    margin:5% auto 0 auto;
+    width: 50%;
+    display: flex;
+  }
+  .tab li{
+    width: 50%;
+    background: #B0C4DE;
+    border: 2px solid #ccc;
+    text-align: center;
+    padding: 10px 0;
+    margin-right: 3%;
+  }
+  .tab li.active{
+    background: steelblue;
+  }
+  #switch{
+    display: none;
+  }
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 1000px;
+  margin: 0 auto 0 auto;
+}
+
+table td, table th {
+  white-space: nowrap;
+  text-align: center;
+  border: 2px solid #a9a9a9;
+  padding: 10px;
+  background: whitesmoke;
+}
+
+table th{
+  background-color: steelblue;
+  font-weight: bold;
+}
+
+
+.contents{
+  display: block;
+}
