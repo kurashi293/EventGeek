@@ -3,14 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.header{
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: bold;
+  margin: 3%;
+  font-size: 25px;
+}
+
+
 .task-field{
-  margin: 5%;
+  margin: 3%;
   position: relative;
   box-sizing: border-box;
   width: auto;
   display: flex;
   justify-content: space-evenly;
   .task-box{
+    max-height: 500px;
     width: 350px;
     &__title{
       background: #FFCC00;
