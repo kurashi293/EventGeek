@@ -22,3 +22,95 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* name  "EventGeek"  
+This project will revolutionize the event industry  
+Can't share detailed information in real time?  
+Want to know who is doing what job?  
+Is it difficult to carry and write with paper-based management?  
+No problem!  
+This application solves the problems of everyone who is engaged in the event
+
+# EventGeek DB設計
+
+## usersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+|email|string|null: false, unique: true|
+|password|string|null: false|
+|icon_image|text|
+|company|string|null: false|
+|working_hours|time|null: false|
+|break_time|time|
+
+### Association
+
+- has_many :messages
+- has_many :groups_users
+- has_many :groups, through: :groups_users
+- has_many :tasks_users
+- has_many :tasks, through: tasks_users
+
+## groupsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+
+### Association
+
+- has_many : messages
+- has_many : groups_users
+- has_many :users, through: :groups_users
+
+## groups_usersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
+
+### Association
+
+- belongs_to :user
+- belongs_to :group
+
+## taskテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false, unique: true|
+|task|text|
+|image|text|
+
+### Association
+
+- has_many :tasks_users
+- has_many :tasks, through: tasks_users
+
+## tasks_usersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|task_id|integer|null: false, foreign_key: true|
+
+### Association
+
+- belongs_to :user
+- belongs_to :task
+
+## messagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|body|text|
+|image|text|
+|user_id|integer|null: false foreign_key: true|
+|group_id|integer|null: false foreign_key: true|
+
+### Association
+
+- belongs_to :user
+- belongs_to :group
