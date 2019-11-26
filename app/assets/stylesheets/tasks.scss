@@ -3,17 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.header{
-  display: flex;
-  justify-content: space-evenly;
-  font-weight: bold;
-  margin: 3%;
-  font-size: 25px;
-}
-
-
 .task-field{
-  margin: 3%;
+  margin:3% auto 0 auto;
   position: relative;
   box-sizing: border-box;
   width: auto;
