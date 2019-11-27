@@ -3,12 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.groundwork {
+.member-wrap {
   overflow-x:scroll;
   .tab{
-    margin:5% auto 0 auto;
+    margin:3% auto 0 auto;
     width: 50%;
     display: flex;
+    cursor: pointer;
   }
   .tab li{
     width: 50%;

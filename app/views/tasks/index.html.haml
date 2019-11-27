@@ -1,9 +1,5 @@
 .task-wrap
-  .header
-    .header__name
-      イベント名
-    .header__member
-      倉島、佐藤、貴田
+  = render "share/header"
   .task-field
     //タスクのリスト本体
     .task-box
@@ -40,6 +36,4 @@
           ohayou
 
 
-
-
-= render "share/navigation"
+  = render "share/navigation"

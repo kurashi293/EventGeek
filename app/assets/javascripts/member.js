@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
   //tabをクリックしたときの動作
   $('.tab li').click(function(){
     //クリックしたタブのindexを取得

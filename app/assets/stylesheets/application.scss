@@ -14,7 +14,11 @@
  *= require_self
  */
 
-@import "navigation";
+
 @import "reset";
+@import "navigation";
+@import "header";
 @import "tasks";
 @import "members";
+@import "chats";
+@import "font-awesome";

@@ -1,0 +1,14 @@
+.header{
+  margin-top: 1.5%;
+  text-align: center;
+  display: block;
+  &__working{
+    font-weight: bold;
+    font-size: 20px;
+  }
+  &__member{
+    margin-top: 3px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
