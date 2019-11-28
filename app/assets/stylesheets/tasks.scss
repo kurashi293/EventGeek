@@ -19,6 +19,7 @@
         background: #FFCC00;
         height: 50px;
         font-weight: bold;
+        font-size: 18px;
         text-align: center;
         padding-top: 6%;
       }
@@ -26,7 +27,7 @@
         padding-top: 2%;
         &--list{
           color: #404040;
-          border-left: solid 6px #1fa67a;/*左側の線*/
+          border-left: solid 6px steelblue;/*左側の線*/
           border-bottom: solid 2px #dadada;/*下に灰色線*/
           background: whitesmoke;
           margin-bottom: 5px;/*下のバーとの余白*/
