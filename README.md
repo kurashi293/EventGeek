@@ -38,12 +38,7 @@ This application solves the problems of everyone who is engaged in the event
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true|
-|email|string|null: false, unique: true|
-|password|string|null: false|
 |icon_image|text|
-|company|string|null: false|
-|working_hours|time|null: false|
-|break_time|time|
 
 ### Association
 

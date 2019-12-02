@@ -1,0 +1,32 @@
+.devise-wrap
+  %h1.devise-title
+    EventGeek
+  = form_with model: @user,url:{controller:'users/registrations',action:'create'}, local: true do |f|
+    .devise-field
+      = f.label :name
+      %br/
+      = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋"
+    .devise-field
+      = f.label :icon_image, "Icon", class: "icon-title"
+      .devise-field__description
+        ※設定は任意です
+      #myfile= f.file_field :icon_image, class: "input-file"
+      %img#icon_image{style: "width:100px;height:100px;"}
+    .devise-field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可'
+    .devise-field
+      = f.label :password
+      %br/
+      = f.password_field :password, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上'
+    .devise-field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上'
+    .actions
+      = f.submit "Sign up!", class: "devise-submit"
+  -# = render "devise/shared/links"
+  .devise-footer
+    = link_to "/login" do
+      すでにアカウントをお持ちの方はログインしてください
