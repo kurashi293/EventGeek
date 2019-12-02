@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-evenly;
     .task-box{
-      max-height: 500px;
+      height: auto;
       width: 350px;
       &__title{
         background: #FFCC00;

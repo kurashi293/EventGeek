@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     post "/registration/create", :to => "users/registrations#create"
   end
 
-  get "task" => "tasks#index"
+
+  root "tasks#index"
   get "member" => "members#index"
   get "chat" => "chats#index"
 end
