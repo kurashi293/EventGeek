@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   get "task" => "tasks#index"
   get "member" => "members#index"
   get "chat" => "chats#index"
+
+  resources :mypages, omly: [:index, :edit, :update]
 end
