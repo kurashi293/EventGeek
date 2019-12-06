@@ -14,16 +14,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    text-align: center;
     li {
       list-style: none;
       font-family: "Open sans", sans-serif;
       font-size: 17px;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.2em;
       a {
         text-decoration: none;
         position: relative;
         display: inline-block;
-        padding: 20px 0;
+        padding: 10px 0 10px;
         -webkit-transition: .3s;
         -moz-transition: .3s;
         -ms-transition: .3s;
@@ -54,4 +55,15 @@
   bottom: 3px;
   opacity: 1;
   visibility: visible;
+}
+
+
+
+.nav-awesome{
+  font-size: 30px;
+}
+
+
+.compensate{
+  font-size: 3px;
 }
