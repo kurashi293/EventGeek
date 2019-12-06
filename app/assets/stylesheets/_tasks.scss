@@ -3,35 +3,35 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .task-wrap{
-  overflow-x: auto;
   white-space: nowrap;
+  overflow-x: auto;
   .task-field{
-    margin:3% auto 0 auto;
+    margin: 25px auto 0;
     position: relative;
     box-sizing: border-box;
     width: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     .task-box{
       height: auto;
-      width: 350px;
+      width: 330px;
+      margin: 0 35px 0;
       &__title{
         background: #FFCC00;
         height: 50px;
         font-weight: bold;
         font-size: 18px;
         text-align: center;
-        padding-top: 6%;
+        padding-top: 18px;
       }
       &__content{
-        padding-top: 2%;
+        margin-top: 13px;
         &--list{
           color: #404040;
           border-left: solid 6px steelblue;/*左側の線*/
           border-bottom: solid 2px #dadada;/*下に灰色線*/
           background: whitesmoke;
-          margin-bottom: 5px;/*下のバーとの余白*/
-          line-height: 1.5;
+          margin-bottom: 8px;/*下のバーとの余白*/
           padding: 0.5em;
           list-style-type: none!important;/*ポチ消す*/
           font-weight: bold;
