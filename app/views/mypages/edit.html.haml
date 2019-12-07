@@ -1,11 +1,7 @@
-.registration-wrap
-  %h1.form-title
-    EventGeek
-  = form_with model: @user, url:{controller:'users/registrations',action:'create'}, local: true do |f|
-    .devise-field
-      = f.label :name
-      %br/
-      = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋"
+.form-wrap
+  %h1.form-title--green
+    Account Update
+  = form_with model: @user, local: true do |f|
     .form-field
       = f.label :icon_image, "Icon", class: "icon-title"
       .form-field__description
@@ -25,10 +21,5 @@
       %br/
       = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上'
     .actions
-      = f.submit "Sign up!", class: "form-submit"
-  -# = render "devise/shared/links"
-  .form-footer
-    = link_to "/login" do
-      すでにアカウントをお持ちの方はログインしてください
-  .copyright
-    Copyright©RYO KURASHIMA
+      = f.submit "Update!", class: "form-submit__green"
+  = render "share/navigation"
