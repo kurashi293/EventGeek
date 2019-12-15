@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   get "member" => "members#index"
   get "chat" => "chats#index"
 
+
+  resources :groups, only: [:new, :create, :edit, :update, :destroy]
   resources :accounts, only: [:index, :new, :create, :edit, :update, :destroy]
 end
