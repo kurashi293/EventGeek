@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   get "task" => "tasks#index"
   get "member" => "members#index"
   get "chat" => "chats#index"
+
+
+  resources :groups, only: [:new, :create, :edit, :update, :destroy]
 end

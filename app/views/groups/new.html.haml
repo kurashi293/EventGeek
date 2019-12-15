@@ -1,7 +1,7 @@
 .form-wrap
   %h1.form-title--green
     New Group
-  = form_with model: @group, url: root_path, local: true do |f|
+  = form_with model: @group, url:{controller: "groups", action: "create"}, local: true do |f|
     .form-field
       = f.label :name, "Group Name"
       %br/
@@ -9,7 +9,7 @@
     .form-field
       = f.label "Add Member"
       %br/
-      %input.input-field{placeholder: "追加したいユーザー名を入力してください"}
+      = f.collection_check_boxes :user_ids, User.all, :id, :name
     %label.list-field
       Member List
       .list-field__members
