@@ -1,7 +1,7 @@
-.form-wrap
+.registration-wrap
   %h1.form-title
     EventGeek
-  = form_with model: @user,url:{controller:'users/registrations',action:'create'}, local: true do |f|
+  = form_with model: @user, url:{controller:'users/registrations',action:'create'}, local: true do |f|
     .form-field
       = f.label :name
       %br/
@@ -30,3 +30,5 @@
   .form-footer
     = link_to "/login" do
       すでにアカウントをお持ちの方はログインしてください
+  .copyright
+    Copyright©RYO KURASHIMA

@@ -17,4 +17,5 @@ Rails.application.routes.draw do
 
 
   resources :groups, only: [:new, :create, :edit, :update, :destroy]
+  resources :accounts, only: [:index, :new, :create, :edit, :update, :destroy]
 end

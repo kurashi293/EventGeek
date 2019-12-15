@@ -2,10 +2,27 @@
   %nav.gnav.fixed
     %ul
       %li
-        = link_to "TASK", "/task", class: "link"
+        = link_to "/", class: "link" do
+          = icon "fas", "home", class: "nav-awesome"
+          .compensate
+            HOME
       %li
-        = link_to "MEMBER", "/member", class: "link"
+        = link_to "/task", class: "link" do
+          = icon 'fas', "tasks", class: "nav-awesome"
+          .compensate
+            TASK
       %li
-        = link_to "CHAT", "/chat", class: "link"
+        = link_to "/member", class: "link" do
+          = icon "fas", "users", class: "nav-awesome"
+          .compensate
+            MEMBER
       %li
-        = link_to "MY PAGE", "", class: "link"
+        = link_to "/chat", class: "link" do
+          = icon "far", "comment-dots", class: "nav-awesome"
+          .compensate
+            CHAT
+      %li
+        = link_to "/accounts", class: "link" do
+          = icon "fas", "user-cog", class: "nav-awesome"
+          .compensate
+            MY PAGE
