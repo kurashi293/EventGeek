@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :message
-  has_many :groups, through: :group_user
-  has_many :group_user
-  has_one_attached :icon_image
+  has_many :group_users, dependent: :destroy   #dependent: :destroyで関連モデルのレコードを削除
+  has_many :groups, through: :group_users
+  has_many :chats, dependent: :destroy
+  has_one_attached :avatar
 
-  validates :name, :email, :password, presence: true
+  validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
+  # validates :name, :email, :password, presence: true
   # validates :name,
   #   presence: {
   #     message: "名前を入力してください"
