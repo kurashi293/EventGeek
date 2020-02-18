@@ -1,0 +1,41 @@
+- @group.chats.each do |chat|
+  - if current_user && chat.user_id == current_user.id
+    .message
+      .upper-contents
+        .upper-contents__awesome
+          = icon "fa", "star", class: "current-user__star"
+        .upper-contents__icon
+        - if chat.user.avatar.attached?
+          = image_tag chat.user.avatar, class: "icon"
+        - else
+          = icon "fas", "user",  class: "icon-blank"
+        .upper-contents__user-name
+          = chat.user.name
+        .upper-contents__date
+          = chat.created_at.strftime("%Y/%m/%d %H:%M")
+      .lower-content
+        .lower-content__text
+          - if chat.message.present?
+            = chat.message
+            %br
+            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          .lower-content__border
+  - else
+    .message
+      .upper-contents
+        .upper-contents__icon
+        - if chat.user.avatar.attached?
+          = image_tag chat.user.avatar, class: "icon"
+        - else
+          = icon "fas", "user",  class: "icon-blank"
+        .upper-contents__user-name
+          = chat.user.name
+        .upper-contents__date
+          = chat.created_at.strftime("%Y/%m/%d %H:%M")
+      .lower-content
+        .lower-content__text
+          - if chat.message.present?
+            = chat.message
+            %br
+            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          .lower-content__border
