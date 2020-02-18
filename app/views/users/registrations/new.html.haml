@@ -2,7 +2,7 @@
   %h1.form-title
     EventGeek
   = form_with model: @user, url:{controller:'users/registrations',action:'create'}, local: true do |f|
-    .devise-field
+    .form-field
       = f.label :name
       %br/
       = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋"

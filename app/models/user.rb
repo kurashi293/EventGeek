@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
+
   # validates :name, :email, :password, presence: true
   # validates :name,
   #   presence: {

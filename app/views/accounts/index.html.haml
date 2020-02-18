@@ -1,0 +1,25 @@
+.mypage-wrap
+  .mypage-box
+    %ul.mypage-box__side-bar
+      %li.mypage-box__side-bar--list
+        = link_to "Select Group", class: "my-list"
+      %li.mypage-box__side-bar--list
+        = link_to "Edit Group", class: "my-list"
+      %li.mypage-box__side-bar--list
+        = link_to "Edit Account", edit_account_path(current_user), class: "my-list"
+      %li.mypage-box__side-bar--list
+        = link_to "Logout", destroy_user_session_path, method: :delete, class: 'my-list'
+      %li.mypage-box__side-bar--list
+        = link_to "Unsubscribe", account_path(current_user), class: "my-list", method: :delete, data:{ confirm: "削除すると2度と復活できません。本当に削除しますか？"}
+    .personal-field
+      .personal-field__icon
+        = image_tag current_user.icon_image, class: "pesonal-icon"
+      .personal-field__name
+        = current_user.name
+
+
+
+
+
+
+  = render "share/navigation"
