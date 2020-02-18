@@ -16,13 +16,20 @@
 
 
 @import "reset";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "form";
+@import "procedure";
+@import "account";
+@import "mypages";
 @import "navigation";
 @import "header";
 @import "tasks";
 @import "members";
 @import "chats";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "form";
 @import "groups";
+<<<<<<< Updated upstream
 @import "accounts";
+=======
+@import "toppages";
+>>>>>>> Stashed changes
