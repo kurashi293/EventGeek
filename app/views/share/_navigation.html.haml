@@ -1,8 +1,9 @@
 .navigation
+- if @group.present?     #変数そのものが存在する、または変数に値が入っている時
   %nav.gnav.fixed
     %ul
       %li
-        = link_to "/", class: "link" do
+        = link_to group_path(@group), class: "link" do
           = icon "fas", "home", class: "nav-awesome"
           .compensate
             HOME
@@ -17,12 +18,25 @@
           .compensate
             MEMBER
       %li
-        = link_to "/chat", class: "link" do
+        = link_to group_chats_path(@group), class: "link" do
           = icon "far", "comment-dots", class: "nav-awesome"
           .compensate
             CHAT
       %li
-        = link_to "/mypages", class: "link" do
+        = link_to group_mypages_path(@group), class: "link" do
+          = icon "fas", "user-cog", class: "nav-awesome"
+          .compensate
+            MY PAGE
+- else        #変数そのものが存在しない(nil)か、変数に値が入っていない(empty)時
+  %nav.gnav.fixed
+    %ul
+      %li
+        = link_to "/", class: "link" do
+          = icon "fas", "home", class: "nav-awesome"
+          .compensate
+            HOME
+      %li
+        = link_to user_path(current_user), class: "link" do
           = icon "fas", "user-cog", class: "nav-awesome"
           .compensate
             MY PAGE
