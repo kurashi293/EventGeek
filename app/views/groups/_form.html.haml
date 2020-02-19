@@ -1,0 +1,23 @@
+= form_with model: group, local: true do |f|
+  .form-field
+    = f.label :name, "Group Name"
+    %br/
+    = f.text_field :name, autofocus: true, class: "input-field", placeholder: "例)   1/1   新潟コンサート・朱鷺メッセ公演", required: true
+  .form-field
+    = f.label :add, "Add Member", class: 'form-field__label'
+    .form-field__search.clearfix
+      %input#user-search-field.input-field{placeholder: "追加したいユーザー名を入力してください", type: "text", name: "input"}
+    #user-search-result
+  .search-field
+    .form-field.clearfix
+      %label.form-field__label{:for => "chat_group_チャットメンバー"} グループメンバー
+      #group-users
+        - group.users.each do |user|
+          .group-user.clearfix{ id: "group-user-#{user.id}" }
+            = f.hidden_field :id, name: "group[user_ids][]", value: user.id
+            %p.group-user__name= user.name
+            - unless user.id == current_user.id
+              %a.user-search-remove.group-user__btn.group-user__btn--remove{ 'data-user-id': user.id } 削除
+    .form-field.clearfix
+  .actions
+    = f.submit "Create!", class: "form-submit__green"
