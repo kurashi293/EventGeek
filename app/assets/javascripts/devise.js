@@ -13,8 +13,8 @@ $(document).on('turbolinks:load', function(){
     //アップロードした画像を設定する
     reader.onload = (function(file){
       return function(e){
-        $("#icon_image").attr("src", e.target.result);
-        $("#icon_image").attr("title", file.name);
+        $("#avatar").attr("src", e.target.result);
+        $("#avatar").attr("title", file.name);
       };
     })(file);
     reader.readAsDataURL(file);
