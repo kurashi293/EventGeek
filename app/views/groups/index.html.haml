@@ -1,7 +1,13 @@
-.form-wrap__search
+.select-wrap
   %h1.form-title--green
-    New Group
-  = render 'groups/form', { group: @group }
+    SELECT GROUP
+  .select
+  - current_user.groups.each do |group|
+    = link_to group_path(group.id), class: "select-link" do
+      .select-box
+        .select-box__name
+          = group.name
+          .select-box__name--border
   %nav.gnav.fixed
     %ul
       %li
@@ -14,3 +20,4 @@
           = icon "fas", "user-cog", class: "nav-awesome"
           .compensate
             MY PAGE
+

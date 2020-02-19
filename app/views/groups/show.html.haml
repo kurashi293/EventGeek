@@ -1,0 +1,7 @@
+= @group.name
+= link_to "新規グループ", new_group_path
+= link_to "グループ", groups_path
+
+= link_to "グループ削除", group_path(@group), method: "delete", data: {confirm: "現在参加中のグループ\n#{@group.name}を削除しますか？"}
+= render "share/navigation"
+-# = group.name

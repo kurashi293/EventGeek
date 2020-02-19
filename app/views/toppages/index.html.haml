@@ -1,0 +1,10 @@
+-if @group.present?
+
+  = render group_path(group.id)
+
+
+- else
+  = link_to "新規グループ", new_group_path
+  = link_to "グループ", groups_path
+
+= render "share/navigation"
