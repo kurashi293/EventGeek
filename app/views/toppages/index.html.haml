@@ -1,10 +1,33 @@
 -if @group.present?
-
   = render group_path(group.id)
 
-
 - else
-  = link_to "新規グループ", new_group_path
-  = link_to "グループ", groups_path
+.toppage-wrap
+
+  .toppage-box
+    .toppage-title
+      .toppage-title__awesome
+        = icon "fa", "exclamation-triangle", class: "bolt"
+      .toppage-title__name
+        グループが選択されていません
+
+  %ul.group-bar__blank
+    %li.group-bar__blank--button
+      = link_to "Select Group", groups_path, class: "group-bar__list--action"
+    %li.group-bar__blank--button
+      = link_to "New Group", new_group_path, class: "group-bar__list--action"
+
+  .toppage-information
+    .information-header
+      Information
+    .information-ground
+      = render "toppages/information"
+
+  .toppage-notice
+    .notice-header
+      Notice
+    .notice-box
+      .notice-box__content--blank
+        共有事項はありません
 
 = render "share/navigation"
