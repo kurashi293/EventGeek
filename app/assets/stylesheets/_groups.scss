@@ -70,11 +70,29 @@ margin: 3px auto 30px;
     margin-top: 6%;
   }
   .select-box__name{
-    font-size: 25px;
+    position: relative;
+    padding-left: 25px;
     display: inline-block;
+    font-size: 25px;
     margin-bottom: 6%;
-    &--border{
-      border-bottom: 1px dashed;
+    .select-box__name--border::before{
+      position: absolute;
+      content: '';
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border: none;
+      border-left: solid 15px transparent;
+      border-bottom: solid 15px steelblue;
+    }
+    .select-box__name--border::after{
+      position: absolute;
+      content: '';
+      bottom: -3px;
+      left: 10px;
+      width: 100%;
+      border-bottom: solid 3px steelblue;
     }
   }
   .select-link{
@@ -82,10 +100,6 @@ margin: 3px auto 30px;
     color: whitesmoke;
   }
 }
-
-
-
-
 
 
 
@@ -120,12 +134,9 @@ margin: 3px auto 30px;
   margin-bottom: 2em;
 }
 
-
-
 .search-field{
   padding: 0 37% 0;
 }
-
 
 #user-search-result{
   padding: 0 37% 0;
