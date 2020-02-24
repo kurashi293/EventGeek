@@ -16,7 +16,7 @@
       .lower-content
         .lower-content__text
           - if chat.message.present?
-            = chat.message
+            = safe_join(chat.message.split("\n"), tag(:br))
             %br
             = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
           .lower-content__border
@@ -35,7 +35,7 @@
       .lower-content
         .lower-content__text
           - if chat.message.present?
-            = chat.message
+            = safe_join(chat.message.split("\n"), tag(:br))
             %br
             = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
           .lower-content__border

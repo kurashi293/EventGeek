@@ -6,7 +6,7 @@
     .chat-footer
       = form_with model:[@group, @chat] do |f|    #デフォルトでajax処理なのでJavascriptでのajax処理は必要無し  =>  local: trueで解除
         .chat-form
-          = f.text_field :message, class: "chat-form__text", placeholder: "type a message"
+          = f.text_area :message, class: "chat-form__text", placeholder: "type a message"
           .chat-form__button
             = f.label :image, class: "chat-form__image" do
               = icon "fas", "image", class: "form-image__awesome"
