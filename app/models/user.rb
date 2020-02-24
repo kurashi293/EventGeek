@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users
   has_many :chats, dependent: :destroy
   has_one_attached :avatar
+  has_associated_audits
+
+  audited
 
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
 
