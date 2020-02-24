@@ -5,11 +5,11 @@
     .form-field
       = f.label :email
       %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可', required: true
     .form-field
       = f.label :password
       %br/
-      = f.password_field :password, autocomplete: "current-password", class: "input-field"
+      = f.password_field :password, autocomplete: "current-password", class: "input-field", placeholder: '6文字以上', required: true
     - if devise_mapping.rememberable?
       .form-field
         = f.check_box :remember_me

@@ -1,29 +1,31 @@
-.registration-wrap
+.form-wrap
   %h1.form-title
     EventGeek
-  = form_with model: @user, url:{controller:'users/registrations',action:'create'}, local: true do |f|
+  = form_with model: @user, local: true do |f|
     .form-field
       = f.label :name
       %br/
-      = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋"
-    .form-field
-      = f.label :icon_image, "Icon", class: "icon-title"
-      .form-field__description
-        ※設定は任意です
-      #myfile= f.file_field :icon_image, class: "input-file"
-      %img#icon_image{style: "width:100px;height:100px;"}
+      = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでf._fieldの入力エラーの種類を自動的に判別してエラーメッセージを表示してくれる
+    .form-icon__title
+      Icon
+    .form-description
+      ※設定は任意です
+      .form-field
+        = f.label :avatar, "ファイルを選択", class: "icon-select"
+        #myfile= f.file_field :avatar, class: "input-file"
+        %img#avatar{style: "width:127px;height:127px;"}
     .form-field
       = f.label :email
       %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可'
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可', required: true
     .form-field
       = f.label :password
       %br/
-      = f.password_field :password, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上'
+      = f.password_field :password, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
     .form-field
       = f.label :password_confirmation
       %br/
-      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上'
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
     .actions
       = f.submit "Sign up!", class: "form-submit"
   -# = render "devise/shared/links"

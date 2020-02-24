@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_062903) do
+ActiveRecord::Schema.define(version: 2020_02_19_093254) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,42 @@ ActiveRecord::Schema.define(version: 2019_12_03_062903) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "audits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "auditable_id"
+    t.string "auditable_type"
+    t.integer "associated_id"
+    t.string "associated_type"
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.string "user_type"
+    t.string "username"
+    t.string "action"
+    t.text "audited_changes"
+    t.integer "version", default: 0
+    t.string "comment"
+    t.string "remote_address"
+    t.string "request_uuid"
+    t.datetime "created_at"
+    t.index ["associated_type", "associated_id"], name: "associated_index"
+    t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
+    t.index ["created_at"], name: "index_audits_on_created_at"
+    t.index ["group_id"], name: "index_audits_on_group_id"
+    t.index ["request_uuid"], name: "index_audits_on_request_uuid"
+    t.index ["user_id", "user_type"], name: "user_index"
+    t.index ["user_id"], name: "index_audits_on_user_id"
+  end
+
+  create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "message"
+    t.text "image"
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_chats_on_group_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
   create_table "group_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "user_id"
@@ -44,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_062903) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.text "notice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_groups_on_name", unique: true
@@ -53,7 +90,6 @@ ActiveRecord::Schema.define(version: 2019_12_03_062903) do
     t.string "name", null: false
     t.string "email", null: false
     t.string "encrypted_password", null: false
-    t.text "icon_image"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -65,6 +101,10 @@ ActiveRecord::Schema.define(version: 2019_12_03_062903) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "audits", "groups"
+  add_foreign_key "audits", "users"
+  add_foreign_key "chats", "groups"
+  add_foreign_key "chats", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
 end

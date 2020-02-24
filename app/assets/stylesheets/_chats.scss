@@ -92,9 +92,9 @@
 
 .chat-form__text{
   width: 55%;
-  height: 2.8em;
+  height: 3.1em;
   background: #FFF;
-
+  border: none;
 }
 
 .current-user__star{
@@ -104,4 +104,9 @@
 
 .messages::-webkit-scrollbar {     //Chrome、Safariの場合、::-webkit-scrollbar擬似要素でスクロールバーを消す
   display:none;
+}
+
+
+.chat-form__text::placeholder{    //placeholderの擬似要素で中身を装飾
+  padding-top: 11px;
 }
