@@ -3,8 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 
 
-  def index         #キーワードを含むユーザーを検索して@usersに代入。ただしログインしている自分は除く
-    @users = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)
+  def index
+    return nil if params[:keyword] == ""         #キーワードに一致しなければnilを返す
+    @users = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)        #キーワードを含むユーザーを検索して@usersに代入。ただしログインしている自分は除く
     respond_to do |format|
       format.html
       format.json

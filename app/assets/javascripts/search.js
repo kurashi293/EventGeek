@@ -13,22 +13,22 @@ $(document).on('turbolinks:load', function(){
   }
 
   function appendErrMsgToHTML(msg){
-      var html =
-                  `<div class="group-user clearfix">
-                      <p class="group-user__name">${msg}</p>
-                  </div>`;
-                  search_list.append(html);    //作成した変数htmlを変数search_listにぶち込む
+    var html =
+              `<div class="group-user clearfix">
+                  <p class="group-user__name">${msg}</p>
+              </div>`;
+    search_list.append(html);    //作成した変数htmlを変数search_listにぶち込む
   }
 
   function apeendMember(id,name){
-      var html =
-                `<div class='group-user'>
+    var html =
+              `<div class='group-user'>
                 <input name='group[user_ids][]' type='hidden' value='${id}'>
                 <p class='group-user__name'>${name}</p>
                 <div class='user-search-remove group-user__btn group-user__btn--remove js-remove-btn'>削除</div>
-                </div>`
-                member_list.append(html);      //作成した変数htmlを変数member_listにぶち込む
-    }
+              </div>`;
+    member_list.append(html);      //作成した変数htmlを変数member_listにぶち込む
+  }
 
 
 
@@ -44,15 +44,18 @@ $(document).on('turbolinks:load', function(){
 
 
     .done(function(users) {                // 処理が成功したら、usersにjbuilderから送られたjson形式のuser変数が代入される。複数形なので配列型で入ってくる
-      $("#user-search-result").empty();
-      if (input.length !== 0) {            // フォームの文字列長さが0であれば、インクリメンタルサーチ結果を表示しないようにする
+      if (input.length == 0) {            // フォームの文字列長さが0であれば、インクリメンタルサーチ結果を表示しないようにする
+        $("#user-search-result").empty();
+      }
+      else if (input.length !== 0) {
+        $("#user-search-result").empty();
         users.forEach(function(user){      //usersという配列をforEachで取得し、ユーザーごとにappendUser(user)関数に飛ばす
           appendUser(user);
         });
       }
       else {
         $('#user-search-result').empty();                       //appendErrMsgToHTML関数に飛ばす
-        appendErrMsgToHTML("一致するユーザーはいません");
+          appendErrMsgToHTML("一致するユーザーはいません");
       }
     })
 
