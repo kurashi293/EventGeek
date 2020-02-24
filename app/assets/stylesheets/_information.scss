@@ -1,0 +1,67 @@
+.toppage-information{
+  padding: 7% 20% 7%;
+  .information-header{
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+}
+
+
+
+.information-wrap{
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 2.6em;        //行間の高さ
+  height: 30em;
+  border: solid 1px;
+  background-color: whitesmoke;
+  overflow: auto;          //高さを指定しないと効かない
+  letter-spacing: 1px;
+  .information-contents{
+    padding: 3% 5% 2%;
+    text-align: left;
+    .information-time{
+      display: inline-block;
+    }
+    .information-result{
+      margin-left: 15%;
+      display: inline-block;
+    }
+    .information-blank{
+      text-align: center;
+    }
+  }
+}
+
+
+
+.information-tab{
+  background: black;
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+}
+
+.information-tab li{
+  width: 100%;
+  color: white;
+  border: 2px solid #ccc;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.information-tab li.active{
+  border-color: #008BBB;
+  color: #008BBB;
+}
+
+#switch{
+  display: none;
+}
+
+.information-border{
+  border-bottom: solid 1px #AAAAAA;
+}
