@@ -16,3 +16,7 @@
 
 
   = render "/share/navigation"
+
+.modal
+  - @group.chats.each do |chat|
+    = image_tag chat.image.url, class: 'lower-content__image--modal' if chat.image.present?
