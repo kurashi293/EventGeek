@@ -1,0 +1,40 @@
+.task-wrap__form
+  %h1.form-title--green
+    Edit  Task
+  .task-form--edit
+    = form_with model: [@group, @task] do |f|
+      .form-field
+        = f.label :title, "Task Title"
+        %br/
+        = f.text_field :title, class: "input-field", autofocus: true, placeholder: "例) 会場の設営", required: true
+      .form-field
+        = f.label :content, "Task Content"
+        %br/
+        = f.text_area :content, class: "input-field__text", autofocus: true, required: true, placeholder: "詳細を入力してください"
+      .form-field
+        = f.label :image
+        %br/
+        .file-field__edit-js
+          = f.fields_for :task_images do |fi|
+            .file-field__js--images
+              = fi.label :image, class: "label__js" do
+                = icon "fa", "image", class: "label__js--image"
+                = fi.file_field :image, class: "input-file__js"
+      .form-field__check-box
+        = f.label :user_ids, "Add Member"
+        %br/
+        .check-box
+          = f.collection_check_boxes  :user_ids, User.all, :id, :name
+      .form-field
+        = f.label :deadline
+        %br/
+        = f.datetime_field :deadline, class: "select-field"
+      .form-field
+        = f.label :category_id
+        %br/
+        = f.collection_select(:category_id, @category, :id, :name, {prompt: "----"}, class: "select-field")
+      .task-form__submit
+        = f.submit "update", class: "form-submit__green"
+
+
+= render "share/navigation"
