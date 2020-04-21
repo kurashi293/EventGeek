@@ -111,7 +111,7 @@
 
 .toppage-users{
   width: 100%;
-  height: 140px;
+  height: 143px;
   white-space: nowrap;    //はみ出しを折り返さない
   overflow-x: auto;       //横方向のスクロール
   position: relative;
@@ -119,7 +119,8 @@
   .users-bar{
     &__avatar{
       display: inline-block;
-      margin-right: 3em;
+      margin-right: 1.5em;
+      margin-left: 1.5em;
     }
     &__name{
       font-size: 1.1em;
@@ -162,15 +163,19 @@
     height: 30em;
     width: 100%;
     background: whitesmoke;
-    overflow: auto;
     box-sizing: border-box;
     text-align: left;
-    line-height: 3em;        //行間の高さ
+    line-height: 2em;        //行間の高さ
     border: solid 1px;
     padding: 5%;
     letter-spacing: 1px;
+    overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
+    &__content{
+      height: 100%;
+      overflow: auto;
+    }
   }
-  .notice-box::-webkit-scrollbar{
+  .notice-box__content::-webkit-scrollbar{
     display: none;
   }
   .notice-box__content--blank{
