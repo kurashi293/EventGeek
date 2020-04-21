@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   root "toppages#index"
 
-  get "task" => "tasks#index"
   get "member" => "members#index"
 
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
   resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :chats, only: [:index, :create]
     resources :mypages, only: [:index]
     # namespace :api do
