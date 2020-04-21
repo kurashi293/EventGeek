@@ -9,7 +9,7 @@
     position: fixed;
     overflow: auto;
     width:100%;
-    height: calc(100% - 148px);
+    height: calc(100vh - 148px);
     background-color: whitesmoke;
     box-sizing: border-box;
     padding: 25px 17% 0;
@@ -44,10 +44,11 @@
           color: #434a54;
           font-size: 20px;
           letter-spacing: 1px;
+          overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
         }
         &__image{
-          height: 20%;
-          width: 20%;
+          height: 10%;
+          width: 10%;
           margin-top: 10px;
         }
         &__border{
@@ -109,4 +110,15 @@
 
 .chat-form__text::placeholder{    //placeholderの擬似要素で中身を装飾
   padding-top: 11px;
+}
+
+
+.lower-content__image--modal{
+  height: 35em;
+  width: 35em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
 }

@@ -140,3 +140,28 @@
 //⑦ 作成したHTMLをメッセージ画面に追加する
 //⑧ メッセージを連続で送信できるようにする
 //⑨ HTMLを追加した分メッセージ画面を下にスクロールする
+
+
+
+
+
+
+
+
+
+$(document).on('turbolinks:load', function(){
+  $(function(){
+    $('.lower-content__image').on('click',function(){
+
+      //取得された画像が全て重なった状態で表示される。 そこでクリックされたtask-imageのsrcをattrメソッドで取得し、task-image__modalのsrcをattrメソッドでtask-imageのsrcに変更した
+      $(".lower-content__image--modal").attr('src', $(this).attr('src'))
+
+      $('.modal').fadeIn();
+      return false;
+    });
+    $('.modal').on('click',function(){
+      $('.modal').fadeOut();
+      return false;
+    });
+  });
+});

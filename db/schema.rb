@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_093254) do
+ActiveRecord::Schema.define(version: 2020_04_13_020721) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 2020_02_19_093254) do
     t.index ["user_id"], name: "index_audits_on_user_id"
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
   create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "message"
     t.text "image"
@@ -86,6 +94,36 @@ ActiveRecord::Schema.define(version: 2020_02_19_093254) do
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
+  create_table "task_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "image"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_images_on_task_id"
+  end
+
+  create_table "task_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "task_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_users_on_task_id"
+    t.index ["user_id"], name: "index_task_users_on_user_id"
+  end
+
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "deadline", null: false
+    t.integer "category_id", null: false
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_tasks_on_group_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -107,4 +145,9 @@ ActiveRecord::Schema.define(version: 2020_02_19_093254) do
   add_foreign_key "chats", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "task_images", "tasks"
+  add_foreign_key "task_users", "tasks"
+  add_foreign_key "task_users", "users"
+  add_foreign_key "tasks", "groups"
+  add_foreign_key "tasks", "users"
 end

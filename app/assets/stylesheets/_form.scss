@@ -9,17 +9,6 @@
 }
 
 
-.form-wrap__search{
-  background: black;
-  color: white;
-  text-align: center;
-  width: 100%;
-  height: calc(100vh - 68px);
-  position: fixed;
-  overflow: auto;
-}
-
-
 .form-title{
   font-family: 'Impact', sans-serif;
   font-size: 50px;
@@ -43,7 +32,7 @@
   .input-field{
     width: 21.5em;
     height: 2.8em;
-    padding: 5px;
+    padding: 0.3em;
     box-sizing: border-box;
   }
   .input-file{
@@ -107,4 +96,12 @@
 
 .input-field::placeholder{
   padding-top: 1.6%;
+}
+
+
+.input-field__text{
+  width: 21.5em;
+  height: 5em;
+  padding: 0.3em;
+  box-sizing: border-box;
 }

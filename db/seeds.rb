@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+
+
+task = Category.create(name: "product_back_log")
+task_1 = task.children.create(name: "doing")
+task_1.children.create(name: "compleate")

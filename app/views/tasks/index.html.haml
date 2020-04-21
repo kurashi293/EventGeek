@@ -1,39 +1,102 @@
 .task-wrap
-  = render "share/header"
+  -# %button.task__remove
+  -#   削除
+  -# %button.task-list__add
+  -#   リスト追加
+  -# %button.task-list__remove
+  -#   リスト削除
+  .task-form
+    = form_with model: [@group, @task] do |f|
+      .form-field__js
+        = f.label :title, "Task Title"
+        %br/
+        = f.text_field :title, class: "input-field__js", autofocus: true, placeholder: "例) 会場の設営", required: true
+      .form-field__js
+        = f.label :content, "Task Content"
+        %br/
+        = f.text_area :content, class: "input-field__text-js", autofocus: true, required: true, placeholder: "詳細を入力してください"
+      .form-field__js
+        = f.label :image
+        %br/
+        .file-field__js
+          = f.fields_for :task_images do |fi|
+            .file-field__js--images
+              = fi.label :image, class: "label__js" do
+                = icon "fa", "image", class: "label__js--image"
+                = fi.file_field :image, class: "input-file__js"
+      .form-field__js--check-box
+        = f.label :user_ids, "Add Member"
+        %br/
+        .check-box
+          = f.collection_check_boxes  :user_ids, User.all, :id, :name
+      .form-field__js
+        = f.label :deadline
+        %br/
+        = f.datetime_field :deadline, class: "select-field__js"
+      .form-field__js
+        -# = f.label :category_id
+        -# %br/
+        = f.hidden_field :category_id, value: 1, class: "hidden-field"
+      -#   = f.collection_select(:category_id, @category, :id, :name, {prompt: "----"}, class: "select-field")
+      .task-form__js--submit
+        = f.submit "create", class: "form-submit__js--green"
+
   .task-field
-    //タスクのリスト本体
     .task-box
       .task-box__title
         Product back log
-      %ul.task-box__content
-        %li.task-box__content--list
-          hello
-        %li.task-box__content--list
-          こんにちは
-        %li.task-box__content--list
-          ohayou
+        #back-log.task__add
+          = icon "fa", "plus-square", class: "plus-square"
+      %ul#add--back-log.task-box__content
+        - @group.tasks.each do |task|
+          - if task.category_id == 1
+            %li.task-box__content--list
+              .task-list__title
+                = task.title
+              .task-list__icons
+                = link_to group_task_path(@group, task), class: "list-link" do
+                  = icon "fas", "file-alt"                                                  #each文でtaskに情報を代入しているため、引数は@taskではなくtaskとなる
+                = link_to edit_group_task_path(@group, task), class: "list-link" do
+                  = icon "fas", "edit"
+                = link_to group_task_path(@group, task), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "list-link" do
+                  = icon "fas", "trash-alt"
 
     .task-box
       .task-box__title
         Doing
-      %ul.task-box__content
-        %li.task-box__content--list
-          hello
-        %li.task-box__content--list
-          こんにちは
-        %li.task-box__content--list
-          ohayou
+        #doing.task__add
+          = icon "fa", "plus-square", class: "plus-square"
+      %ul#add--doing.task-box__content
+        - @group.tasks.each do |task|
+          - if task.category_id == 2
+            %li.task-box__content--list
+              .task-list__title
+                = task.title
+              .task-list__icons
+                = link_to group_task_path(@group, task), class: "list-link" do
+                  = icon "fas", "file-alt"                                                  #each文でtaskに情報を代入しているため、引数は@taskではなくtaskとなる
+                = link_to edit_group_task_path(@group, task), class: "list-link" do
+                  = icon "fas", "edit"
+                = link_to group_task_path(@group, task), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "list-link" do
+                  = icon "fas", "trash-alt"
 
     .task-box
       .task-box__title
         Compleate
-      %ul.task-box__content
-        %li.task-box__content--list
-          hello
-        %li.task-box__content--list
-          こんにちは
-        %li.task-box__content--list
-          ohayou
+        #compleate.task__add
+          = icon "fa", "plus-square", class: "plus-square"
+      %ul#add--compleate.task-box__content
+        - @group.tasks.each do |task|
+          - if task.category_id == 3
+            %li.task-box__content--list
+              .task-list__title
+                = task.title
+              .task-list__icons
+                = link_to group_task_path(@group, task), class: "list-link" do
+                  = icon "fas", "file-alt"                                                  #each文でtaskに情報を代入しているため、引数は@taskではなくtaskとなる
+                = link_to edit_group_task_path(@group, task), class: "list-link" do
+                  = icon "fas", "edit"
+                = link_to group_task_path(@group, task), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "list-link" do
+                  = icon "fas", "trash-alt"
 
-
-  = render "share/navigation"
+= render "share/navigation"

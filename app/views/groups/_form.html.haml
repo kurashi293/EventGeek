@@ -6,7 +6,7 @@
   .form-field
     = f.label :notice, "Group Notice"
     %br/
-    = f.text_area :notice, autofocus: true, class: "input-field", placeholder: "共有事項を入力してください"
+    = f.text_area :notice, autofocus: true, class: "input-field__text", placeholder: "共有事項を入力してください"
   .form-field
     = f.label :add, "Add Member", class: 'form-field__label'
     .form-field__search.clearfix
@@ -21,7 +21,6 @@
             = f.hidden_field :id, name: "group[user_ids][]", value: user.id
             %p.group-user__name= user.name
             - unless user.id == current_user.id
-              %a.user-search-add.group-user__btn.group-user__btn--add{ 'data-user-id': user.id } 追加
               %a.user-search-remove.group-user__btn.group-user__btn--remove{ 'data-user-id': user.id } 削除
     .form-field.clearfix
   .actions

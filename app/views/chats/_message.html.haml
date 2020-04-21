@@ -18,7 +18,8 @@
           - if chat.message.present?
             = safe_join(chat.message.split("\n"), tag(:br))
             %br
-            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          - if chat.image.present?
+            = image_tag chat.image.url, class: 'lower-content__image'
           .lower-content__border
   - else
     .message
@@ -37,5 +38,6 @@
           - if chat.message.present?
             = safe_join(chat.message.split("\n"), tag(:br))
             %br
-            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          - if chat.image.present?
+            = image_tag chat.image.url, class: 'lower-content__image'
           .lower-content__border

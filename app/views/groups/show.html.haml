@@ -23,17 +23,17 @@
 
   .toppage-users
     .users-bar
-    -@group.users.each do |users|
-      -if users.avatar.attached?
-        .users-bar__avatar
-          = image_tag users.avatar, class: "all-avatar"
-          .users-bar__name
-            = users.name
-      - else
-        .users-bar__avatar
-          = icon "fas", "user", class: "all-avatar__blank"
-          .users-bar__name
-            = users.name
+      -@group.users.each do |users|
+        -if users.avatar.attached?
+          .users-bar__avatar
+            = image_tag users.avatar, class: "all-avatar"
+            .users-bar__name
+              = users.name
+        - else
+          .users-bar__avatar
+            = icon "fas", "user", class: "all-avatar__blank"
+            .users-bar__name
+              = users.name
     .fade-out__awesome
       = icon "fa", "times", class: "fade-close"
 

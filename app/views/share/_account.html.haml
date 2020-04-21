@@ -73,14 +73,14 @@
     - if @group.present?
       .account-field__data
         .account-group__data--secure
-          現在参加中のグループ名
+          参加中のグループ名
         .account-group__data--content
           .account-group__name
             = @group.name
       .account-group__border--bottom
       .account-field__data
         .account-group__data--secure
-          現在参加中のグループ人数
+          参加中のグループ総人数
         .account-group__data--content
           .account-group__user-count
             = @user_count
@@ -88,16 +88,28 @@
     - else
       .account-field__data
         .account-field__data--secure
-          現在参加中のグループ名
+          参加中のグループ名
         .account-field__data--content
           .account-group__name
             参加中のグループはありません
       .account-group__border--bottom
       .account-field__data
         .account-field__data--secure
-          現在参加中のグループ人数
+          参加中のグループ総人数
         .account-field__data--content
           .account-field__user-count
             参加中のグループはありません
+  - if @group.present?
+    .account-group
+      .account-field__title
+        タスク情報
+      .account-group__border--top
+      .account-field__data
+        .account-group__data--headline
+          参加中のグループで担当しているタスク総数
+        .account-group__data--content
+          .account-group__group-count
+          = @task_count
+          件
 
 = render "share/navigation"

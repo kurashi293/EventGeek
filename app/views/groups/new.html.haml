@@ -1,16 +1,7 @@
-.form-wrap__search
+.form-wrap
   %h1.form-title--green
     New Group
   = render 'groups/form', { group: @group }
-  %nav.gnav.fixed
-    %ul
-      %li
-        = link_to "/", class: "link" do
-          = icon "fas", "home", class: "nav-awesome"
-          .compensate
-            HOME
-      %li
-        = link_to user_path(current_user), class: "link" do
-          = icon "fas", "user-cog", class: "nav-awesome"
-          .compensate
-            MY PAGE
+  .link__back
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    %a{:href => "javascript:history.back();", class: "javascript-back"} Back
