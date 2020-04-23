@@ -1,5 +1,4 @@
 .member-wrap
-  = render "share/header"
   %ul.tab
     %li.active Status
     %li Position
@@ -12,6 +11,7 @@
           %th Company
           %th Working hours
           %th Break time
+          %th Transceiver
           %th Lunch box
           %th Change of clothes
         %tbody
@@ -23,13 +23,6 @@
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
             %td コンテンツ
           %tr
             %td コンテンツ
@@ -39,6 +32,16 @@
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
           %tr
             %td コンテンツ
             %td コンテンツ
@@ -47,7 +50,9 @@
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
+            %td コンテンツ
           %tr
+            %td コンテンツ
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
@@ -61,6 +66,7 @@
           %th No.
           %th Name
           %th Company
+          %th Chief
           %th Setup
           %th Opening
           %th Start
@@ -74,23 +80,9 @@
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
             %td コンテンツ
           %tr
             %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
@@ -106,6 +98,30 @@
             %td コンテンツ
             %td コンテンツ
             %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+  %button.member-button
+    = link_to new_group_member_path, class: "member-button__link" do
+      = icon "fa", "pen", class: "member-button__link--icon"
+      .member-button__link--name
+        New
 
 
-  = render "share/navigation"
+= render "share/navigation"
