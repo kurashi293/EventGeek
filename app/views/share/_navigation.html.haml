@@ -13,7 +13,7 @@
           .compensate
             TASK
       %li
-        = link_to "/member", class: "link", id: "nav__member" do
+        = link_to group_members_path(@group), class: "link", id: "nav__member" do
           = icon "fas", "users", class: "nav-awesome"
           .compensate
             MEMBER
