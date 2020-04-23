@@ -324,6 +324,17 @@
     display: flex;
     justify-content: space-evenly;
     margin: auto;
+    &--images{
+      .label__js--image{
+        font-size: 1.5em;
+      }
+      .input-file__js{
+        display: none;
+      }
+    }
+  }
+  .file-field__edit-js::-webkit-scrollbar{
+    display: none;
   }
   .form-field__check-box{
     height: 2.8em;
