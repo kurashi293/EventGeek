@@ -1,0 +1,127 @@
+.member-wrap
+  %ul.tab
+    %li.active Status
+    %li Position
+  .contents
+    .content.active
+      %table.active
+        %thead
+          %th No.
+          %th Name
+          %th Company
+          %th Working hours
+          %th Break time
+          %th Transceiver
+          %th Lunch box
+          %th Change of clothes
+        %tbody
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+    #switch.content
+      %table
+        %thead
+          %th No.
+          %th Name
+          %th Company
+          %th Chief
+          %th Setup
+          %th Opening
+          %th Start
+          %th End
+        %tbody
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+          %tr
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+            %td コンテンツ
+  %button.member-button
+    = link_to new_group_member_path, class: "member-button__link" do
+      = icon "fa", "edit", class: "member-button__link--icon"
+      .member-button__link--name
+        Update
+
+
+= render "share/navigation"
