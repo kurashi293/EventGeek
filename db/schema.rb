@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_020721) do
+ActiveRecord::Schema.define(version: 2020_04_23_165818) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -115,11 +115,12 @@ ActiveRecord::Schema.define(version: 2020_04_13_020721) do
     t.string "title", null: false
     t.text "content", null: false
     t.datetime "deadline", null: false
-    t.integer "category_id", null: false
+    t.bigint "category_id"
     t.bigint "user_id"
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["group_id"], name: "index_tasks_on_group_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -148,6 +149,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_020721) do
   add_foreign_key "task_images", "tasks"
   add_foreign_key "task_users", "tasks"
   add_foreign_key "task_users", "users"
+  add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "groups"
   add_foreign_key "tasks", "users"
 end
