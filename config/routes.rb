@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
-    resources :members, only: [:index, :new, :create, :edit, :update]
+    resources :statuses, only: [:index, :new, :create, :edit, :update]
     resources :chats, only: [:index, :create]
     resources :mypages, only: [:index]
     # namespace :api do
