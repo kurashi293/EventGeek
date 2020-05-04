@@ -8,6 +8,9 @@ $(document).on('turbolinks:load', function(){
   if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/tasksのパスとマッチすれば以下を実行。
     $('#nav__task').css("color", "#008BBB");
   }
+  if (window.location.href.match(/\/groups\/\d+\/statuses/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
+    $('#nav__status').css("color", "#008BBB");
+  }
   if (window.location.href.match(/\/groups\/\d+\/chats/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
     $('#nav__chat').css("color", "#008BBB");
   }
