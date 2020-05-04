@@ -3,47 +3,48 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.member-wrap {
-  height: calc(100vh - 68px - 98px);
+.status-wrap {
+  height: calc(100vh - 68px - 147px - 49px);
   width: 100%;
-  padding: 5% 0 5% 0;
+  padding: 5% 0 15% 0;
   overflow: auto;
-  position: fixed;
-  .tab{
-    margin: auto;
-    width: 50%;
-    display: flex;
-    cursor: pointer;
-  }
-  .tab li{
-    width: 50%;
-    background: #B0C4DE;
-    border: 2px solid #ccc;
-    text-align: center;
-    padding: 10px 0;
-    margin-right: 3%;
-  }
-  .tab li.active{
-    background: steelblue;
-  }
-  #switch{
-    display: none;
-  }
+}
+.tab{
+  margin: auto;
+  width: 31em;
+  display: flex;
+  cursor: pointer;
+}
+.tab li{
+  width: 31em;
+  background: #B0C4DE;
+  border: 2px solid #ccc;
+  text-align: center;
+  padding: 10px 0;
+  margin-right: 3%;
+}
+.tab li.active{
+  background: steelblue;
+}
+#switch{
+  display: none;
 }
 
 
 table {
   border-collapse: collapse;
-  width: 85%;
+  width: 85em;
   margin: 0 auto 0 auto;
 }
 
 table td, table th {
+  overflow: scroll;
   white-space: nowrap;
   text-align: center;
   border: 2px solid #a9a9a9;
-  padding: 10px;
+  padding: 1.8%;
   background: whitesmoke;
+  max-width: 3em;
 }
 
 table th{
@@ -56,13 +57,13 @@ table th{
   display: block;
 }
 
-.member-button{
+.status-button{
   height: 4.5em;
   width: 4.5em;
   position: fixed;
   position: absolute;
-  bottom: 6em;
-  right: 3em;
+  bottom: 4.5em;
+  right: 2em;
   z-index: 5;
   display: inline-block;
   background-color:  black;
@@ -71,6 +72,7 @@ table th{
   border-color: #008BBB;
   padding: 1em;
   border-radius: 50%;
+  outline: 0;            //autofocus青線の打ち消し
   &__link{
     text-decoration: none;
     &--icon{
@@ -80,4 +82,156 @@ table th{
       color: white;
     }
   }
+}
+
+
+
+
+.current_user__line{
+  border: solid 3px #BA002F;
+}
+
+
+.rank-star{
+  color: #FFCC00;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.status-wrap__form {
+  height: calc(100vh - 68px - 147px);
+  width: 100%;
+  padding: 0 0 15% 0;
+  overflow: auto;
+  background: black;
+  &--title{
+    text-align: center;
+    font-family: 'Impact', sans-serif;
+    font-size: 50px;
+    margin-bottom: 4.5%;
+    padding-top: 4.5%;
+    color: #330066;
+    text-shadow: 2px 2px 0  #008BBB,
+                -2px 2px 0  #008BBB,
+                2px -2px 0  #008BBB,
+                -2px -2px 0  #008BBB;
+  }
+}
+
+
+#form-position{
+  margin-top: 8em;
+}
+
+
+.form-tab{
+  margin: auto;
+  width: 17.3em;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  text-align: center;
+  padding: 10px 0;
+  background: steelblue;
+}
+
+
+
+.form-table{
+  border-collapse: collapse;
+  width: 53em;
+  margin: 0 auto 0 auto;
+  &__header{
+    height: 4em;
+    width: 17em;
+    font-size: 17px;
+  }
+  &__data{
+    width: 36em;
+  }
+}
+
+.status__select-field{
+  width: 15em;
+  height: 2.5em;
+  padding: 5px;
+  box-sizing: border-box;
+  background: white;
+}
+
+.status__input-field{
+  width: 23em;
+  height: 2.8em;
+  padding: 0.3em;
+  box-sizing: border-box;
+}
+
+.status__number-field{
+  width: 6em;
+  height: 2.8em;
+  padding: 0.3em;
+  box-sizing: border-box;
+}
+
+#status_working_hour_attributes_start_at_4i{
+  width: 3.3em;
+  height: 2.1em;
+  padding: 0.3em;
+  box-sizing: border-box;
+  background: white;
+}
+
+#status_working_hour_attributes_start_at_5i{
+  width: 3.3em;
+  height: 2.1em;
+  padding: 0.3em;
+  box-sizing: border-box;
+  background: white;
+}
+
+#status_working_hour_attributes_end_at_4i{
+  width: 3.3em;
+  height: 2.1em;
+  padding: 0.3em;
+  box-sizing: border-box;
+  background: white;
+}
+
+#status_working_hour_attributes_end_at_5i{
+  width: 3.3em;
+  height: 2.1em;
+  padding: 0.3em;
+  box-sizing: border-box;
+  background: white;
+}
+
+.status__submit{
+  background: black;
+  color: white;
+  border: none;
+}
+
+
+
+
+
+
+
+
+.status-link__edit{
+  text-decoration: none;
+  color: #0000EE;
 }

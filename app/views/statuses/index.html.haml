@@ -1,4 +1,4 @@
-.member-wrap
+.status-wrap
   %ul.tab
     %li.active Status
     %li Position
@@ -6,122 +6,121 @@
     .content.active
       %table.active
         %thead
-          %th No.
           %th Name
           %th Company
           %th Working hours
           %th Break time
           %th Transceiver
-          %th Lunch box
-          %th Change of clothes
-        %tbody
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
+          %th Meal
+          %th Wear
+        - @group.statuses.each do |status|
+          %tbody
+            - if current_user && status.user_id == current_user.id
+              %tr.current_user__line
+                %td
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td
+                  = status.company.name
+                %td
+                  #{status.working_hour.start_at.strftime("%H:%M")} ∼ #{status.working_hour.end_at.strftime("%H:%M")}
+                %td
+                  #{status.working_hour.break_at} min
+                %td
+                  = status.transceiver.state
+                %td
+                  = status.meal.state
+                %td
+                  = status.wear.clothes
+            - else
+              %tr
+                %td
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td
+                  = status.company.name
+                %td
+                  #{status.working_hour.start_at.strftime("%H:%M")} ∼ #{status.working_hour.end_at.strftime("%H:%M")}
+                %td
+                  #{status.working_hour.break_at} min
+                %td
+                  = status.transceiver.state
+                %td
+                  = status.meal.state
+                %td
+                  = status.wear.clothes
+
     #switch.content
       %table
         %thead
-          %th No.
           %th Name
           %th Company
-          %th Chief
-          %th Setup
+          %th Rank
+          %th Set up
           %th Opening
           %th Start
+          %th Break
           %th End
-        %tbody
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-          %tr
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-            %td コンテンツ
-  %button.member-button
-    = link_to new_group_member_path, class: "member-button__link" do
-      = icon "fa", "pen", class: "member-button__link--icon"
-      .member-button__link--name
-        New
+          %th Clean up
+        - @group.statuses.each do |status|
+          %tbody
+            - if current_user && status.user_id == current_user.id
+              %tr.current_user__line
+                %td
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td
+                  = status.company.name
+                %td
+                  = icon "fa", "star-half-alt", class: "rank-star" if status.rank_id == 2
+                  = icon "fa", "star", class: "rank-star" if status.rank_id == 3
+                  = icon "fa", "crown", class: "rank-star" if status.rank_id >= 4
+                  = status.rank.name
+                %td
+                  = status.position.set_up
+                %td
+                  = status.position.opening
+                %td
+                  = status.position.start
+                %td
+                  = status.position.break
+                %td
+                  = status.position.end
+                %td
+                  = status.position.clean_up
+            - else
+              %tr
+                %td
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td
+                  = status.company.name
+                %td
+                  = icon "fa", "star-half-alt", class: "rank-star" if status.rank_id == 2
+                  = icon "fa", "star", class: "rank-star" if status.rank_id == 3
+                  = icon "fa", "crown", class: "rank-star" if status.rank_id >= 4
+                  = status.rank.name
+                %td
+                  = status.position.set_up
+                %td
+                  = status.position.opening
+                %td
+                  = status.position.start
+                %td
+                  = status.position.break
+                %td
+                  = status.position.end
+                %td
+                  = status.position.clean_up
 
+  %button.status-button
+    = link_to new_group_status_path, class: "status-button__link" do
+      = icon "fa", "pen", class: "status-button__link--icon"
+      .status-button__link--name
+        New
 
 = render "share/navigation"

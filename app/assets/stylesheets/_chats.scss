@@ -98,10 +98,6 @@
   border: none;
 }
 
-.current-user__star{
-  color: #FFCC00;
-  margin-right: 5px;
-}
 
 .messages::-webkit-scrollbar {     //Chrome、Safariの場合、::-webkit-scrollbar擬似要素でスクロールバーを消す
   display:none;
