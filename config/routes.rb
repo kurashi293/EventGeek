@@ -11,9 +11,6 @@ Rails.application.routes.draw do
 
   root "toppages#index"
 
-  get "task" => "tasks#index"
-  get "member" => "members#index"
-
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do   #:usersにidを持たせたcompleateアクションを作成
       get "confirmation"

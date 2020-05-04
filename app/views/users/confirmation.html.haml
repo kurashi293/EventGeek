@@ -1,0 +1,51 @@
+.procedure-wrap
+  %h1.procedure-title
+    registration confirmation
+    .procedure-title__border
+  .procedure-box
+    .procedure-box__header
+      登録内容の確認
+    .confirmation-contents
+      - if @user.avatar.attached?   #has_one_attachedで画像機能を作成した場合、attached?で画像の有無を確認する。存在すればtrueを返す
+        .confirmation-contents__icon
+          = image_tag @user.avatar, height: "120px", width: "120px", class: "procedure-icon"
+        %table.confirmation-contents__box
+          %thead
+            %tr
+              %th Name
+              %td.confirmation-contents__box--user-name
+                = @user.name
+            %tr
+              %th Email
+              %td.confirmation-contents__box--email
+                = @user.email
+            %tr
+              %th Password
+              %td.confirmation-contents__box--password
+                セキュリティーのためパスワードは非表示となっています
+      - else
+        .confirmation-contents__icon
+          = icon "fas", "user", class: "procedure-icon"
+        %table.confirmation-contents__box
+          %thead
+            %tr
+              %th Name
+              %td.confirmation-contents__box--user-name
+                = @user.name
+            %tr
+              %th Email
+              %td.confirmation-contents__box--email
+                = @user.email
+            %tr
+              %th Password
+              %td.confirmation-contents__box--password
+                セキュリティーのためパスワードは非表示となっています
+    .procedure-box__text
+      内容を確認し、よろしければ「登録」ボタンを押して下さい。
+      %br/
+      ※登録した内容はMY PAGEで編集できます。
+  .procedure-footer
+    %button.procedure-footer__back
+      = link_to "戻る", user_path(@user.id), method: :delete, class: "procedure-link"
+    %button.procedure-footer__forward
+      = link_to "登録", compleate_user_path(@user.id), class: "procedure-link"
