@@ -2,8 +2,6 @@
   - if current_user && chat.user_id == current_user.id
     .message
       .upper-contents
-        .upper-contents__awesome
-          = icon "fa", "star", class: "current-user__star"
         .upper-contents__icon
         - if chat.user.avatar.attached?
           = image_tag chat.user.avatar, class: "icon"
@@ -13,6 +11,9 @@
           = chat.user.name
         .upper-contents__date
           = chat.created_at.strftime("%Y/%m/%d %H:%M")
+        .upper-contents__awesome
+          = link_to group_chat_path(@group, chat), method: :delete, data: {confirm: "本当に削除しますか？"} do
+            = icon "fas", "trash-alt"
       .lower-content
         .lower-content__text
           - if chat.message.present?
@@ -21,6 +22,7 @@
           - if chat.image.present?
             = image_tag chat.image.url, class: 'lower-content__image'
           .lower-content__border
+
   - else
     .message
       .upper-contents

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :statuses, only: [:index, :new, :create, :edit, :update]
-    resources :chats, only: [:index, :create]
+    resources :chats, only: [:index, :create, :destroy]
     resources :mypages, only: [:index]
     # namespace :api do
     #   resources :messages, only: :index, defaults: { format: 'json' }
