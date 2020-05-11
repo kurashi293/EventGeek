@@ -152,6 +152,9 @@ $(document).on('turbolinks:load', function(){
       img_del(view_box);
     }
     filereader.readAsDataURL(fileprop);
+
+    $(this).prop("disabled", true);
+    return false;
   });
 
   function img_del(target){
@@ -167,4 +170,8 @@ $(document).on('turbolinks:load', function(){
       return false;
     });
   }
+
+  $(".form-submit__js--green").on('click', function(){
+    $(".input-file__js").prop("disabled", false);
+  });
 });
