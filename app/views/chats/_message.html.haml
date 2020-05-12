@@ -1,0 +1,52 @@
+- @group.chats.each do |chat|
+  - if current_user && chat.user_id == current_user.id
+    .message
+      .upper-contents
+        .upper-contents__icon
+        - if chat.user.avatar.attached?
+          = image_tag chat.user.avatar, class: "icon"
+        - else
+          = icon "fas", "user-circle",  class: "icon-blank"
+        .upper-contents__user-name
+          = chat.user.name
+        .upper-contents__date
+          = chat.created_at.strftime("%Y/%m/%d %H:%M")
+<<<<<<< Updated upstream
+        .upper-contents__awesome
+          = link_to group_chat_path(@group, chat), method: :delete, data: {confirm: "本当に削除しますか？"} do
+            = icon "fas", "trash-alt"
+=======
+<<<<<<< Updated upstream
+=======
+        .upper-contents__awesome
+          = link_to group_chat_path(@group, chat), method: :delete, data: {confirm: "本当に削除しますか？"} do
+            = icon "fas", "trash-alt", style: "color: #0000CD"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+      .lower-content
+        .lower-content__text
+          - if chat.message.present?
+            = chat.message
+            %br
+            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          .lower-content__border
+
+  - else
+    .message
+      .upper-contents
+        .upper-contents__icon
+        - if chat.user.avatar.attached?
+          = image_tag chat.user.avatar, class: "icon"
+        - else
+          = icon "fas", "user-circle",  class: "icon-blank"
+        .upper-contents__user-name
+          = chat.user.name
+        .upper-contents__date
+          = chat.created_at.strftime("%Y/%m/%d %H:%M")
+      .lower-content
+        .lower-content__text
+          - if chat.message.present?
+            = chat.message
+            %br
+            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          .lower-content__border
