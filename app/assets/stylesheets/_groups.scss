@@ -1,0 +1,153 @@
+// Place all the styles related to the groups controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.form-title--green{
+  font-family: 'Impact', sans-serif;
+  font-size: 50px;
+  margin-bottom: 4.5%;
+  padding-top: 4.5%;
+  color: #005500;
+  text-shadow: 2px 2px 0 #BBBBBB,
+              -2px 2px 0 #BBBBBB,
+              2px -2px 0 #BBBBBB,
+              -2px -2px 0 #BBBBBB;
+}
+
+.list-field{
+  font-size: 17px;
+}
+
+.list-field__members{
+  margin-top: 15px;
+  overflow-x: scroll;
+}
+
+.list-field__list{
+border-bottom: solid 1px #AAAAAA;
+margin: 3px auto 30px;
+}
+
+.form-submit__green{
+  display: inline-block;
+  width: 110px;
+  height: 45px;
+  background-color:  black;
+  font-size: 16px;
+  color: #228B22;
+  font-weight: bold;
+  margin: 1em 0 5em 0;
+  border-color: #228B22;
+
+  //hoverエフェクト用
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, .5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.form-submit__green:hover{
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #228B22;
+}
+
+
+
+.select-wrap{
+  position: fixed;
+  overflow: auto;
+  height: 100vh;
+  width: 100%;
+  background: black;
+  text-align: center;
+  .select{
+    margin-top: 6%;
+  }
+  .select-box__name{
+    position: relative;
+    padding-left: 25px;
+    display: inline-block;
+    font-size: 25px;
+    margin-bottom: 6%;
+    .select-box__name--border::before{
+      position: absolute;
+      content: '';
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border: none;
+      border-left: solid 15px transparent;
+      border-bottom: solid 15px steelblue;
+    }
+    .select-box__name--border::after{
+      position: absolute;
+      content: '';
+      bottom: -3px;
+      left: 10px;
+      width: 100%;
+      border-bottom: solid 3px steelblue;
+    }
+  }
+  .select-link{
+    text-decoration: none;
+    color: whitesmoke;
+  }
+}
+
+
+
+
+.group-user {
+  padding: 0 0 5px;
+  line-height: 3.5em;
+  font-size: 1em;
+  border-bottom: 1px solid #AAAAAA;
+  display: flex;
+  justify-content: center;
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  &__btn {
+    display: inline-block;
+    margin-left: 5em;
+    cursor: pointer;
+    &--add {
+      color: #008BBB;
+    }
+    &--remove {
+      color: #BA002F;
+    }
+  }
+}
+
+
+.form-field__search{
+  margin-bottom: 2em;
+}
+
+.search-field{
+  padding: 0 37% 0;
+}
+
+#user-search-result{
+  padding: 0 37% 0;
+}
+
+
+.link__back{
+  margin: 7em 0 5em;
+}
+
+.javascript-back{
+  text-decoration: none;
+  color: white;
+}

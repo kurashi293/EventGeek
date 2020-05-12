@@ -1,0 +1,120 @@
+// Place all the styles related to the chats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.chat{
+  .messages {
+    position: fixed;
+    overflow: auto;
+    width:100%;
+    height: calc(100vh - 148px);
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    padding: 25px 17% 0;
+    .message {
+      display: block;
+      .upper-contents{
+        display: flex;
+        .icon{
+          height: 25px;
+          width: 25px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+        .icon-blank::before{
+          font-size: 22px;
+          margin-right: 8px;
+        }
+        &__user-name{
+          color: #434a54;
+          font-size: 15px;
+          font-weight: bold;
+        }
+        &__date{
+          color: #444444;
+          font-size: 11px;
+          margin: 4px 30px 0;
+        }
+      }
+      .lower-content{
+        margin-top: 20px;
+        &__text{
+          color: #434a54;
+          font-size: 20px;
+          letter-spacing: 1px;
+          overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
+        }
+        &__image{
+          height: 10%;
+          width: 10%;
+          margin-top: 10px;
+        }
+        &__border{
+          border-bottom: solid 1px #AAAAAA;
+          margin: 5px 0 60px;
+        }
+      }
+    }
+  }
+}
+
+.chat-footer {
+  background-color: steelblue;
+  position: fixed;
+  bottom: 68px;
+  width: 100%;
+  height: 3.2em;
+  padding: 15px 1px;
+  .chat-form{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+.chat-form__send {
+  background-color: black;
+  color: #FFF;
+  width: 100px;
+  height: 49px;
+  font-size: 23px;
+  margin-left: 35%;
+}
+.hidden {
+  display: none;
+}
+
+.form-image__awesome{
+  font-size: 49px;
+  background: #FFF;
+}
+
+.chat-form__text{
+  width: 55%;
+  height: 3.1em;
+  background: #FFF;
+  border: none;
+}
+
+
+.messages::-webkit-scrollbar {     //Chrome、Safariの場合、::-webkit-scrollbar擬似要素でスクロールバーを消す
+  display:none;
+}
+
+
+.chat-form__text::placeholder{    //placeholderの擬似要素で中身を装飾
+  padding-top: 11px;
+}
+
+
+.lower-content__image--modal{
+  height: 35em;
+  width: 35em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+}

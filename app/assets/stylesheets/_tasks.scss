@@ -1,0 +1,372 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.task-wrap{
+  height: calc(100vh - 68px - 98px);
+  width: 100%;
+  padding: 5% 0 5% 0;
+  overflow: auto;
+  .task-form{
+    display: none;
+    text-align: center;
+    background: whitesmoke;
+    border-left: solid 7px steelblue;     //左側の線
+    border-bottom: solid 3px #dadada;     //下に灰色線
+    padding: 1.5em 1em;
+    .form-field__js{
+      margin-bottom: 1em;
+      font-size: 17px;
+      .input-field__js{
+        width: 100%;
+        height: 2.8em;
+        padding: 0.3em;
+        box-sizing: border-box;
+      }
+      .input-field__text-js{
+        width: 100%;
+        height: 5em;
+        padding: 0.3em;
+        box-sizing: border-box;
+      }
+      .input-field__js::placeholder{
+        padding-top: 0.3em;
+      }
+      .file-field__js{
+        width: 100%;
+        height: 7em;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        justify-content: space-evenly;
+        &--images{
+          .label__js--image{
+            font-size: 1.5em;
+          }
+          .input-file__js{
+            display: none;
+          }
+        }
+      }
+      .file-field__js::-webkit-scrollbar{
+        display: none;
+      }
+      .select-field__js{
+        width: 16.5em;
+        height: 2.8em;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+    }
+    .form-field__js--check-box{
+      margin-bottom: 1em;
+      font-size: 17px;
+      .check-box{
+        display: inline-block;
+        width: 100%;
+        height: 1.5em;
+        white-space: nowrap;
+        overflow-x: auto;
+      }
+      .check-box::-webkit-scrollbar{
+        display: none;
+      }
+    }
+    .task-form__js--submit{
+      .form-submit__js--green{
+        display: inline-block;
+        width: 6.9em;
+        height: 2.8em;
+        background-color:  black;
+        font-size: 16px;
+        color: #008BBB;
+        font-weight: bold;
+        margin-top: 1em;
+        border-color: #008BBB;
+      }
+    }
+  }
+  .task-field{
+    box-sizing: border-box;
+    display: flex;
+    .task-box{
+      width: 21em;
+      margin: 0 3.5em 0;
+      &__title{
+        background: #FFCC00;
+        height: 3em;
+        font-weight: bold;
+        font-size: 1.5em;
+        text-align: center;
+        padding-top: 0.7em;
+        box-sizing: border-box;
+        .task__add{
+          font-size: 1em;
+          display: inline;
+          color: black;
+        }
+      }
+      &__content{
+        margin-top: 1.5em;
+        overflow: auto;
+        height: calc(100vh - 68px - 98px - 72px - 24px);
+        width: 21em;
+        &--list{
+          color: #404040;
+          border-left: solid 7px steelblue;     //左側の線
+          border-bottom: solid 3px #dadada;     //下に灰色線
+          background: whitesmoke;
+          margin-bottom: 1.5em;                     //下のバーとの余白
+          padding: 0.5em;
+          list-style-type: none!important;
+          font-weight: bold;
+          height: 3.5em;
+          box-sizing: border-box;
+          overflow: hidden;
+          .task-list__icons{
+            display: block;
+            text-align: right;
+            .list-link{
+              color: #0000CD;
+              text-decoration: none;
+              margin-left: 1.3em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+// .task__remove{
+//   background-color: black;
+//   color: #FFF;
+//   width: 4em;
+//   height: 2.3em;
+//   font-size: 1.3em;
+
+// }
+
+// .task-list__add{
+//   background-color: black;
+//   color: #FFF;
+//   width: 4em;
+//   height: 2.3em;
+//   font-size: 1.3em;
+// }
+// .task-list__remove{
+//   background-color: black;
+//   color: #FFF;
+//   width: 4em;
+//   height: 2.3em;
+//   font-size: 1.3em;
+
+// }
+
+
+
+
+.task-wrap__details{
+  text-align: center;
+  height: calc(100vh - 68px - 49px - 68px);
+  width: 100%;
+  padding: 5% 0 7% 0;
+  position: fixed;
+  overflow: auto;
+  .deadline-box{
+    display: flex;
+    justify-content: center;
+    // border: solid 1px black;
+    display: inline-block;
+    margin-bottom: 3.5em;
+    font-size: 1.3em;
+    background: black;
+    border-radius: 7px;
+    padding: 0.6em;
+    letter-spacing: 1px;
+    &__icon{
+      color: #FFCC00;
+      text-shadow: 0.7px 0.7px 0  black,
+                -0.7px 0.7px 0  black,
+                0.7px -0.7px 0  black,
+                -0.7px -0.7px 0  black;
+    }
+    &__header{
+      color: white;
+      display: inline;
+      margin-right: 2em;
+    }
+    &__time{
+      color: white;
+      display: inline;
+    }
+  }
+  .details-box{
+    margin: auto;
+    height: 30em;
+    width: 60%;
+    background: whitesmoke;
+    box-sizing: border-box;
+    border: solid 1px black;
+    margin-bottom: 10em;
+    &__title{
+      background: #c4c4c4;
+      font-size: 1.5em;
+      padding: 0.7em;
+      letter-spacing: 1px;
+      overflow-x: auto;
+    }
+    &__content{
+      padding: 3% 5% 3%;
+      text-align: left;
+      line-height: 2em;        //行間の高さ
+      letter-spacing: 1px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
+      height: calc(480px - 69px);
+      width: 100%;
+      font-size: 1.1em;
+      .task-image{
+        margin-top: 3em;
+        margin-right: 1em;
+      }
+    }
+    .details-box__content::-webkit-scrollbar{
+      display: none;
+    }
+  }
+  .details-member{
+    .details-member__header{
+      font-size: 1.3em;
+      letter-spacing: 1px;
+      padding: 0.6em;
+      display: inline-block;
+      border-radius: 7px;
+      &--icon{
+        display: inline;
+      }
+      &--title{
+        display: inline;
+      }
+    }
+    .details-member__list{
+      white-space: nowrap;    //はみ出しを折り返さない
+      overflow-x: auto;       //横方向のスクロール
+      width: 60%;
+      height: 80px;
+      margin: auto;
+      margin-bottom: 6em;
+      margin-top: 2em;
+      &--image{
+        display: inline-block;
+        margin-right: 1.5em;
+        margin-left: 1.5em;
+        .task-avatar{
+          height: 3.1em;
+          width: 3.1em;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .task-avatar__blank{
+          font-size: 2.5em;
+          display: inline-block;
+          padding-bottom: 0.2em;
+        }
+      }
+    }
+    .details-member__list::-webkit-scrollbar{
+      display: none;
+    }
+  }
+}
+
+
+
+
+.modal{
+  background: #222222;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  display: none;
+  .task-image__modal{
+    height: 35em;
+    width: 35em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+  }
+}
+
+
+
+
+.task-wrap__form{
+  text-align: center;
+  height: calc(100vh - 68px);
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+  background: black;
+  color: white;
+  .file-field__edit-js{
+    width: 21.5em;
+    height: 7em;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    &--images{
+      .label__js--image{
+        font-size: 1.5em;
+      }
+      .input-file__js{
+        display: none;
+      }
+    }
+  }
+  .file-field__edit-js::-webkit-scrollbar{
+    display: none;
+  }
+  .form-field__check-box{
+    height: 2.8em;
+    margin-bottom: 3.5em;
+    font-size: 17px;
+    width: 21.5em;
+    white-space: nowrap;
+    display: inline-block;
+    .check-box{
+      overflow-x: auto;
+    }
+    .check-box::-webkit-scrollbar{
+      display: none;
+    }
+  }
+  .select-field{
+    width: 16.5em;
+    height: 2.8em;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+}
+
+
+
+.selected-images{
+  height: 3.5em;
+  width: 3.5em;
+}
+
+.img_del{
+  text-decoration: none;
+  font-size: 15px;
+  color: #BA002F;
+}

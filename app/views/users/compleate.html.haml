@@ -1,0 +1,17 @@
+.procedure-wrap
+  %h1.procedure-title
+    registration is compleated !
+    .procedure-title__border
+  .compleate-box
+    .compleate-box__user-name
+      = @user.name
+      様
+    .compleate-box__title
+      会員登録ありがとうございます
+    .compleate-box__text
+      「Login Page」ボタンからログインしてアプリケーションをご利用ください
+      %br
+      EventGeek supports your event !
+  .procedure-footer
+    %button.procedure-footer__end
+      = link_to "Login Page", root_path, class: "procedure-link"
