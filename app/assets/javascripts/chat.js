@@ -139,4 +139,85 @@
 //⑥ 返ってきたJSONをdoneメソッドで受け取りjsファイル内でHTMLを作成する
 //⑦ 作成したHTMLをメッセージ画面に追加する
 //⑧ メッセージを連続で送信できるようにする
+<<<<<<< Updated upstream
 //⑨ HTMLを追加した分メッセージ画面を下にスクロールする
+=======
+//⑨ HTMLを追加した分メッセージ画面を下にスクロールする
+
+
+
+
+
+
+
+
+
+$(document).on('turbolinks:load', function(){
+  $(function(){
+    $('.lower-content__image').on('click',function(){
+
+      //取得された画像が全て重なった状態で表示される。 そこでクリックされたtask-imageのsrcをattrメソッドで取得し、task-image__modalのsrcをattrメソッドでtask-imageのsrcに変更した
+      $(".lower-content__image--modal").attr('src', $(this).attr('src'))
+
+      $('.modal').fadeIn();
+      return false;
+    });
+    $('.modal').on('click',function(){
+      $('.modal').fadeOut();
+      return false;
+    });
+  });
+});
+
+
+
+
+$(document).on('turbolinks:load', function(){
+  var view_box = $('.chat-form__image');
+
+  $(".hidden").on('change', function(){
+    var fileprop = $(this).prop('files')[0],
+        find_img = $(this).next('img'),
+        fileRdr = new FileReader();
+
+    if(find_img.length){
+      find_img.nextAll().remove();
+      find_img.remove();
+    }
+
+    var img = '<div class="chat-img_view"><p class= "chat-img__text--selected">選択中の画像</p><img alt="" class="chat-form__img--preview"><p><a href="#" class="chat-form__img--delete">削除</a></p></div>';
+
+    view_box.append(img);
+
+    fileRdr.onload = function() {
+      view_box.find('img').attr('src', fileRdr.result);
+      form_img__delete(view_box);
+    }
+    fileRdr.readAsDataURL(fileprop);
+
+    $(this).prop("disabled", true);
+
+    $(this).attr('src')
+    $(".chat-img_view").fadeIn();
+    $(".messages").fadeTo("fast", 0.2);
+    return false;     //親要素へのイベント伝播を止める
+  });
+
+  function form_img__delete(target)
+  {
+    target.find("a.chat-form__img--delete").on('click',function(){
+      if(window.confirm('選択した画像を削除します。\nよろしいですか？'))
+      {
+        $(this).parent().find('input[type=file]').val('');
+        $(this).parent().find('.chat-img_view, br').remove();
+        $(this).remove();
+      }
+    });
+    return false;
+  }
+
+  $(".chat-form__send").on('click', function(){
+    $(".hidden").prop("disabled", false);
+  });
+});
+>>>>>>> Stashed changes
