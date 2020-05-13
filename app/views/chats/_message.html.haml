@@ -6,20 +6,21 @@
         - if chat.user.avatar.attached?
           = image_tag chat.user.avatar, class: "icon"
         - else
-          = icon "fas", "user",  class: "icon-blank"
+          = icon "fas", "user-circle",  class: "icon-blank"
         .upper-contents__user-name
           = chat.user.name
         .upper-contents__date
           = chat.created_at.strftime("%Y/%m/%d %H:%M")
         .upper-contents__awesome
           = link_to group_chat_path(@group, chat), method: :delete, data: {confirm: "本当に削除しますか？"} do
-            = icon "fas", "trash-alt"
+            = icon "fas", "trash-alt", style: "color: #0000CD"
       .lower-content
         .lower-content__text
           - if chat.message.present?
-            = chat.message
+            = safe_join(chat.message.split("\n"), tag(:br))
             %br
-            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          - if chat.image.present?
+            = image_tag chat.image.url, class: 'lower-content__image'
           .lower-content__border
 
   - else
@@ -29,7 +30,7 @@
         - if chat.user.avatar.attached?
           = image_tag chat.user.avatar, class: "icon"
         - else
-          = icon "fas", "user",  class: "icon-blank"
+          = icon "fas", "user-circle",  class: "icon-blank"
         .upper-contents__user-name
           = chat.user.name
         .upper-contents__date
@@ -37,7 +38,8 @@
       .lower-content
         .lower-content__text
           - if chat.message.present?
-            = chat.message
+            = safe_join(chat.message.split("\n"), tag(:br))
             %br
-            = image_tag chat.image.url, class: 'lower-content__image' if chat.image.present?
+          - if chat.image.present?
+            = image_tag chat.image.url, class: 'lower-content__image'
           .lower-content__border

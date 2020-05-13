@@ -1,0 +1,180 @@
+// Place all the styles related to the accounts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.account-wrap{
+  height: calc(100vh - 69px);
+  width: 100%;
+  position: fixed;
+  overflow: auto;
+  .account-box{
+    margin-top: 7%;
+    display: flex;
+    margin-left: 13%;
+    &__side-bar{
+      width: 20%;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 600;
+      li{
+        box-sizing: border-box;
+        flex-flow:column;
+        justify-content: space-evenly;
+        border: solid 1px whitesmoke;
+        background: steelblue;
+        padding-top: 10%;
+        height: 16.7%;
+        .my-list{
+          color: black;
+          text-decoration: none;
+          a{
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.account-field{
+  margin-left: 0.2%;
+  width: 65%;
+  height: 65%;
+  background: whitesmoke;
+  padding: 3% 5% 3%;
+  box-sizing: border-box;
+  &__icon{
+    margin-bottom: 15%;
+    .pesonal-icon{
+      height: 5em;
+      width: 5em;
+      border-radius: 50%;
+    }
+    .account-icon::before{
+      font-size: 4em;
+    }
+  }
+  &__name{
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+
+.new-email{
+  color: black;
+}
+
+
+.account-field__title{
+  font-size: 20px;
+}
+
+.account-field__border--top{
+  border-bottom: solid 1px #AAAAAA;
+  margin: 0.3% 0 1.5%;
+}
+
+
+.account-field__border--middle{
+  border-bottom: solid 1px #AAAAAA;
+  margin: 1.8% 0 5.5%;
+}
+
+.account-field__border--bottom{
+  border-bottom: solid 1px #AAAAAA;
+  margin: 5.5% 0 5.5%;
+}
+
+
+.account-field__data{
+  display: flex;
+  justify-content: space-between;
+  &--headline{
+    display: inline;
+    line-height: 8.8em;
+  }
+  &--content{
+    display: inline-block;
+    margin-top: 0.5em;
+  }
+}
+
+
+.account-update__button--top{
+  margin-top: 7.4%;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: steelblue;
+  border: solid 2px steelblue;
+  background: whitesmoke;
+  border-radius: 3px;
+  height: 3%;
+  width: 30px;
+  text-align: center;
+}
+
+
+.account-field__data--secure{
+  display: inline;
+  line-height: 2.6em;
+  text-align: center;
+}
+
+
+.account-update__button{
+  margin-top: 0.4%;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: steelblue;
+  border: solid 2px steelblue;
+  background: whitesmoke;
+  border-radius: 3px;
+  height: 3%;
+  width: 30px;
+  text-align: center;
+}
+
+
+
+
+
+.account-group{
+  margin-top: 7%;
+  width: 56.6%;
+  height: calc(100vh - 400 - 68 - 68 - 68);
+  background: whitesmoke;
+  padding: 3% 5% 3%;
+  box-sizing: border-box;
+  margin-left: 30.6%;
+  margin-bottom: 7%;
+}
+
+
+.account-group__border--top{
+  border-bottom: solid 1px #AAAAAA;
+  margin: 0.3% 0 5.5%;
+}
+
+.account-group__border--middle{
+  border-bottom: solid 1px #AAAAAA;
+  margin: 5.5% 0 5%;
+}
+
+
+.account-group__border--bottom{
+  border-bottom: solid 1px #AAAAAA;
+  margin: 5% 0 5%;
+}
+
+
+.account-icon{
+  margin-bottom: 22%;
+}

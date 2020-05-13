@@ -139,9 +139,6 @@
 //⑥ 返ってきたJSONをdoneメソッドで受け取りjsファイル内でHTMLを作成する
 //⑦ 作成したHTMLをメッセージ画面に追加する
 //⑧ メッセージを連続で送信できるようにする
-<<<<<<< Updated upstream
-//⑨ HTMLを追加した分メッセージ画面を下にスクロールする
-=======
 //⑨ HTMLを追加した分メッセージ画面を下にスクロールする
 
 
@@ -220,4 +217,3 @@ $(document).on('turbolinks:load', function(){
     $(".hidden").prop("disabled", false);
   });
 });
->>>>>>> Stashed changes

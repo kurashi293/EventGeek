@@ -3,27 +3,27 @@
   %nav.gnav.fixed
     %ul
       %li
-        = link_to group_path(@group), class: "link" do
+        = link_to group_path(@group), class: "link", id: "nav__home" do
           = icon "fas", "home", class: "nav-awesome"
           .compensate
             HOME
       %li
-        = link_to "/task", class: "link" do
+        = link_to group_tasks_path(@group), class: "link", id: "nav__task" do
           = icon 'fas', "tasks", class: "nav-awesome"
           .compensate
             TASK
       %li
-        = link_to "/member", class: "link" do
+        = link_to group_statuses_path(@group), class: "link", id: "nav__status" do
           = icon "fas", "users", class: "nav-awesome"
           .compensate
             MEMBER
       %li
-        = link_to group_chats_path(@group), class: "link" do
+        = link_to group_chats_path(@group), class: "link", id: "nav__chat" do
           = icon "far", "comment-dots", class: "nav-awesome"
           .compensate
             CHAT
       %li
-        = link_to group_mypages_path(@group), class: "link" do
+        = link_to group_mypages_path(@group), class: "link", id: "nav__group-mypage" do
           = icon "fas", "user-cog", class: "nav-awesome"
           .compensate
             MY PAGE
@@ -31,12 +31,12 @@
   %nav.gnav.fixed
     %ul
       %li
-        = link_to "/", class: "link" do
+        = link_to "/", class: "link", id: "nav__root" do
           = icon "fas", "home", class: "nav-awesome"
           .compensate
             HOME
       %li
-        = link_to user_path(current_user), class: "link" do
+        = link_to user_path(current_user), class: "link", id: "nav__mypage" do
           = icon "fas", "user-cog", class: "nav-awesome"
           .compensate
             MY PAGE

@@ -6,8 +6,16 @@ class User < ApplicationRecord
 
   has_many :group_users, dependent: :destroy   #dependent: :destroyで関連モデルのレコードを削除
   has_many :groups, through: :group_users
+  has_many :task_users, dependent: :destroy
+  has_many :tasks, through: :task_users
   has_many :chats, dependent: :destroy
+  has_one  :status, dependent: :destroy
   has_one_attached :avatar
+  has_associated_audits
+
+  # accepts_nested_attributes_for :status
+
+  audited
 
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
 

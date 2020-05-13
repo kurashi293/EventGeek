@@ -1,0 +1,14 @@
+.select-wrap
+  %h1.form-title--green
+    SELECT GROUP
+  .select
+  - current_user.groups.order(id: :desc).each do |group|
+    = link_to group_path(group.id), class: "select-link" do
+      .select-box
+        .select-box__name
+          = group.name
+          .select-box__name--border
+  .link__back
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    %a{:href => "javascript:history.back();", class: "javascript-back"} Back
+

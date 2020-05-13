@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
   def show
   end
 
-  
+
   def edit
   end
 
@@ -61,6 +61,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, user_ids: [])
+    params.require(:group).permit(:name, :notice, user_ids: [])
   end
 end

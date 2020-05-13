@@ -70,3 +70,5 @@ gem 'mini_magick'
 gem 'font-awesome-sass'
 gem 'devise'
 gem 'pry-rails'
+gem "audited", "~> 4.7"
+gem "ancestry"
