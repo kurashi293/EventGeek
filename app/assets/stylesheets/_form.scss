@@ -25,8 +25,6 @@
   font-size: 17px;
   .icon-select{
     display: inline-block;
-    border: double 3px  white;
-    padding: 5px;
     font-size: 16px;
   }
   .input-field{
@@ -35,10 +33,27 @@
     padding: 0.3em;
     box-sizing: border-box;
   }
+  .label__image{
+    font-size: 3em;
+  }
   .input-file{
     display: none;
   }
 }
+
+
+.selected-image{
+  height: 8.5em;
+  width: 8.5em;
+  border-radius: 50%;
+}
+.form_img__delete{
+  color:  #BA002F;
+  text-decoration: none;
+  font-size: 1.15em;
+}
+
+
 .form-submit{
   display: inline-block;
   width: 110px;

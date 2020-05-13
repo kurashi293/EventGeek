@@ -11,9 +11,9 @@
     .form-description
       ※設定は任意です
       .form-field
-        = f.label :avatar, "ファイルを選択", class: "icon-select"
-        #myfile= f.file_field :avatar, class: "input-file"
-        %img#avatar{style: "width:127px;height:127px;"}
+        = f.label :avatar, "ファイルを選択", class: "icon-select" do
+          = icon "fa", "image", class: "label__image"
+          = f.file_field :avatar, class: "input-file"
     .form-field
       = f.label :email
       %br/
