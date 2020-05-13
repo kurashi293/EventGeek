@@ -2,10 +2,11 @@
   %h1.form-title
     EventGeek
   = form_with model: @user, local: true do |f|
+    = render "users/errors"
     .form-field
       = f.label :name
       %br/
-      = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでf._fieldの入力エラーの種類を自動的に判別してエラーメッセージを表示してくれる
+      = f.text_field :name, autofocus: true, maxlength: "50", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
     .form-icon__title
       Icon
     .form-description
