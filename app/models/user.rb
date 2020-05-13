@@ -11,11 +11,6 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_one  :status, dependent: :destroy
   has_one_attached :avatar
-  has_associated_audits
-
-  # accepts_nested_attributes_for :status
-
-  audited
 
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
 
