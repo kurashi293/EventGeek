@@ -1,12 +1,12 @@
 .task-wrap__details
-  .deadline-box
+  %section.deadline-box
     .deadline-box__icon
       = icon "fa", "bell"
       .deadline-box__header
         Deadline
       .deadline-box__time
         = @task.deadline.strftime("%Y/%m/%d %H:%M")
-  .details-box
+  %section.details-box
     .details-box__title
       = @task.title
     .details-box__content
@@ -15,7 +15,7 @@
       - if @task.task_images.present?
         - @task.task_images.each do |task_images|
           = image_tag task_images.image.url, height: "100px", width: "100px", class: "task-image"
-  .details-member
+  %section.details-member
     .details-member__header
       .details-member__header--icon
         = icon "fa", "check-square", class: "check-square"
@@ -30,9 +30,10 @@
               = task.name
         - else
           .details-member__list--image
-            = icon "fas", "user", class: "task-avatar__blank"
+            = icon "fa", "user-circle", class: "task-avatar__blank"
             .details-member__list--name
               = task.name
+  -# created_at &nbsp; #{@task.created_at.strftime("%Y/%m/%d %H:%M")}
 
 = render "share/navigation"
 

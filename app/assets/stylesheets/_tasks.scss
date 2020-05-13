@@ -6,7 +6,7 @@
   height: calc(100vh - 68px - 98px);
   width: 100%;
   padding: 5% 0 5% 0;
-  overflow: auto;
+  overflow-x: auto;
   .task-form{
     display: none;
     text-align: center;
@@ -80,7 +80,7 @@
         height: 2.8em;
         background-color:  black;
         font-size: 16px;
-        color: #008BBB;
+        color: white;
         font-weight: bold;
         margin-top: 1em;
         border-color: #008BBB;
@@ -92,9 +92,11 @@
     display: flex;
     .task-box{
       width: 21em;
-      margin: 0 3.5em 0;
+      margin: 0 5% 0;
       &__title{
         background: #FFCC00;
+        color: black;
+        border: solid 1px #999999;
         height: 3em;
         font-weight: bold;
         font-size: 1.5em;
@@ -121,7 +123,7 @@
           padding: 0.5em;
           list-style-type: none!important;
           font-weight: bold;
-          height: 3.5em;
+          height: 3.9375em;
           box-sizing: border-box;
           overflow: hidden;
           .task-list__icons{
@@ -179,9 +181,8 @@
   .deadline-box{
     display: flex;
     justify-content: center;
-    // border: solid 1px black;
     display: inline-block;
-    margin-bottom: 3.5em;
+    margin-bottom: 3.8em;
     font-size: 1.3em;
     background: black;
     border-radius: 7px;
@@ -209,10 +210,13 @@
     height: 30em;
     width: 60%;
     background: whitesmoke;
-    box-sizing: border-box;
-    border: solid 1px black;
-    margin-bottom: 10em;
+    border-top: solid 0.0625em #999999;
+    border-right: solid 0.0625em #999999;
+    margin-bottom: 8em;
+    border-left: solid 0.8125em steelblue;
+    border-bottom: solid 0.4375em #dadada;
     &__title{
+      box-sizing: border-box;
       background: #c4c4c4;
       font-size: 1.5em;
       padding: 0.7em;
@@ -257,7 +261,7 @@
       white-space: nowrap;    //はみ出しを折り返さない
       overflow-x: auto;       //横方向のスクロール
       width: 60%;
-      height: 80px;
+      height: 100px;
       margin: auto;
       margin-bottom: 6em;
       margin-top: 2em;
@@ -266,15 +270,15 @@
         margin-right: 1.5em;
         margin-left: 1.5em;
         .task-avatar{
-          height: 3.1em;
-          width: 3.1em;
+          height: 3.75em;
+          width: 3.75em;
           border-radius: 50%;
           display: inline-block;
         }
         .task-avatar__blank{
-          font-size: 2.5em;
+          font-size: 3.75em;
           display: inline-block;
-          padding-bottom: 0.2em;
+          margin-bottom: 0.11em;
         }
       }
     }
@@ -355,6 +359,7 @@
     height: 2.8em;
     padding: 5px;
     box-sizing: border-box;
+    background: white;
   }
 }
 
@@ -369,4 +374,16 @@
   text-decoration: none;
   font-size: 15px;
   color: #BA002F;
+}
+
+
+.icon__check{
+  color: #BA002F;
+}
+
+
+.details-member__list--name{
+  max-width: 3.75em;
+  overflow-x: hidden;
+  font-size: 1.1em;
 }
