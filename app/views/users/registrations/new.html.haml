@@ -2,18 +2,19 @@
   %h1.form-title
     EventGeek
   = form_with model: @user, local: true do |f|
+    = render "users/errors"
     .form-field
       = f.label :name
       %br/
-      = f.text_field :name, autofocus: true, maxlength: "10", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでf._fieldの入力エラーの種類を自動的に判別してエラーメッセージを表示してくれる
+      = f.text_field :name, autofocus: true, maxlength: "50", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
     .form-icon__title
       Icon
     .form-description
       ※設定は任意です
       .form-field
-        = f.label :avatar, "ファイルを選択", class: "icon-select"
-        #myfile= f.file_field :avatar, class: "input-file"
-        %img#avatar{style: "width:127px;height:127px;"}
+        = f.label :avatar, "ファイルを選択", class: "icon-select" do
+          = icon "fa", "image", class: "label__image"
+          = f.file_field :avatar, class: "input-file"
     .form-field
       = f.label :email
       %br/

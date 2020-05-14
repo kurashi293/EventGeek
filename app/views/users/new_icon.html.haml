@@ -7,9 +7,11 @@
     .form-description
       ※設定は任意です
       .form-field
-        = f.label :avatar, "ファイルを選択", class: "icon-select"
-        #myfile= f.file_field :avatar, class: "input-file"
-        %img#avatar{style: "width:127px;height:127px;"}
+        = f.label :avatar, "ファイルを選択", class: "icon-select" do
+          = icon "fa", "image", class: "label__image"
+          = f.file_field :avatar, class: "input-file"
     .actions
       = f.submit "Update!", class: "form-submit__green"
-  = render "share/navigation"
+  .link__back
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    %a{:href => "javascript:history.back();", class: "javascript-back"} Back
