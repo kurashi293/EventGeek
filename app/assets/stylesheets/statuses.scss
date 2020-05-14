@@ -33,7 +33,6 @@
 
 table {
   border-collapse: collapse;
-  width: 85em;
   margin: 0 auto 0 auto;
 }
 
@@ -44,12 +43,16 @@ table td, table th {
   border: 2px solid #a9a9a9;
   padding: 1.8%;
   background: whitesmoke;
-  max-width: 3em;
 }
 
 table th{
   background-color: steelblue;
   font-weight: bold;
+}
+
+
+table td::-webkit-scrollbar{
+  display: none;
 }
 
 
@@ -86,6 +89,17 @@ table th{
 
 
 
+.status-table{
+  width: 86em;
+  &__header{
+    max-width: 3em;
+  }
+  &__data{
+    max-width: 3em;
+  }
+
+}
+
 
 .current_user__line{
   border: solid 3px #BA002F;
@@ -95,20 +109,6 @@ table th{
 .rank-star{
   color: #FFCC00;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -223,11 +223,6 @@ table th{
   color: white;
   border: none;
 }
-
-
-
-
-
 
 
 
