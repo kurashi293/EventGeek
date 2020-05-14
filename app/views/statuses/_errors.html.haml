@@ -1,5 +1,5 @@
 - if @status.errors.any?
-  .alert
+  .status-alert
     %ul
       -@status.errors.full_messages.each do |message|
         %li= message
