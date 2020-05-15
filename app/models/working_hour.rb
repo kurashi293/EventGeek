@@ -1,5 +1,5 @@
 class WorkingHour < ApplicationRecord
-  has_one :status, dependent: :destroy
+  has_one :status
 
 
   validates :start_at, :end_at, :break_at, presence: { message: "入力してください" }

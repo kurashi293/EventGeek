@@ -1,7 +1,7 @@
 class Status < ApplicationRecord
-  belongs_to :company
-  belongs_to :working_hour
-  belongs_to :position
+  belongs_to :company, dependent: :destroy
+  belongs_to :working_hour, dependent: :destroy
+  belongs_to :position, dependent: :destroy
   accepts_nested_attributes_for :company
   accepts_nested_attributes_for :working_hour
   accepts_nested_attributes_for :position
