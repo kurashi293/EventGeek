@@ -22,17 +22,30 @@
   .information-contents{
     padding: 3% 5% 2%;
     text-align: left;
-    .information-time{
-      display: inline-block;
-    }
-    .information-result{
-      margin-left: 15%;
-      display: inline-block;
+    .information-box{
+      width: 100%;
+      display: flex;
+      &__time{
+        display: inline-block;
+        max-width: 21.5%;
+        white-space: nowrap;
+      }
+      &__result{
+        margin-left: 15%;
+        display: inline-block;
+        max-width: 63.5%;
+        overflow-wrap: break-word;
+      }
     }
     .information-blank{
       text-align: center;
     }
   }
+}
+
+
+.information-box__result::-webkit-scrollbar{
+  display: none;
 }
 
 
@@ -65,4 +78,3 @@
 .information-border{
   border-bottom: solid 1px #AAAAAA;
 }
-

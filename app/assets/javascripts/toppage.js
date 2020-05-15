@@ -29,19 +29,19 @@ $(document).on('turbolinks:load', function(){
 
 
 
-$(document).on('turbolinks:load', function(){
-  $('.toppage-users').hide();
-  $('.bolt').click(function() {
+// $(document).on('turbolinks:load', function(){
+//   $('.toppage-users').hide();
+//   $('.bolt').click(function() {
 
-    $('.toppage-users').fadeIn(2000);     //2秒かけてフェードイン
-  });
-});
+//     $('.toppage-users').fadeIn(2000);     //2秒かけてフェードイン
+//   });
+// });
 
 
 
-$(document).on('turbolinks:load', function(){
-  $('.fade-close').click(function() {
+// $(document).on('turbolinks:load', function(){
+//   $('.fade-close').click(function() {
 
-    $('.toppage-users').fadeOut(1000);     //1秒かけてフェードアウト
-  });
-});
+//     $('.toppage-users').fadeOut(1000);     //1秒かけてフェードアウト
+//   });
+// });
