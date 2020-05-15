@@ -11,35 +11,45 @@
   overflow: auto;
   text-align: center;
   .toppage-box{
+    width: 100%;
     box-sizing: border-box;
-    padding: 1% 85px;
+    padding: 1% 83px 1% 13.5%;
     background: black;
     color: white;
     font-weight: bold;
     font-family: 'arial unicode ms';
     font-size: 1.8em;
+    margin-bottom: 6%;
     display: flex;
-    margin-bottom: 3.5%;
-    .toppage-title{
+    justify-content: space-between;
+    .toppage-header{
+      display: flex;
       text-align: left;
-      width: 100%;
+      width: 85%;
       &__awesome{
-        display: inline-block;
         color:  #FFCC00;
-        margin-right: 2%;
+        margin-right: 2.3%;
       }
-      &__name{
+      &__title{
+        width: 100%;
+        white-space: nowrap;
+        overflow: scroll;
         display: inline-block;
       }
     }
   }
 }
 
-
+.toppage-header__title::-webkit-scrollbar{
+  display: none;
+}
 
 .slideDown-awesome{
   display: inline-block;
 }
+
+
+
 .slideDown-awesome__group-bar{
   position: absolute;
   right: 10px;
@@ -68,8 +78,6 @@
     display: inline-block;
   }
 }
-
-
 
 
 
@@ -105,18 +113,14 @@
 
 
 
-
-
-
-
 .toppage-users{
-  width: 100%;
-  height: 143px;
-  white-space: nowrap;    //はみ出しを折り返さない
-  overflow-x: auto;       //横方向のスクロール
-  position: relative;
   z-index: 1;
+  padding: 0 17% 0;
   .users-bar{
+    white-space: nowrap;    //はみ出しを折り返さない
+    overflow-x: auto;       //横方向のスクロール
+    width: 100%;
+    height: 100px;
     &__avatar{
       display: inline-block;
       margin-right: 1.5em;
@@ -124,11 +128,13 @@
     }
     &__name{
       font-size: 1.1em;
+      max-width: 54.5px;
+      overflow: hidden;
     }
   }
   .all-avatar{
-    height: 4em;
-    width: 4em;
+    height: 3.5em;
+    width: 3.5em;
     border-radius: 50%;
   }
   .all-avatar__blank{
@@ -137,16 +143,9 @@
   }
 }
 
-.fade-close{
-  margin-top: 0.8em;
-  font-size: 1.5em;
+.users-bar::-webkit-scrollbar{
+  display: none;
 }
-
-
-
-
-
-
 
 
 
