@@ -8,4 +8,6 @@
       = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可', required: true
     .actions
       = f.submit "Update!", class: "form-submit__green"
-  = render "share/navigation"
+  .link__back
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    %a{:href => "javascript:history.back();", class: "javascript-back"} Back

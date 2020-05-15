@@ -18,19 +18,21 @@
       .upper-contents{
         display: flex;
         .icon{
-          height: 25px;
-          width: 25px;
+          height: 1.5625em;
+          width: 1.5625em;
           border-radius: 50%;
           margin-right: 8px;
         }
-        .icon-blank::before{
-          font-size: 22px;
+        .icon-blank{
+          font-size: 1.5625em;
           margin-right: 8px;
         }
         &__user-name{
           color: #434a54;
           font-size: 15px;
           font-weight: bold;
+          max-width: 250px;
+          overflow: hidden;
         }
         &__date{
           color: #444444;
@@ -98,10 +100,6 @@
   border: none;
 }
 
-.current-user__star{
-  color: #FFCC00;
-  margin-right: 5px;
-}
 
 .messages::-webkit-scrollbar {     //Chrome、Safariの場合、::-webkit-scrollbar擬似要素でスクロールバーを消す
   display:none;
@@ -121,4 +119,33 @@
   left: 50%;
   transform: translate(-50%,-50%);
   z-index: 5;
+}
+
+
+
+
+.chat-img_view{
+  display: none;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  text-align: center;
+}
+
+.chat-form__img--preview{
+  height: 10em;
+  width: 10em;
+}
+
+
+.chat-form__img--delete{
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #BA002F;
+}
+
+.chat-img__text--selected{
+  font-size: 1.35em;
 }

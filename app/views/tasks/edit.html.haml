@@ -16,7 +16,7 @@
         %br/
         .file-field__edit-js
           = f.fields_for :task_images do |fi|
-            .file-field__js--images
+            .file-field__edit-js--images
               = fi.label :image, class: "label__js" do
                 = icon "fa", "image", class: "label__js--image"
                 = fi.file_field :image, class: "input-file__js"

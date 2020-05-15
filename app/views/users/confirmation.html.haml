@@ -8,37 +8,43 @@
     .confirmation-contents
       - if @user.avatar.attached?   #has_one_attachedで画像機能を作成した場合、attached?で画像の有無を確認する。存在すればtrueを返す
         .confirmation-contents__icon
-          = image_tag @user.avatar, height: "120px", width: "120px", class: "procedure-icon"
-        %table.confirmation-contents__box
+          = image_tag @user.avatar, class: "procedure-icon"
+        %table.confirmation-contents__table
           %thead
             %tr
-              %th Name
-              %td.confirmation-contents__box--user-name
+              %th.confirmation-contents__table--header
+                Name
+              %td.confirmation-contents__table--data
                 = @user.name
             %tr
-              %th Email
-              %td.confirmation-contents__box--email
+              %th.confirmation-contents__table--header
+                Email
+              %td.confirmation-contents__table--data
                 = @user.email
             %tr
-              %th Password
-              %td.confirmation-contents__box--password
+              %th.confirmation-contents__table--header
+                Password
+              %td.confirmation-contents__table--data
                 セキュリティーのためパスワードは非表示となっています
       - else
         .confirmation-contents__icon
-          = icon "fas", "user", class: "procedure-icon"
-        %table.confirmation-contents__box
+          = icon "fas", "user-circle", class: "procedure-icon"
+        %table.confirmation-contents__table
           %thead
             %tr
-              %th Name
-              %td.confirmation-contents__box--user-name
+              %th.confirmation-contents__table--header
+                Name
+              %td.confirmation-contents__table--data
                 = @user.name
             %tr
-              %th Email
-              %td.confirmation-contents__box--email
+              %th.confirmation-contents__table--header
+                Email
+              %td.confirmation-contents__table--data
                 = @user.email
             %tr
-              %th Password
-              %td.confirmation-contents__box--password
+              %th.confirmation-contents__table--header
+                Password
+              %td.confirmation-contents__table--data
                 セキュリティーのためパスワードは非表示となっています
     .procedure-box__text
       内容を確認し、よろしければ「登録」ボタンを押して下さい。

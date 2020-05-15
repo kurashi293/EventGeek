@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   root "toppages#index"
 
-  get "member" => "members#index"
-
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do   #:usersにidを持たせたcompleateアクションを作成
       get "confirmation"
@@ -24,7 +22,8 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
-    resources :chats, only: [:index, :create]
+    resources :statuses, only: [:index, :new, :create, :edit, :update]
+    resources :chats, only: [:index, :create, :destroy]
     resources :mypages, only: [:index]
     # namespace :api do
     #   resources :messages, only: :index, defaults: { format: 'json' }

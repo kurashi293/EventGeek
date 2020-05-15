@@ -29,6 +29,17 @@ class ChatsController < ApplicationController
 
 
 
+  def destroy
+    @chat = Chat.find(params[:id])
+    if @chat.destroy
+      redirect_to group_chats_path
+    else
+      render :index
+    end
+  end
+
+
+
   def set_group
     @group = Group.find(params[:group_id])
   end
