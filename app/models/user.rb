@@ -26,5 +26,5 @@ class User < ApplicationRecord
 
   # validates :password, presence: { message: "入力してください" }
   # validates :password, uniqueness: { message: "既に存在するパスワードです" }
-  validates :password, length: { minimum: 6, message: "6文字以上で入力してください" }
+  # validates :password, length: { minimum: 6, message: "6文字以上で入力してください" }
 end
