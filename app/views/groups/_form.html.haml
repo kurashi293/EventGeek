@@ -1,4 +1,4 @@
-= form_with model: group, local: true do |f|
+= form_with model: @group, local: true do |f|
   = render "groups/errors"
   .form-field
     = f.label :name, "Group Name"
@@ -21,7 +21,10 @@
           .group-user.clearfix{ id: "group-user-#{user.id}" }
             = f.hidden_field :id, name: "group[user_ids][]", value: user.id
             %p.group-user__name= user.name
-            - unless user.id == current_user.id
+            - if @group.user_ids.include?(current_user.id) && @group.user_ids.length == 1
+              .user-search-not-remove
+                削除不可
+            - else
               %a.user-search-remove.group-user__btn.group-user__btn--remove{ 'data-user-id': user.id } 削除
     .form-field.clearfix
   .actions
