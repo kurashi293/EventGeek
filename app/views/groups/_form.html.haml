@@ -1,8 +1,9 @@
-= form_with model: group, local: true do |f|
+= form_with model: @group, local: true do |f|
+  = render "groups/errors"
   .form-field
     = f.label :name, "Group Name"
     %br/
-    = f.text_field :name, autofocus: true, class: "input-field", placeholder: "例)   1/1   新潟コンサート・朱鷺メッセ公演", required: true
+    = f.text_field :name, autofocus: true, class: "input-field", placeholder: "例)   1/1   新潟コンサート・朱鷺メッセ公演"
   .form-field
     = f.label :notice, "Group Notice"
     %br/
@@ -20,8 +21,11 @@
           .group-user.clearfix{ id: "group-user-#{user.id}" }
             = f.hidden_field :id, name: "group[user_ids][]", value: user.id
             %p.group-user__name= user.name
-            - unless user.id == current_user.id
+            - if @group.user_ids.include?(current_user.id) && @group.user_ids.length == 1
+              .user-search-not-remove
+                削除不可
+            - else
               %a.user-search-remove.group-user__btn.group-user__btn--remove{ 'data-user-id': user.id } 削除
     .form-field.clearfix
   .actions
-    = f.submit "Create!", class: "form-submit__green"
+    = f.submit "send", class: "form-submit__green"
