@@ -1,0 +1,5 @@
+- if @group.errors.any?
+  .group-alert
+    %ul
+      -@group.errors.full_messages.each do |message|
+        %li= message
