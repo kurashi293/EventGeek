@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
 
   validates :name, presence: { message: "入力してください" }
-  validates :name, uniqueness: { message: "既にアカウントが存在します" }
+  validates :name, uniqueness: { message: "既に存在するアカウントです" }
   validates :name, length: { maximum: 50, message: "50文字以内で入力してください" }
 
   validates :email, presence: { message: "入力してください" }
