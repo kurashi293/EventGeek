@@ -126,6 +126,7 @@ margin: 3px auto 30px;
     display: inline-block;
     margin-left: 5em;
     cursor: pointer;
+    white-space: nowrap;
     &--add {
       color: #008BBB;
     }
@@ -140,6 +141,7 @@ margin: 3px auto 30px;
   display: inline-block;
   margin-left: 5em;
   color: #BA002F;
+  white-space: nowrap;
 }
 
 
