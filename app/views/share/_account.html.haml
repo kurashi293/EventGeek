@@ -31,20 +31,20 @@
       .account-field__data
         .account-field__data--headline
           基本情報
-        .account-field__data--content
+        .account-field__data--contents
           - if current_user.avatar.attached?   #has_one_attachedで画像機能を作成した場合、attached?で画像の有無を確認する。存在すればtrueを返す
             .account-field__icon
               = image_tag current_user.avatar, class: "pesonal-icon"
           - else
             .account-field__icon
-              = icon "fas", "user", class: "account-icon"
+              = icon "fas", "user-circle", class: "account-icon"
           .account-field__name
             = current_user.name
         = link_to "変更", new_icon_user_path(current_user), class: "account-update__button--top"
       .account-field__border--middle
       .account-field__data
         .account-field__data--secure
-          メールアドレス
+          Email
         .account-field__data--content
           .account-field__email
             = current_user.email
@@ -52,7 +52,7 @@
       .account-field__border--bottom
       .account-field__data
         .account-field__data--secure
-          パスワード
+          Password
         .account-field__data--content
           .account-field__password
             セキュリティーのため非表示です
@@ -99,17 +99,39 @@
         .account-field__data--content
           .account-field__user-count
             参加中のグループはありません
-  - if @group.present?
-    .account-group
-      .account-field__title
-        タスク情報
-      .account-group__border--top
-      .account-field__data
-        .account-group__data--headline
-          参加中のグループで担当しているタスク総数
-        .account-group__data--content
-          .account-group__group-count
-          = @task_count
-          件
+  -# - if @group.present?
+  -#   .account-group
+  -#     .account-field__title
+  -#       タスク情報
+  -#     .account-group__border--top
+  -#     .account-field__data
+  -#       .account-group__data--headline
+  -#         担当しているタスク総数
+  -#       .account-group__data--content
+  -#         .account-group__group-count
+  -#           = current_user.tasks.length
+  -#           件
+  -# - if @group.present?
+  -#   .account-group
+  -#     .account-field__title
+  -#       ステータス情報
+  -#     .account-group__border--top
+  -#     .account-field__data
+  -#       .account-group__data--headline
+  -#         参加中のグループ
+  -#       .account-group__data--content
+  -#         .account-group__group-count
+  -# - if @group.present?
+  -#   .account-group
+  -#     .account-field__title
+  -#       チャット情報
+  -#     .account-group__border--top
+  -#     .account-field__data
+  -#       .account-group__data--headline
+  -#         送信したメッセージ総数
+  -#       .account-group__data--content
+  -#         .account-group__group-count
+  -#           = current_user.chats.length
+  -#           件
 
 = render "share/navigation"
