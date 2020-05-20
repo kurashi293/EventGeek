@@ -52,6 +52,6 @@
       ※登録した内容はMY PAGEで編集できます。
   .procedure-footer
     %button.procedure-footer__back
-      = link_to "戻る", user_path(@user.id), method: :delete, class: "procedure-link"
+      = link_to "Back", user_path(@user.id), method: :delete, class: "procedure-link"
     %button.procedure-footer__forward
-      = link_to "登録", compleate_user_path(@user.id), class: "procedure-link"
+      = link_to "Sign up", compleate_user_path(@user.id), class: "procedure-link"
