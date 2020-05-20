@@ -8,7 +8,11 @@
         - else
           = icon "fas", "user-circle",  class: "icon-blank"
         .upper-contents__user-name
-          = chat.user.name
+          - japanese = /\A[ぁ-んァ-ン一-龥]/
+          - english = /\A[\w\s]+\z/
+          = chat.user.name[0..19] << "..." if chat.user.name.match(japanese) && chat.user.name.length > 20
+          = chat.user.name[0..24] << "..." if chat.user.name.match(english) && chat.user.name.length > 25
+          = chat.user.name unless chat.user.name.match(japanese) && chat.user.name.length > 20 or chat.user.name.match(english) && chat.user.name.length > 24
         .upper-contents__date
           = chat.created_at.strftime("%Y/%m/%d %H:%M")
 <<<<<<< Updated upstream
@@ -40,7 +44,11 @@
         - else
           = icon "fas", "user-circle",  class: "icon-blank"
         .upper-contents__user-name
-          = chat.user.name
+          - japanese = /\A[ぁ-んァ-ン一-龥]/
+          - english = /\A[\w\s]+\z/
+          = chat.user.name[0..19] << "..." if chat.user.name.match(japanese) && chat.user.name.length > 20
+          = chat.user.name[0..24] << "..." if chat.user.name.match(english) && chat.user.name.length > 25
+          = chat.user.name unless chat.user.name.match(japanese) && chat.user.name.length > 20 or chat.user.name.match(english) && chat.user.name.length > 24
         .upper-contents__date
           = chat.created_at.strftime("%Y/%m/%d %H:%M")
       .lower-content
