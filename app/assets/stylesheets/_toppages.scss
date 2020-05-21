@@ -123,23 +123,22 @@
     height: 100px;
     &__avatar{
       display: inline-block;
-      margin-right: 1.5em;
-      margin-left: 1.5em;
+      margin-right: 0.4em;
+      margin-left: 0.4em;
+      width: 6.5em;
     }
     &__name{
-      font-size: 1.1em;
-      max-width: 54.5px;
       overflow: hidden;
     }
   }
   .all-avatar{
-    height: 3.5em;
-    width: 3.5em;
+    height: 3.75em;
+    width: 3.75em;
     border-radius: 50%;
   }
   .all-avatar__blank{
-    font-size: 3.5em;
-    padding-bottom: 8px;
+    font-size: 3.75em;
+    padding-bottom: 6px;
   }
 }
 

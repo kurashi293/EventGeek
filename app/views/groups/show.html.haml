@@ -28,12 +28,20 @@
           .users-bar__avatar
             = image_tag users.avatar, class: "all-avatar"
             .users-bar__name
-              = users.name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
+              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
         - else
           .users-bar__avatar
             = icon "fas", "user-circle", class: "all-avatar__blank"
             .users-bar__name
-              = users.name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
+              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
 
   .toppage-information
     .information-header
