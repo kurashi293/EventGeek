@@ -20,7 +20,12 @@
         - group.users.each do |user|
           .group-user.clearfix{ id: "group-user-#{user.id}" }
             = f.hidden_field :id, name: "group[user_ids][]", value: user.id
-            %p.group-user__name= user.name
+            %p.group-user__name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = user.name[0..19] << "..." if user.name.match(japanese) && user.name.length > 20
+              = user.name[0..24] << "..." if user.name.match(english) && user.name.length > 25
+              = user.name unless user.name.match(japanese) && user.name.length > 20 or user.name.match(english) && user.name.length > 24
             - if @group.user_ids.include?(current_user.id) && @group.user_ids.length == 1
               .user-search-not-remove
                 削除不可
