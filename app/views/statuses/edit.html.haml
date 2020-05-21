@@ -1,7 +1,8 @@
 .status-wrap__form
   %h1.status-wrap__form--title
     Edit Status
-  = form_with model: [@group, @status] do |f|
+  = form_with model: [@group, @status], local: true do |f|
+    = render "statuses/errors"
     %ul.form-tab
       %li Status
     %section.content

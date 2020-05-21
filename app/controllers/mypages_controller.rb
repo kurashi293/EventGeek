@@ -3,9 +3,8 @@ class MypagesController < ApplicationController
 
 
   def index
-    @group_count = current_user.groups.count      ##ログインしているユーザーが持っているグループ数
-    @user_count = @group.users.count
-    @task_count = current_user.tasks.count
+    @group_count = current_user.groups.length      ##ログインしているユーザーが持っているグループ数
+    @user_count = @group.users.length
   end
 
 

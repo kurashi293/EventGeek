@@ -33,31 +33,6 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "audits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "auditable_id"
-    t.string "auditable_type"
-    t.integer "associated_id"
-    t.string "associated_type"
-    t.bigint "user_id"
-    t.bigint "group_id"
-    t.string "user_type"
-    t.string "username"
-    t.string "action"
-    t.text "audited_changes"
-    t.integer "version", default: 0
-    t.string "comment"
-    t.string "remote_address"
-    t.string "request_uuid"
-    t.datetime "created_at"
-    t.index ["associated_type", "associated_id"], name: "associated_index"
-    t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
-    t.index ["created_at"], name: "index_audits_on_created_at"
-    t.index ["group_id"], name: "index_audits_on_group_id"
-    t.index ["request_uuid"], name: "index_audits_on_request_uuid"
-    t.index ["user_id", "user_type"], name: "user_index"
-    t.index ["user_id"], name: "index_audits_on_user_id"
-  end
-
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "ancestry"
@@ -168,13 +143,11 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
     t.text "content", null: false
     t.datetime "deadline", null: false
     t.bigint "category_id", null: false
-    t.bigint "user_id"
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_tasks_on_category_id"
     t.index ["group_id"], name: "index_tasks_on_group_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "transceivers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -212,8 +185,6 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "audits", "groups"
-  add_foreign_key "audits", "users"
   add_foreign_key "chats", "groups"
   add_foreign_key "chats", "users"
   add_foreign_key "group_users", "groups"
@@ -232,5 +203,4 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
   add_foreign_key "task_users", "users"
   add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "groups"
-  add_foreign_key "tasks", "users"
 end
