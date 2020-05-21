@@ -45,21 +45,32 @@
   padding: 3% 5% 3%;
   box-sizing: border-box;
   &__icon{
-    margin-bottom: 15%;
+    display: inline-block;
     .pesonal-icon{
       height: 5em;
       width: 5em;
       border-radius: 50%;
+      margin-bottom: 15%;
     }
     .account-icon::before{
-      font-size: 4em;
+      font-size: 5em;
     }
   }
   &__name{
     font-size: 18px;
-    text-align: center;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+  &__email{
+    max-width: 19.5em;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+  &__email::-webkit-scrollbar{
+    display: none;
   }
 }
+
 
 
 .new-email{
@@ -95,9 +106,19 @@
     display: inline;
     line-height: 8.8em;
   }
+  &--contents{
+    display: inline-block;
+    margin-top: 0.5em;
+    max-width: 18.5em;
+    text-align: center;
+    width: 18.5em;
+  }
   &--content{
     display: inline-block;
     margin-top: 0.5em;
+    max-width: 19.5em;
+    text-align: center;
+    width: 19.5em;
   }
 }
 
@@ -155,6 +176,14 @@
   box-sizing: border-box;
   margin-left: 30.6%;
   margin-bottom: 7%;
+  &__name{
+    max-width: 18.5em;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+  &__name::-webkit-scrollbar{
+    display: none;
+  }
 }
 
 
