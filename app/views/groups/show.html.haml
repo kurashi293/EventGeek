@@ -1,0 +1,63 @@
+.toppage-wrap
+
+  .toppage-box
+    .toppage-header
+      .toppage-header__awesome
+        = icon "fa", "bolt", class: "bolt"
+      .toppage-header__title
+        #{@group.name}
+    .slideDown-awesome
+      = icon "fa", "align-justify", class: "storage-awesome"
+
+  %ul#hidden-content.slideDown-awesome__group-bar
+    %li.slideDown-awesome__group-bar--list
+      = link_to "Select Group", groups_path, class: "group-bar__list--action"
+    %li.slideDown-awesome__group-bar--list
+      = link_to "New Group", new_group_path, class: "group-bar__list--action"
+    %li.slideDown-awesome__group-bar--list
+      = link_to "Edit Group", edit_group_path(@group), method: :get, class: "group-bar__list--action"
+    %li.slideDown-awesome__group-bar--list
+      = link_to "Delete Group", group_path(@group), method: "delete", data: {confirm: "現在参加中のグループ\n#{@group.name}を削除しますか？"}, class: "group-bar__list--action"
+    .slideUp-awesome
+      = icon "far", "window-close", class: "slide-close"
+
+  .toppage-users
+    .users-bar
+      -@group.users.each do |users|
+        -if users.avatar.attached?
+          .users-bar__avatar
+            = image_tag users.avatar, class: "all-avatar"
+            .users-bar__name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
+              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
+        - else
+          .users-bar__avatar
+            = icon "fas", "user-circle", class: "all-avatar__blank"
+            .users-bar__name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
+              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
+
+  .toppage-information
+    .information-header
+      Information
+    .information-ground
+      = render "toppages/information"
+
+  .toppage-notice
+    .notice-header
+      Notice
+    .notice-box
+      - if @group.notice.present?
+        .notice-box__content
+          = safe_join(@group.notice.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
+      - else
+        .notice-box__content--blank
+          共有事項はありません
+
+= render "share/navigation"

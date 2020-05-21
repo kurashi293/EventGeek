@@ -1,0 +1,7 @@
+.form-wrap
+  %h1.form-title--green
+    New Group
+  = render 'groups/form', { group: @group }
+  .link__back
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    %a{:href => "javascript:history.back();", class: "javascript-back"} Back

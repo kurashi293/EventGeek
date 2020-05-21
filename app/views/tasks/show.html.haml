@@ -1,0 +1,50 @@
+.task-wrap__details
+  %section.deadline-box
+    .deadline-box__icon
+      = icon "fa", "bell"
+      .deadline-box__header
+        Deadline
+      .deadline-box__time
+        = @task.deadline.strftime("%Y/%m/%d %H:%M")
+  %section.details-box
+    .details-box__title
+      = @task.title
+    .details-box__content
+      = safe_join(@task.content.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
+      .details-box__image
+      - if @task.task_images.present?
+        - @task.task_images.each do |task_images|
+          = image_tag task_images.image.url, height: "100px", width: "100px", class: "task-image"
+  %section.details-member
+    .details-member__header
+      .details-member__header--icon
+        = icon "fa", "check-square", class: "check-square"
+      .details-member__header--title
+        Person in charge
+    .details-member__list
+      - @task.users.each do |users|
+        -if users.avatar.attached?
+          .details-member__list--image
+            = image_tag users.avatar, class: "task-avatar"
+            .details-member__list--name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
+              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
+        - else
+          .details-member__list--image
+            = icon "fa", "user-circle", class: "task-avatar__blank"
+            .details-member__list--name
+              - japanese = /\A[ぁ-んァ-ン一-龥]/
+              - english = /\A[\w\s]+\z/
+              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
+              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
+  -# created_at &nbsp; #{@task.created_at.strftime("%Y/%m/%d %H:%M")}
+
+= render "share/navigation"
+
+.modal
+  - @task.task_images.each do |task_images|
+    = image_tag task_images.image.url, class: "task-image__modal" if @task.task_images.present?

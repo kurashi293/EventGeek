@@ -1,0 +1,104 @@
+- if @group.present?
+  %ul.information-tab
+    %li.active Group
+    %li Task
+    %li Status
+    %li Chat
+  .information-wrap
+    .information-contents
+      .information-content.active
+        .information-text.active
+          - @group.group_users.order(created_at: :desc).each do |users|
+            .information-box
+              .information-box__time
+                = users.created_at.strftime("%Y/%m/%d %H:%M")
+              .information-box__result
+                #{users.user.name}が追加されました
+            .information-border
+            %br/
+          .information-box
+            .information-box__time
+              = @group.created_at.strftime("%Y/%m/%d %H:%M")
+            .information-box__result
+              #{@group.name}が作成されました
+          .information-border
+          %br/
+
+      #switch.information-content
+        .information-text2
+          - @group.tasks.order(created_at: :desc).each do |task|
+            .information-box
+              .information-box__time
+                = task.created_at.strftime("%Y/%m/%d %H:%M")
+              .information-box__result
+                - if current_user && task.user_ids.include?(current_user.id)
+                  #{current_user.name}が担当する#{task.title}が作成されました
+                - else
+                  = task.title
+                  が作成されました
+            .information-border
+            %br/
+
+      #switch.information-content
+        .information-text3
+          - @group.statuses.order(created_at: :desc).each do |status|
+            .information-box
+              .information-box__time
+                = status.created_at.strftime("%Y/%m/%d %H:%M")
+              .information-box__result
+                = status.user.name
+                のステータスが作成されました
+            .information-border
+            %br/
+
+      #switch.information-content
+        .information-text4
+          - @group.chats.order(created_at: :desc).each do |chat|
+            .information-box
+              .information-box__time
+                = chat.created_at.strftime("%Y/%m/%d %H:%M")
+              .information-box__result
+                = chat.user.name
+                がチャットを更新しました
+            .information-border
+            %br/
+
+- else
+  %ul.information-tab
+    %li.active Group
+    %li Task
+    %li Member
+    %li Chat
+  .information-wrap
+    .information-contents
+      .information-content.active
+        .information-text.active
+          .information-blank
+            グループが選択されていません
+            %br/
+            新規作成または選択してください
+          .information-border
+
+      #switch.information-content
+        .information-text2
+          .information-blank
+            グループが選択されていません
+            %br/
+            新規作成または選択してください
+          .information-border
+
+      #switch.information-content
+        .information-text3
+          .information-blank
+            グループが選択されていません
+            %br/
+            新規作成または選択してください
+          .information-border
+
+      #switch.information-content
+        .information-text4
+          .information-blank
+            グループが選択されていません
+            %br/
+            新規作成または選択してください
+          .information-border

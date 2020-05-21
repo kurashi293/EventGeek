@@ -1,0 +1,142 @@
+.status-wrap
+  %ul.tab
+    %li.active Status
+    %li Position
+  .contents
+    .content.active
+      %table.active.status-table
+        %thead
+          %th.status-table__header
+            Name
+          %th.status-table__header
+            Company
+          %th.status-table__header
+            Working hours
+          %th.status-table__header
+            Break time
+          %th.status-table__header
+            Transceiver
+          %th.status-table__header
+            Meal
+          %th.status-table__header
+            Wear
+        - @group.statuses.each do |status|
+          %tbody
+            - if current_user && status.user_id == current_user.id
+              %tr.status-table__row.current_user__line
+                %td.status-table__data
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td.status-table__data
+                  = status.company.name
+                %td.status-table__data
+                  #{status.working_hour.start_at.strftime("%H:%M")} ∼ #{status.working_hour.end_at.strftime("%H:%M")}
+                %td.status-table__data
+                  #{status.working_hour.break_at} min
+                %td.status-table__data
+                  = status.transceiver.state
+                %td.status-table__data
+                  = status.meal.state
+                %td.status-table__data
+                  = status.wear.clothes
+            - else
+              %tr.status-table__row
+                %td.status-table__data
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td.status-table__data
+                  = status.company.name
+                %td.status-table__data
+                  #{status.working_hour.start_at.strftime("%H:%M")} ∼ #{status.working_hour.end_at.strftime("%H:%M")}
+                %td.status-table__data
+                  #{status.working_hour.break_at} min
+                %td.status-table__data
+                  = status.transceiver.state
+                %td.status-table__data
+                  = status.meal.state
+                %td.status-table__data
+                  = status.wear.clothes
+
+    #switch.content
+      %table.status-table
+        %thead
+          %th.status-table__header
+            Name
+          %th.status-table__header
+            Company
+          %th.status-table__header
+            Rank
+          %th.status-table__header
+            Set up
+          %th.status-table__header
+            Opening
+          %th.status-table__header
+            Start
+          %th.status-table__header
+            Break
+          %th.status-table__header
+            End
+          %th.status-table__header
+            Clean up
+        - @group.statuses.each do |status|
+          %tbody
+            - if current_user && status.user_id == current_user.id
+              %tr.status-table__row.current_user__line
+                %td.status-table__data
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td.status-table__data
+                  = status.company.name
+                %td.status-table__data
+                  = icon "fa", "star-half-alt", class: "rank-star" if status.rank_id == 2
+                  = icon "fa", "star", class: "rank-star" if status.rank_id == 3
+                  = icon "fa", "crown", class: "rank-star" if status.rank_id >= 4
+                  = status.rank.name
+                %td.status-table__data
+                  = status.position.set_up
+                %td.status-table__data
+                  = status.position.opening
+                %td.status-table__data
+                  = status.position.start
+                %td.status-table__data
+                  = status.position.break
+                %td.status-table__data
+                  = status.position.end
+                %td.status-table__data
+                  = status.position.clean_up
+            - else
+              %tr.status-table__row
+                %td.status-table__data
+                  = link_to edit_group_status_path(@group, status), class: "status-link__edit" do
+                    = icon "fas", "edit"
+                  = status.user.name
+                %td.status-table__data
+                  = status.company.name
+                %td.status-table__data
+                  = icon "fa", "star-half-alt", class: "rank-star" if status.rank_id == 2
+                  = icon "fa", "star", class: "rank-star" if status.rank_id == 3
+                  = icon "fa", "crown", class: "rank-star" if status.rank_id >= 4
+                  = status.rank.name
+                %td.status-table__data
+                  = status.position.set_up
+                %td.status-table__data
+                  = status.position.opening
+                %td.status-table__data
+                  = status.position.start
+                %td.status-table__data
+                  = status.position.break
+                %td.status-table__data
+                  = status.position.end
+                %td.status-table__data
+                  = status.position.clean_up
+
+  %button.status-button
+    = link_to new_group_status_path, class: "status-button__link" do
+      = icon "fa", "pen", class: "status-button__link--icon"
+      .status-button__link--name
+        New
+
+= render "share/navigation"

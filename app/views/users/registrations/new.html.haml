@@ -1,0 +1,37 @@
+.form-wrap
+  %h1.form-title
+    EventGeek
+  = form_with model: @user, local: true do |f|
+    = render "users/errors"
+    .form-field
+      = f.label :name
+      %br/
+      = f.text_field :name, autofocus: true, maxlength: "30", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
+    .form-icon__title
+      Icon
+    .form-description
+      ※設定は任意です
+      .form-field
+        = f.label :avatar, "ファイルを選択", class: "icon-select" do
+          = icon "fa", "image", class: "label__image"
+          = f.file_field :avatar, class: "input-file"
+    .form-field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可', required: true
+    .form-field
+      = f.label :password
+      %br/
+      = f.password_field :password, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
+    .form-field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
+    .actions
+      = f.submit "Sign up", class: "form-submit"
+  -# = render "devise/shared/links"
+  .form-footer
+    = link_to "/login" do
+      すでにアカウントをお持ちの方はログインしてください
+  .copyright
+    Copyright©RYO KURASHIMA

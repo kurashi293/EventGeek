@@ -1,11 +1,42 @@
 .navigation
+- if @group.present?     #変数そのものが存在する、または変数に値が入っている時
   %nav.gnav.fixed
     %ul
       %li
-        = link_to "TASK", "/task", class: "link"
+        = link_to group_path(@group), class: "link", id: "nav__home" do
+          = icon "fas", "home", class: "nav-awesome"
+          .compensate
+            HOME
       %li
-        = link_to "MEMBER", "/member", class: "link"
+        = link_to group_tasks_path(@group), class: "link", id: "nav__task" do
+          = icon 'fas', "tasks", class: "nav-awesome"
+          .compensate
+            TASK
       %li
-        = link_to "CHAT", "/chat", class: "link"
+        = link_to group_statuses_path(@group), class: "link", id: "nav__status" do
+          = icon "fas", "id-card", class: "nav-awesome"
+          .compensate
+            STATUS
       %li
-        = link_to "MY PAGE", "", class: "link"
+        = link_to group_chats_path(@group), class: "link", id: "nav__chat" do
+          = icon "far", "comment-dots", class: "nav-awesome"
+          .compensate
+            CHAT
+      %li
+        = link_to group_mypages_path(@group), class: "link", id: "nav__group-mypage" do
+          = icon "fas", "user-cog", class: "nav-awesome"
+          .compensate
+            MY PAGE
+- else        #変数そのものが存在しない(nil)か、変数に値が入っていない(empty)時
+  %nav.gnav.fixed
+    %ul
+      %li
+        = link_to "/", class: "link", id: "nav__root" do
+          = icon "fas", "home", class: "nav-awesome"
+          .compensate
+            HOME
+      %li
+        = link_to user_path(current_user), class: "link", id: "nav__mypage" do
+          = icon "fas", "user-cog", class: "nav-awesome"
+          .compensate
+            MY PAGE
