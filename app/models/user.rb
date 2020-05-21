@@ -17,7 +17,9 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: "入力してください" }
   validates :name, uniqueness: { message: "既に存在するアカウントです" }
-  validates :name, length: { maximum: 50, message: "50文字以内で入力してください" }
+  validates :name, length: { maximum: 30, message: "30文字以内で入力してください" }
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥\w\s]+\z/
+  validates :name, format: { with: VALID_NAME_REGEX, message: "無効な名前です" }
 
   validates :email, presence: { message: "入力してください" }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

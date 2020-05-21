@@ -6,7 +6,7 @@
     .form-field
       = f.label :name
       %br/
-      = f.text_field :name, autofocus: true, maxlength: "50", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
+      = f.text_field :name, autofocus: true, maxlength: "30", class: "input-field", placeholder: "例)倉島椋", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
     .form-icon__title
       Icon
     .form-description
@@ -28,7 +28,7 @@
       %br/
       = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
     .actions
-      = f.submit "Sign up!", class: "form-submit"
+      = f.submit "Sign up", class: "form-submit"
   -# = render "devise/shared/links"
   .form-footer
     = link_to "/login" do
