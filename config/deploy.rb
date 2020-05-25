@@ -7,6 +7,9 @@ set :application, 'EventGeek'
 # どのリポジトリからアプリをpullするかを指定する
 set :repo_url,  'git@github.com:kurashi293/EventGeek.git'
 
+#capistranoが環境変数を参照できるように、master.keyを指定
+set :linked_files, fetch(:linked_files, []).push("config/master.key")
+
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
