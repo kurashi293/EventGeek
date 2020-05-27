@@ -24,7 +24,7 @@
         = f.label :user_ids, "Add Member"
         %br/
         .check-box
-          = f.collection_check_boxes  :user_ids, User.all, :id, :name
+          = f.collection_check_boxes  :user_ids, @user, :id, :name
       .form-field
         = f.label :deadline
         %br/
