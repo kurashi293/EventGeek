@@ -10,7 +10,7 @@ class StatusesController < ApplicationController
 
   def new
     @status = Status.new
-    @user = User.all
+    @user = @group.users.all
     @transceiver = Transceiver.all
     @meal = Meal.all
     @wear = Wear.all
@@ -24,7 +24,7 @@ class StatusesController < ApplicationController
   def create
     @status = @group.statuses.new(status_params)
     # Status.create!(status_params)
-    @user = User.all
+    @user = @group.users.all
     @transceiver = Transceiver.all
     @meal = Meal.all
     @wear = Wear.all
@@ -40,7 +40,7 @@ class StatusesController < ApplicationController
 
   def edit
     @status = Status.find(params[:id])
-    @user = User.all
+    @user = @group.users.all
     @transceiver = Transceiver.all
     @meal = Meal.all
     @wear = Wear.all
