@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     @task = Task.all
     @task = Task.new
     5.times{@task.task_images.build}
+    @user = @group.users.all
     @category = Category.all
   end
 
@@ -32,6 +33,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    @user = @group.users.all
     @category = Category.all
     5.times{@task.task_images.build} if @task.task_images.blank?
     4.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.count == 1
