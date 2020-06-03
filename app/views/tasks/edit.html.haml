@@ -1,5 +1,5 @@
 .task-wrap__form
-  %h1.form-title--green
+  %h1.form-title
     Edit  Task
   .task-form--edit
     = form_with model: [@group, @task], local: true do |f|
@@ -35,7 +35,7 @@
         %br/
         = f.collection_select(:category_id, Category.all, :id, :name, {prompt: "----"}, class: "select-field")
       .task-form__submit
-        = f.submit "update", class: "form-submit__green"
+        = f.submit "send", class: "form-submit--black"
 
 
 = render "share/navigation"

@@ -1,5 +1,5 @@
 .form-wrap
-  %h1.form-title--green
+  %h1.form-title
     Account Update
   = form_with model: @user, url: {controller: "users", action:"update"} do |f|
     .form-field
@@ -7,7 +7,7 @@
       %br/
       = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可', required: true
     .actions
-      = f.submit "Update!", class: "form-submit__green"
+      = f.submit "send", class: "form-submit--black"
   .link__back
     //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
     %a{:href => "javascript:history.back();", class: "javascript-back"} Back
