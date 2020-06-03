@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.all
     @group_category = GroupCategory.all
     @search = current_user.groups.ransack(params[:q])
-    @result = @search.result
+    @result = @search.result.page(params[:page]).per(20)
   end
 
 

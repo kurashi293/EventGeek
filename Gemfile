@@ -81,5 +81,6 @@ gem 'devise'
 gem 'pry-rails'
 gem "ancestry"
 gem 'ransack'
+gem 'kaminari'
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
