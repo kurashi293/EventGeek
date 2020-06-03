@@ -4,10 +4,22 @@
     = f.label :name, "Group Name"
     %br/
     = f.text_field :name, autofocus: true, class: "input-field", placeholder: "例) 1/1  音楽イベント・駅前会場"
+  .form-icon__title
+    Icon
+    .form-description
+      ※設定は任意です
+      .form-field
+        = f.label :image, "ファイルを選択", class: "icon-select" do
+          = icon "fa", "image", class: "label__image"
+          = f.file_field :image, class: "input-file"
   .form-field
     = f.label :notice, "Group Notice"
     %br/
     = f.text_area :notice, autofocus: true, class: "input-field__text", placeholder: "共有事項を入力してください"
+  .form-field
+    = f.label :group_category, "Category"
+    %br/
+    = f.collection_select(:group_category_id, @group_category, :id, :name, {prompt: "----"}, class: "select-field")
   .form-field
     = f.label :add, "Add Member", class: 'form-field__label'
     .form-field__search.clearfix
@@ -33,4 +45,4 @@
               %a.user-search-remove.group-user__btn.group-user__btn--remove{ 'data-user-id': user.id } 削除
     .form-field.clearfix
   .actions
-    = f.submit "send", class: "form-submit__green"
+    = f.submit "send", class: "form-submit--black"

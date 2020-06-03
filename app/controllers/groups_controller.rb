@@ -5,19 +5,23 @@ class GroupsController < ApplicationController
 
 
   def index
-    @group = Group.all
-    @group = Group.new
+    @group = current_user.groups.all
+    @group_category = GroupCategory.all
+    @search = current_user.groups.ransack(params[:q])
+    @result = @search.result.page(params[:page]).per(20)
   end
 
 
   def new
     @group = Group.new
+    @group_category = GroupCategory.all
     @group.users << current_user
   end
 
 
   def create
     @group = Group.new(group_params)
+    @group_category = GroupCategory.all
     if @group.save
       redirect_to root_path
     else
@@ -31,6 +35,7 @@ class GroupsController < ApplicationController
 
 
   def edit
+    @group_category = GroupCategory.all
   end
 
 
@@ -38,7 +43,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to root_path
     else
-      redirect_to "/groups/#{@group/id}/edit"
+      redirect_to edit_group_path(@group)
     end
   end
 
@@ -61,6 +66,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :notice, user_ids: [])
+    params.require(:group).permit(:name, :image, :notice, :group_category_id, user_ids: [])
   end
 end

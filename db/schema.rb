@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "group_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "group_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "user_id"
@@ -69,9 +75,12 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.text "image"
     t.text "notice"
+    t.bigint "group_category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_category_id"], name: "index_groups_on_group_category_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
@@ -189,6 +198,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_162508) do
   add_foreign_key "chats", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "groups", "group_categories"
   add_foreign_key "statuses", "companies"
   add_foreign_key "statuses", "groups"
   add_foreign_key "statuses", "meals"

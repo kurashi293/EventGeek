@@ -1,14 +1,76 @@
 .select-wrap
-  %h1.form-title--green
+  %h1.form-title
     SELECT GROUP
-  .select
-  - current_user.groups.order(id: :desc).each do |group|
-    = link_to group_path(group.id), class: "select-link" do
-      .select-box
-        .select-box__name
-          = group.name
-          .select-box__name--border
+  = search_form_for @search do |f|
+    %section.search-area
+      .search-area__header
+        = icon "fas", "search"
+        Search
+      .search-area__description
+        検索条件を指定してください。全項目に条件を指定しなくても検索できます。
+      .search-area__menue
+        .search-area__menue--label
+          = f.label :name, "Keyword", class: "label__keyword"
+        .search-area__menue--item
+          = f.search_field :name_cont, placeholder: "検索", class: "item__input"
+      .search-area__menue
+        .search-area__menue--label
+          = f.label :group_category_id, "Category", class: "label__category"
+        .search-area__menue--item
+          = f.collection_select(:group_category_id_eq, @group_category, :id, :name, {include_blank: "指定しない"}, class: "item__category")
+      .search-area__menue
+        .search-area__menue--date-label
+          = f.label :created_at, "Date", class: "label__date"
+        .search-area__menue--item
+          = f.date_select :created_at_gteq, { use_month_numbers: true, include_blank: true }, class: "item__date"
+          以降
+          &nbsp; &nbsp; ∼ &nbsp; &nbsp;
+          = f.date_select :created_at_lteq, { use_month_numbers: true, include_blank: true }, class: "item__date"
+          以前
+      .search-area__submit
+        = f.submit "search", class: "search__button"
+
+    %section.select-area
+      - if @result.present?
+        - @result.order(created_at: :desc).each do |group|
+          .select-group
+            .select-group__name
+              = link_to group_path(group.id), class: "select-link" do
+                - japanese = /\A[ぁ-んァ-ン一-龥]/
+                - english = /\A[\w\s]+\z/
+                = group.name[0..24] << "..." if group.name.match(japanese) && group.name.length > 25
+                = group.name[0..29] << "..." if group.name.match(english) && group.name.length > 30
+                = group.name unless group.name.match(japanese) && group.name.length > 25 or group.name.match(english) && group.name.length > 30
+                .select-group__name--border
+            .select-group__detail
+              .select-group__detail--image
+                - if group.image.present?
+                  = image_tag group.image.url, class: "group__image--display"
+                - else
+                  = image_tag "https://truck-kinkisharyo.com/wp/wp-content/uploads/2019/01/noimage.jpg", class: "group__image--blank"
+              .select-group__detail--more
+                .group__date
+                  作成日 &nbsp;
+                  = group.created_at.strftime("%Y/%m/%d")
+                .group__category
+                  = group.group_category.name
+                .group__users-count
+                  所属人数 &nbsp;
+                  = group.users.length
+                  人
+              .select-group__detail--link
+                = link_to "Edit", edit_group_path(group), class: "group__link--edit"
+                = link_to "Delete", group_path(group), method: "delete", data: {confirm: "選択したグループを削除しますか？"}, class: "group__link--delete"
+        .hidden-group
+      - elsif @group.length == 0
+        .select-group--mistake
+          グループが作成されていません
+          %br/
+          新規作成してください
+      - else
+        .select-group--mistake
+          検索条件に一致するグループはありません
+  = paginate @result
   .link__back
     //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
     %a{:href => "javascript:history.back();", class: "javascript-back"} Back
-
