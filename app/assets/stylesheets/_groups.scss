@@ -271,6 +271,18 @@ margin: 3px auto 30px;
 
 
 
+.group-icon__select{
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+.group-icon--preview{
+  height: 8.5em;
+  width: 8.5em;
+}
+
+
 .group-user {
   padding: 0 0 5px;
   line-height: 3.5em;
@@ -326,6 +338,7 @@ margin: 3px auto 30px;
   margin: 7em 0 5em;
   text-align: center;
 }
+
 
 .javascript-back{
   text-decoration: none;
