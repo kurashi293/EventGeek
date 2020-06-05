@@ -23,9 +23,9 @@
         Person in charge
     .details-member__list
       - @task.users.each do |users|
-        -if users.avatar.attached?
+        -if users.avatar.present?
           .details-member__list--image
-            = image_tag users.avatar, class: "task-avatar"
+            = image_tag users.avatar.url, class: "task-avatar"
             .details-member__list--name
               - japanese = /\A[ぁ-んァ-ン一-龥]/
               - english = /\A[\w\s]+\z/

@@ -32,9 +32,9 @@
         .account-field__data--headline
           基本情報
         .account-field__data--contents
-          - if current_user.avatar.attached?   #has_one_attachedで画像機能を作成した場合、attached?で画像の有無を確認する。存在すればtrueを返す
+          - if current_user.avatar.present?
             .account-field__icon
-              = image_tag current_user.avatar, class: "pesonal-icon"
+              = image_tag current_user.avatar.url, class: "pesonal-icon"
           - else
             .account-field__icon
               = icon "fas", "user-circle", class: "account-icon"

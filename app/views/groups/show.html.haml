@@ -5,7 +5,7 @@
       .toppage-header__awesome
         = icon "fa", "bolt", class: "bolt"
       .toppage-header__title
-        #{@group.name}
+        = @group.name
     .slideDown-awesome
       = icon "fa", "align-justify", class: "storage-awesome"
 
@@ -24,9 +24,9 @@
   .toppage-users
     .users-bar
       -@group.users.each do |users|
-        -if users.avatar.attached?
+        -if users.avatar.present?
           .users-bar__avatar
-            = image_tag users.avatar, class: "all-avatar"
+            = image_tag users.avatar.url, class: "all-avatar"
             .users-bar__name
               - japanese = /\A[ぁ-んァ-ン一-龥]/
               - english = /\A[\w\s]+\z/
