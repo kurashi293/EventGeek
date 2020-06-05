@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :tasks, through: :task_users
   has_many :chats, dependent: :destroy
   has_one  :status, dependent: :destroy
-  has_one_attached :avatar
+
+  mount_uploader :avatar, ImageUploader, dependent: :destroy
 
 
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する

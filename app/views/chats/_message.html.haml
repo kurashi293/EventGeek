@@ -3,8 +3,8 @@
     .message
       .upper-contents
         .upper-contents__icon
-        - if chat.user.avatar.attached?
-          = image_tag chat.user.avatar, class: "icon"
+        - if chat.user.avatar.present?
+          = image_tag chat.user.avatar.url, class: "icon"
         - else
           = icon "fas", "user-circle",  class: "icon-blank"
         .upper-contents__user-name
@@ -31,8 +31,8 @@
     .message
       .upper-contents
         .upper-contents__icon
-        - if chat.user.avatar.attached?
-          = image_tag chat.user.avatar, class: "icon"
+        - if chat.user.avatar.present?
+          = image_tag chat.user.avatar.url, class: "icon"
         - else
           = icon "fas", "user-circle",  class: "icon-blank"
         .upper-contents__user-name

@@ -6,9 +6,9 @@
     .procedure-box__header
       登録内容の確認
     .confirmation-contents
-      - if @user.avatar.attached?   #has_one_attachedで画像機能を作成した場合、attached?で画像の有無を確認する。存在すればtrueを返す
+      - if @user.avatar.present?
         .confirmation-contents__icon
-          = image_tag @user.avatar, class: "procedure-icon"
+          = image_tag @user.avatar.url, class: "procedure-icon"
         %table.confirmation-contents__table
           %thead
             %tr

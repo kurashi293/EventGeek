@@ -7,7 +7,7 @@ class Group < ApplicationRecord
 
   belongs_to :group_category
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader, dependent: :destroy
 
 
   validates :name, presence: { message: "入力してください" }

@@ -1,34 +1,5 @@
-// $(document).on('turbolinks:load', function(){
-//   $('#myfile').change(function(e){
-//     //ファイルオブジェクトを取得する
-//     var file = e.target.files[0];
-//     var reader = new FileReader();
-
-//     //画像でない場合は処理終了
-//     if(file.type.indexOf("image") < 0){
-//       alert("画像ファイルを指定してください。");
-//       return false;
-//     }
-
-//     //アップロードした画像を設定する
-//     reader.onload = (function(file){
-//       return function(e){
-//         $("#avatar").attr("src", e.target.result);
-//         $("#avatar").attr("title", file.name);
-//       };
-//     })(file);
-//     reader.readAsDataURL(file);
-
-//   });
-// });
-
-
-
-
-
-
 $(document).on('turbolinks:load', function(){
-  var view_box = $(".icon-select");
+  var view_box = $(".group-icon__select");
 
   $(".input-file").on('change', function(){
     var fileprop = $(this).prop('files')[0],
@@ -45,7 +16,7 @@ $(document).on('turbolinks:load', function(){
       return false;
     }
 
-    var img = '<div class="img_view"><img alt="" class="selected-image"><p><a href="#" class="form_img__delete">削除</a></p></div>';
+    var img = '<div class="img_view"><img alt="" class="group-icon--preview"><p><a href="#" class="form_img__delete">削除</a></p></div>';
 
     view_box.append(img);
 
@@ -71,10 +42,6 @@ $(document).on('turbolinks:load', function(){
     });
     return false;
   }
-
-  $(".form-submit").on('click', function(){
-    $(".input-file").prop("disabled", false);
-  });
 
   $(".form-submit--black").on('click', function(){
     $(".input-file").prop("disabled", false);
