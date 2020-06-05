@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group_category = GroupCategory.all
     if @group.save
-      redirect_to root_path
+      redirect_to group_path(@group)
     else
       render :new
     end
@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to root_path
+      redirect_to group_path(@group)
     else
       redirect_to edit_group_path(@group)
     end
