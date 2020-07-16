@@ -1,111 +1,119 @@
-# README
+# EventGeek
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
 
-Things you may want to cover:
+イベント業界向けのアプリケーション。  
+グループ内でのタスク管理・チャット・メンバーのステータス管理を一纏めにすることで、イベント業務特有の「いつ・どこで・誰が・何をしているか」という、常に知り得なければいけない、多くの情報をリアルタイムで共有・把握することができる。
 
-* Ruby version
+## 使用技術
 
-* System dependencies
+### 言語
 
-* Configuration
+Ruby 2.5.1 | JavaScript
 
-* Database creation
+### フレームワーク 等
 
-* Database initialization
+Ruby on Rails 5.2.3 | jQuery
 
-* How to run the test suite
+### RDB
 
-* Services (job queues, cache servers, search engines, etc.)
+MySQL
 
-* Deployment instructions
+### クラウド( AWS )
 
-* ...
+EC2 | S3
 
-* name  "EventGeek"  
-This project will revolutionize the event industry  
-Can't share detailed information in real time?  
-Want to know who is doing what job?  
-Is it difficult to carry and write with paper-based management?  
-No problem!  
-This application solves the problems of everyone who is engaged in the event
+### その他
 
-# EventGeek DB設計
+Haml | SCSS | nginx | unicorn | Capistrano | Linux ( bashシェル )
 
-## usersテーブル
+### ツール
 
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, unique: true|
-|icon_image|text|
+GitHub | Visual Studio Code
 
-### Association
+## 機能一覧
 
-- has_many :messages
-- has_many :groups_users
-- has_many :groups, through: :groups_users
-- has_many :tasks_users
-- has_many :tasks, through: tasks_users
+### バックエンド
 
-## groupsテーブル
+- CRUD機能
+- 認証機能
+  - gem 'devise'
+- グループ作成・管理機能
+- 投稿・管理機能
+  - form_with
+  - Ajax
+- 親子関係にあるモデルを同時に管理
+  - fields_for
+- 画像アップロード機能 (複数可)
+  - gem 'carrierwave'
+  - AWS S3
+- 正規表現でのバリデーション
+- 検索機能
+  - インクリメンタルサーチ
+  - gem 'ransack'
+- カテゴリー機能
+  - gem 'ancestry'
+- ページネーション機能
+  - gem 'kaminari'
+- 自動デプロイ
+  - gem 'capistrano'
 
-|Column|Type|Options|
-|------|----|-------|
+### フロントエンド
 
-### Association
+- 画像選択時のプレビュー表示
+- モーダル表示
+- スライド表示
+- タブの切替
+- 自動スクロール
+- 現在のページ位置を取得し、対応するアイコンの色を変更
 
-- has_many : messages
-- has_many : groups_users
-- has_many :users, through: :groups_users
+## 本番環境 ( デプロイ先・テストアカウント )
 
-## groups_usersテーブル
+- [EventGeek](http://54.238.18.239/)  
+- アカウント  
+  - アドレス : test100@com.ne.jp  
+  - パスワード : abc123
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+## 製作背景
 
-### Association
+開発者である私自身は、以前イベント業界に従事していました。  
+イベントの運営には多くの会社と人員が携わっています。  
+しかし情報伝達の手段は大抵、特定の人員だけが所持している「無線機」と各自の「口頭」だけというレガシーな場合が多く、全ての人員に情報共有が追いつかずに、現場が困惑してしまうという状況が数多くありました。  
 
-- belongs_to :user
-- belongs_to :group
+この問題点を解決するために、「事前に知り得なければいけない情報」・「常に現場で動き続けている情報」を視覚的にリアルタイムで共有・管理できる環境をつくりたいと思い、このアプリケーションを開発しました。
 
-## taskテーブル
+## 使用方法
 
-|Column|Type|Options|
-|------|----|-------|
-|title|string|null: false, unique: true|
-|task|text|
-|image|text|
+ユーザー登録とグループ作成・選択は必須である。  
 
-### Association
+各ページの使用方法  
 
-- has_many :tasks_users
-- has_many :tasks, through: tasks_users
+- Home 「現在のグループで共有する更新情報・ルールを扱うページ」  
+現在参加しているグループに所属中のメンバーが、リスト形式で表示される。
+ページ右上のプルダウンメニューをクリックすることで、グループに関するページへのリンクが現れる。
+Informationセクションのタブをクリックすることで、各機能の更新情報を知ることが出来る。
+Noticeセクションは、グループ作成・編集時に書き込んだテキストが反映される、閲覧専用のコンテンツである。
+故にグループ内でのルール、事前に共有したい情報（例: 現場の集合時間・場所、持ち物、服装等）を知るためのコンテンツである。  
 
-## tasks_usersテーブル
+- Task 「現在のグループで共有するタスクを扱うページ」  
+黄色いブロック内にカテゴリー名が記述されている。
+カテゴリー名の横にある、「+」ボタンをクリックすることで、新規タスクを作成出来る。
+画像以外の項目は入力が必須。
+作成されたタスクはそのカテゴリー内にリストとして表示されていく。
+自分が含まれているタスクのみ、赤色のチェックマークが表示される。
+カテゴリーを変えたい場合は、リスト内の書き込みアイコンをクリックすることにより、編集ページで変更を加えることが出来る。
+タスクを削除したい場合は、リスト内のトラッシュマークをクリックすることにより、削除が実行される。  
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|task_id|integer|null: false, foreign_key: true|
+- Status 「現在のグループで共有するユーザー個別の状態を扱うページ」  
+Newアイコンをクリックで、ユーザー個別の新規ステータスが作成出来る。
+current_user （つまり使用している本人）のステータスは赤線で囲まれる。
+statusとpositionのタブをクリックすることで表を切り替えられる。
+編集する場合は、名前の横にある書き込みアイコンをクリックすることにより、編集ページで変更を加えることが出来る。  
 
-### Association
+- Chat 「現在のグループで共有するメッセージを扱うページ」  
+Chatページ最下部の投稿フォームからメッセージの送信を行う。
+自ら投稿したメッセージのみ削除ボタンが表示され、実行することが出来る。  
 
-- belongs_to :user
-- belongs_to :task
-
-## messagesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|body|text|
-|image|text|
-|user_id|integer|null: false foreign_key: true|
-|group_id|integer|null: false foreign_key: true|
-
-### Association
-
-- belongs_to :user
-- belongs_to :group
+- My Page 「個人情報を扱うページ」  
+アバター、メールアドレス、パスワードを変更することが出来る。
+アカウント名は変更することが出来ないので要注意。（頻繁に変更されると、グループを作成する度に、ユーザー検索が困難になってしまうため）  
