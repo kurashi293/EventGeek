@@ -1,6 +1,14 @@
 .form-wrap
   %h2.form-title
     EventGeek
+  .test-account__description
+    こちらのアカウントでお試しください
+    %br/
+    アドレス : test100@com.ne.jp
+    %br/
+    パスワード : abc123
+    %br/
+    %br/
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .form-field
       = f.label :email
