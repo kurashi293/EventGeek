@@ -1,12 +1,12 @@
-.navigation
+%footer.navigation
 - if @group.present?     #変数そのものが存在する、または変数に値が入っている時
   %nav.gnav.fixed
     %ul
       %li
         = link_to group_path(@group), class: "link", id: "nav__home" do
-          = icon "fas", "home", class: "nav-awesome"
+          = icon "fas", "folder-open", class: "nav-awesome"
           .compensate
-            HOME
+            GROUP
       %li
         = link_to group_tasks_path(@group), class: "link", id: "nav__task" do
           = icon 'fas', "tasks", class: "nav-awesome"
