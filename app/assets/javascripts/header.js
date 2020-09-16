@@ -23,3 +23,24 @@ $(document).on("click", ".bars-icon", function(){
   // 開閉の速さ
   }, 100);
 });
+
+
+
+
+
+// モバイルデバイス時のグループ名切り替え処理
+$(document).on('turbolinks:load', function(){
+  if (window.matchMedia( '(max-width: 999px)' ).matches) {
+    $(document).on("click", ".location-arrow-icon", function(){
+      $(".global-header__body--group-name").show();
+      $(".global-header__body--logo").hide();
+      $(".location-arrow-icon").hide();
+    });
+
+    $(document).on("click", ".global-header__body--group-name", function(){
+      $(".global-header__body--group-name").hide();
+      $(".global-header__body--logo").show();
+      $(".location-arrow-icon").show();
+    });
+  }
+});
