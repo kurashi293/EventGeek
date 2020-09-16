@@ -26,4 +26,7 @@ $(document).on('turbolinks:load', function(){
   if (window.location.href.match(/\/users\/\d+/)) {                //今いるページのリンクが/users/グループIDのパスとマッチすれば以下を実行。
     $('#nav__mypage').css("color", "#008BBB");
   }
+  if (window.location.href.match(/\/groups\/\d+\/information/)) {        //今いるページのリンクが/groups/グループID/tasksのパスとマッチすれば以下を実行。
+    $('.comment-alt-icon').css("color", "#008BBB");
+  }
 });
