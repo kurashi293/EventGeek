@@ -1,0 +1,33 @@
+- if @group.present?
+  %header.global-header
+    .global-header__body
+      %h2= link_to "Event Geek", groups_path, class: "global-header__body--logo"
+      .global-header__body--group-name{"data-group-name" => "#{@group.name}"}
+        = @group.name
+
+    .global-header__icons
+      = icon "fa", "location-arrow", class: "location-arrow-icon"
+      = link_to information_group_path(@group), class: "information-link" do
+        = icon "fa", "comment-alt", class: "comment-alt-icon"
+      = icon "fa", "bars", class: "bars-icon"
+
+  %ul.drawer-menu
+    = link_to "Select Group", groups_path, class: "drawer-menu__list"
+    = link_to "New Group", new_group_path, class: "drawer-menu__list"
+    = link_to "Edit Group", edit_group_path(@group), method: :get, class: "drawer-menu__list"
+    = link_to "Delete Group", group_path(@group), method: "delete", data: {confirm: "この操作を元に戻すことはできません。\n現在参加中のグループ\n#{@group.name}を削除しますか？"}, class: "drawer-menu__list"
+    = link_to "Logout", destroy_user_session_path, method: :delete, class: 'drawer-menu__list'
+    = link_to "Delete Account", user_path(current_user), method: :delete, data: {confirm: "この操作を元に戻すことはできません。\nこれまでの情報は全て失われます。\n本当に削除しますか？"}, class: "drawer-menu__list"
+
+- else
+  %header.global-header
+    .global-header__body
+      %h2= link_to "Event Geek", groups_path, class: "global-header__body--logo"
+
+    .global-header__icons
+      = icon "fa", "bars", class: "bars-icon"
+
+  %ul.drawer-menu
+    = link_to "Select Group", groups_path, class: "drawer-menu__list"
+    = link_to "Logout", destroy_user_session_path, method: :delete, class: 'drawer-menu__list'
+    = link_to "Delete Account", user_path(current_user), method: :delete, data: {confirm: "この操作を元に戻すことはできません。\nこれまでの情報は全て失われます。\n本当に削除しますか？"}, class: "drawer-menu__list"

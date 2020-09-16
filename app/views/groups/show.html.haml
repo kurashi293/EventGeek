@@ -1,25 +1,5 @@
+= render "share/header"
 .toppage-wrap
-
-  .toppage-box
-    .toppage-header
-      .toppage-header__awesome
-        = icon "fa", "bolt", class: "bolt"
-      .toppage-header__title
-        = @group.name
-    .slideDown-awesome
-      = icon "fa", "align-justify", class: "storage-awesome"
-
-  %ul#hidden-content.slideDown-awesome__group-bar
-    %li.slideDown-awesome__group-bar--list
-      = link_to "Select Group", groups_path, class: "group-bar__list--action"
-    %li.slideDown-awesome__group-bar--list
-      = link_to "New Group", new_group_path, class: "group-bar__list--action"
-    %li.slideDown-awesome__group-bar--list
-      = link_to "Edit Group", edit_group_path(@group), method: :get, class: "group-bar__list--action"
-    %li.slideDown-awesome__group-bar--list
-      = link_to "Delete Group", group_path(@group), method: "delete", data: {confirm: "現在参加中のグループ\n#{@group.name}を削除しますか？"}, class: "group-bar__list--action"
-    .slideUp-awesome
-      = icon "far", "window-close", class: "slide-close"
 
   .toppage-users
     .users-bar
