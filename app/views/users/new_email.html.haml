@@ -1,13 +1,15 @@
 .form-wrap
-  %h1.form-title
-    Account Update
+  %h1= link_to "Account Update", groups_path, class: "form-title-link"
   = form_with model: @user, url: {controller: "users", action:"update"} do |f|
-    .form-field
-      = f.label :email, "New Email"
-      %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'PC・携帯どちらでも可', required: true
-    .actions
-      = f.submit "send", class: "form-submit--black"
-  .link__back
-    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
-    %a{:href => "javascript:history.back();", class: "javascript-back"} Back
+    .form-area
+
+      .common-block
+        .common-label
+          = f.label :email, "New Email"
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
+
+      .common-block
+        = f.submit "send", class: "form-submit", id: "overlay-color"
+
+  //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+  %a{:href => "javascript:history.back();", class: "javascript-back"} Back

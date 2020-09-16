@@ -1,17 +1,19 @@
 .form-wrap
-  %h1.form-title
-    Account Update
+  %h1= link_to "Account Update", groups_path, class: "form-title-link"
   = form_with model: @user, url: {controller: "users", action:"update"} do |f|
-    .form-icon__title
-      Icon
-    .form-description
-      ※設定は任意です
-      .form-field
-        = f.label :avatar, "ファイルを選択", class: "icon-select" do
-          = icon "fa", "image", class: "label__image"
+    .form-area
+
+      .common-block
+        .common-block__heading
+          Avatar
+          .common-block__heading--description
+            ※設定は任意です
+        = f.label :avatar, class: "avatar-label" do
+          = icon "fa", "image", class: "image-icon"
           = f.file_field :avatar, class: "input-file"
-    .actions
-      = f.submit "send", class: "form-submit--black"
-  .link__back
-    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
-    %a{:href => "javascript:history.back();", class: "javascript-back"} Back
+
+      .common-block
+        = f.submit "send", class: "form-submit", id: "overlay-color"
+
+  //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+  %a{:href => "javascript:history.back();", class: "javascript-back"} Back

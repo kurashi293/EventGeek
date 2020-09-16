@@ -1,0 +1,237 @@
+// registration/new
+// session/new
+.form-wrap{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  background: black;
+  background: rgba($color: #000000, $alpha: 0.9);
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 3.5rem 5% 0 5%;
+
+  .form-title{
+    font-family: 'Impact', sans-serif;
+    text-align: center;
+    margin-bottom: 5rem;
+    font-size: 4rem;
+    color: #330066;
+    text-shadow: 0.2rem 0.2rem 0  #008BBB,
+                -0.2rem 0.2rem 0  #008BBB,
+                0.2rem -0.2rem 0  #008BBB,
+                -0.2rem -0.2rem 0  #008BBB;
+  }
+
+  .form-title-link{
+    display: block;
+    font-family: 'Impact', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 5rem;
+    font-size: 4rem;
+    color: #330066;
+    text-shadow: 0.2rem 0.2rem 0  #008BBB,
+                -0.2rem 0.2rem 0  #008BBB,
+                0.2rem -0.2rem 0  #008BBB,
+                -0.2rem -0.2rem 0  #008BBB;
+  }
+
+  .form-area{
+    // エラーメッセージ
+    .registration-alert{
+      color: #BA002F;
+      margin-bottom: 3.5rem;
+    }
+
+    .common-block{
+      width: 100%;
+      margin-bottom: 5rem;
+      .common-label{
+        margin-bottom: 0.5rem;
+      }
+
+      // f.text_field
+      .input-field{
+        width: 36rem;
+        height: 4.5rem;
+        padding: 0.5rem;
+        box-sizing: border-box;
+      }
+
+      // f.file_fieldのラベル
+      &__heading{
+        margin-left: 7.125em;
+        display: inline-block;
+        &--description{
+          display: inline;
+          font-size: 1.3rem;
+          margin-left: 0.5rem;
+        }
+      }
+
+      // f.file_field
+      .avatar-label{
+        display: block;
+
+        // アバター選択のアイコン
+        .image-icon{
+          font-size: 4rem;
+          cursor: pointer;
+        }
+        .image-icon:hover{
+          opacity: 0.5;
+        }
+        .input-file{
+          display: none;
+        }
+
+        // 選択画像のプレビュー
+        .img_selected{
+          height: 12rem;
+          width: 12rem;
+          border-radius: 100%;
+        }
+        .img_delete{
+          color:  #BA002F;
+          text-decoration: none;
+        }
+        #close-icon{
+          font-size: 2.2rem;
+        }
+      }
+
+      // 送信ボタン
+      .form-submit{
+        display: inline-block;
+        width: 10rem;
+        height: 4.5rem;
+        background-color:  black;
+        color: #008BBB;
+        font-weight: bold;
+        border-color: #008BBB;
+        cursor: pointer;
+
+        //hoverエフェクト
+        box-shadow: inset 0 0 2rem rgba(255, 255, 255, 0);
+        outline: 0.1rem solid;
+        outline-color: rgba(255, 255, 255, .5);
+        outline-offset: 0px;
+        text-shadow: none;
+        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      .form-submit:hover{
+        border: 0.1rem solid;
+        box-shadow: inset 0 0 2rem rgba(255, 255, 255, .5), 0 0 2rem rgba(255, 255, 255, .2);
+        outline-color: rgba(255, 255, 255, 0);
+        outline-offset: 1.5rem;
+        text-shadow: 0.1rem 0.1rem 0.2rem #008BBB;
+      }
+
+      // 送信ボタンの色を変更
+      #overlay-color{
+        color: white;
+        border-color: #AAAAAA;
+      }
+
+      // ログインページへのリンク
+      .login-link{
+        color: #008BBB;
+        text-underline-position: under;
+      }
+    }
+    .copyright{
+      font-size: 1rem;
+    }
+  }
+  .javascript-back{
+    text-decoration: none;
+    color: white;
+  }
+}
+
+
+
+
+
+//registration/new レスポンシブ（通常サイズのスマホ対応）
+// session/new
+@media screen and (max-width: 481px){
+
+  .form-wrap{
+    padding: 2rem 5% 0 5%;
+    .form-title{
+      font-size: 3rem;
+      margin-bottom: 3.5rem;
+      text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                  -0.1rem 0.1rem 0  #008BBB,
+                  0.1rem -0.1rem 0  #008BBB,
+                  -0.1rem -0.1rem 0  #008BBB;
+    }
+
+    .form-title-link{
+      font-size: 2.5rem;
+      text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                  -0.1rem 0.1rem 0  #008BBB,
+                  0.1rem -0.1rem 0  #008BBB,
+                  -0.1rem -0.1rem 0  #008BBB;
+    }
+
+    .form-area{
+      // エラーメッセージ
+      .registration-alert{
+        margin-bottom: 3rem;
+        font-size: 1.4rem;
+      }
+      .common-block{
+        margin-bottom: 3.5rem;
+        font-size: 1.4rem;
+
+        // f.file_fieldのラベル
+        &__heading{
+          margin-left: 7em;
+          &--description{
+            font-size: 1.1rem;
+          }
+        }
+
+        // f.text_field
+        .input-field{
+          width: 80%;
+          height: 4rem;
+        }
+
+        // f.file_field
+        .avatar-label{
+          .image-icon{
+            font-size: 3rem;
+          }
+
+          // 選択画像のプレビュー
+          .img_selected{
+            height: 33vmin;
+            width: 33vmin;
+          }
+          #close-icon{
+            font-size: 1.8rem;
+          }
+        }
+
+        // 送信ボタン
+        .form-submit{
+          width: 8rem;
+          height: 4rem;
+        }
+
+        // ログインページへのリンク
+        .login-link{
+          font-size: 1.4rem;
+        }
+      }
+      .copyright{
+        font-size: 1rem;
+      }
+    }
+  }
+}
