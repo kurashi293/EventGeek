@@ -1,57 +1,66 @@
-.procedure-wrap
-  %h1.procedure-title
+.confirm-wrap
+  %h1.confirm-title
     registration confirmation
-    .procedure-title__border
-  .procedure-box
-    .procedure-box__header
+
+  // 登録内容確認のブロック
+  .confirm-box
+    // 見出し
+    %h2.confirm-box__heading
       登録内容の確認
-    .confirmation-contents
+
+    // 主要部分
+    .confirm-box__body
       - if @user.avatar.present?
-        .confirmation-contents__icon
-          = image_tag @user.avatar.url, class: "procedure-icon"
-        %table.confirmation-contents__table
-          %thead
-            %tr
-              %th.confirmation-contents__table--header
-                Name
-              %td.confirmation-contents__table--data
-                = @user.name
-            %tr
-              %th.confirmation-contents__table--header
-                Email
-              %td.confirmation-contents__table--data
-                = @user.email
-            %tr
-              %th.confirmation-contents__table--header
-                Password
-              %td.confirmation-contents__table--data
-                セキュリティーのためパスワードは非表示となっています
+        // アバターを登録している場合
+        .confirm-box__body--top
+          = image_tag @user.avatar.url, class: "confirm-avatar"
+        %table.confirm-box__body--middle
+          %tr.content-row
+            %th.content-row__item
+              Name
+            %td.content-row__data
+              = @user.name
+          %tr.content-row
+            %th.content-row__item
+              Email
+            %td.content-row__data
+              = @user.email
+          %tr.content-row
+            %th.content-row__item
+              Password
+            %td.content-row__data
+              セキュリティーのため非表示です
       - else
-        .confirmation-contents__icon
-          = icon "fas", "user-circle", class: "procedure-icon"
-        %table.confirmation-contents__table
-          %thead
-            %tr
-              %th.confirmation-contents__table--header
-                Name
-              %td.confirmation-contents__table--data
-                = @user.name
-            %tr
-              %th.confirmation-contents__table--header
-                Email
-              %td.confirmation-contents__table--data
-                = @user.email
-            %tr
-              %th.confirmation-contents__table--header
-                Password
-              %td.confirmation-contents__table--data
-                セキュリティーのためパスワードは非表示となっています
-    .procedure-box__text
+        // アバター未登録の場合
+        .confirm-box__body--top
+          = icon "fas", "user-circle", class: "confirm-avatar"
+        %table.confirm-box__body--middle
+          %tr.content-row
+            %th.content-row__item
+              Name
+            %td.content-row__data
+              = @user.name
+          %tr.content-row
+            %th.content-row__item
+              Email
+            %td.content-row__data
+              = @user.email
+          %tr.content-row
+            %th.content-row__item
+              Password
+            %td.content-row__data
+              セキュリティーのため非表示です
+    // 補足説明
+    .confirm-box__text
       内容を確認し、よろしければ「登録」ボタンを押して下さい。
       %br/
       ※登録した内容はMY PAGEで編集できます。
-  .procedure-footer
-    %button.procedure-footer__back
-      = link_to "Back", user_path(@user.id), method: :delete, class: "procedure-link"
-    %button.procedure-footer__forward
-      = link_to "Sign up", compleate_user_path(@user.id), class: "procedure-link"
+
+  // フッターのボタン
+  .confirm-footer
+    %button.confirm-footer__button
+      = link_to "Back", user_path(@user.id), method: :delete, class: "confirm-link"
+    %button.confirm-footer__button
+      = link_to "Sign up", compleate_user_path(@user.id), class: "confirm-link"
+  .copyright
+    Copyright© Ryo Kurashima

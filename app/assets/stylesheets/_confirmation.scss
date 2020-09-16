@@ -1,0 +1,397 @@
+// users/confirmation
+.confirm-wrap{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  background: black;
+  background: rgba($color: #000000, $alpha: 0.9);
+  color: white;
+  box-sizing: border-box;
+  padding: 3.5rem 0 0 0;
+
+  // タイトル
+  .confirm-title{
+    margin: auto;
+    text-align: left;
+    font-size: 2.5rem;
+    font-family: 'Impact', sans-serif;
+    border-bottom: solid 0.2rem #AAAAAA;
+    width: 70rem;
+  }
+
+  // 登録内容確認のブロック
+  .confirm-box{
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    width: 70rem;
+    height: 45rem;
+    text-align: center;
+    background: whitesmoke;
+    color: black;
+    box-sizing: border-box;
+    padding: 2.5rem 5%;
+    display: flex;
+    flex-flow: column;
+
+    // タイトル・見出し
+    &__heading{
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    // 主要部分
+    &__body{
+      width: 100%;
+      &--top{
+        padding: 1.5rem 0 1.5rem 0;
+
+        // アバターを登録している場合
+        .confirm-avatar{
+          height: 8rem;
+          width: 8rem;
+          border-radius: 100%;
+          border: solid 0.5px #ccc;
+        }
+        // アバター未登録の場合
+        .confirm-avatar::before{
+          font-size: 8rem;
+          opacity: 0.3;
+        }
+      }
+
+      // テーブル
+      &--middle{
+        width: 100%;
+        .content-row{
+          align-items: center;
+          border: solid 0.5px #ccc;
+          width: 100%;
+          text-align: center;
+          display: flex;
+          color: #333333;
+
+          // 項目
+          &__item{
+            text-align: center;
+            padding: 1.5rem 0 1.5rem 0;
+            font-weight: bold;
+            width: 25%;
+            background: #DCDCDC;
+          }
+
+          // 登録内容
+          &__data{
+            width: 75%;
+            word-break: break-all;
+          }
+
+        }
+      }
+    }
+
+    // 補足説明
+    &__text{
+      margin-top: 3rem;
+      color: #333333;
+    }
+  }
+
+  // フッターのボタン
+  .confirm-footer{
+    text-align: center;
+    &__button{
+      width: 10rem;
+      height: 4.5rem;
+      font-size: 1.6rem;
+      font-weight: bold;
+      background-color:  black;
+      color: #008BBB;
+      border-color: #008BBB;
+      margin: 0 3% 5rem 3%;
+      cursor: pointer;
+
+      //hoverエフェクト
+      box-shadow: inset 0 0 2rem rgba(255, 255, 255, 0);
+      outline: 0.1rem solid;
+      outline-color: rgba(255, 255, 255, .5);
+      outline-offset: 0px;
+      text-shadow: none;
+      transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    &__button:hover{
+      border: 0.1rem solid;
+      box-shadow: inset 0 0 2rem rgba(255, 255, 255, .5), 0 0 2rem rgba(255, 255, 255, .2);
+      outline-color: rgba(255, 255, 255, 0);
+      outline-offset: 1.5rem;
+      text-shadow: 0.1rem 0.1rem 0.2rem #008BBB;
+    }
+    .confirm-link{
+      color: #008BBB;
+      text-decoration: none;
+    }
+  }
+  .copyright{
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+// usrs/confirmation レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .confirm-wrap{
+    // タイトル
+    .confirm-title{
+      width: 100%;
+      max-width: 70rem;
+    }
+
+    // 登録内容確認のブロック
+    .confirm-box{
+      width: 100%;
+      max-width: 70rem;
+      }
+  }
+}
+
+
+
+
+
+//usrs/confirmation レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .confirm-wrap{
+    padding: 2rem 0 0 0;
+
+    // タイトル
+    .confirm-title{
+      width: 90vmin;
+      max-width: initial;
+      border-bottom: solid 0.1rem #AAAAAA;
+      font-size: 1.8rem;
+    }
+
+    // 登録内容確認のブロック
+    .confirm-box{
+      height: initial;
+      max-width: initial;
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
+
+      // タイトル・見出し
+      &__heading{
+        font-size: 1.6rem;
+      }
+
+      // 主要部分
+      &__body{
+
+        // テーブル
+        &--middle{
+          .content-row{
+            display: block;
+
+            // 項目
+            &__item{
+              display: block;
+              padding: 0.5rem 0;
+              width: 100%;
+            }
+
+            // 登録内容
+            &__data{
+              display: block;
+              width: 100%;
+              padding: 0.5rem 0;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+
+      // 補足説明
+      &__text{
+        font-size: 1.3rem;
+        margin-top: 3rem;
+      }
+    }
+
+    // フッターのボタン
+    .confirm-footer{
+      &__button{
+        width: 8rem;
+        height: 4rem;
+        font-size: 1.4rem;
+        margin: 0 3% 3.5rem 3%;
+      }
+    }
+    .copyright{
+      font-size: 1rem;
+    }
+  }
+}
+
+
+
+
+
+// users/compleate
+.compleate-wrap{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  background: black;
+  background: rgba($color: #000000, $alpha: 0.9);
+  color: white;
+  box-sizing: border-box;
+  padding: 3.5rem 0 0 0;
+
+  // タイトル
+  .compleate-title{
+    margin: auto;
+    text-align: left;
+    font-size: 2.5rem;
+    font-family: 'Impact', sans-serif;
+    border-bottom: solid 0.2rem #AAAAAA;
+    width: 70rem;
+  }
+
+  // 主要ブロック
+  .compleate-box{
+    height: 45rem;
+    width: 70rem;
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    text-align: center;
+    background: whitesmoke;
+    color: #333333;
+    box-sizing: border-box;
+    padding: 7rem 5% 0 5%;
+    &__head{
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    &__foot{
+      margin-top: 7rem;
+    }
+  }
+
+  // フッターのボタン
+  .compleate-footer{
+    text-align: center;
+    &__button{
+      width: 10rem;
+      height: 4.5rem;
+      font-weight: bold;
+      background-color:  black;
+      color: #008BBB;
+      border-color: #008BBB;
+      margin-bottom: 5rem;
+      cursor: pointer;
+
+      //hoverエフェクト
+      box-shadow: inset 0 0 2rem rgba(255, 255, 255, 0);
+      outline: 0.1rem solid;
+      outline-color: rgba(255, 255, 255, .5);
+      outline-offset: 0px;
+      text-shadow: none;
+      transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    &__button:hover{
+      border: 0.1rem solid;
+      box-shadow: inset 0 0 2rem rgba(255, 255, 255, .5), 0 0 2rem rgba(255, 255, 255, .2);
+      outline-color: rgba(255, 255, 255, 0);
+      outline-offset: 1.5rem;
+      text-shadow: 0.1rem 0.1rem 0.2rem #008BBB;
+    }
+    .compleate-link{
+      color: #008BBB;
+      text-decoration: none;
+    }
+  }
+  .copyright{
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+// usrs/compleate レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .compleate-wrap{
+    // タイトル
+    .compleate-title{
+      width: 100%;
+      max-width: 70rem;
+    }
+
+    // 登録内容確認のブロック
+    .compleate-box{
+      width: 100%;
+      max-width: 70rem;
+      }
+  }
+}
+
+
+
+
+
+// // users/compleate レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .compleate-wrap{
+    padding: 2rem 0 0 0;
+
+    // タイトル
+    .compleate-title{
+      width: 90vmin;
+      max-width: initial;
+      border-bottom: solid 0.1rem #AAAAAA;
+      font-size: 1.8rem;
+    }
+
+    // 主要ブロック
+    .compleate-box{
+      height: initial;
+      max-width: initial;
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
+      padding: 2.5rem 5% 2.5rem 5%;
+      &__head{
+        font-size: 1.6rem;
+      }
+      &__foot{
+        font-size: 1.3rem;
+        margin-top: 5rem;
+      }
+    }
+
+    // フッターのボタン
+    .compleate-footer{
+      margin-bottom: 5rem;
+      &__button{
+        width: 8rem;
+        height: 4rem;
+        font-size: 1.4rem;
+      }
+    }
+    .copyright{
+      font-size: 1rem;
+    }
+  }
+}
