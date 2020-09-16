@@ -1,14 +1,212 @@
-.header{
-  margin-top: 1.5%;
-  text-align: center;
-  display: block;
-  &__working{
-    font-weight: bold;
-    font-size: 20px;
+// share/header
+.global-header{
+  height: 5.8rem;
+  width: 100%;
+  position: fixed;
+  box-sizing: border-box;
+  padding: 1rem 5vw 1rem 2.5vw;
+  font-family: 'arial unicode ms';
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+
+  // グループ名のブロック
+  &__body{
+    width: 85%;
+    display: flex;
+    text-align: left;
+    align-items: center;
+
+    &--logo{
+      width: 14.5rem;
+      display: block;
+      white-space: nowrap;
+      font-family: 'Impact', sans-serif;
+      text-decoration: none;
+      font-size: 2.5rem;
+      color: #330066;
+      text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                  -0.1rem 0.1rem 0  #008BBB,
+                  0.1rem -0.1rem 0  #008BBB,
+                  -0.1rem -0.1rem 0  #008BBB;
+    }
+
+    // グループ名
+    &--group-name{
+      font-size: 1.6rem;
+      width: 100%;
+    }
   }
-  &__member{
-    margin-top: 3px;
-    font-size: 15px;
-    font-weight: 600;
+  &__icons{
+    margin: 0 0 0 auto;
+    display: flex;
+    font-size: 2.2rem;
+    .location-arrow-icon{
+      display: none;
+    }
+    .information-link{
+      text-decoration: none;
+      color: white;
+    }
+    .information-link:hover{
+      color: #008BBB;
+    }
+    .bars-icon{
+      margin-left: 5vw;
+      cursor: pointer;
+    }
+    .bars-icon:hover{
+      color: #008BBB;
+    }
+  }
+}
+
+
+// ドロワーメニュー
+.drawer-menu{
+  height: calc(100% - 58px - 60px);
+  width: 20rem;
+  box-sizing: border-box;
+  z-index: 10;
+  background: black;
+  text-align: center;
+  font-weight: 550;
+  display: flex;
+  flex-flow: column;
+  overflow: auto;
+  border-top: solid 0.5px #ccc;
+
+  // ドロワーメニューの設定
+  position: fixed;
+  top: 5.8rem;
+  right: -300px;
+
+  // 各リンクへのリスト
+  &__list{
+    padding: 2rem 0 2rem 0;
+    border-bottom: solid 0.5px #ccc;
+    color: white;
+    text-decoration: none;
+  }
+  &__list:hover{
+    color: black;
+    background: whitesmoke;
+  }
+}
+
+
+
+
+
+// share/header レスポンシブ（タブレット対応）
+@media screen and (max-width: 999px){
+
+  // ヘッダー本体
+  .global-header{
+    padding: 1rem calc(2.5vw + 0.5rem) 1rem calc(2.5vw + 0.5rem);
+    &__body{
+      width: initial;
+      &--logo{
+        width: initial;
+      }
+      &--group-name{
+        display: none;
+        word-break: break-all;
+        cursor: pointer;
+      }
+    }
+    &__icons{
+      .location-arrow-icon{
+        display: inline-block;
+        cursor: pointer;
+      }
+      .information-link{
+        margin-left: calc(2vw + 1rem);
+      }
+      .bars-icon{
+        margin-left: calc(2vw + 1rem);
+      }
+    }
+  }
+}
+
+
+
+
+
+// share/header レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  // ヘッダー本体
+  .global-header{
+    height: 5rem;
+    padding: 0.5rem calc(2.5vmin + 0.5rem) 0.5rem calc(2.5vmin + 0.5rem);
+    &__body{
+      &--logo{
+        font-size: 2rem;
+        text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                    -0.1rem 0.1rem 0  #008BBB,
+                    0.1rem -0.1rem 0  #008BBB,
+                    -0.1rem -0.1rem 0  #008BBB;
+      }
+      &--group-name{
+        font-size: 1.3rem;
+      }
+    }
+    &__icons{
+      margin: 0 0 0 auto;
+      font-size: 1.7rem;
+      .information-link{
+        margin-left: calc(2vmin + 1rem);
+
+      }
+      .bars-icon{
+        margin-left: calc(2vmin + 1rem);
+
+      }
+    }
+  }
+
+  // ドロワーメニュー
+  .drawer-menu{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+
+    // 各リンクへのリスト
+    &__list{
+      padding: 1.5rem 0 1.5rem 0;
+    }
+  }
+}
+
+
+
+
+
+// share/header レスポンシブ（最小サイズのスマホ対応）
+@media screen and (max-width: 281px){
+
+  // ヘッダー本体
+  .global-header{
+    &__body{
+      &--logo{
+        font-size: 7.1174377vmin;
+      }
+      &--group-name{
+        font-size: 4.62633vmin;
+      }
+    }
+    &__icons{
+      font-size: 6.049822vmin;
+      .information-link{
+        margin-left: calc(2vmin + 3.5587vmin);
+      }
+      .bars-icon{
+        margin-left: calc(2vmin + 3.5587vmin);
+      }
+    }
   }
 }

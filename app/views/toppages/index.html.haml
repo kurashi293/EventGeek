@@ -2,14 +2,8 @@
   = render group_path(group.id)
 
 - else
+= render "share/header"
 .toppage-wrap
-
-  .toppage-box
-    .toppage-header
-      .toppage-header__awesome
-        = icon "fa", "info-circle", class: "bolt"
-      .toppage-header__title
-        グループが選択されていません
 
   %ul.group-bar__blank
     %li.group-bar__blank--button
