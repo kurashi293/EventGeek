@@ -1,17 +1,23 @@
-.procedure-wrap
-  %h1.procedure-title
+.compleate-wrap
+  %h1.compleate-title
     registration is compleated !
-    .procedure-title__border
+
+  // 主要ブロック
   .compleate-box
-    .compleate-box__user-name
+    .compleate-box__head
       = @user.name
       様
-    .compleate-box__title
+      %br
       会員登録ありがとうございます
-    .compleate-box__text
-      「Login Page」ボタンからログインしてアプリケーションをご利用ください
+    .compleate-box__foot
+      「Login」ボタンからログインしてご利用ください。
+      %br
       %br
       EventGeek supports your event !
-  .procedure-footer
-    %button.procedure-footer__end
-      = link_to "Login Page", root_path, class: "procedure-link"
+
+  // フッターのボタン
+  .compleate-footer
+    %button.compleate-footer__button
+      = link_to "Login", root_path, class: "compleate-link"
+  .copyright
+    Copyright© Ryo Kurashima
