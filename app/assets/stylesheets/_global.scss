@@ -1,0 +1,26 @@
+// htmlデフォルトの文字サイズが16pxなので、62.5％に縮小する事で10pxに設定される
+// remの指定と実際の表示サイズをpxで認識できて、わかりやすくするための方法
+// この場合、font-sizeをremで指定する場合はhtmlで設定した10pxを基準に考える
+// 例）1.6rem ✕ 10px = 16px
+html {
+  font-size: 62.5%;
+  }
+
+
+// htmlの設定が10pxなので、bodyのフォントサイズをブラウザのデフォルト値である16px（1.6em）に設定
+// つまりfont-sizeを指定しない要素は全て16pxが適用される
+body {
+  font-size: 1.6em;
+}
+
+
+// 15pxに設定
+p{
+  font-size: 1.5rem;
+}
+
+
+// 全ページ共通の字体
+*{
+  font-family: "Roboto", "Arial", "sans-serif";
+}
