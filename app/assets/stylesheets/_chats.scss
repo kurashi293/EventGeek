@@ -4,148 +4,396 @@
 
 
 
-.chat{
+
+
+// chat/index
+// chat/message
+.chat-wrap{
+  // メッセージ一覧表示のフィールド
   .messages {
-    position: fixed;
-    overflow: auto;
-    width:100%;
-    height: calc(100vh - 148px);
-    background-color: whitesmoke;
+    height: calc(100% - 58px - 65px - 60px);
+    width: 100%;
     box-sizing: border-box;
-    padding: 25px 17% 0;
+    padding: 2.5rem 10% 0 10%;
+    position: fixed;
+    top: 5.8rem;
+    overflow: auto;
+    background-color: whitesmoke;
+
+    // メッセージ本体
     .message {
+      width: 100%;
+      max-width: 100rem;
+      margin: auto;
       display: block;
+
+      // 投稿者情報
       .upper-contents{
         display: flex;
-        .icon{
-          height: 1.5625em;
-          width: 1.5625em;
-          border-radius: 50%;
-          margin-right: 8px;
-        }
-        .icon-blank{
-          font-size: 1.5625em;
-          margin-right: 8px;
+        align-items: center;
+
+        // アバターを登録している場合
+        &__avatar{
+          &--active{
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 100%;
+            margin-right: 1rem;
+            border: solid 0.5px #ccc;
+          }
+
+          // アバターを登録していない場合
+          &--disabled{
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            opacity: 0.3;
+          }
         }
         &__user-name{
-          color: #434a54;
-          font-size: 15px;
-          font-weight: bold;
-          max-width: 30em;
+          color: #333333;
+          font-size: 1.4rem;
           overflow: hidden;
+          white-space: nowrap;
         }
+
+        // 投稿時間
         &__date{
           color: #444444;
-          font-size: 11px;
-          margin: 4px 30px 0;
+          font-size: 1.1rem;
+          margin: 0 3rem 0 3rem;
+        }
+        .message-trash-icon:hover{
+          opacity: 0.5;
         }
       }
+
+      // メッセージ内容
       .lower-content{
-        margin-top: 20px;
+        margin-top: 1.5rem;
         &__text{
-          color: #434a54;
-          font-size: 20px;
-          letter-spacing: 1px;
+          font-size: 1.5rem;
+          color: #333333;
+          letter-spacing: 0.1rem;
           overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
-        }
-        &__image{
-          height: 10%;
-          width: 10%;
-          margin-top: 10px;
+          &--image{
+            height: 9rem;
+            width: 9rem;
+            margin-top: 1rem;
+            cursor: pointer;
+          }
+          &--image:hover{
+            opacity: 0.5;
+          }
         }
         &__border{
           border-bottom: solid 1px #AAAAAA;
-          margin: 5px 0 60px;
+          margin: 0.3rem 0 3rem 0;
         }
       }
     }
   }
-}
 
-.chat-footer {
-  background-color: steelblue;
-  position: fixed;
-  bottom: 68px;
-  width: 100%;
-  height: 3.2em;
-  padding: 15px 1px;
-  .chat-form{
+  //フォーム
+  .chat-form {
+    width: 100%;;
+    position: fixed;
+    bottom: 6rem;
+    box-sizing: border-box;
+    padding: 1rem 0 1rem 0;
+    background: #074770;
     display: flex;
     justify-content: center;
+    align-items: center;
+    &__text-area{
+      width: 55%;
+      max-width: 80rem;
+      height: 4.5rem;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      background: #FFF;
+      border: none;
+    }
+    &__text-area::placeholder{    //placeholderの擬似要素で中身を装飾
+      padding-top: 0.7rem;
+    }
+    &__image{
+      &--icon{
+        font-size: 4.5rem;
+        background: #FFF;
+        cursor: pointer;
+      }
+      &--icon:hover{
+        opacity: 0.5;
+      }
+      &--hidden-field {
+        display: none;
+      }
+
+      // フォーム選択画像のプレビュー
+      .preview-container{
+        display: none;
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 15;
+        text-align: center;
+        &__heading{
+          color: #333333;
+        }
+        &__image{
+          height: 20rem;
+          width: 20rem;
+        }
+        &__caption{
+          text-decoration: none;
+          color: #BA002F;
+        }
+        #close-icon{
+          font-size: 2.2rem;
+        }
+      }
+    }
+    &__send {
+      height: 4.5rem;
+      width: 9rem;
+      box-sizing: border-box;
+      margin-left: 5%;
+      background-color: black;
+      color: white;
+      border-color: #AAAAAA;
+      cursor: pointer;
+    }
   }
 }
 
 
-.chat-form__send {
-  background-color: black;
-  color: #FFF;
-  width: 100px;
-  height: 49px;
-  font-size: 23px;
-  margin-left: 35%;
-}
-.hidden {
+// 画像のモーダル表示
+.chat-modal{
+  height: calc(100% - 58px - 60px);
+  width: 100%;
+  position: fixed;
+  top: 5.8rem;
   display: none;
-}
-
-.form-image__awesome{
-  font-size: 49px;
-  background: #FFF;
-}
-
-.chat-form__text{
-  width: 55%;
-  height: 3.1em;
-  background: #FFF;
-  border: none;
-}
-
-
-.messages::-webkit-scrollbar {     //Chrome、Safariの場合、::-webkit-scrollbar擬似要素でスクロールバーを消す
-  display:none;
-}
-
-
-.chat-form__text::placeholder{    //placeholderの擬似要素で中身を装飾
-  padding-top: 11px;
-}
-
-
-.lower-content__image--modal{
-  height: 35em;
-  width: 35em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 5;
+  background: #151515;
+  cursor: pointer;
+  &__image{
+    height: 35rem;
+    width: 35rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+  }
 }
 
 
 
 
-.chat-img_view{
-  display: none;
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 6;
-  text-align: center;
+
+// chat/index レスポンシブ（タブレット対応）
+// chat/message
+@media screen and (max-width: 769px){
+  .chat-wrap{
+    //フォーム
+    .chat-form {
+      &__image{
+        // フォーム選択画像のプレビュー
+        .preview-container{
+          &__image{
+            height: 26.0078vmin;
+            width: 26.0078vmin;
+          }
+        }
+      }
+    }
+  }
+
+  // 画像のモーダル表示
+  .chat-modal{
+    &__image{
+      height: 45.5vmin;
+      width: 45.5vmin;
+    }
+  }
 }
 
-.chat-form__img--preview{
-  height: 10em;
-  width: 10em;
+
+
+
+
+// chat/index レスポンシブ（通常サイズのスマホ対応）
+// chat/message
+@media screen and (max-width: 481px){
+  .chat-wrap{
+    // メッセージ一覧表示のフィールド
+    .messages {
+      height: calc(100% - 50px - 50px - 50px);
+      top: 5rem;
+      padding: 2rem 2.5vmin 0 2.5vmin;
+
+      // メッセージ本体
+      .message {
+        max-width: initial;
+
+        // 投稿者情報
+        .upper-contents{
+
+          // アバターを登録している場合
+          &__avatar{
+            &--active{
+              height: 2.3rem;
+              width: 2.3rem;
+            }
+
+            // アバターを登録していない場合
+            &--disabled{
+              font-size: 2.3rem;
+            }
+          }
+          &__user-name{
+            font-size: 1.2rem;
+          }
+
+          // 投稿時間
+          &__date{
+            font-size: 1rem;
+            margin: 0 1.5rem 0 1.5rem;
+          }
+          .message-trash-icon{
+            font-size: 1.3rem;
+          }
+        }
+
+        // メッセージ内容
+        .lower-content{
+          margin-top: 1rem;
+          &__text{
+            font-size: 1.4rem;
+            &--image{
+              height: 18.71vmin;
+              width: 18.71vmin;
+            }
+          }
+          &__border{
+            margin: 0.1rem 0 2rem 0;
+          }
+        }
+      }
+    }
+
+    //フォーム
+    .chat-form {
+      bottom: 5rem;
+      padding: 0.75rem 0 0.75rem 0;
+      &__text-area{
+        height: 3.5rem;
+        width: 55%;
+        max-width: initial;
+      }
+      &__text-area::placeholder{    //placeholderの擬似要素で中身を装飾
+        padding-top: 0.35rem;
+        font-size: 1.3rem;
+      }
+      &__image{
+        &--icon{
+          font-size: 3.5rem;
+        }
+      }
+
+      // フォーム選択画像のプレビュー
+      .preview-container{
+        &__image{
+          height: 41.58vmin;
+          width: 41.58vmin;
+        }
+        #close-icon{
+          font-size: 1.8rem;
+        }
+      }
+      &__send {
+        height: 3.5rem;
+        width: 16.46%;
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  // 画像のモーダル表示
+  .chat-modal{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    &__image{
+      height: 100vmin;
+      width: 100vmin;
+    }
+  }
 }
 
 
-.chat-form__img--delete{
-  text-decoration: none;
-  font-size: 1.2em;
-  color: #BA002F;
-}
 
-.chat-img__text--selected{
-  font-size: 1.35em;
+
+
+// chat/index レスポンシブ（最小サイズのスマホ対応）
+// chat/message
+@media screen and (max-width: 251px){
+  .chat-wrap{
+    .messages {
+      // メッセージ本体
+      .message {
+        // 投稿者情報
+        .upper-contents{
+          // アバターを登録している場合
+          &__avatar{
+            &--active{
+              height: 9.1633466vmin;
+              width: 9.1633466vmin;
+            }
+
+            // アバターを登録していない場合
+            &--disabled{
+              font-size: 9.1633466vmin;
+            }
+          }
+          &__user-name{
+            font-size: 4.78vmin;
+          }
+
+          // 投稿時間
+          &__date{
+            font-size: 3.984vmin;
+            margin: 0 5.976vmin 0 5.976vmin;
+          }
+          .message-trash-icon{
+            font-size: 5.179vmin;
+          }
+        }
+
+        // メッセージ内容
+        .lower-content{
+          &__text{
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+
+    //フォーム
+    .chat-form {
+      &__text-area::placeholder{    //placeholderの擬似要素で中身を装飾
+        font-size: 5.179vmin;
+      }
+
+      // フォーム選択画像のプレビュー
+      .preview-container{
+        &__heading{
+          font-size: 5.976vmin;
+        }
+      }
+      &__send {
+        font-size: 5.179vmin;
+      }
+    }
+  }
 }
