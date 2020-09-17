@@ -1,50 +1,147 @@
-.task-wrap__details
-  %section.deadline-box
-    .deadline-box__icon
-      = icon "fa", "bell"
-      .deadline-box__header
-        Deadline
-      .deadline-box__time
-        = @task.deadline.strftime("%Y/%m/%d %H:%M")
-  %section.details-box
-    .details-box__title
-      = @task.title
-    .details-box__content
-      = safe_join(@task.content.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
-      .details-box__image
-      - if @task.task_images.present?
-        - @task.task_images.each do |task_images|
-          = image_tag task_images.image.url, height: "100px", width: "100px", class: "task-image"
-  %section.details-member
-    .details-member__header
-      .details-member__header--icon
-        = icon "fa", "check-square", class: "check-square"
-      .details-member__header--title
-        Person in charge
-    .details-member__list
-      - @task.users.each do |users|
-        -if users.avatar.present?
-          .details-member__list--image
-            = image_tag users.avatar.url, class: "task-avatar"
-            .details-member__list--name
-              - japanese = /\A[ぁ-んァ-ン一-龥]/
-              - english = /\A[\w\s]+\z/
-              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
-              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
-              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
-        - else
-          .details-member__list--image
-            = icon "fa", "user-circle", class: "task-avatar__blank"
-            .details-member__list--name
-              - japanese = /\A[ぁ-んァ-ン一-龥]/
-              - english = /\A[\w\s]+\z/
-              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
-              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
-              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
-  -# created_at &nbsp; #{@task.created_at.strftime("%Y/%m/%d %H:%M")}
+= render "share/header"
+
+.task-show-wrap
+  .category-name
+    = @task.category.name
+
+  // タスクの期限
+  .deadline
+    .deadline__text
+      = icon "fa", "bell", class: "bell-icon"
+      Deadline
+    = @task.deadline.strftime("%Y/%m/%d %H:%M")
+
+  // 最終更新日
+  .last-updated
+    .last-updated__text
+      Last updated
+    = @task.updated_at.strftime("%Y/%m/%d %H:%M")
+
+  // 使用しているアバターがログイン中であり、データベースから取り出したタスクのユーザーidに、ログインを済ませ自ら使用しているアバターのidが含まれているならば、付箋折り返しの色を上書きさせる処理
+  -if current_user && @task.user_ids.include?(current_user.id)
+    .main-frame#overlay
+      .task-name
+        = @task.title
+      // タスク担当メンバー
+      .members-field
+        - @task.users.each do |user|
+          -if user.avatar.present?
+            .members-field__user
+              = image_tag user.avatar.url, class: "avatar"
+              .members-field__user--name
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - english = /\A[\w\s]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if user.name.match(japanese) && user.name.length > 5
+                  = user.name[0..4] << "..."
+                - elsif user.name.match(english) && user.name.length > 7
+                  = user.name[0..6] << "..."
+                - elsif user.name.match(all_characters) && user.name.length > 6
+                  = user.name[0..5] << "..."
+                - else
+                  = user.name
+
+          - else
+            .members-field__user
+              = icon "fa", "user-circle", class: "blank-avatar"
+              .members-field__user--name
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+                - english = /\A[\w\s]+\z/
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if user.name.match(japanese) && user.name.length > 5
+                  = user.name[0..4] << "..."
+                - elsif user.name.match(english) && user.name.length > 7
+                  = user.name[0..6] << "..."
+                - elsif user.name.match(all_characters) && user.name.length > 6
+                  = user.name[0..5] << "..."
+                - else
+                  = user.name
+
+      // テキストボックス
+      .text-box
+        // テキスト本体
+        .text-box__body
+          = safe_join(@task.content.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
+          %br
+          .images
+            // データベースから取り出したタスクのイメージ
+            - if @task.task_images.present?
+              - @task.task_images.each do |task_image|
+                = image_tag task_image.image.url, class: "task-image"
+
+  - else
+    .main-frame
+      .task-name
+        = @task.title
+      // タスク担当メンバー
+      .members-field
+        - @task.users.each do |user|
+          -if user.avatar.present?
+            .members-field__user
+              = image_tag user.avatar.url, class: "avatar"
+              .members-field__user--name
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+                - english = /\A[\w\s]+\z/
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if user.name.match(japanese) && user.name.length > 5
+                  = user.name[0..4] << "..."
+                - elsif user.name.match(english) && user.name.length > 7
+                  = user.name[0..6] << "..."
+                - elsif user.name.match(all_characters) && user.name.length > 6
+                  = user.name[0..5] << "..."
+                - else
+                  = user.name
+
+          - else
+            .members-field__user
+              = icon "fa", "user-circle", class: "blank-avatar"
+              .members-field__user--name
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+                - english = /\A[\w\s]+\z/
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if user.name.match(japanese) && user.name.length > 5
+                  = user.name[0..4] << "..."
+                - elsif user.name.match(english) && user.name.length > 7
+                  = user.name[0..6] << "..."
+                - elsif user.name.match(all_characters) && user.name.length > 6
+                  = user.name[0..5] << "..."
+                - else
+                  = user.name
+
+      // テキストボックス
+      .text-box
+        // テキスト本体
+        .text-box__body
+          = safe_join(@task.content.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
+          %br
+          .images
+            // データベースから取り出したタスクのイメージ
+            - if @task.task_images.present?
+              - @task.task_images.each do |task_image|
+                = image_tag task_image.image.url, class: "task-image"
+
+  // リンクボタン
+  .buttons
+    %button.link-btn
+      = link_to edit_group_task_path(@group, @task), class: "action-link" do
+        = icon "fas", "edit", class: "task-edit-icon"
+        .text Edit
+    %button.link-btn
+      = link_to group_task_path(@group, @task), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "action-link" do
+        = icon "fas", "trash-alt", class: "task-trash-icon"
+        .text Delete
 
 = render "share/navigation"
 
-.modal
-  - @task.task_images.each do |task_images|
-    = image_tag task_images.image.url, class: "task-image__modal" if @task.task_images.present?
+.task-image__modal
+  - @task.task_images.each do |task_image|
+    = image_tag task_image.image.url, class: "large-image" if @task.task_images.present?

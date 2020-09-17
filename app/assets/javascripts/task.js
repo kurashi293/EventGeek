@@ -66,76 +66,18 @@ $(document).on("click", ".checkbox-field__head--right", function(){
 
 
 
-
-$(document).on('turbolinks:load', function(){
-  // $(function() {
-  //   $(document).on('click', '.task-list__add', function() {
-  //     $('#task-list').clone(true).appendTo($('#task-ul')).draggable();
-  //   });
-  // });
-
-
-
-  // $(function() {
-  //   $(document).on('click', '.task-list__remove', function() {
-  //     $('#task-list').remove();
-  //   });
-  // });
+// 画像モーダルの処理
+$(document).on('click', '.task-image', function(){
+  //取得された画像が全て重なった状態で表示される。 そこでクリックされたtask-imageのsrcをattrメソッドで取得し、task-image__modalのsrcをattrメソッドでtask-imageのsrcに変更した
+  $(".large-image").attr('src', $(this).attr('src'))
+  $('.task-image__modal').fadeIn();
+  return false;     //親要素へのイベント伝播を止める
+});
 
 
-
-  // $(function() {
-  //   $(document).on('click', '.task__remove', function() {
-  //     $('#task-box').remove();
-  //   });
-  // });
-
-
-
-
-  // $(function() {
-  //   $(".task-box__content--list").draggable({
-  //     helper: 'clone',  //クローン（残像）を出す設定
-  //     appendTo: 'body',
-  //     containment: 'window',
-  //     scroll: false,
-  //     snap: "#add--doing",
-  //     snapMode: "inner",
-  //     revert: "invalid",
-  //     opacity: 0.7,
-  //     cursor: "move",
-  //   });
-  //   $("#add--doing").droppable({
-  //     classes: {
-  //       "ui-droppable-active": "ui-state-active",
-  //       "ui-droppable-hover": "ui-state-hover"
-  //     },
-  //     drop: function(event, ui) {
-  //       var $srcObj = $(ui.draggable[0]);
-  //       $srcObj.offset($(this).offset());
-  //     }
-  //   });
-  // });
-
-
-
-
-  $(function(){
-    $('.task-image').on('click',function(){
-
-      //取得された画像が全て重なった状態で表示される。 そこでクリックされたtask-imageのsrcをattrメソッドで取得し、task-image__modalのsrcをattrメソッドでtask-imageのsrcに変更した
-      $(".task-image__modal").attr('src', $(this).attr('src'))
-
-      $('.modal').fadeIn();
-      return false;     //親要素へのイベント伝播を止める
-    });
-    $('.modal').on('click',function(){
-      $('.modal').fadeOut();
-      return false;
-    });
-  });
-
-
+$(document).on('click', '.task-image__modal', function(){
+  $('.task-image__modal').fadeOut();
+  return false;
 });
 
 

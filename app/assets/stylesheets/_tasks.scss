@@ -539,141 +539,461 @@
 
 
 
-.task-wrap__details{
-  text-align: center;
-  height: calc(100vh - 68px - 49px - 68px);
+
+// tasks/show
+.task-show-wrap{
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  padding: 5% 0 7% 0;
+  box-sizing: border-box;
+  padding: 3.5rem 5% 13.5rem 5%;
+  text-align: center;
   position: fixed;
+  top: 5.8rem;
   overflow: auto;
-  .deadline-box{
-    display: flex;
-    justify-content: center;
-    display: inline-block;
-    margin-bottom: 3.8em;
-    font-size: 1.3em;
-    background: black;
-    border-radius: 7px;
-    padding: 0.6em;
-    letter-spacing: 1px;
-    &__icon{
-      color: #FFCC00;
-    }
-    &__header{
-      color: white;
-      display: inline;
-      margin-right: 2em;
-    }
-    &__time{
-      color: white;
-      display: inline;
-    }
-  }
-  .details-box{
+
+  .category-name{
+    width: 69rem;
+    font-family: 'Impact', sans-serif;
+    color: #333333;
+    border-bottom: solid 0.2rem #AAAAAA;
+    text-align: left;
+    font-size: 2.3rem;
     margin: auto;
-    height: 30em;
-    width: 60%;
-    background: whitesmoke;
-    border-top: solid 0.0625em #999999;
-    border-right: solid 0.0625em #999999;
-    margin-bottom: 8em;
-    border-left: solid 0.8125em steelblue;
-    border-bottom: solid 0.4375em #dadada;
-    &__title{
-      box-sizing: border-box;
-      background: #c4c4c4;
-      font-size: 1.5em;
-      padding: 0.7em;
-      letter-spacing: 1px;
-      overflow-x: auto;
-    }
-    &__content{
-      padding: 3% 5% 3%;
-      text-align: left;
-      line-height: 2em;        //行間の高さ
-      letter-spacing: 1px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
-      height: calc(480px - 69px);
-      width: 100%;
-      font-size: 1.1em;
-      .task-image{
-        margin-top: 3em;
-        margin-right: 1em;
+    margin-bottom: 0.6rem;
+  }
+
+  // タスクの期限
+  .deadline{
+    width: 69rem;
+    margin: auto;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #333333;
+    margin-bottom: 0.6rem;
+    display: flex;
+    &__text{
+      width: 11rem;
+      .bell-icon{
+        color: #fbbc05;
+        text-shadow: 0 1px 1px #333333;
       }
-    }
-    .details-box__content::-webkit-scrollbar{
-      display: none;
     }
   }
-  .details-member{
-    .details-member__header{
-      font-size: 1.3em;
-      letter-spacing: 1px;
-      padding: 0.6em;
-      display: inline-block;
-      border-radius: 7px;
-      &--icon{
-        display: inline;
-      }
-      &--title{
-        display: inline;
-      }
+
+  // 最終更新日
+  .last-updated{
+    width: 69rem;
+    margin: auto;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #333333;
+    margin-bottom: 5rem;
+    display: flex;
+    &__text{
+      width: 11rem;
     }
-    .details-member__list{
+  }
+
+  // 付箋折り返し
+  #overlay::after {
+    position: absolute;
+    left: -1.3rem;
+    top: 0px;
+    content: '';
+    border-color: #fff #fff #e5a323;
+    box-shadow: 1px 1px 1px #333333;
+    border-style: solid;
+    border-width: 0 0 25px 25px;
+  }
+
+  .main-frame{
+    width: 69rem;
+    position: relative;
+    margin: 0 auto 0 auto;
+    box-sizing: border-box;
+    border-left: solid 1.3rem steelblue;
+    border-bottom: solid 0.7rem #dadada;
+    box-shadow: 10px 10px 10px 0 rgba(0,0,0,0.5);
+
+    // タスク名
+    .task-name {
+      width: 100%;
+      margin: auto;
+      box-sizing: border-box;
+      padding: 2rem 3rem 2rem 3rem;
+      background: whitesmoke;
+      font-size: 1.6rem;
+      font-weight: 550;
+      text-align: left;
+      letter-spacing: 0.1rem;
+      word-break: break-all;
+      background: whitesmoke;
+      color: #333333;
+    }
+
+    // タスク担当メンバー
+    .members-field{
+      height: 10rem;
+      width: 100%;
+      margin: auto;
       white-space: nowrap;    //はみ出しを折り返さない
       overflow-x: auto;       //横方向のスクロール
-      width: 60%;
-      height: 100px;
-      margin: auto;
-      margin-bottom: 6em;
-      margin-top: 2em;
-      &--image{
-        display: inline-block;
-        margin-right: 0.4em;
-        margin-left: 0.4em;
-        width: 6.5em;
-        .task-avatar{
-          height: 3.75em;
-          width: 3.75em;
-          border-radius: 50%;
-          display: inline-block;
+      box-sizing: border-box;
+      padding: 1rem 0 1rem 0;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      border-top: solid 1px #999999;
+      border-bottom: solid 1px #999999;
+
+      // 個別のユーザー
+      &__user{
+        height: 100%;
+        width: 8.5rem;
+        display: block;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: space-between;
+        .avatar{
+          height: 6rem;
+          width: 6rem;
+          border-radius: 100%;
+          box-sizing: border-box;
+          border: solid 0.5px #ccc;
         }
-        .task-avatar__blank{
-          font-size: 3.75em;
-          display: inline-block;
-          margin-bottom: 0.1em;
+        .blank-avatar{
+          font-size: 6rem;
+          opacity: 0.3;
         }
-      }
-      &--name{
-        overflow-x: hidden;
+        &--name{
+          width: 8.5rem;
+          font-size: 1.4rem;
+          color: #333333;
+          overflow-x: hidden;
+        }
       }
     }
-    .details-member__list::-webkit-scrollbar{
+    .members-field::-webkit-scrollbar{
       display: none;
+    }
+
+    // テキストボックス
+    .text-box{
+      height: auto;
+      min-height: calc(100vh - 58px - 35px - 36px - 22px - 66px - 64px - 100px - 7px - 60px - 35px);
+      width: 100%;
+      margin: auto;
+      background: whitesmoke;
+      box-sizing: border-box;
+      padding: 3rem;
+
+      // テキスト本体
+      &__body{
+        height: auto;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1.5rem;
+        color: #333333;
+        text-align: left;
+        line-height: 3rem;        //行間の高さ
+        letter-spacing: 0.1rem;
+        word-break: break-all;
+        overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
+        .images{
+          width: 100%;
+          display: flex;
+          margin-top: 2rem;
+          .task-image{
+            height: 11rem;
+            width: 11rem;
+            cursor: pointer;
+          }
+          .task-image:hover{
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+  .buttons{
+    position: fixed;
+    bottom: 9rem;
+    right: 5%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+
+    // リンクボタン
+    .link-btn{
+      height: 8rem;
+      width: 8rem;
+      box-sizing: border-box;
+      margin-left: 1.5rem;
+      background-color: black;
+      border-radius: 100%;
+      outline: 0;
+      .action-link{
+        text-decoration: none;
+        color: white;
+        .task-edit-icon{
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+        }
+        .task-trash-icon{
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+        }
+        .text{
+          font-size: 1.4rem;
+        }
+      }
     }
   }
 }
 
-
-
-.modal{
-  background: #222222;
-  height: 100vh;
+// 画像のモーダル表示
+.task-image__modal{
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  position: absolute;
+  position: fixed;
+  top: 5.8rem;
   display: none;
-  .task-image__modal{
-    height: 35em;
-    width: 35em;
-    position: absolute;
+  background: #151515;
+  cursor: pointer;
+  z-index: 10;
+  .large-image{
+    height: 35rem;
+    width: 35rem;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 5;
   }
 }
+
+
+
+
+
+// tasks/show レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .task-show-wrap{
+    .category-name{
+      width: 100%;
+      max-width: 69rem;
+    }
+
+    // タスクの期限
+    .deadline{
+      width: 100%;
+      max-width: 69rem;
+    }
+
+    // 最終更新日
+    .last-updated{
+      width: 100%;
+      max-width: 69rem;
+    }
+
+    .main-frame{
+      width: 100%;
+      max-width: 69rem;
+      // タスク名
+      .task-name {
+        padding: 2rem 4.35% 2rem 4.35%;
+      }
+
+      // テキストボックス
+      .text-box{
+        padding: 3rem 4.35% 3rem 4.35%;
+        // テキスト本体
+        &__body{
+          .images{
+            .task-image{
+              height: 15.9vw;
+              max-height: 11rem;
+              width: 15.9vw;
+              max-width: 11rem;
+            }
+          }
+        }
+      }
+    }
+    .buttons{
+      // リンクボタン
+      .link-btn{
+      height: 10.403vmin;
+      min-height: 7rem;
+      width: 10.403vmin;
+      min-width: 7rem;
+      }
+    }
+  }
+
+  // 画像のモーダル表示
+  .task-image__modal{
+    .large-image{
+      height: 45.5vmin;
+      width: 45.5vmin;
+    }
+  }
+}
+
+
+
+
+
+// tasks/show レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .task-show-wrap{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    padding: 2rem 0 11rem 0;
+
+    .category-name{
+      width: 95vmin;
+      max-width: initial;
+      border-bottom: solid 0.1rem #AAAAAA;
+      font-size: 1.8rem;
+      box-sizing: border-box;
+    }
+
+    // タスクの期限
+    .deadline{
+      width: 95vmin;
+      max-width: initial;
+      font-size: 1.2rem;
+      &__text{
+        width: 9rem;
+        .bell-icon{
+          color: #fbbc05;
+        }
+      }
+    }
+
+    // 最終更新日
+    .last-updated{
+      width: 95vmin;
+      max-width: initial;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      &__text{
+        width: 9rem;
+      }
+    }
+
+    // 付箋折り返し
+    #overlay::after {
+      left: -0.5rem;
+      top: 0px;
+      border-width: 0 0 15px 15px;
+    }
+
+    .main-frame{
+      width: 95vmin;
+      max-width: initial;
+      border-right: initial;
+      border-left: solid 0.5rem steelblue;
+      border-bottom: solid 0.4rem #dadada;
+
+      // タスク名
+      .task-name {
+        padding: 1rem 4.35% 1rem 2.5rem;
+        font-size: 1.4rem;
+        font-weight: normal;
+        letter-spacing: initial;
+      }
+
+      // タスク担当メンバー
+      .members-field{
+        height: auto;
+        width: 100%;
+        padding: 1rem 0 1rem 0;
+        border-top: solid 0.5px #999999;
+        border-bottom: solid 0.5px #999999;
+
+        // 個別のユーザー
+        &__user{
+          width: 7.5rem;
+          margin-right: 0.3rem;
+          margin-left: 0.3rem;
+          .avatar{
+            height: 5rem;
+            width: 5rem;
+          }
+          .blank-avatar{
+            font-size: 5rem;
+          }
+          &--name{
+            width: 7.5rem;
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      // テキストボックス
+      .text-box{
+        min-height: calc(100vmax - 50px - 20px - 29px - 20px - 44px - 41px - 86px - 4px - 50px - 20px);
+        padding: 2rem 4.35% 2rem 4.35%;
+
+        // テキスト本体
+        &__body{
+          font-size: 1.3rem;
+          line-height: initial;        //行間の高さ
+          letter-spacing: 0.5px;
+          .images{
+            .task-image{
+              display: block;
+              height: 18.26vmin;
+              width: 18.26vmin;
+            }
+
+          }
+        }
+      }
+    }
+    .buttons{
+      bottom: 7.5rem;
+      // リンクボタン
+      .link-btn{
+        height: 14.553vmin;
+        width: 14.553vmin;
+        min-height: 4.5rem;
+        min-width: 4.5rem;
+        .action-link{
+          .task-edit-icon{
+            font-size: 4.158vmin;
+            margin-bottom: 1.0395vmin;
+          }
+          .task-trash-icon{
+            font-size: 4.158vmin;
+            margin-bottom: 1.0395vmin;
+          }
+          .text{
+            font-size: 2.91vmin;
+          }
+        }
+      }
+    }
+  }
+
+  // 画像のモーダル表示
+  .task-image__modal{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    .large-image{
+      height: 100vmin;
+      width: 100vmin;
+    }
+  }
+}
+
 
 
 
