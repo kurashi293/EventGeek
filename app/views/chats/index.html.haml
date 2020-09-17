@@ -1,22 +1,23 @@
+= render "/share/header"
+
 .chat-wrap
-  -# = render "/share/header"
-  .chat
-    .messages
-      = render "chats/message"
-    .chat-footer
-      = form_with model:[@group, @chat] do |f|    #デフォルトでajax処理なのでJavascriptでのajax処理は必要無し  =>  local: trueで解除
-        .chat-form
-          = f.text_area :message, class: "chat-form__text", placeholder: "type a message"
-          .chat-form__button
-            = f.label :image, class: "chat-form__image" do
-              = icon "fas", "image", class: "form-image__awesome"
-              = f.file_field :image, class: "hidden"
-          .chat-form__button
-            = f.submit "send", class: "chat-form__send"
+  // メッセージ一覧表示のフィールド
+  %section.messages
+    = render "chats/message"
 
+  // form_withはデフォルトでajax処理なのでJavascriptでのajax処理は必要無し  =>  local: trueで解除
+  = form_with model:[@group, @chat] do |f|
+    //フォーム
+    .chat-form
+      = f.text_area :message, class: "chat-form__text-area", placeholder: "type a message"
+      = f.label :image, class: "chat-form__image" do
+        = icon "fas", "image", class: "chat-form__image--icon"
+        = f.file_field :image, class: "chat-form__image--hidden-field"
+      = f.submit "send", class: "chat-form__send"
 
-  = render "/share/navigation"
+= render "/share/navigation"
 
-.modal
+// 画像のモーダル表示
+.chat-modal
   - @group.chats.each do |chat|
-    = image_tag chat.image.url, class: 'lower-content__image--modal' if chat.image.present?
+    = image_tag chat.image.url, class: 'chat-modal__image' if chat.image.present?

@@ -1,53 +1,90 @@
 - @group.chats.each do |chat|
+  // 使用しているアバターがログイン中であり、データベースから取り出したメッセージのユーザーidが、ログインを済ませ自ら使用しているアバターのidと等しいならば、自分の投稿メッセージにtrashアイコンを表示させる処理
   - if current_user && chat.user_id == current_user.id
-    .message
+    // メッセージ本体
+    %article.message
+      // 投稿者情報
       .upper-contents
-        .upper-contents__icon
+        .upper-contents__avatar
         - if chat.user.avatar.present?
-          = image_tag chat.user.avatar.url, class: "icon"
+          = image_tag chat.user.avatar.url, class: "upper-contents__avatar--active"
         - else
-          = icon "fas", "user-circle",  class: "icon-blank"
+          = icon "fas", "user-circle",  class: "upper-contents__avatar--disabled"
+
         .upper-contents__user-name
-          - japanese = /\A[ぁ-んァ-ン一-龥]/
+          // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+          - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+          // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
           - english = /\A[\w\s]+\z/
-          = chat.user.name[0..19] << "..." if chat.user.name.match(japanese) && chat.user.name.length > 20
-          = chat.user.name[0..24] << "..." if chat.user.name.match(english) && chat.user.name.length > 25
-          = chat.user.name unless chat.user.name.match(japanese) && chat.user.name.length > 20 or chat.user.name.match(english) && chat.user.name.length > 25
-        .upper-contents__date
+
+          // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+          - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+          - if chat.user.name.match(japanese) && chat.user.name.length > 11
+            = chat.user.name[0..10] << "..."
+          - elsif chat.user.name.match(english) && chat.user.name.length > 16
+            = chat.user.name[0..15] << "..."
+          - elsif chat.user.name.match(all_characters) && chat.user.name.length > 13
+            = chat.user.name[0..12] << "..."
+          - else
+            = chat.user.name
+
+        %time.upper-contents__date
           = chat.created_at.strftime("%Y/%m/%d %H:%M")
-        .upper-contents__awesome
+        .upper-contents__icon
           = link_to group_chat_path(@group, chat), method: :delete, data: {confirm: "本当に削除しますか？"} do
-            = icon "fas", "trash-alt", style: "color: #0000CD"
+            = icon "fas", "trash-alt", style: "color: #0000CD", class: "message-trash-icon"
+
+      // メッセージ内容
       .lower-content
         .lower-content__text
           - if chat.message.present?
-            = safe_join(chat.message.split("\n"), tag(:br))
+            = safe_join(chat.message.split("\n"), tag(:br))   #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
             %br
           - if chat.image.present?
-            = image_tag chat.image.url, class: 'lower-content__image'
+            = image_tag chat.image.url, class: 'lower-content__text--image'
           .lower-content__border
 
   - else
-    .message
+    // メッセージ本体
+    %article.message
+      // 投稿者情報
       .upper-contents
-        .upper-contents__icon
+        .upper-contents__avatar
         - if chat.user.avatar.present?
-          = image_tag chat.user.avatar.url, class: "icon"
+          = image_tag chat.user.avatar.url, class: "upper-contents__avatar--active"
         - else
-          = icon "fas", "user-circle",  class: "icon-blank"
+          = icon "fas", "user-circle",  class: "upper-contents__avatar--disabled"
+
         .upper-contents__user-name
-          - japanese = /\A[ぁ-んァ-ン一-龥]/
+          // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+          - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+          // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
           - english = /\A[\w\s]+\z/
-          = chat.user.name[0..19] << "..." if chat.user.name.match(japanese) && chat.user.name.length > 20
-          = chat.user.name[0..24] << "..." if chat.user.name.match(english) && chat.user.name.length > 25
-          = chat.user.name unless chat.user.name.match(japanese) && chat.user.name.length > 20 or chat.user.name.match(english) && chat.user.name.length > 24
-        .upper-contents__date
+
+          // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+          - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+          - if chat.user.name.match(japanese) && chat.user.name.length > 11
+            = chat.user.name[0..10] << "..."
+          - elsif chat.user.name.match(english) && chat.user.name.length > 16
+            = chat.user.name[0..15] << "..."
+          - elsif chat.user.name.match(all_characters) && chat.user.name.length > 13
+            = chat.user.name[0..12] << "..."
+          - else
+            = chat.user.name
+
+        %time.upper-contents__date
           = chat.created_at.strftime("%Y/%m/%d %H:%M")
+
+      // メッセージ内容
       .lower-content
         .lower-content__text
           - if chat.message.present?
-            = safe_join(chat.message.split("\n"), tag(:br))
+            = safe_join(chat.message.split("\n"), tag(:br))   #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
             %br
           - if chat.image.present?
-            = image_tag chat.image.url, class: 'lower-content__image'
+            = image_tag chat.image.url, class: 'lower-content__text--image'
           .lower-content__border
