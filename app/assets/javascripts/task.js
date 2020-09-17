@@ -1,3 +1,72 @@
+// 隠しフォームをリストの最下部に追加・表示する処理
+$(document).on('click', '#back-log', function(){
+  $(".hidden-field").val(1);
+  $('.task-form').appendTo($("#add-back-log"));
+  $(".task-form").show();
+  if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
+    $('.task-form').animate({scrollTop: $('.task-form')[0].scrollHeight}, 'fast');
+    return false;       //親要素へのイベント伝播を止める
+  }
+});
+
+
+$(document).on('click', '#doing', function(){
+  $(".hidden-field").val(2);
+  $('.task-form').appendTo($("#add-doing"));
+  $(".task-form").show();
+  if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
+    $('.task-form').animate({scrollTop: $('.task-form')[0].scrollHeight}, 'fast');
+    return false;
+  }
+});
+
+
+$(document).on('click', '#compleate', function(){
+  $(".hidden-field").val(3);
+  $('.task-form').appendTo($("#add-compleate"));
+  $(".task-form").show();
+  if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
+    $('.task-form').animate({scrollTop: $('.task-form')[0].scrollHeight}, 'fast');
+    return false;
+  }
+});
+
+
+
+
+
+// チェックボックスのモーダルを表示させる処理
+$(document).on('click', '.checkbox-modal-button', function(){
+  $('.checkbox-modal').fadeIn("fast");
+  return false;
+});
+
+
+$(document).on('click', '.checkbox-field__foot--button', function(){
+  $('.checkbox-modal').fadeOut("fast");
+    return false;
+});
+
+
+
+
+
+// 全てのチェックボックスにチェックをつける処理
+$(document).on("click", ".checkbox-field__head--left", function(){
+  $('input[name="task[user_ids][]"]').prop('checked', true);
+});
+
+
+// 全てのチェックボックスのチェックを外す処理
+$(document).on("click", ".checkbox-field__head--right", function(){
+  $('input[name="task[user_ids][]"]').prop('checked', false);
+});
+
+
+
+
+
+
 $(document).on('turbolinks:load', function(){
   // $(function() {
   //   $(document).on('click', '.task-list__add', function() {
@@ -69,64 +138,6 @@ $(document).on('turbolinks:load', function(){
 
 });
 
-
-
-
-$(function() {
-  $(document).on('click', '#back-log', function() {
-    $('.task-form').appendTo($("#add--back-log"));
-    $(".task-form").show();
-    return false;
-  });
-});
-
-
-
-$(function() {
-  $(document).on('click', '#doing', function() {
-    $(".hidden-field").val(2);
-    $('.task-form').appendTo($("#add--doing"));
-    $(".task-form").show();
-    return false;
-  });
-});
-
-
-
-$(function() {
-  $(document).on('click', '#compleate', function() {
-    $(".hidden-field").val(3);
-    $('.task-form').appendTo($("#add--compleate"));
-    $(".task-form").show();
-    return false;
-  });
-});
-
-
-
-
-$(document).on('turbolinks:load', function(){
-  $(document).on('click', '#back-log', function(){
-    if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
-      $('.task-form').animate({scrollTop: $('.task-form')[0].scrollHeight}, 'fast');
-      return false;       //親要素へのイベント伝播を止める
-    }
-  });
-
-  $(document).on('click', '#doing', function(){
-    if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
-      $('.task-form').animate({scrollTop: $('.task-form')[0].scrollHeight}, 'fast');
-      return false;       //親要素へのイベント伝播を止める
-    }
-  });
-
-  $(document).on('click', '#compleate', function(){
-    if (window.location.href.match(/\/groups\/\d+\/tasks/)) {        //今いるページのリンクが/groups/グループID/chatsのパスとマッチすれば以下を実行。
-      $('.task-form').animate({scrollTop: $('.task-form')[0].scrollHeight}, 'fast');
-      return false;       //親要素へのイベント伝播を止める
-    }
-  });
-});
 
 
 
