@@ -3,113 +3,261 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
+
+
+// statuses/indexページ
 .status-wrap {
-  height: calc(100vh - 68px - 147px - 49px);
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  padding: 5% 0 15% 0;
-  overflow: auto;
-}
-.tab{
-  margin: auto;
-  width: 31em;
-  display: flex;
-  cursor: pointer;
-}
-.tab li{
-  width: 31em;
-  background: #B0C4DE;
-  border: 2px solid #ccc;
-  text-align: center;
-  padding: 10px 0;
-  margin-right: 3%;
-}
-.tab li.active{
-  background: steelblue;
-}
-#switch{
-  display: none;
-}
-
-
-table {
-  border-collapse: collapse;
-  margin: 0 auto 0 auto;
-}
-
-table td, table th {
-  overflow: scroll;
-  white-space: nowrap;
-  text-align: center;
-  border: 2px solid #a9a9a9;
-  padding: 1.8%;
-  background: whitesmoke;
-}
-
-table th{
-  background-color: steelblue;
-  font-weight: bold;
-}
-
-
-table td::-webkit-scrollbar{
-  display: none;
-}
-
-
-.contents{
-  display: block;
-}
-
-.status-button{
-  height: 4.5em;
-  width: 4.5em;
+  box-sizing: border-box;
+  padding-top: 3.5rem;
+  padding-bottom: 13.5rem;
   position: fixed;
-  position: absolute;
-  bottom: 4.5em;
-  right: 2em;
-  z-index: 5;
-  display: inline-block;
-  background-color:  black;
-  font-size: 1.5em;
-  font-weight: bold;
-  border-color: white;
-  padding: 1em;
-  border-radius: 50%;
-  outline: 0;            //autofocus青線の打ち消し
-  &__link{
-    text-decoration: none;
-    &--icon{
-      color: white;
+  top: 5.8rem;
+  overflow: auto;
+
+  .table-wrap{
+    // テーブルのタブ
+    .status-tab{
+      width: 32rem;
+      margin: auto;
+      display: flex;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      text-shadow: 1.5px 1.5px 3px black;
+      color: #cdd2cf;
+      li.active{
+        background: #074770;
+      }
+      li{
+        width: 100%;
+        padding: 1rem 0 1rem 0;
+        border: 0.2rem solid #ccc;
+        background: steelblue;
+      }
     }
-    &--name{
+
+    // テーブル
+    .status-container{
+      #switch{
+        display: none;
+      }
+      .status-table{
+        margin: auto;
+        box-sizing: border-box;
+        border-collapse: collapse;
+        width: 135rem;
+        box-shadow: 0 3px 7px 5px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0 3px 7px 5px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0 3px 7px 5px rgba(0,0,0,0.5);
+        color: #333333;
+
+        &__row{
+          // 項目・見出し
+          &--header{
+            width: 1.6rem;
+            height: 1em;
+            background: #074770;
+            text-shadow: 2px 2px 3px black;
+            color: #cdd2cf;
+            text-align: center;
+            border: 0.2rem solid #a9a9a9;
+            padding: 0.8rem 0 0.8rem 0;
+            font-weight: bold;
+            font-size: 1.6rem;
+          }
+
+          // データベスから取り出した内容
+          &--data{
+            width: 18.5rem;
+            font-size: 1.4rem;
+            text-align: center;
+            border: 0.2rem solid #a9a9a9;
+            padding: 0.8rem 0 0.8rem 0;
+            background: whitesmoke;
+
+            // 星アイコン
+            .rank-star{
+              color: #fbbc05;
+              text-shadow: 0 1px 1px #333333;
+            }
+            .status-link__edit{
+              text-decoration: none;
+              color: #0000CD;
+            }
+            .status-link__edit:hover{
+              opacity: 0.5;
+            }
+          }
+        }
+        // status.idが奇数だった場合の色
+        #overlay-color{
+          background: #DCDCDC;
+        }
+        // 自分のステータスを赤色の枠で囲う処理
+        #current-user__row{
+          border: solid 0.3rem #e5a323;
+        }
+      }
+    }
+  }
+
+  .buttons{
+    position: fixed;
+    bottom: 9rem;
+    right: 5%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+
+    // 拡大・縮小ボタン
+    .resize-btn{
+      height: 5.5rem;
+      width: 5.5rem;
+      box-sizing: border-box;
+      margin-left: 1.5rem;
+      background-color: black;
       color: white;
+      border-radius: 100%;
+      outline: 0;
+      cursor: pointer;
+      .common-zoom-icon{
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+      .text{
+        font-size: 1.2rem;
+      }
+    }
+
+    // newページへのリンクボタン
+    .link-btn{
+      height: 8rem;
+      width: 8rem;
+      box-sizing: border-box;
+      margin-left: 1.5rem;
+      background-color: black;
+      border-radius: 100%;
+      outline: 0;
+      .new-link{
+        text-decoration: none;
+        color: white;
+        .pen-icon{
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+        }
+        .text{
+          font-size: 1.4rem;
+        }
+      }
     }
   }
 }
 
 
 
-.status-table{
-  width: 86em;
-  &__header{
-    max-width: 3em;
+
+
+// statuses/index レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+  .status-wrap {
+    .buttons{
+      .link-btn{
+        height: 10.403vmin;
+        min-height: 7rem;
+        width: 10.403vmin;
+        min-width: 7rem;
+      }
+    }
   }
-  &__data{
-    max-width: 3em;
-    padding: 1.8% 0.8% 1.8%;
+}
+
+
+
+
+
+// statuses/indexページ レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .status-wrap {
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 11rem;
+    .table-wrap{
+
+      // テーブルのタブ
+      .status-tab{
+        width: 80vmin;
+        font-size: 1.4rem;
+        li{
+          border: 0.1rem solid #ccc;
+        }
+      }
+
+      // テーブル
+      .status-container{
+        overflow: auto;
+        .status-table{
+          &__row{
+
+            // 項目・見出し
+            &--header{
+              border: 0.1rem solid #a9a9a9;
+              font-size: 1.4rem;
+            }
+
+            // データベスから取り出した内容
+            &--data{
+              border: 0.1rem solid #a9a9a9;
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+    }
+    .buttons{
+      bottom: 7.5rem;
+
+      // 拡大・縮小ボタン
+      .resize-btn{
+        height: 11.4345vmin;
+        width: 11.4345vmin;
+        min-height: 4rem;
+        min-width: 4rem;
+        .common-zoom-icon{
+          font-size: 3.3264vmin;
+          margin-bottom: 1.0395vmin;
+        }
+        .text{
+          font-size: 2.4948vmin;
+        }
+      }
+
+      // newページへのリンクボタン
+      .link-btn{
+        height: 14.553vmin;
+        width: 14.553vmin;
+        min-height: 4.5rem;
+        min-width: 4.5rem;
+        .new-link{
+          .pen-icon{
+            font-size: 4.158vmin;
+            margin-bottom: 1.0395vmin;
+          }
+          .text{
+            font-size: 2.91vmin;
+          }
+        }
+      }
+    }
   }
-
 }
 
 
-.current_user__line{
-  border: solid 3px #BA002F;
-}
-
-
-.rank-star{
-  color: #FFCC00;
-}
 
 
 
