@@ -1,23 +1,22 @@
 class TasksController < ApplicationController
 
   before_action :set_group
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task_images, only: [:edit]
 
 
   def index
     @task = Task.all
     @task = Task.new
     5.times{@task.task_images.build}
-    @user = @group.users.all
-    @category = Category.all
   end
 
 
 
   def create
     @task = @group.tasks.new(task_params)
-    # binding.pry
     if @task.save
-      redirect_to group_tasks_path(params[:group_id])
+      redirect_to group_tasks_path
     else
       render :index
     end
@@ -26,29 +25,20 @@ class TasksController < ApplicationController
 
 
   def show
-    @task = Task.find(params[:id])
   end
 
 
 
   def edit
-    @task = Task.find(params[:id])
-    @user = @group.users.all
-    @category = Category.all
-    5.times{@task.task_images.build} if @task.task_images.blank?
-    4.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.count == 1
-    3.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.count == 2
-    2.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.count == 3
-    1.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.count == 4
   end
 
 
 
   def update
-    @task = Task.find(params[:id])
     if @task.update(task_params)
       redirect_to group_tasks_path
     else
+      set_task_images
       render :edit
     end
   end
@@ -56,7 +46,6 @@ class TasksController < ApplicationController
 
 
   def destroy
-    @task = Task.find(params[:id])
     if @task.destroy
       redirect_to group_tasks_path
     else
@@ -81,6 +70,25 @@ class TasksController < ApplicationController
   def set_group
     @group = Group.find(params[:group_id])
   end
+
+
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+
+
+  def set_task_images
+    @image_length = @task.task_images.length
+    (5 - @image_length).times{@task.task_images.build}
+    # 5.times{@task.task_images.build} unless @task.task_images.present?
+    # 4.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.length == 1
+    # 3.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.length == 2
+    # 2.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.length == 3
+    # 1.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.length == 4
+  end
+
 
 
 
