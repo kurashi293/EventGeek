@@ -998,72 +998,591 @@
 
 
 
-.task-wrap__form{
-  text-align: center;
-  height: calc(100vh - 68px);
+// tasks/edit
+.task-edit-wrap{
+  height: calc(100% - 60px);
   width: 100%;
+  box-sizing: border-box;
+  padding: 3.5rem 0 13.5rem 0;
   position: fixed;
   overflow: auto;
   background: black;
+  background: rgba($color: #000000, $alpha: 0.9);
   color: white;
-  .file-field__edit-js{
-    width: 21.5em;
-    height: 7em;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    &--images{
-      .label__js--image{
-        font-size: 1.5em;
-      }
-      .input-file__js{
-        display: none;
+  text-align: center;
+  .form-title{
+    display: block;
+    font-family: 'Impact', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    font-size: 4rem;
+    color: #330066;
+    text-shadow: 0.2rem 0.2rem 0  #008BBB,
+                -0.2rem 0.2rem 0  #008BBB,
+                0.2rem -0.2rem 0  #008BBB,
+                -0.2rem -0.2rem 0  #008BBB;
+  }
+
+  .form-area{
+    padding: 0 5% 0 5%;
+    // エラーメッセージ
+    .task-alert{
+      color: #BA002F;
+      margin-bottom: 3.5rem;
+    }
+
+    // テーブルの見出し
+    .form-heading{
+      width: 69rem;
+      font-family: 'Impact', sans-serif;
+      border-bottom: solid 0.2rem #AAAAAA;
+      text-align: left;
+      font-size: 2.3rem;
+      margin: auto;
+      margin-bottom: 0.6rem;
+    }
+
+    // 見出しの補足
+    .form-lead{
+      width: 69rem;
+      margin: auto;
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    // テーブル本体
+    .form-table{
+      margin: auto;
+      box-sizing: border-box;
+      width: 69rem;
+
+      &__row{
+        width: 100%;
+
+        // 項目・見出し
+        &--header{
+          width: 30%;
+          min-width: 13rem;
+          box-sizing: border-box;
+          padding: 2.5rem 0 2.5rem 0;
+          text-align: left;
+        }
+
+        // fi.file_fieldのブロックのみ適用
+        .file-field{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        // 入力する内容
+        &--data{
+          width: 100%;
+          box-sizing: border-box;
+          padding: 2.5rem 0 2.5rem 0;
+          text-align: left;
+
+          // f.text_field
+          .input-field{
+            width: 36rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+          }
+
+          // f.text_area
+          .text-area{
+            width: 36rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+          }
+
+          .text-area::placeholder{
+            padding-top: 0.35rem;
+          }
+
+
+          // f.file_field
+          .task-label{
+
+            // イメージ選択のアイコン
+            .image-icon{
+              font-size: 4rem;
+              cursor: pointer;
+            }
+            .image-icon:hover{
+              opacity: 0.5;
+            }
+            .input-files{
+              display: none;
+            }
+
+            // 選択画像のプレビュー
+            .preview_boxes{
+              text-align: center;
+
+              // 中身
+              .images_selected{
+                height: 9.5rem;
+                width: 9.5rem;
+              }
+              .images_delete{
+                color:  #BA002F;
+                text-decoration: none;
+              }
+              #closes-icon{
+                font-size: 2.2rem;
+              }
+            }
+          }
+
+          // チェックボックスのモーダルを表示するボタン
+          .checkbox-modal-button{
+            height: 4.5rem;
+            width: 10rem;
+            box-sizing: border-box;
+            font-weight: bold;
+            border-bottom: solid 0.6rem #9c9c9c;
+            transition: .0s;
+            cursor: pointer;
+          }
+
+          .checkbox-modal-button:hover{
+            border-bottom: solid 0.1rem #9c9c9c;
+            transform: translate3d(0, 0.6rem, 0);
+            transition: .0s;
+          }
+
+          // チェックボックスのモーダル
+          .checkbox-modal{
+            background: #151515;
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 9.3rem 10% 6rem 10%;
+            z-index: 15;
+            box-sizing: border-box;
+
+            // モーダルの中身
+            .checkbox-field{
+              height: 100%;
+              width: 100%;
+              overflow: scroll;
+              word-wrap: break-word;
+              text-align: left;
+              &__head{
+                display: block;
+                width: 50%;
+                min-width: 30rem;
+                margin: auto;
+                margin-bottom: 5rem;
+                display: flex;
+                justify-content: space-evenly;
+
+                // クリックで全て選択
+                &--left{
+                  color: #008BBB;
+                  cursor: pointer;
+                }
+
+                // クリックで全て選択解除
+                &--right{
+                  color: #BA002F;
+                  cursor: pointer;
+                }
+              }
+
+              // f.collection_check_boxesのチェックボックス部分
+              input[type=checkbox]{
+                display: none;
+              }
+
+              // f.collection_check_boxesの固有名詞
+              input[type=checkbox] + label{
+                border: solid 0.1rem whitesmoke;
+                color: whitesmoke;
+                margin:  0 1rem 2rem 1rem ;
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                border-radius: 0.7rem;
+                box-sizing: border-box;
+                display: inline-block;
+                cursor: pointer;
+              }
+
+              // マウスが重なった場合の処理
+              input[type=checkbox]:hover + label{
+                box-shadow: 0 0 7px 2px #fafdff;
+              }
+
+              // チェックボックスがチェックされた場合の処理
+              input[type=checkbox]:checked + label{
+                color: #008BBB;
+              }
+
+              // 決定ボタン
+              &__foot{
+                display: block;
+                text-align: center;
+                &--button{
+                  width: 10rem;
+                  height: 4.5rem;
+                  color: black;
+                  background: whitesmoke;
+                  font-weight: bold;
+                  margin-top: 5rem;
+                  border-bottom: solid 0.6rem #9c9c9c;
+                  transition: .0s;
+                  box-sizing: border-box;
+                  cursor: pointer;
+                }
+                // マウスが重なった場合の処理
+                &--button:hover{
+                  border-bottom: solid 0.1rem #9c9c9c;
+                  transform: translate3d(0, 0.6rem, 0);
+                  transition: .0s;
+                }
+              }
+            }
+          }
+
+          // f.collection_select
+          .select-field{
+            width: 30rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            background: white;
+          }
+        }
       }
     }
-  }
-  .file-field__edit-js::-webkit-scrollbar{
+
+    // 送信ボタン
+    .submit-button{
+      height: 8rem;
+      width: 8rem;
+      position: fixed;
+      bottom: 9rem;
+      right: 5%;
+      z-index: 5;
+      background-color:  black;
+      border-color: white;
+      border-radius: 100%;
+      outline: 0;            //autofocus青線の打ち消し
+      cursor: pointer;
+      .paper-plane-icon{
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: white;
+      }
+      .form-submit{
+        background: black;
+        color: white;
+        border: none;
+        font-size: 1.4rem;
+      }
+    }
+
+    // javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    .history-back{
     display: none;
-  }
-  .form-field__check-box{
-    height: 2.8em;
-    margin-bottom: 3.5em;
-    font-size: 17px;
-    width: 21.5em;
-    white-space: nowrap;
-    display: inline-block;
-    .check-box{
-      overflow-x: auto;
-    }
-    .check-box::-webkit-scrollbar{
-      display: none;
     }
   }
-  .select-field{
-    width: 16.5em;
-    height: 2.8em;
-    padding: 5px;
-    box-sizing: border-box;
-    background: white;
+}
+
+
+
+
+
+// tasks/edit レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .task-edit-wrap{
+    .form-area{
+      padding: 0 5% 0 5%;
+
+      // テーブルの見出し
+      .form-heading{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // テーブル本体
+      .form-table{
+        width: 100%;
+        max-width: 69rem;
+        &__row{
+
+          // 入力する内容
+          &--data{
+
+            // f.text_field
+            .input-field{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.text_area
+            .text-area{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.file_field
+            .task-label{
+              // 選択画像のプレビュー
+              .preview_boxes{
+                // 中身
+                .images_selected{
+                  height: 12.35vw;
+                  width: 12.35vw;
+                }
+              }
+            }
+
+            // f.collection_select
+            .select-field{
+              width: 100%;
+              max-width: 30rem;
+            }
+          }
+        }
+      }
+      // 送信ボタン
+      .submit-button{
+        height: 10.403vmin;
+        min-height: 7rem;
+        width: 10.403vmin;
+        min-width: 7rem;
+      }
+    }
   }
 }
 
 
 
-.selected-images{
-  height: 3.5em;
-  width: 3.5em;
-}
-
-.img_del{
-  text-decoration: none;
-  font-size: 15px;
-  color: #BA002F;
-}
 
 
-.icon__check{
-  color: #BA002F;
+// tasks/edit レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .task-edit-wrap{
+    height: 5rem;
+    position: initial;
+    overflow: initial;
+    background: rgba($color: #000000, $alpha: 1.0);
+    padding: initial;
+    h1{
+      display: inline-block;
+      margin-top: 1.3rem;
+      .form-title{
+        font-size: 2rem;
+        margin-bottom: initial;
+        text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                      -0.1rem 0.1rem 0  #008BBB,
+                      0.1rem -0.1rem 0  #008BBB,
+                      -0.1rem -0.1rem 0  #008BBB;
+      }
+    }
+
+    .form-area{
+      height: calc(100% - 50px - 50px);
+      width: 100%;
+      box-sizing: border-box;
+      position: fixed;
+      top: 5rem;
+      overflow: auto;
+      text-align: center;
+      padding: 2rem 5% 0 5%;
+      background: black;
+      background: rgba($color: #000000, $alpha: 0.9);
+      color: white;
+      border-top: solid 0.05rem #AAAAAA;
+      border-bottom: solid 0.05rem #AAAAAA;
+      // エラーメッセージ
+      .task-alert{
+        margin-bottom: 3rem;
+        font-size: 1.4rem;
+      }
+
+      // テーブルの見出し
+      .form-heading{
+        width: 100%;
+        max-width: initial;
+        border-bottom: solid 0.1rem #AAAAAA;
+        font-size: 1.8rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        max-width: initial;
+        font-size: 1.3rem;
+      }
+
+      // テーブル本体
+      .form-table{
+        width: 100%;
+        max-width: initial;
+
+        &__row{
+          width: 100%;
+
+          // 項目・見出し
+          &--header{
+            width: 100%;
+            display: block;
+            min-width: initial;
+            font-size: 1.4rem;
+            text-align: center;
+            box-sizing: border-box;
+            padding: initial;
+            margin-bottom: 0.4rem;
+          }
+
+          // fi.file_fieldのブロックのみ適用
+          .file-field{
+            display: flex;
+            justify-content: space-between;
+          }
+
+          // 入力する内容
+          &--data{
+            width: 100%;
+            display: block;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: initial;
+            margin-bottom: 3.5rem;
+
+            // f.text_field
+            .input-field{
+              width: 85%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.text_area
+            .text-area{
+              width: 85%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.file_field
+            .task-label{
+              // イメージ選択のアイコン
+              .image-icon{
+                font-size: 3rem;
+              }
+
+              // 選択画像のプレビュー
+              .preview_boxes{
+
+                // 中身
+                .images_selected{
+                  height: 18vmin;
+                  width: 18vmin;
+                }
+                #closes-icon{
+                  font-size: 1.8rem;
+                }
+              }
+            }
+
+            // チェックボックスのモーダルを表示するボタン
+            .checkbox-modal-button{
+              height: 4rem;
+              width: 35%;
+              max-width: 10rem;
+              min-width: 8rem;
+              border-bottom: solid 0.4rem #9c9c9c;
+              font-weight: normal;
+            }
+
+            // チェックボックスのモーダル
+            .checkbox-modal{
+              padding: 12rem 2.5vw 15rem 2.5vw;
+
+              // モーダルの中身
+              .checkbox-field{
+                &__head{
+                  width: 100%;
+                  min-width: initial;
+                  position: fixed;
+                  top: 7rem;
+                  right: 0;
+                  left: 0;
+                  margin: auto;
+                  margin-bottom: initial;
+                }
+
+                // 決定ボタン
+                &__foot{
+                  width: 100%;
+                  position: fixed;
+                  right: 0;
+                  left: 0;
+                  bottom: 8rem;
+                  margin: auto;
+                  margin-top: initial;
+                  &--button{
+                    height: 3.5rem;
+                    width: 75%;
+                    border-radius: 5rem;
+                    font-weight: normal;
+                    margin-top: initial;
+                    border-bottom: initial;
+                  }
+                }
+              }
+            }
+
+            // f.collection_select
+            .select-field{
+              height: 4rem;
+              width: 75%;
+              max-width: initial;
+            }
+          }
+        }
+      }
+
+      // 送信ボタン
+      .submit-button{
+        height: 3rem;
+        min-height: initial;
+        width: 5.5rem;
+        min-width: initial;
+        position: fixed;
+        top: 1rem;
+        right: 5%;
+        border-radius: 1rem;
+        .paper-plane-icon{
+          display: none;
+        }
+      }
+
+      // javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+      .history-back{
+        display: inline-block;
+        color: white;
+        position: fixed;
+        left: 5%;
+        top: 1.65rem;
+        font-size: 1.7rem;
+      }
+    }
+  }
 }
