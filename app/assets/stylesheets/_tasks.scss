@@ -2,137 +2,334 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+// tasks/index
 .task-wrap{
-  height: calc(100vh - 68px - 98px);
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  padding: 5% 0 5% 0;
-  overflow-x: auto;
+  position: fixed;
+  top: 5.8rem;
+  overflow: auto;
+  padding: 3.5rem 0 0 0;
+  box-sizing: border-box;
+
+  // アイコンをクリックで表示される隠しフォーム
   .task-form{
     display: none;
     text-align: center;
     background: whitesmoke;
-    border-left: solid 7px steelblue;     //左側の線
-    border-bottom: solid 3px #dadada;     //下に灰色線
-    padding: 1.5em 1em;
-    .form-field__js{
-      margin-bottom: 1em;
-      font-size: 17px;
-      .input-field__js{
+    color: #333333;
+    border-left: solid 0.7rem steelblue;     //左側の線
+    border-bottom: solid 0.3rem #dadada;     //下に灰色線
+    padding: 2.5rem 1.5rem 0 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 2px 5px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 2px 5px 3px rgba(0,0,0,0.5);
+
+    // テーブルの見出し
+    .form-heading{
+      width: 100%;
+      font-family: 'Impact', sans-serif;
+      border-bottom: solid 0.1rem #AAAAAA;
+      text-align: left;
+      font-size: 1.8rem;
+      margin: auto;
+      margin-bottom: 0.4rem;
+    }
+
+    // 見出しの補足
+    .form-lead{
+      width: 100%;
+      margin: auto;
+      font-size: 1.3rem;
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    .common-block{
+      margin-bottom: 3.5rem;
+      .common-label{
+        margin-bottom: 0.3rem;
+      }
+
+      // f.text_field
+      .input-field{
         width: 100%;
-        height: 2.8em;
-        padding: 0.3em;
+        height: 4.5rem;
+        padding: 0.5rem;
         box-sizing: border-box;
       }
-      .input-field__text-js{
+
+      // f.text_area
+      .text-area{
         width: 100%;
-        height: 5em;
-        padding: 0.3em;
+        height: 4.5rem;
+        padding: 0.5rem;
         box-sizing: border-box;
       }
-      .input-field__js::placeholder{
-        padding-top: 0.3em;
+      .text-area::placeholder{
+        padding-top: 0.5rem;
       }
-      .file-field__js{
+
+      // f.file_field
+      .file-field{
         width: 100%;
-        height: 7em;
         white-space: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
         display: flex;
         justify-content: space-evenly;
-        &--images{
-          .label__js--image{
-            font-size: 1.5em;
+
+        // イメージ選択のアイコン
+        .image-icon{
+          font-size: 2.5rem;
+          color: black;
+          cursor: pointer;
+        }
+        .image-icon:hover{
+          opacity: 0.5;
+        }
+        .input-files{
+          display: none;
+        }
+
+        // 選択画像のプレビュー
+        .images_selected{
+          height: 5.5rem;
+          width: 5.5rem;
+        }
+        .images_delete{
+          color:  #BA002F;
+          text-decoration: none;
+        }
+        #closes-icon{
+          font-size: 1.7rem;
+        }
+      }
+
+      // チェックボックスのモーダルを表示するボタン
+      .checkbox-modal-button{
+        height: 4rem;
+        width: 9rem;
+        box-sizing: border-box;
+        font-weight: bold;
+        color: #333333;
+        border-bottom: solid 0.6rem #9c9c9c;
+        transition: .0s;
+        cursor: pointer;
+      }
+
+      .checkbox-modal-button:hover{
+        border-bottom: solid 0.1rem #9c9c9c;
+        transform: translate3d(0, 0.6rem, 0);
+        transition: .0s;
+      }
+
+      // チェックボックスのモーダル
+      .checkbox-modal{
+        background: #151515;
+        height: 100%;
+        width: 100%;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 9.3rem 10% 6rem 10%;
+        z-index: 15;
+        box-sizing: border-box;
+
+        // モーダルの中身
+        .checkbox-field{
+          height: 100%;
+          width: 100%;
+          overflow: scroll;
+          word-wrap: break-word;
+          text-align: left;
+          &__head{
+            display: block;
+            width: 50%;
+            min-width: 30rem;
+            margin: auto;
+            margin-bottom: 5rem;
+            display: flex;
+            justify-content: space-evenly;
+
+            // クリックで全て選択
+            &--left{
+              color: #008BBB;
+              cursor: pointer;
+            }
+
+            // クリックで全て選択解除
+            &--right{
+              color: #BA002F;
+              cursor: pointer;
+            }
           }
-          .input-file__js{
+
+          // f.collection_check_boxesのチェックボックス部分
+          input[type=checkbox]{
             display: none;
+          }
+
+          // f.collection_check_boxesの固有名詞
+          input[type=checkbox] + label{
+            border: solid 0.1rem whitesmoke;
+            color: whitesmoke;
+            margin:  0 1rem 2rem 1rem ;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            border-radius: 0.7rem;
+            box-sizing: border-box;
+            display: inline-block;
+            cursor: pointer;
+          }
+
+          // マウスが重なった場合の処理
+          input[type=checkbox]:hover + label{
+            box-shadow: 0 0 7px 2px #fafdff;
+          }
+
+          // チェックボックスがチェックされた場合の処理
+          input[type=checkbox]:checked + label{
+            color: #008BBB;
+          }
+
+          // 決定ボタン
+          &__foot{
+            display: block;
+            text-align: center;
+            &--button{
+              width: 10rem;
+              height: 4.5rem;
+              color: #333333;
+              background: whitesmoke;
+              font-weight: bold;
+              margin-top: 5rem;
+              border-bottom: solid 0.6rem #9c9c9c;
+              transition: .0s;
+              box-sizing: border-box;
+              cursor: pointer;
+            }
+            // マウスが重なった場合の処理
+            &--button:hover{
+              border-bottom: solid 0.1rem #9c9c9c;
+              transform: translate3d(0, 0.6rem, 0);
+              transition: .0s;
+            }
           }
         }
       }
-      .file-field__js::-webkit-scrollbar{
-        display: none;
-      }
-      .select-field__js{
-        width: 16.5em;
-        height: 2.8em;
-        padding: 5px;
+
+      // f.collection_select
+      .select-field{
+        width: 100%;
+        height: 4.5rem;
+        padding: 0.5rem;
         box-sizing: border-box;
       }
-    }
-    .form-field__js--check-box{
-      margin-bottom: 1em;
-      font-size: 17px;
-      .check-box{
+
+      .form-submit{
         display: inline-block;
-        width: 100%;
-        height: 1.5em;
-        white-space: nowrap;
-        overflow-x: auto;
-      }
-      .check-box::-webkit-scrollbar{
-        display: none;
-      }
-    }
-    .task-form__js--submit{
-      .form-submit__js--black{
-        display: inline-block;
-        width: 6.9em;
-        height: 2.8em;
+        height: 4rem;
+        width: 9rem;
         background-color:  black;
         font-size: 16px;
-        color: white;
         font-weight: bold;
-        margin-top: 1em;
-        border-color: #008BBB;
+        color: white;
+        border-color: #AAAAAA;
+        cursor: pointer;
       }
     }
   }
+
+  // タスク一覧を表示させるフィールド
   .task-field{
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
     display: flex;
-    .task-box{
-      width: 21em;
-      margin: 0 5% 0;
-      &__title{
-        background: #FFCC00;
-        color: black;
-        border: solid 1px #999999;
-        height: 3em;
-        font-weight: bold;
-        font-size: 1.5em;
-        text-align: center;
-        padding-top: 0.7em;
+
+    // 各カテゴリーのボックス
+    .main-box{
+      width: 100%;
+      width: 33.5rem;
+      margin: 0 5% 0 5%;
+
+      // カテゴリー名
+      &__heading{
+        height: 6.5rem;
         box-sizing: border-box;
-        .task__add{
-          font-size: 1em;
+        padding: 2rem 0 2rem 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #074770;
+        text-shadow: 1.5px 1.5px 3px black;
+        color: #cdd2cf;
+        border: solid 0.5px #999999;
+        font-size: 1.8rem;
+        font-weight: bold;
+        box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0 2px 5px 3px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0 2px 5px 3px rgba(0,0,0,0.5);
+        .task-add{
+          margin-left: 1rem;
           display: inline;
-          color: black;
+          font-size: 2.2rem;
+          cursor: pointer;
         }
       }
-      &__content{
-        margin-top: 1.5em;
+
+      // タスクの一覧が表示される場所
+      &__body{
+        margin-top: 2rem;
         overflow: auto;
-        height: calc(100vh - 68px - 98px - 72px - 24px);
-        width: 21em;
-        &--list{
-          color: #404040;
+        height: calc(100vh - 58px - 35px - 65px - 20px - 60px);
+        width: 33.5rem;
+
+        // 付箋折り返し
+        #overlay::after {
+          position: absolute;
+          left: -0.7rem;
+          top: 0px;
+          content: '';
+          border-color: #fff #fff #e5a323;
+          box-shadow: 1px 1px 1px #333333;
+          border-style: solid;
+          border-width: 0 0 13px 13px;
+        }
+        .task-list{
+          width: 100%;
+          position: relative;
+          box-sizing: border-box;
+          padding: 1rem;
+          background: whitesmoke;
+          color: #333333;
           border-left: solid 7px steelblue;     //左側の線
           border-bottom: solid 3px #dadada;     //下に灰色線
-          background: whitesmoke;
-          margin-bottom: 1.5em;                     //下のバーとの余白
-          padding: 0.5em;
           list-style-type: none!important;
-          font-weight: bold;
-          height: 3.9375em;
-          box-sizing: border-box;
-          overflow: hidden;
-          .task-list__icons{
+          font-size: 1.4rem;
+          font-weight: 550;
+          margin-bottom: 2rem;
+          box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.5);
+          -webkit-box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.5);
+          -moz-box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.5);
+          &__heading{
+            overflow: hidden;
+          }
+          &__icons{
             display: block;
+            font-size: 1.6rem;
             text-align: right;
             .list-link{
               color: #0000CD;
               text-decoration: none;
-              margin-left: 1.3em;
+              margin-left: 2rem;
+            }
+            .list-link:hover{
+              opacity: 0.5;
             }
           }
         }
@@ -142,173 +339,435 @@
 }
 
 
-.task-alert{
-  color: red;
-  margin-bottom: 5.5em;
+
+
+
+// tasks/index レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .task-wrap{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    padding: 2rem 0 0 0;
+
+    // アイコンをクリックで表示される隠しフォーム
+    .task-form{
+      font-size: 1.4rem;
+      padding: 1.5rem 5% 0 5%;
+
+      // テーブルの見出し
+      .form-heading{
+        border-bottom: solid 0.5px #AAAAAA;
+        font-size: 1.6rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        font-size: 1.2rem;
+      }
+
+      .common-block{
+        margin-bottom: 3.5rem;
+        .common-label{
+          margin-bottom: 0.4rem;
+        }
+
+        // f.text_field
+        .input-field{
+          width: 100%;
+          height: 4rem;
+        }
+
+        // f.text_area
+        .text-area{
+          width: 100%;
+          height: 4rem;
+        }
+
+        // 選択画像のプレビュー
+        .images_selected{
+          height: 13.89vmin;
+          width: 13.89vmin;
+        }
+        #closes-icon{
+          font-size: 1.7rem;
+        }
+
+
+        // チェックボックスのモーダルを表示するボタン
+        .checkbox-modal-button{
+          height: 3.5rem;
+          width: 30%;
+          max-width: 10rem;
+          min-width: 7.5rem;
+          border-bottom: solid 0.4rem #9c9c9c;
+          font-weight: normal;
+        }
+
+        // チェックボックスのモーダル
+        .checkbox-modal{
+          padding: 12rem 2.5vw 15rem 2.5vw;
+
+          // モーダルの中身
+          .checkbox-field{
+            &__head{
+              width: 100%;
+              min-width: initial;
+              position: fixed;
+              top: 7rem;
+              right: 0;
+              left: 0;
+              margin: auto;
+              margin-bottom: initial;
+            }
+
+            // 決定ボタン
+            &__foot{
+              width: 100%;
+              position: fixed;
+              right: 0;
+              left: 0;
+              bottom: 8rem;
+              margin: auto;
+              margin-top: initial;
+              &--button{
+                height: 3.5rem;
+                width: 75%;
+                border-radius: 5rem;
+                font-weight: normal;
+                margin-top: initial;
+                border-bottom: initial;
+              }
+            }
+          }
+        }
+
+        // f.collection_select
+        .select-field{
+          width: 100%;
+          height: 4rem;
+        }
+        .form-submit{
+          height: 4rem;
+          width: 8rem;;
+          font-size: initial;
+          font-weight: normal;
+        }
+      }
+    }
+
+    // タスク一覧を表示させるフィールド
+    .task-field{
+      // 各カテゴリーのボックス
+      .main-box{
+        width: 80vw;
+        margin: 0 10% 0 10%;
+
+        // カテゴリー名
+        &__heading{
+          height: auto;
+          padding: 1.3rem 0 1.3rem 0;
+          font-size: 1.6rem;
+          .task-add{
+            font-size: 2rem;
+          }
+        }
+
+        // タスクの一覧が表示される場所
+        &__body{
+          height: calc(100vh - 50px - 20px - 51px - 20px - 50px);
+          width: 80vw;
+
+          // 付箋折り返し
+          #overlay::after {
+            left: -0.5rem;
+            border-width: 0 0 10px 10px;
+          }
+          .task-list{
+            padding: 0.5rem 0.8rem 0.5rem 0.8rem ;
+            border-left: solid 5px steelblue;
+            font-weight: initial;
+            font-size: 1.3rem;
+            &__icons{
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 
-.field_with_errors{
-  display: inline;
+
+
+
+// tasks/index レスポンシブ（最小サイズのスマホ対応）
+@media screen and (max-width: 281px){
+
+  .task-wrap{
+    // タスク一覧を表示させるフィールド
+    .task-field{
+      // 各カテゴリーのボックス
+      .main-box{
+        // カテゴリー名
+        &__heading{
+          font-size: 5.69395vmin;
+          .task-add{
+            font-size: 7.11743vmin;
+          }
+        }
+
+        // タスクの一覧が表示される場所
+        &__body{
+          .task-list{
+            font-size: 4.62633vmin;
+            border-left: solid 1.7793594vmin steelblue;
+            &__icons{
+              font-size: 4.9822vmin;
+              .list-link{
+                margin-left: 7.11743vmin;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-// .task__remove{
-//   background-color: black;
-//   color: #FFF;
-//   width: 4em;
-//   height: 2.3em;
-//   font-size: 1.3em;
-
-// }
-
-// .task-list__add{
-//   background-color: black;
-//   color: #FFF;
-//   width: 4em;
-//   height: 2.3em;
-//   font-size: 1.3em;
-// }
-// .task-list__remove{
-//   background-color: black;
-//   color: #FFF;
-//   width: 4em;
-//   height: 2.3em;
-//   font-size: 1.3em;
-
-// }
 
 
 
 
-.task-wrap__details{
-  text-align: center;
-  height: calc(100vh - 68px - 49px - 68px);
+// tasks/show
+.task-show-wrap{
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  padding: 5% 0 7% 0;
+  box-sizing: border-box;
+  padding: 3.5rem 5% 13.5rem 5%;
+  text-align: center;
   position: fixed;
+  top: 5.8rem;
   overflow: auto;
-  .deadline-box{
-    display: flex;
-    justify-content: center;
-    display: inline-block;
-    margin-bottom: 3.8em;
-    font-size: 1.3em;
-    background: black;
-    border-radius: 7px;
-    padding: 0.6em;
-    letter-spacing: 1px;
-    &__icon{
-      color: #FFCC00;
-    }
-    &__header{
-      color: white;
-      display: inline;
-      margin-right: 2em;
-    }
-    &__time{
-      color: white;
-      display: inline;
-    }
-  }
-  .details-box{
+
+  .category-name{
+    width: 69rem;
+    font-family: 'Impact', sans-serif;
+    color: #333333;
+    border-bottom: solid 0.2rem #AAAAAA;
+    text-align: left;
+    font-size: 2.3rem;
     margin: auto;
-    height: 30em;
-    width: 60%;
-    background: whitesmoke;
-    border-top: solid 0.0625em #999999;
-    border-right: solid 0.0625em #999999;
-    margin-bottom: 8em;
-    border-left: solid 0.8125em steelblue;
-    border-bottom: solid 0.4375em #dadada;
-    &__title{
-      box-sizing: border-box;
-      background: #c4c4c4;
-      font-size: 1.5em;
-      padding: 0.7em;
-      letter-spacing: 1px;
-      overflow-x: auto;
-    }
-    &__content{
-      padding: 3% 5% 3%;
-      text-align: left;
-      line-height: 2em;        //行間の高さ
-      letter-spacing: 1px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
-      height: calc(480px - 69px);
-      width: 100%;
-      font-size: 1.1em;
-      .task-image{
-        margin-top: 3em;
-        margin-right: 1em;
+    margin-bottom: 0.6rem;
+  }
+
+  // タスクの期限
+  .deadline{
+    width: 69rem;
+    margin: auto;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #333333;
+    margin-bottom: 0.6rem;
+    display: flex;
+    &__text{
+      width: 11rem;
+      .bell-icon{
+        color: #fbbc05;
+        text-shadow: 0 1px 1px #333333;
       }
-    }
-    .details-box__content::-webkit-scrollbar{
-      display: none;
     }
   }
-  .details-member{
-    .details-member__header{
-      font-size: 1.3em;
-      letter-spacing: 1px;
-      padding: 0.6em;
-      display: inline-block;
-      border-radius: 7px;
-      &--icon{
-        display: inline;
-      }
-      &--title{
-        display: inline;
-      }
+
+  // 最終更新日
+  .last-updated{
+    width: 69rem;
+    margin: auto;
+    text-align: left;
+    font-size: 1.4rem;
+    color: #333333;
+    margin-bottom: 5rem;
+    display: flex;
+    &__text{
+      width: 11rem;
     }
-    .details-member__list{
+  }
+
+  // 付箋折り返し
+  #overlay::after {
+    position: absolute;
+    left: -1.3rem;
+    top: 0px;
+    content: '';
+    border-color: #fff #fff #e5a323;
+    box-shadow: 1px 1px 1px #333333;
+    border-style: solid;
+    border-width: 0 0 25px 25px;
+  }
+
+  .main-frame{
+    width: 69rem;
+    position: relative;
+    margin: 0 auto 0 auto;
+    box-sizing: border-box;
+    border-left: solid 1.3rem steelblue;
+    border-bottom: solid 0.7rem #dadada;
+    box-shadow: 10px 10px 10px 0 rgba(0,0,0,0.5);
+
+    // タスク名
+    .task-name {
+      width: 100%;
+      margin: auto;
+      box-sizing: border-box;
+      padding: 2rem 3rem 2rem 3rem;
+      background: whitesmoke;
+      font-size: 1.6rem;
+      font-weight: 550;
+      text-align: left;
+      letter-spacing: 0.1rem;
+      word-break: break-all;
+      background: whitesmoke;
+      color: #333333;
+    }
+
+    // タスク担当メンバー
+    .members-field{
+      height: 10rem;
+      width: 100%;
+      margin: auto;
       white-space: nowrap;    //はみ出しを折り返さない
       overflow-x: auto;       //横方向のスクロール
-      width: 60%;
-      height: 100px;
-      margin: auto;
-      margin-bottom: 6em;
-      margin-top: 2em;
-      &--image{
-        display: inline-block;
-        margin-right: 0.4em;
-        margin-left: 0.4em;
-        width: 6.5em;
-        .task-avatar{
-          height: 3.75em;
-          width: 3.75em;
-          border-radius: 50%;
-          display: inline-block;
+      box-sizing: border-box;
+      padding: 1rem 0 1rem 0;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      border-top: solid 1px #999999;
+      border-bottom: solid 1px #999999;
+
+      // 個別のユーザー
+      &__user{
+        height: 100%;
+        width: 8.5rem;
+        display: block;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: space-between;
+        .avatar{
+          height: 6rem;
+          width: 6rem;
+          border-radius: 100%;
+          box-sizing: border-box;
+          border: solid 0.5px #ccc;
         }
-        .task-avatar__blank{
-          font-size: 3.75em;
-          display: inline-block;
-          margin-bottom: 0.1em;
+        .blank-avatar{
+          font-size: 6rem;
+          opacity: 0.3;
         }
-      }
-      &--name{
-        overflow-x: hidden;
+        &--name{
+          width: 8.5rem;
+          font-size: 1.4rem;
+          color: #333333;
+          overflow-x: hidden;
+        }
       }
     }
-    .details-member__list::-webkit-scrollbar{
+    .members-field::-webkit-scrollbar{
       display: none;
+    }
+
+    // テキストボックス
+    .text-box{
+      height: auto;
+      min-height: calc(100vh - 58px - 35px - 36px - 22px - 66px - 64px - 100px - 7px - 60px - 35px);
+      width: 100%;
+      margin: auto;
+      background: whitesmoke;
+      box-sizing: border-box;
+      padding: 3rem;
+
+      // テキスト本体
+      &__body{
+        height: auto;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1.5rem;
+        color: #333333;
+        text-align: left;
+        line-height: 3rem;        //行間の高さ
+        letter-spacing: 0.1rem;
+        word-break: break-all;
+        overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
+        .images{
+          width: 100%;
+          display: flex;
+          margin-top: 2rem;
+          .task-image{
+            height: 11rem;
+            width: 11rem;
+            cursor: pointer;
+          }
+          .task-image:hover{
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+  .buttons{
+    position: fixed;
+    bottom: 9rem;
+    right: 5%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+
+    // リンクボタン
+    .link-btn{
+      height: 8rem;
+      width: 8rem;
+      box-sizing: border-box;
+      margin-left: 1.5rem;
+      background-color: black;
+      border-radius: 100%;
+      outline: 0;
+      .action-link{
+        text-decoration: none;
+        color: white;
+        .task-edit-icon{
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+        }
+        .task-trash-icon{
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+        }
+        .text{
+          font-size: 1.4rem;
+        }
+      }
     }
   }
 }
 
-
-
-.modal{
-  background: #222222;
-  height: 100vh;
+// 画像のモーダル表示
+.task-image__modal{
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  position: absolute;
+  position: fixed;
+  top: 5.8rem;
   display: none;
-  .task-image__modal{
-    height: 35em;
-    width: 35em;
-    position: absolute;
+  background: #151515;
+  cursor: pointer;
+  z-index: 10;
+  .large-image{
+    height: 35rem;
+    width: 35rem;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -319,72 +778,811 @@
 
 
 
-.task-wrap__form{
-  text-align: center;
-  height: calc(100vh - 68px);
+
+// tasks/show レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .task-show-wrap{
+    .category-name{
+      width: 100%;
+      max-width: 69rem;
+    }
+
+    // タスクの期限
+    .deadline{
+      width: 100%;
+      max-width: 69rem;
+    }
+
+    // 最終更新日
+    .last-updated{
+      width: 100%;
+      max-width: 69rem;
+    }
+
+    .main-frame{
+      width: 100%;
+      max-width: 69rem;
+      // タスク名
+      .task-name {
+        padding: 2rem 4.35% 2rem 4.35%;
+      }
+
+      // テキストボックス
+      .text-box{
+        padding: 3rem 4.35% 3rem 4.35%;
+        // テキスト本体
+        &__body{
+          .images{
+            .task-image{
+              height: 15.9vw;
+              max-height: 11rem;
+              width: 15.9vw;
+              max-width: 11rem;
+            }
+          }
+        }
+      }
+    }
+    .buttons{
+      // リンクボタン
+      .link-btn{
+      height: 10.403vmin;
+      min-height: 7rem;
+      width: 10.403vmin;
+      min-width: 7rem;
+      }
+    }
+  }
+
+  // 画像のモーダル表示
+  .task-image__modal{
+    .large-image{
+      height: 45.5vmin;
+      width: 45.5vmin;
+    }
+  }
+}
+
+
+
+
+
+// tasks/show レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .task-show-wrap{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    padding: 2rem 0 11rem 0;
+
+    .category-name{
+      width: 95vmin;
+      max-width: initial;
+      border-bottom: solid 0.1rem #AAAAAA;
+      font-size: 1.8rem;
+      box-sizing: border-box;
+    }
+
+    // タスクの期限
+    .deadline{
+      width: 95vmin;
+      max-width: initial;
+      font-size: 1.2rem;
+      &__text{
+        width: 9rem;
+        .bell-icon{
+          color: #fbbc05;
+        }
+      }
+    }
+
+    // 最終更新日
+    .last-updated{
+      width: 95vmin;
+      max-width: initial;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      &__text{
+        width: 9rem;
+      }
+    }
+
+    // 付箋折り返し
+    #overlay::after {
+      left: -0.5rem;
+      top: 0px;
+      border-width: 0 0 15px 15px;
+    }
+
+    .main-frame{
+      width: 95vmin;
+      max-width: initial;
+      border-right: initial;
+      border-left: solid 0.5rem steelblue;
+      border-bottom: solid 0.4rem #dadada;
+
+      // タスク名
+      .task-name {
+        padding: 1rem 4.35% 1rem 2.5rem;
+        font-size: 1.4rem;
+        font-weight: normal;
+        letter-spacing: initial;
+      }
+
+      // タスク担当メンバー
+      .members-field{
+        height: auto;
+        width: 100%;
+        padding: 1rem 0 1rem 0;
+        border-top: solid 0.5px #999999;
+        border-bottom: solid 0.5px #999999;
+
+        // 個別のユーザー
+        &__user{
+          width: 7.5rem;
+          margin-right: 0.3rem;
+          margin-left: 0.3rem;
+          .avatar{
+            height: 5rem;
+            width: 5rem;
+          }
+          .blank-avatar{
+            font-size: 5rem;
+          }
+          &--name{
+            width: 7.5rem;
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      // テキストボックス
+      .text-box{
+        min-height: calc(100vmax - 50px - 20px - 29px - 20px - 44px - 41px - 86px - 4px - 50px - 20px);
+        padding: 2rem 4.35% 2rem 4.35%;
+
+        // テキスト本体
+        &__body{
+          font-size: 1.3rem;
+          line-height: initial;        //行間の高さ
+          letter-spacing: 0.5px;
+          .images{
+            .task-image{
+              display: block;
+              height: 18.26vmin;
+              width: 18.26vmin;
+            }
+
+          }
+        }
+      }
+    }
+    .buttons{
+      bottom: 7.5rem;
+      // リンクボタン
+      .link-btn{
+        height: 14.553vmin;
+        width: 14.553vmin;
+        min-height: 4.5rem;
+        min-width: 4.5rem;
+        .action-link{
+          .task-edit-icon{
+            font-size: 4.158vmin;
+            margin-bottom: 1.0395vmin;
+          }
+          .task-trash-icon{
+            font-size: 4.158vmin;
+            margin-bottom: 1.0395vmin;
+          }
+          .text{
+            font-size: 2.91vmin;
+          }
+        }
+      }
+    }
+  }
+
+  // 画像のモーダル表示
+  .task-image__modal{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    .large-image{
+      height: 100vmin;
+      width: 100vmin;
+    }
+  }
+}
+
+
+
+
+
+// tasks/edit
+.task-edit-wrap{
+  height: calc(100% - 60px);
   width: 100%;
+  box-sizing: border-box;
+  padding: 3.5rem 0 13.5rem 0;
   position: fixed;
   overflow: auto;
   background: black;
+  background: rgba($color: #000000, $alpha: 0.9);
   color: white;
-  .file-field__edit-js{
-    width: 21.5em;
-    height: 7em;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    &--images{
-      .label__js--image{
-        font-size: 1.5em;
-      }
-      .input-file__js{
-        display: none;
+  text-align: center;
+  .form-title{
+    display: block;
+    font-family: 'Impact', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    font-size: 4rem;
+    color: #330066;
+    text-shadow: 0.2rem 0.2rem 0  #008BBB,
+                -0.2rem 0.2rem 0  #008BBB,
+                0.2rem -0.2rem 0  #008BBB,
+                -0.2rem -0.2rem 0  #008BBB;
+  }
+
+  .form-area{
+    padding: 0 5% 0 5%;
+    // エラーメッセージ
+    .task-alert{
+      color: #BA002F;
+      margin-bottom: 3.5rem;
+    }
+
+    // テーブルの見出し
+    .form-heading{
+      width: 69rem;
+      font-family: 'Impact', sans-serif;
+      border-bottom: solid 0.2rem #AAAAAA;
+      text-align: left;
+      font-size: 2.3rem;
+      margin: auto;
+      margin-bottom: 0.6rem;
+    }
+
+    // 見出しの補足
+    .form-lead{
+      width: 69rem;
+      margin: auto;
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+
+    // テーブル本体
+    .form-table{
+      margin: auto;
+      box-sizing: border-box;
+      width: 69rem;
+
+      &__row{
+        width: 100%;
+
+        // 項目・見出し
+        &--header{
+          width: 30%;
+          min-width: 13rem;
+          box-sizing: border-box;
+          padding: 2.5rem 0 2.5rem 0;
+          text-align: left;
+        }
+
+        // fi.file_fieldのブロックのみ適用
+        .file-field{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        // 入力する内容
+        &--data{
+          width: 100%;
+          box-sizing: border-box;
+          padding: 2.5rem 0 2.5rem 0;
+          text-align: left;
+
+          // f.text_field
+          .input-field{
+            width: 36rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+          }
+
+          // f.text_area
+          .text-area{
+            width: 36rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+          }
+
+          .text-area::placeholder{
+            padding-top: 0.35rem;
+          }
+
+
+          // f.file_field
+          .task-label{
+
+            // イメージ選択のアイコン
+            .image-icon{
+              font-size: 4rem;
+              cursor: pointer;
+            }
+            .image-icon:hover{
+              opacity: 0.5;
+            }
+            .input-files{
+              display: none;
+            }
+
+            // 選択画像のプレビュー
+            .preview_boxes{
+              text-align: center;
+
+              // 中身
+              .images_selected{
+                height: 9.5rem;
+                width: 9.5rem;
+              }
+              .images_delete{
+                color:  #BA002F;
+                text-decoration: none;
+              }
+              #closes-icon{
+                font-size: 2.2rem;
+              }
+            }
+          }
+
+          // チェックボックスのモーダルを表示するボタン
+          .checkbox-modal-button{
+            height: 4.5rem;
+            width: 10rem;
+            box-sizing: border-box;
+            font-weight: bold;
+            border-bottom: solid 0.6rem #9c9c9c;
+            transition: .0s;
+            cursor: pointer;
+          }
+
+          .checkbox-modal-button:hover{
+            border-bottom: solid 0.1rem #9c9c9c;
+            transform: translate3d(0, 0.6rem, 0);
+            transition: .0s;
+          }
+
+          // チェックボックスのモーダル
+          .checkbox-modal{
+            background: #151515;
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 9.3rem 10% 6rem 10%;
+            z-index: 15;
+            box-sizing: border-box;
+
+            // モーダルの中身
+            .checkbox-field{
+              height: 100%;
+              width: 100%;
+              overflow: scroll;
+              word-wrap: break-word;
+              text-align: left;
+              &__head{
+                display: block;
+                width: 50%;
+                min-width: 30rem;
+                margin: auto;
+                margin-bottom: 5rem;
+                display: flex;
+                justify-content: space-evenly;
+
+                // クリックで全て選択
+                &--left{
+                  color: #008BBB;
+                  cursor: pointer;
+                }
+
+                // クリックで全て選択解除
+                &--right{
+                  color: #BA002F;
+                  cursor: pointer;
+                }
+              }
+
+              // f.collection_check_boxesのチェックボックス部分
+              input[type=checkbox]{
+                display: none;
+              }
+
+              // f.collection_check_boxesの固有名詞
+              input[type=checkbox] + label{
+                border: solid 0.1rem whitesmoke;
+                color: whitesmoke;
+                margin:  0 1rem 2rem 1rem ;
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                border-radius: 0.7rem;
+                box-sizing: border-box;
+                display: inline-block;
+                cursor: pointer;
+              }
+
+              // マウスが重なった場合の処理
+              input[type=checkbox]:hover + label{
+                box-shadow: 0 0 7px 2px #fafdff;
+              }
+
+              // チェックボックスがチェックされた場合の処理
+              input[type=checkbox]:checked + label{
+                color: #008BBB;
+              }
+
+              // 決定ボタン
+              &__foot{
+                display: block;
+                text-align: center;
+                &--button{
+                  width: 10rem;
+                  height: 4.5rem;
+                  color: black;
+                  background: whitesmoke;
+                  font-weight: bold;
+                  margin-top: 5rem;
+                  border-bottom: solid 0.6rem #9c9c9c;
+                  transition: .0s;
+                  box-sizing: border-box;
+                  cursor: pointer;
+                }
+                // マウスが重なった場合の処理
+                &--button:hover{
+                  border-bottom: solid 0.1rem #9c9c9c;
+                  transform: translate3d(0, 0.6rem, 0);
+                  transition: .0s;
+                }
+              }
+            }
+          }
+
+          // f.collection_select
+          .select-field{
+            width: 30rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            background: white;
+          }
+        }
       }
     }
-  }
-  .file-field__edit-js::-webkit-scrollbar{
+
+    // 送信ボタン
+    .submit-button{
+      height: 8rem;
+      width: 8rem;
+      position: fixed;
+      bottom: 9rem;
+      right: 5%;
+      z-index: 5;
+      background-color:  black;
+      border-color: white;
+      border-radius: 100%;
+      outline: 0;            //autofocus青線の打ち消し
+      cursor: pointer;
+      .paper-plane-icon{
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: white;
+      }
+      .form-submit{
+        background: black;
+        color: white;
+        border: none;
+        font-size: 1.4rem;
+      }
+    }
+
+    // javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    .history-back{
     display: none;
-  }
-  .form-field__check-box{
-    height: 2.8em;
-    margin-bottom: 3.5em;
-    font-size: 17px;
-    width: 21.5em;
-    white-space: nowrap;
-    display: inline-block;
-    .check-box{
-      overflow-x: auto;
-    }
-    .check-box::-webkit-scrollbar{
-      display: none;
     }
   }
-  .select-field{
-    width: 16.5em;
-    height: 2.8em;
-    padding: 5px;
-    box-sizing: border-box;
-    background: white;
+}
+
+
+
+
+
+// tasks/edit レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .task-edit-wrap{
+    .form-area{
+      padding: 0 5% 0 5%;
+
+      // テーブルの見出し
+      .form-heading{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // テーブル本体
+      .form-table{
+        width: 100%;
+        max-width: 69rem;
+        &__row{
+
+          // 入力する内容
+          &--data{
+
+            // f.text_field
+            .input-field{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.text_area
+            .text-area{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.file_field
+            .task-label{
+              // 選択画像のプレビュー
+              .preview_boxes{
+                // 中身
+                .images_selected{
+                  height: 12.35vw;
+                  width: 12.35vw;
+                }
+              }
+            }
+
+            // f.collection_select
+            .select-field{
+              width: 100%;
+              max-width: 30rem;
+            }
+          }
+        }
+      }
+      // 送信ボタン
+      .submit-button{
+        height: 10.403vmin;
+        min-height: 7rem;
+        width: 10.403vmin;
+        min-width: 7rem;
+      }
+    }
   }
 }
 
 
 
-.selected-images{
-  height: 3.5em;
-  width: 3.5em;
-}
-
-.img_del{
-  text-decoration: none;
-  font-size: 15px;
-  color: #BA002F;
-}
 
 
-.icon__check{
-  color: #BA002F;
+// tasks/edit レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .task-edit-wrap{
+    height: 5rem;
+    position: initial;
+    overflow: initial;
+    background: rgba($color: #000000, $alpha: 1.0);
+    padding: initial;
+    h1{
+      display: inline-block;
+      margin-top: 1.3rem;
+      .form-title{
+        font-size: 2rem;
+        margin-bottom: initial;
+        text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                      -0.1rem 0.1rem 0  #008BBB,
+                      0.1rem -0.1rem 0  #008BBB,
+                      -0.1rem -0.1rem 0  #008BBB;
+      }
+    }
+
+    .form-area{
+      height: calc(100% - 50px - 50px);
+      width: 100%;
+      box-sizing: border-box;
+      position: fixed;
+      top: 5rem;
+      overflow: auto;
+      text-align: center;
+      padding: 2rem 5% 0 5%;
+      background: black;
+      background: rgba($color: #000000, $alpha: 0.9);
+      color: white;
+      border-top: solid 0.05rem #AAAAAA;
+      border-bottom: solid 0.05rem #AAAAAA;
+      // エラーメッセージ
+      .task-alert{
+        margin-bottom: 3rem;
+        font-size: 1.4rem;
+      }
+
+      // テーブルの見出し
+      .form-heading{
+        width: 100%;
+        max-width: initial;
+        border-bottom: solid 0.1rem #AAAAAA;
+        font-size: 1.8rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        max-width: initial;
+        font-size: 1.3rem;
+      }
+
+      // テーブル本体
+      .form-table{
+        width: 100%;
+        max-width: initial;
+
+        &__row{
+          width: 100%;
+
+          // 項目・見出し
+          &--header{
+            width: 100%;
+            display: block;
+            min-width: initial;
+            font-size: 1.4rem;
+            text-align: center;
+            box-sizing: border-box;
+            padding: initial;
+            margin-bottom: 0.4rem;
+          }
+
+          // fi.file_fieldのブロックのみ適用
+          .file-field{
+            display: flex;
+            justify-content: space-between;
+          }
+
+          // 入力する内容
+          &--data{
+            width: 100%;
+            display: block;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: initial;
+            margin-bottom: 3.5rem;
+
+            // f.text_field
+            .input-field{
+              width: 85%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.text_area
+            .text-area{
+              width: 85%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.file_field
+            .task-label{
+              // イメージ選択のアイコン
+              .image-icon{
+                font-size: 3rem;
+              }
+
+              // 選択画像のプレビュー
+              .preview_boxes{
+
+                // 中身
+                .images_selected{
+                  height: 18vmin;
+                  width: 18vmin;
+                }
+                #closes-icon{
+                  font-size: 1.8rem;
+                }
+              }
+            }
+
+            // チェックボックスのモーダルを表示するボタン
+            .checkbox-modal-button{
+              height: 4rem;
+              width: 35%;
+              max-width: 10rem;
+              min-width: 8rem;
+              border-bottom: solid 0.4rem #9c9c9c;
+              font-weight: normal;
+            }
+
+            // チェックボックスのモーダル
+            .checkbox-modal{
+              padding: 12rem 2.5vw 15rem 2.5vw;
+
+              // モーダルの中身
+              .checkbox-field{
+                &__head{
+                  width: 100%;
+                  min-width: initial;
+                  position: fixed;
+                  top: 7rem;
+                  right: 0;
+                  left: 0;
+                  margin: auto;
+                  margin-bottom: initial;
+                }
+
+                // 決定ボタン
+                &__foot{
+                  width: 100%;
+                  position: fixed;
+                  right: 0;
+                  left: 0;
+                  bottom: 8rem;
+                  margin: auto;
+                  margin-top: initial;
+                  &--button{
+                    height: 3.5rem;
+                    width: 75%;
+                    border-radius: 5rem;
+                    font-weight: normal;
+                    margin-top: initial;
+                    border-bottom: initial;
+                  }
+                }
+              }
+            }
+
+            // f.collection_select
+            .select-field{
+              height: 4rem;
+              width: 75%;
+              max-width: initial;
+            }
+          }
+        }
+      }
+
+      // 送信ボタン
+      .submit-button{
+        height: 3rem;
+        min-height: initial;
+        width: 5.5rem;
+        min-width: initial;
+        position: fixed;
+        top: 1rem;
+        right: 5%;
+        border-radius: 1rem;
+        .paper-plane-icon{
+          display: none;
+        }
+      }
+
+      // javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+      .history-back{
+        display: inline-block;
+        color: white;
+        position: fixed;
+        left: 5%;
+        top: 1.65rem;
+        font-size: 1.7rem;
+      }
+    }
+  }
 }

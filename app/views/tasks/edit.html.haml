@@ -1,41 +1,83 @@
-.task-wrap__form
-  %h1.form-title
-    Edit  Task
-  .task-form--edit
-    = form_with model: [@group, @task], local: true do |f|
-      = render "tasks/errors"
-      .form-field
-        = f.label :title, "Task Title"
-        %br/
-        = f.text_field :title, class: "input-field", autofocus: true, placeholder: "例) 会場の設営"
-      .form-field
-        = f.label :content, "Task Content"
-        %br/
-        = f.text_area :content, class: "input-field__text", autofocus: true, placeholder: "詳細を入力してください"
-      .form-field
-        = f.label :image
-        %br/
-        .file-field__edit-js
-          = f.fields_for :task_images do |fi|
-            .file-field__edit-js--images
-              = fi.label :image, class: "label__js" do
-                = icon "fa", "image", class: "label__js--image"
-                = fi.file_field :image, class: "input-file__js"
-      .form-field__check-box
-        = f.label :user_ids, "Add Member"
-        %br/
-        .check-box
-          = f.collection_check_boxes  :user_ids, @user, :id, :name
-      .form-field
-        = f.label :deadline
-        %br/
-        = f.datetime_field :deadline, class: "select-field"
-      .form-field
-        = f.label :category_id
-        %br/
-        = f.collection_select(:category_id, Category.all, :id, :name, {prompt: "----"}, class: "select-field")
-      .task-form__submit
-        = f.submit "send", class: "form-submit--black"
+.task-edit-wrap
+  %h1= link_to "Edit Task", groups_path, class: "form-title"
 
+  = form_with model: [@group, @task], local: true do |f|
+    .form-area
+      // エラーメッセージ
+      = render "tasks/errors"
+
+      // 見出し
+      %h2.form-heading
+        Form
+      .form-lead
+        ※は必須項目
+
+      // テーブル
+      %table.form-table
+        %tbody
+          // タスク名入力
+          %tr.form-table__row
+            %th.form-table__row--header
+              = f.label :title, "※Task Title"
+            %td.form-table__row--data
+              = f.text_field :title, class: "input-field", autofocus: true, placeholder: "例) 会場の設営"
+
+          // タスクの内容入力
+          %tr.form-table__row
+            %th.form-table__row--header
+              = f.label :content, "※Task Content"
+            %td.form-table__row--data
+              = f.text_area :content, class: "text-area", autofocus: true, placeholder: "詳細を入力してください"
+
+          // イメージ
+          %tr.form-table__row
+            %th.form-table__row--header
+              = f.label :image
+            %td.form-table__row--data.file-field
+              = f.fields_for :task_images do |fi|
+                = fi.label :image, class: "task-label" do
+                  = icon "fa", "image", class: "image-icon"
+                  = fi.file_field :image, class: "input-files"
+
+          // タスク担当メンバー入力
+          %tr.form-table__row
+            %th.form-table__row--header
+              = f.label :user_ids, "※Members"
+            %td.form-table__row--data
+              // モーダルを表示するボタン
+              %button.checkbox-modal-button Click
+
+              // チェックボックスのモーダル
+              .checkbox-modal
+                .checkbox-field
+                  .checkbox-field__head
+                    %check.checkbox-field__head--left Select all
+                    %check.checkbox-field__head--right Deselect all
+                  = f.collection_check_boxes :user_ids, @group.users.all, :id, :name
+                  .checkbox-field__foot
+                    %button.checkbox-field__foot--button Decision
+
+          // 期限入力
+          %tr.form-table__row
+            %th.form-table__row--header
+              = f.label :deadline, "※Deadline"
+            %td.form-table__row--data
+              = f.datetime_field :deadline, class: "select-field"
+
+          // カテゴリー入力
+          %tr.form-table__row
+            %th.form-table__row--header
+              = f.label :category_id, "※Category"
+            %td.form-table__row--data
+              = f.collection_select(:category_id, Category.all, :id, :name, {prompt: "----"}, class: "select-field")
+
+      // 送信ボタン
+      %button.submit-button
+        = icon "fa", "paper-plane", class: "paper-plane-icon"
+        %submit= f.submit "send", class: "form-submit"
+
+      //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+      = link_to "", :href => "javascript:history.back();", class: "history-back" do
+        = icon "fa", "arrow-left"
 
 = render "share/navigation"
