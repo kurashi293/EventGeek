@@ -8,6 +8,14 @@ class GroupsController < ApplicationController
   def index
     @group = current_user.groups.all
     @group_category = GroupCategory.all
+
+    return nil if params[:keyword] == ""
+    @incremental_search = @group.where('name LIKE(?)', "%#{params[:keyword]}%").limit(20).page(params[:page]).per(30)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+
     @advanced_search = current_user.groups.ransack(params[:q])
     @result = @advanced_search.result.page(params[:page]).per(30)
   end
