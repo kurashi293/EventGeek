@@ -5,34 +5,37 @@
       = icon "fas", "home"
       .container__link--text HOME
 
-    %button{type: "submit", value: 1, class: "container__category active"}
-      音楽
-    %button{type: "submit", value: 2, class: "container__category"}
-      舞台
-    %button{type: "submit", value: 3, class: "container__category"}
-      プロモーション
-    %button{type: "submit", value: 4, class: "container__category"}
-      キャンペーン
-    %button{type: "submit", value: 5, class: "container__category"}
-      セミナー
-    %button{type: "submit", value: 6, class: "container__category"}
-      大会
-    %button{type: "submit", value: 7, class: "container__category"}
-      各種式典
-    %button{type: "submit", value: 8, class: "container__category"}
-      地域
-    %button{type: "submit", value: 9, class: "container__category"}
-      スポーツ
-    %button{type: "submit", value: 10, class: "container__category"}
-      子ども向け
-    %button{type: "submit", value: 11, class: "container__category"}
-      アウトドア
-    %button{type: "submit", value: 12, class: "container__category"}
-      パーティー
-    %button{type: "submit", value: 13, class: "container__category"}
-      施工と軽作業
-    %button{type: "submit", value: 14, class: "container__category"}
-      その他
+    // カテゴリー検索
+    = form_with url: category_search_groups_path, method: "get", id: "category-form", local: true do |f|
+      = f.hidden_field :category_id, class: "change-val"
+      %button{type: "submit", value: 1, class: "container__category active"}
+        音楽
+      %button{type: "submit", value: 2, class: "container__category"}
+        舞台
+      %button{type: "submit", value: 3, class: "container__category"}
+        プロモーション
+      %button{type: "submit", value: 4, class: "container__category"}
+        キャンペーン
+      %button{type: "submit", value: 5, class: "container__category"}
+        セミナー
+      %button{type: "submit", value: 6, class: "container__category"}
+        大会
+      %button{type: "submit", value: 7, class: "container__category"}
+        各種式典
+      %button{type: "submit", value: 8, class: "container__category"}
+        地域
+      %button{type: "submit", value: 9, class: "container__category"}
+        スポーツ
+      %button{type: "submit", value: 10, class: "container__category"}
+        子ども向け
+      %button{type: "submit", value: 11, class: "container__category"}
+        アウトドア
+      %button{type: "submit", value: 12, class: "container__category"}
+        パーティー
+      %button{type: "submit", value: 13, class: "container__category"}
+        施工と軽作業
+      %button{type: "submit", value: 14, class: "container__category"}
+        その他
 
     = link_to user_path(current_user), class: "container__link border-top" do
       = icon "fas", "user-cog"
