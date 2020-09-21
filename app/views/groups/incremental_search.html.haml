@@ -1,0 +1,127 @@
+.toppage-wrap
+  // ヘッダー
+  .toppage-header
+    = icon "fa", "bars", class: "toppage-bars-icon"
+    = icon "fa", "arrow-left", class: "toppage-arrow-left"
+
+    %h1= link_to "Event Geek", groups_path, class: "toppage-header__title"
+
+    // インクリメンタルサーチ
+    = form_with url: incremental_search_groups_path, method: "get", id: "search-form", local: true do |f|
+      .toppage-header__input
+        .wrapper
+          = f.text_field :keyword, id: "incremental-search", class: "input-field", autocomplete: "off", placeholder: "Search"
+          // 検索結果
+          .result-field
+            #incremental-search-result
+        %button{type: "submit", class: "input-submit"}
+          = icon "fa", "search"
+
+    // 詳細検索、新規作成ボタン
+    .toppage-header__buttons
+      = icon "fa", "search", class: "search-icon"
+      = link_to "", class: "link-button calc-left-margin", id: "modal-open" do
+        = icon "fa", "th-list", class: "th-list-icon"
+        .link-button__text
+          Filter
+      = link_to new_group_path, class: "link-button left-margin" do
+        = icon "fa", "folder-plus", class: "folder-plus-icon"
+        .link-button__text
+          New Group
+
+  -# // ransackでの検索
+  = search_form_for @advanced_search, url: groups_path, method: "get" do |f|
+    .search-modal
+      // 検索エリア
+      %section.search-area
+        .search-area__link
+          = link_to "", class: "modal-close" do
+            = icon "fa", "window-close", class: "window-close-icon"
+        // 見出し
+        .search-area__header
+          Search
+        .search-area__description
+          検索条件を指定してください。全項目に条件を指定しなくても検索できます。
+
+        // 検索フォーム
+        .search-area__menue
+          = f.label :name, "Keyword", class: "search-label"
+          .search-area__menue--item
+            = f.search_field :name_cont, placeholder: "検索", class: "input-field", autofocus: true
+
+        .search-area__menue
+          = f.label :group_category_id, "Category", class: "search-label"
+          .search-area__menue--item
+            = f.collection_select(:group_category_id_eq, @group_category, :id, :name, {include_blank: "指定しない"}, class: "select-field")
+
+        .search-area__menue
+          = f.label :created_at, "Date", class: "search-label"
+          .search-area__menue--item
+            = f.date_select :created_at_gteq, { use_month_numbers: true, include_blank: true }, class: "date-select"
+            以降 &nbsp;
+            %br.hide-br
+            = f.date_select :created_at_lteq, { use_month_numbers: true, include_blank: true }, class: "date-select"
+            以前
+
+        .search-area__submit
+          = f.submit "search", class: "search-button"
+
+    = render "groups/sidebar"
+
+  .main-wrap
+    %section.select-area
+      // ransackの検索結果があった場合の処理
+      - if @incremental_search.present?
+        - @incremental_search.order(created_at: :desc).each do |group|
+          .select-group{"data-category-id" => "#{group.group_category.id}"}
+            // グループ名
+            .select-group__name
+              = link_to group_path(group.id), class: "select-link" do
+                - japanese = /\A[ぁ-んァ-ン一-龥]/
+                - english = /\A[\w\s]+\z/
+                = group.name[0..17] << "..." if group.name.match(japanese) && group.name.length > 18
+                = group.name[0..26] << "..." if group.name.match(english) && group.name.length > 27
+                = group.name unless group.name.match(japanese) && group.name.length > 18 or group.name.match(english) && group.name.length > 27
+                .select-group__name--border
+
+            // グループの補足情報
+            .select-group__detail
+              // 左側の画像
+              .select-group__detail--image
+                - if group.image.present?
+                  = image_tag group.image.url, class: "group__image--display"
+                - else
+                  = image_tag "https://truck-kinkisharyo.com/wp/wp-content/uploads/2019/01/noimage.jpg", class: "group__image--blank"
+
+              // 真ん中のグループ情報
+              .select-group__detail--more
+                .group__date
+                  作成日 &nbsp;
+                  = group.created_at.strftime("%Y/%m/%d")
+                .group__category
+                  = group.group_category.name
+                .group__users-count
+                  所属人数 &nbsp;
+                  = group.users.length
+                  人
+              // 右側のボタン
+              .select-group__detail--link
+                = link_to "Edit", edit_group_path(group), class: "group__link--edit"
+                = link_to "Delete", group_path(group), method: "delete", data: {confirm: "この操作を元に戻すことはできません。\n選択したグループを削除しますか？"}, class: "group__link--delete"
+
+        .hidden-group
+        .hidden-group
+        // グループが一つも存在しない場合の処理
+      - elsif @group.length == 0
+        .blank-box
+          .select-group-blank
+            グループが作成されていません
+            %br/
+            新規作成してください
+
+        // 検索で一致するグループが無い場合の処理
+      - else
+        .blank-box
+          .select-group-blank
+            検索条件に一致するグループはありません
+          = link_to "一覧へ戻る", groups_path, class: "back-to-top"
