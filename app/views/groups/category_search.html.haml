@@ -68,12 +68,12 @@
 
   = render "groups/sidebar"
 
+  // 一覧・選択のエリア
   .main-wrap
     %section.select-area
-      // ransackの検索結果があった場合の処理
-      - if @incremental_search.present?
-        - @incremental_search.order(created_at: :desc).each do |group|
-          .select-group{"data-category-id" => "#{group.group_category.id}"}
+      - if @category_search.present?
+        - @category_search.order(created_at: :desc).each do |group|
+          .select-group
             // グループ名
             .select-group__name
               = link_to group_path(group.id), class: "select-link" do
@@ -108,7 +108,6 @@
               .select-group__detail--link
                 = link_to "Edit", edit_group_path(group), class: "group__link--edit"
                 = link_to "Delete", group_path(group), method: "delete", data: {confirm: "この操作を元に戻すことはできません。\n選択したグループを削除しますか？"}, class: "group__link--delete"
-
         .hidden-group
         .hidden-group
         // グループが一つも存在しない場合の処理
