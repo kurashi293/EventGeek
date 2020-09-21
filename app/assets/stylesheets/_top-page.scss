@@ -441,3 +441,447 @@
     }
   }
 }
+
+
+
+
+
+
+// groups/index レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+  .toppage-wrap{
+    // ヘッダー
+    .toppage-header{
+      .toppage-arrow-left{
+        margin-left: calc(2.5vw + 0.5rem);
+        font-size: 2.2rem;
+        cursor: pointer;
+      }
+      .toppage-arrow-left:hover{
+        color: #008BBB;
+      }
+
+      // 詳細検索、新規作成ボタン
+      &__buttons{
+        font-size: 2.2rem;
+        .search-icon{
+          display: inline;
+          cursor: pointer;
+        }
+        .search-icon:hover{
+          color: #008BBB;
+        }
+        .link-button{
+          min-width: initial;
+          border: none;
+          color: white;
+          &__text{
+            display: none;
+          }
+          .th-list-icon{
+            display: inline;
+          }
+          .folder-plus-icon{
+            display: inline;
+
+          }
+        }
+        .link-button:hover{
+          color: #008BBB;
+          text-shadow: initial;
+          background: initial;
+          box-shadow: initial;
+          opacity: initial;
+        }
+        .left-margin{
+          margin: 0 0 0 calc(2vw + 0.5rem);
+        }
+        .calc-left-margin{
+          margin: 0 0 0 calc(2vw + 1rem);
+        }
+      }
+    }
+
+    // 詳細検索のモーダル
+    .search-modal{
+      height: 100vh;
+      width: 100vw;
+
+      //検索エリア
+      .search-area{
+        width: 100%;
+        max-width: 60rem;
+
+        // 見出し
+        &__header{
+          width: 100%;
+          max-width: 60rem;
+        }
+        &__description{
+          width: 100%;
+          max-width: 60rem;
+        }
+
+        // 検索フォーム
+        &__menue{
+          width: 100%;
+          max-width: 60rem;
+
+          // 検索・選択ボックス
+          &--item{
+            width: 100%;
+
+            // f.search_field
+            .input-field{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.collection_select
+            .select-field{
+              width: 100%;
+              max-width: 30rem;
+            }
+          }
+        }
+      }
+    }
+
+    // サイドバー
+    .side-bar{
+      left: -160px;
+    }
+
+    // 一覧表示エリア
+    .main-wrap{
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0;
+      left: 0;
+    }
+  }
+}
+
+
+
+
+
+// groups/indexレスポンシブ（タブレット対応）
+@media screen and (max-width: 701px){
+  .toppage-wrap{
+    // 一覧表示エリア
+    .main-wrap{
+      padding: 0 2.5vw 0 2.5vw;
+      .select-area{
+        display: block;
+        justify-content: initial;
+        margin-top: 0;
+        .select-group{
+          margin: 0 auto 0 auto;
+          padding: 3rem 0 3rem 0;
+          border-bottom:  solid 0.5px #AAAAAA;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+//groups/indexレスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+  .toppage-wrap{
+    // ヘッダー
+    .toppage-header{
+      height: 5rem;
+      padding: 0.5rem 0 0.5rem 0;
+
+      .toppage-bars-icon{
+        font-size: 1.7rem;
+      }
+      .toppage-arrow-left{
+        font-size: 1.7rem;
+      }
+
+      &__title{
+        font-size: 2rem;
+        text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                    -0.1rem 0.1rem 0  #008BBB,
+                    0.1rem -0.1rem 0  #008BBB,
+                    -0.1rem -0.1rem 0  #008BBB;
+      }
+
+      // 詳細検索、新規作成ボタン
+      &__buttons{
+        font-size: 1.7rem;
+        .link-button{
+          padding: 1rem 0.5rem 1rem 0.5rem;
+        }
+      }
+    }
+
+    // 詳細検索のモーダル
+    .search-modal{
+      //検索エリア
+      .search-area{
+        max-width: initial;
+
+        //検索エリアを非表示にするリンク
+        &__link{
+          .modal-close{
+            .window-close-icon{
+              font-size: 2.5rem;
+            }
+          }
+        }
+
+        // 見出し
+        &__header{
+          max-width: initial;
+          font-size: 1.8rem;
+          margin-bottom: 0.5rem;
+        }
+        &__description{
+          max-width: initial;
+          font-size: 1.4rem;
+          margin-bottom: 1.5rem;
+        }
+
+        // 検索フォーム
+        &__menue{
+          max-width: initial;
+          justify-content: space-between;
+
+          // 項目
+          .search-label{
+            font-size: 1.4rem;
+            width: 20%;
+            min-width: 7rem;
+          }
+
+          // 検索・選択ボックス
+          &--item{
+            font-size: 1.4rem;
+            width: 80%;
+            word-break: keep-all;
+
+            // f.search_field
+            .input-field{
+              max-width: initial;
+              width: 100%;
+              height: 4rem;
+            }
+
+            // f.collection_select
+            .select-field{
+              max-width: initial;
+              width: 100%;
+              height: 4rem;
+            }
+
+            // f.date_select
+            .date-select{
+              height: 3rem;
+            }
+          }
+        }
+
+        // 送信ボタン
+        &__submit{
+          margin-top: 1.5rem;
+          .search__button{
+            width: 8rem;
+            height: 4rem;
+          }
+        }
+      }
+    }
+    .side-bar{
+      height: calc(100% - 5rem);
+      top: 5rem;
+    }
+    .main-wrap{
+      height: calc(100% - 5rem);
+      top: 5rem;
+      .select-area{
+        .select-group{
+          padding: 2rem 0 2rem 0;
+        }
+        .blank-box{
+          .select-group-blank{
+            font-size: 1.4rem;
+          }
+
+          // 検索で一致するグループが無い場合、トップページへ戻るためのリンク
+          .back-to-top{
+            display: block;
+            margin-top: 5rem;
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+// groups/indexレスポンシブ（小さめサイズのスマホ対応）
+@media screen and (max-width: 351px){
+  .toppage-wrap{
+    // 詳細検索のモーダル
+    .search-modal{
+      padding: 0 2.5vmin 0 2.5vmin;
+      //検索エリア
+      .search-area{
+        //検索エリアを非表示にするリンク
+        &__link{
+          .modal-close{
+            .window-close-icon{
+              font-size: 2rem;
+            }
+          }
+        }
+
+        // 見出し
+        &__header{
+          font-size: 1.7rem;
+        }
+        &__description{
+          font-size: 1.3rem;
+        }
+
+        // 検索フォーム
+        &__menue{
+          // 項目
+          .search-label{
+            font-size: 1.3rem;
+            min-width: 6.5rem;
+          }
+
+          // 検索・選択ボックス
+          &--item{
+            font-size: 1.3rem;
+
+            // f.date_select
+            .date-select{
+              padding: 1.4245vmin;
+            }
+          }
+        }
+        // 送信ボタン
+        &__submit{
+          .search__button{
+            width: 8rem;
+            height: 4rem;
+          }
+        }
+      }
+    }
+
+    // サイドバー
+    .side-bar{
+      left: -160px;
+    }
+    // 一覧表示エリア
+    .main-wrap{
+      .select-area{
+        // 個別のグループ本体
+        .select-group{
+          width: 94vmin;
+          // グループ名
+          &__name{
+            font-size: 4.2735vmin;
+            letter-spacing: 0.14245vmin;
+          }
+
+          // グループの補足情報
+          &__detail{
+            // サムネイル
+            &--image{
+              height: 28.49vmin;
+              min-height: 6rem;
+              width: 28.49vmin;
+              min-width: 6rem;
+              .group__image--display{
+                height: 28.49vmin;
+                min-height: 6rem;
+                width: 28.49vmin;
+                min-width: 6rem;
+              }
+              .group__image--blank{
+                height: 28.49vmin;
+                min-height: 6rem;
+                width: 28.49vmin;
+                min-width: 6rem;
+              }
+            }
+
+            // グループ情報
+            &--more{
+              font-size: 3.9886vmin;
+            }
+
+            // edit, deleteボタン
+            &--link{
+              font-size: 3.9886vmin;
+              .group__link--edit{
+                padding: 2.279vmin 2.849vmin;
+              }
+              .group__link--delete{
+                padding: 2.279vmin 2.849vmin;
+              }
+            }
+          }
+        }
+
+        // 並びの整合性を保つための隠しブロック
+        .hidden-group{
+          width: 94vmin;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+// groups/indexレスポンシブ（最小サイズのスマホ対応）
+@media screen and (max-width: 281px){
+  .toppage-wrap{
+    // ヘッダー
+    .toppage-header{
+      .toppage-bars-icon{
+        font-size: 6.049822vmin;
+      }
+      .toppage-arrow-left{
+        font-size: 6.049822vmin;
+      }
+      &__title{
+        font-size: 7.1174377vmin;
+      }
+
+      // 詳細検索、新規作成ボタン
+      &__buttons{
+        font-size: 6.049822vmin;
+        .link-button{
+          padding: 1rem 1.779vmin 1rem 1.779vmin;
+        }
+        .left-margin{
+          margin: 0 0 0 calc(2vw + 3.5587vmin);
+        }
+        .calc-left-margin{
+          margin: 0 0 0 calc(2vw + 3.5587vmin);
+        }
+      }
+    }
+  }
+}
