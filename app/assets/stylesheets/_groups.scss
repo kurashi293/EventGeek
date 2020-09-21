@@ -3,308 +3,151 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-// .form-title--green{
-//   font-family: 'Impact', sans-serif;
-//   text-align: center;
-//   font-size: 50px;
-//   margin-bottom: 4.5%;
-//   padding-top: 4.5%;
-//   color: #005500;
-//   text-shadow: 2px 2px 0 #BBBBBB,
-//               -2px 2px 0 #BBBBBB,
-//               2px -2px 0 #BBBBBB,
-//               -2px -2px 0 #BBBBBB;
-// }
 
-.list-field{
-  font-size: 17px;
-}
-
-.list-field__members{
-  margin-top: 15px;
-  overflow-x: scroll;
-}
-
-.list-field__list{
-border-bottom: solid 1px #AAAAAA;
-margin: 3px auto 30px;
-}
-
-// .form-submit__green{
-//   display: inline-block;
-//   width: 110px;
-//   height: 45px;
-//   background-color:  black;
-//   font-size: 16px;
-//   color: #228B22;
-//   font-weight: bold;
-//   margin: 1em 0 5em 0;
-//   border-color: #228B22;
-
-//   //hoverエフェクト用
-//   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-//   outline: 1px solid;
-//   outline-color: rgba(255, 255, 255, .5);
-//   outline-offset: 0px;
-//   text-shadow: none;
-//   transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-// }
-
-// .form-submit__green:hover{
-//   border: 1px solid;
-//   box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
-//   outline-color: rgba(255, 255, 255, 0);
-//   outline-offset: 15px;
-//   text-shadow: 1px 1px 2px #228B22;
-// }
-
-
-.group-alert{
-  color: red;
-  margin-bottom: 5.5em;
-}
-
-
-
-
-
-.search-area{
-  width: 36em;
-  margin: auto;
-  color: white;
-  &__header{
-    font-family: 'Impact', sans-serif;
-    border-bottom: solid 1px #AAAAAA;
-    text-align: left;
-    font-size: 1.4375em;
-    margin-bottom: 0.3em;
-  }
-  &__description{
-    margin-bottom: 1.3em;
-  }
-  &__menue{
-    display: flex;
-    margin-bottom: 1.5em;
-    &--label{
-      font-size: 17px;
-      width: 6.471em;
-      padding-top: 0.5em;
-      // .label__keyword{
-      // }
-      // .label__category{
-      // }
-      // .label__date{
-      // }
-    }
-    &--date-label{
-      font-size: 17px;
-      width: 6.471em;
-      padding-top: 0.15em;
-    }
-    &--item{
-      .item__input{
-        width: 21.5em;
-        height: 2.8em;
-        padding: 0.3em;
-        box-sizing: border-box;
-      }
-      .item__category{
-        width: 16.5em;
-        height: 2.8em;
-        padding: 0.3em;
-        box-sizing: border-box;
-        background: white;
-      }
-      .item__date{
-        height: 1.8em;
-      }
-    }
-  }
-  &__submit{
-    margin-top: 3.15em;
-    text-align: center;
-    .search__button{
-      width: 6em;
-      padding: 0.5em;
-      box-sizing: border-box;
-      background: black;
-      color: white;
-      border-color: #AAAAAA;
-    }
-  }
-}
-
-
-
-
-
-.select-wrap{
-  overflow: auto;
-  height: 100vh;
+// groups/show
+.group-show-wrap{
+  height: calc(100% - 58px - 60px);
   width: 100%;
-  background: black;
-  .select-area{
-    display: flex;
-    flex-flow: wrap;
-    margin-top: 7.2em;
-    .select-group{
-      margin: auto;
-      color: white;
-      width: 38.5em;
-      padding: 2em;
+  position: fixed;
+  top: 5.8rem;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 0 2.5vw 3.5rem 2.5vw;
+  display: flex;
+  justify-content: space-between;
+
+  // 左側のコンテンツ
+  .main-wrap{
+    width: 66.25vw;
+    margin: 3.5rem 0 0 0;
+    text-align: center;
+
+    // グループメンバー
+    .members-section{
+      width: 100%;
+      white-space: nowrap;    //はみ出しを折り返さない
+      overflow-x: auto;       //横方向のスクロール
       box-sizing: border-box;
-      border-top: solid 0.5px #AAAAAA;
-      border-bottom:  solid 0.5px #AAAAAA;
-      &__name{
-        position: relative;
-        padding-left: 25px;
-        display: inline-block;
-        font-size: 1.25em;
-        margin-bottom: 1.8em;
-        white-space: nowrap;
-        .select-link{
-          text-align: left;
-          text-decoration: none;
-          color: white;
-        }
-        &--border::before{
-          position: absolute;
-          content: '';
-          bottom: -3px;
-          left: 0;
-          width: 0;
-          height: 0;
-          border: none;
-          border-left: solid 15px transparent;
-          border-bottom: solid 15px steelblue;
-        }
-        &--border::after{
-          position: absolute;
-          content: '';
-          bottom: -3px;
-          left: 10px;
-          width: 100%;
-          border-bottom: solid 3px steelblue;
-        }
-      }
-      &__detail{
+      padding: 1rem 0 1rem 0;
+      margin-bottom: 5rem;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      border-top: solid 1px #999999;
+      border-bottom: solid 1px #999999;
+
+      // 個別のユーザー
+      &__user{
+        height: 100%;
+        width: 8.5rem;
+        display: block;
+        margin-right: 1rem;
+        margin-left: 1rem;
         display: flex;
+        flex-flow: column;
+        align-items: center;
         justify-content: space-between;
-        &--image{
-          height: 7.5em;
-          width: 7.5em;
-          .group__image--display{
-            height: 7.5em;
-            width: 7.5em;
-          }
-          .group__image--blank{
-            height: 7.5em;
-            width: 7.5em;
-          }
+
+        // 登録済みの場合
+        .avatar{
+          height: 6rem;
+          width: 6rem;
+          border-radius: 100%;
+          box-sizing: border-box;
+          border: solid 0.5px #ccc;
         }
-        &--more{
-          white-space: nowrap;
-          display: flex;
-          justify-content: space-evenly;
-          flex-flow: column;
+
+        // 未登録の場合
+        .blank-avatar{
+          font-size: 6rem;
+          opacity: 0.3;
         }
-        &--link{
+        &--name{
+          height: 2.1rem;
+          width: 8.5rem;
+          font-size: 1.4rem;
+          color: #333333;
+          margin-top: 0.2rem;
+          overflow: hidden;
+        }
+      }
+    }
+    .members-section::-webkit-scrollbar{
+      display: none;
+    }
+
+    // 詳細情報
+    .detail-section{
+      width: 100%;
+      background: whitesmoke;
+      box-sizing: border-box;
+      padding: 3rem 3% 3rem 3%;
+      box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+      -webkit-box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+      -moz-box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+      display: flex;
+
+      .left-container{
+        width: 50%;
+        text-align: left;
+        .group-image{
+          height: 17rem;
+          width: 85%;
+        }
+      }
+
+      .right-container{
+        width: 50%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        text-align: left;
+        color: #333333;
+        &__list{
           display: flex;
-          justify-content: space-between;
-          flex-flow: column;
-          .group__link--edit{
-            text-decoration: none;
-            display: inline-block;
-            padding: 0.3em 1em;
-            border-radius: 3px;
-            text-align: center;
-            border: solid 0.1px whitesmoke;
-            background: steelblue;
-            color: black;
-          }
-          .group__link--delete{
-            text-decoration: none;
-            display: inline-block;
-            padding: 0.3em 1em;
-            border-radius: 3px;
-            text-align: center;
-            border: solid 0.1px whitesmoke;
-            background: steelblue;
-            color: black;
+          align-items: center;
+          flex-wrap: wrap;
+          &--left-space{
+            width: 15rem;
+            min-width: 15rem;
+            white-space: nowrap;
           }
         }
       }
     }
-    .select-group--mistake{
-      color: red;
-      font-size: 17px;
-      margin: auto;
-    }
-    .hidden-group{
-      width: 38.5em;
-      margin: auto;
-    }
-  }
-}
 
+    // 共有事項
+    .notice-section{
+      width: 100%;
+      margin-bottom: 5rem;
+      .notice-box{
+        height: auto;
+        width: 100%;
+        background: whitesmoke;
+        box-sizing: border-box;
+        padding: 3rem 3% 3rem 3%;
+        color: #333333;
+        box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
 
+        // テキストが存在する場合
+        &__body{
+          height: 100%;
+          width: 100%;
+          word-break: break-all;
+          overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
+          text-align: left;
+          font-size: 1.5rem;
+          line-height: 3rem;
+          letter-spacing: 0.1rem;
+        }
 
-
-
-.pagination{
-  justify-content: center;
-  display: flex;
-  cursor: pointer;
-  margin-top: 8.4375em;
-  font-size: 1.125em;
-}
-.page-item{
-  border: solid 1px white;
-  padding: 0.3em 0.8em 0.3em 0.8em;
-}
-.page-link{
-  color: #FFCC00;
-  text-decoration: none;
-}
-
-
-
-
-
-.group-icon__select{
-  display: inline-block;
-  font-size: 16px;
-}
-
-
-.group-icon--preview{
-  height: 8.5em;
-  width: 8.5em;
-}
-
-
-.group-user {
-  padding: 0 0 5px;
-  line-height: 3.5em;
-  font-size: 1em;
-  border-bottom: 1px solid #AAAAAA;
-  display: flex;
-  justify-content: center;
-  &:after {
-    content: "";
-    clear: both;
-    display: block;
-  }
-  &__btn {
-    display: inline-block;
-    margin-left: 5em;
-    cursor: pointer;
-    white-space: nowrap;
-    &--add {
-      color: #008BBB;
-    }
-    &--remove {
-      color: #BA002F;
+        // テキストが存在しなかった場合
+        &__blank-body{
+          text-align: center;
+        }
+      }
     }
   }
 }
@@ -313,34 +156,152 @@ margin: 3px auto 30px;
 
 
 
-.user-search-not-remove{
-  display: inline-block;
-  margin-left: 5em;
-  color: #BA002F;
-  white-space: nowrap;
+// groups/show レスポンシブ（タブレット対応）
+@media screen and (max-width: 999px){
+
+  .group-show-wrap{
+    display: flex;
+    flex-flow: column;
+    justify-content: initial;
+
+    // 左側のコンテンツ
+    .main-wrap{
+      width: 100%;
+      margin: 3.5rem auto 5rem auto;
+    }
+  }
 }
 
 
-.form-field__search{
-  margin-bottom: 2em;
+
+
+
+// groups/show レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+  .group-show-wrap{
+    .main-wrap{
+      // 詳細情報
+      .detail-section{
+        display: flex;
+        flex-flow: column;
+
+        .left-container{
+          width: 100%;
+          margin-bottom: 1.5rem;
+          .group-image{
+            width: 100%;
+            height: 20rem;
+          }
+        }
+
+        .right-container{
+          width: 100%;
+          text-align: left;
+
+          .margin{
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+  }
 }
 
-.search-field{
-  padding: 0 37% 0;
-}
-
-#user-search-result{
-  padding: 0 37% 0;
-}
 
 
-.link__back{
-  margin: 7em 0 5em;
-  text-align: center;
-}
 
 
-.javascript-back{
-  text-decoration: none;
-  color: white;
+// groups/show レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .group-show-wrap{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    padding: 2rem 0 2rem 0;
+    margin: auto;
+
+    // 左側のコンテンツ
+    .main-wrap{
+      width: 100%;
+      margin: 0 0 5rem 0;
+
+      // グループメンバー
+      .members-section{
+        padding: 0.8rem 0 0.8rem 0;
+        margin-bottom: 1rem;
+
+        // 個別のユーザー
+        &__user{
+          width: 7.5rem;
+          margin-right: 0.3rem;
+          margin-left: 0.3rem;
+
+          // 登録済みの場合
+          .avatar{
+            height: 5rem;
+            width: 5rem;
+          }
+
+          // 未登録の場合
+          .blank-avatar{
+            font-size: 5rem;
+            opacity: 0.3;
+          }
+          &--name{
+            height: 1.8rem;
+            width: 7.5rem;
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .members-section::-webkit-scrollbar{
+        display: none;
+      }
+
+      // 詳細情報
+      .detail-section{
+        padding: 2rem 3% 2rem 3%;
+
+        .left-container{
+          margin-bottom: 1rem;
+          .group-image{
+            height: 15rem;
+          }
+        }
+
+        .right-container{
+          font-size: 1.4rem;
+          &__list{
+            &--left-space{
+              width: 13rem;
+              min-width: 13rem;
+            }
+          }
+          .margin{
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+
+      // 共有事項
+      .notice-section{
+        margin-bottom: initial;
+        .notice-box{
+          font-size: 1.3rem;
+          padding: 2rem 3% 2rem 3%;
+
+          // テキストが存在する場合
+          &__body{
+            line-height: initial;
+            letter-spacing: 0.5px;
+          }
+
+          // テキストが存在しなかった場合
+          &__blank-body{
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
 }

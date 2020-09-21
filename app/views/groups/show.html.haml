@@ -1,43 +1,81 @@
 = render "share/header"
-.toppage-wrap
 
-  .toppage-users
-    .users-bar
+.group-show-wrap
+  // 左側のコンテンツ
+  .main-wrap
+    // グループメンバー
+    .members-section
       -@group.users.each do |users|
-        -if users.avatar.present?
-          .users-bar__avatar
-            = image_tag users.avatar.url, class: "all-avatar"
-            .users-bar__name
-              - japanese = /\A[ぁ-んァ-ン一-龥]/
-              - english = /\A[\w\s]+\z/
-              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
-              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
-              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
+        .members-section__user
+          -if users.avatar.present?
+            = image_tag users.avatar.url, class: "avatar"
+          - else
+            = icon "fas", "user-circle", class: "blank-avatar"
+          .members-section__user--name
+            // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+            - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+            // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+            - english = /\A[\w\s]+\z/
+
+            // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+            - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+            - if users.name.match(japanese) && users.name.length > 5
+              = users.name[0..4] << "..."
+            - elsif users.name.match(english) && users.name.length > 7
+              = users.name[0..6] << "..."
+            - elsif users.name.match(all_characters) && users.name.length > 6
+              = users.name[0..5] << "..."
+            - else
+              = users.name
+
+    // 詳細情報
+    .detail-section
+      .left-container
+        - if @group.image.present?
+          = image_tag @group.image.url, class: "group-image"
         - else
-          .users-bar__avatar
-            = icon "fas", "user-circle", class: "all-avatar__blank"
-            .users-bar__name
-              - japanese = /\A[ぁ-んァ-ン一-龥]/
-              - english = /\A[\w\s]+\z/
-              = users.name[0..4] << "..." if users.name.match(japanese) && users.name.length > 5
-              = users.name[0..6] << "..." if users.name.match(english) && users.name.length > 7
-              = users.name unless users.name.match(japanese) && users.name.length > 5 or users.name.match(english) && users.name.length > 7
+          = image_tag "https://truck-kinkisharyo.com/wp/wp-content/uploads/2019/01/noimage.jpg", class: "group-image"
 
-  .toppage-information
-    .information-header
-      Information
-    .information-ground
-      = render "toppages/information"
+      .right-container
+        .right-container__list.margin
+          .right-container__list--left-space
+            = icon "fa", "clock"
+            Created date
+          .right-container__list--right-space
+            = @group.created_at.strftime("%Y/%m/%d")
 
-  .toppage-notice
-    .notice-header
-      Notice
-    .notice-box
-      - if @group.notice.present?
-        .notice-box__content
-          = safe_join(@group.notice.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
-      - else
-        .notice-box__content--blank
-          共有事項はありません
+        .right-container__list.margin
+          .right-container__list--left-space
+            = icon "fa", "edit"
+            Last updated
+          .right-container__list--right-space
+            = @group.updated_at.strftime("%Y/%m/%d")
+
+        .right-container__list.margin
+          .right-container__list--left-space
+            = icon "fa", "tag"
+            Category
+          .right-container__list--right-space
+            = @group.group_category.name
+
+        .right-container__list
+          .right-container__list--left-space
+            = icon "fa", "users"
+            Members
+          .right-container__list--right-space
+            = @group.users.length
+            人
+
+    // 共有事項
+    .notice-section
+      .notice-box
+        - if @group.notice.present?
+          .notice-box__body
+            = safe_join(@group.notice.split("\n"), tag(:br))       #simple_formatだと、f.text_areaで入力された連続改行が適応されなかったので、safe_joinを使用
+        - else
+          .notice-box__blank-body
+            共有事項はありません
 
 = render "share/navigation"
