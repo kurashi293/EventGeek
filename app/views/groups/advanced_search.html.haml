@@ -24,8 +24,8 @@
                   = group.name[0..17] << "..."
                 - elsif group.name.match(english) && group.name.length > 27
                   = group.name[0..26] << "..."
-                - elsif group.name.match(all_characters) && group.name.length > 22
-                  = group.name[0..21] << "..."
+                - elsif group.name.match(all_characters) && group.name.length > 18
+                  = group.name[0..17] << "..."
                 - else
                   = group.name
                 .select-group__name--border

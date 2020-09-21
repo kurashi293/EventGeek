@@ -1,71 +1,5 @@
 .toppage-wrap
-  // ヘッダー
-  .toppage-header
-    = icon "fa", "bars", class: "toppage-bars-icon"
-    = icon "fa", "arrow-left", class: "toppage-arrow-left"
-
-    %h1= link_to "Event Geek", groups_path, class: "toppage-header__title"
-
-    // インクリメンタルサーチ
-    = form_with url: incremental_search_groups_path, method: "get", id: "search-form", local: true do |f|
-      .toppage-header__input
-        .wrapper
-          = f.text_field :keyword, id: "incremental-search", class: "input-field", autocomplete: "off", placeholder: "Search"
-          // 検索結果
-          .result-field
-            #incremental-search-result
-        %button{type: "submit", class: "input-submit"}
-          = icon "fa", "search"
-
-    // 詳細検索、新規作成ボタン
-    .toppage-header__buttons
-      = icon "fa", "search", class: "search-icon"
-      = link_to "", class: "link-button calc-left-margin", id: "modal-open" do
-        = icon "fa", "th-list", class: "th-list-icon"
-        .link-button__text
-          Filter
-      = link_to new_group_path, class: "link-button left-margin" do
-        = icon "fa", "folder-plus", class: "folder-plus-icon"
-        .link-button__text
-          New Group
-
-  -# // ransackでの検索
-  = search_form_for @advanced_search, url: groups_path, method: "get" do |f|
-    .search-modal
-      // 検索エリア
-      %section.search-area
-        .search-area__link
-          = link_to "", class: "modal-close" do
-            = icon "fa", "window-close", class: "window-close-icon"
-        // 見出し
-        .search-area__header
-          Search
-        .search-area__description
-          検索条件を指定してください。全項目に条件を指定しなくても検索できます。
-
-        // 検索フォーム
-        .search-area__menue
-          = f.label :name, "Keyword", class: "search-label"
-          .search-area__menue--item
-            = f.search_field :name_cont, placeholder: "検索", class: "input-field", autofocus: true
-
-        .search-area__menue
-          = f.label :group_category_id, "Category", class: "search-label"
-          .search-area__menue--item
-            = f.collection_select(:group_category_id_eq, @group_category, :id, :name, {include_blank: "指定しない"}, class: "select-field")
-
-        .search-area__menue
-          = f.label :created_at, "Date", class: "search-label"
-          .search-area__menue--item
-            = f.date_select :created_at_gteq, { use_month_numbers: true, include_blank: true }, class: "date-select"
-            以降 &nbsp;
-            %br.hide-br
-            = f.date_select :created_at_lteq, { use_month_numbers: true, include_blank: true }, class: "date-select"
-            以前
-
-        .search-area__submit
-          = f.submit "search", class: "search-button"
-
+  = render "groups/header"
   = render "groups/sidebar"
 
   .main-wrap
@@ -77,11 +11,23 @@
             // グループ名
             .select-group__name
               = link_to group_path(group.id), class: "select-link" do
-                - japanese = /\A[ぁ-んァ-ン一-龥]/
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
                 - english = /\A[\w\s]+\z/
-                = group.name[0..17] << "..." if group.name.match(japanese) && group.name.length > 18
-                = group.name[0..26] << "..." if group.name.match(english) && group.name.length > 27
-                = group.name unless group.name.match(japanese) && group.name.length > 18 or group.name.match(english) && group.name.length > 27
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if group.name.match(japanese) && group.name.length > 18
+                  = group.name[0..17] << "..."
+                - elsif group.name.match(english) && group.name.length > 27
+                  = group.name[0..26] << "..."
+                - elsif group.name.match(all_characters) && group.name.length > 18
+                  = group.name[0..17] << "..."
+                - else
+                  = group.name
                 .select-group__name--border
 
             // グループの補足情報
@@ -125,3 +71,6 @@
           .select-group-blank
             検索条件に一致するグループはありません
           = link_to "一覧へ戻る", groups_path, class: "back-to-top"
+
+    // ページネーション
+    = paginate @incremental_search, window: 2
