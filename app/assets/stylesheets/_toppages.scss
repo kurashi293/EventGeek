@@ -4,110 +4,302 @@
 
 
 
-.toppage-wrap{
+.list-field{
+  font-size: 17px;
+}
+
+.list-field__members{
+  margin-top: 15px;
+  overflow-x: scroll;
+}
+
+.list-field__list{
+border-bottom: solid 1px #AAAAAA;
+margin: 3px auto 30px;
+}
+
+.group-alert{
+  color: red;
+  margin-bottom: 5.5em;
+}
+
+
+
+
+
+.search-area{
+  width: 36em;
+  margin: auto;
+  color: white;
+  &__header{
+    font-family: 'Impact', sans-serif;
+    border-bottom: solid 1px #AAAAAA;
+    text-align: left;
+    font-size: 1.4375em;
+    margin-bottom: 0.3em;
+  }
+  &__description{
+    margin-bottom: 1.3em;
+  }
+  &__menue{
+    display: flex;
+    margin-bottom: 1.5em;
+    &--label{
+      font-size: 17px;
+      width: 6.471em;
+      padding-top: 0.5em;
+      // .label__keyword{
+      // }
+      // .label__category{
+      // }
+      // .label__date{
+      // }
+    }
+    &--date-label{
+      font-size: 17px;
+      width: 6.471em;
+      padding-top: 0.15em;
+    }
+    &--item{
+      .item__input{
+        width: 21.5em;
+        height: 2.8em;
+        padding: 0.3em;
+        box-sizing: border-box;
+      }
+      .item__category{
+        width: 16.5em;
+        height: 2.8em;
+        padding: 0.3em;
+        box-sizing: border-box;
+        background: white;
+      }
+      .item__date{
+        height: 1.8em;
+      }
+    }
+  }
+  &__submit{
+    margin-top: 3.15em;
+    text-align: center;
+    .search__button{
+      width: 6em;
+      padding: 0.5em;
+      box-sizing: border-box;
+      background: black;
+      color: white;
+      border-color: #AAAAAA;
+    }
+  }
+}
+
+
+
+
+
+.select-wrap{
+  overflow: auto;
   height: 100vh;
   width: 100%;
-  position: fixed;          //画面全体にfixedが効いているので別要素のoverflowには使用しない
-  overflow: auto;
+  background: black;
+  .select-area{
+    display: flex;
+    flex-flow: wrap;
+    margin-top: 7.2em;
+    .select-group{
+      margin: auto;
+      color: white;
+      width: 38.5em;
+      padding: 2em;
+      box-sizing: border-box;
+      border-top: solid 0.5px #AAAAAA;
+      border-bottom:  solid 0.5px #AAAAAA;
+      &__name{
+        position: relative;
+        padding-left: 25px;
+        display: inline-block;
+        font-size: 1.25em;
+        margin-bottom: 1.8em;
+        white-space: nowrap;
+        .select-link{
+          text-align: left;
+          text-decoration: none;
+          color: white;
+        }
+        &--border::before{
+          position: absolute;
+          content: '';
+          bottom: -3px;
+          left: 0;
+          width: 0;
+          height: 0;
+          border: none;
+          border-left: solid 15px transparent;
+          border-bottom: solid 15px steelblue;
+        }
+        &--border::after{
+          position: absolute;
+          content: '';
+          bottom: -3px;
+          left: 10px;
+          width: 100%;
+          border-bottom: solid 3px steelblue;
+        }
+      }
+      &__detail{
+        display: flex;
+        justify-content: space-between;
+        &--image{
+          height: 7.5em;
+          width: 7.5em;
+          .group__image--display{
+            height: 7.5em;
+            width: 7.5em;
+          }
+          .group__image--blank{
+            height: 7.5em;
+            width: 7.5em;
+          }
+        }
+        &--more{
+          white-space: nowrap;
+          display: flex;
+          justify-content: space-evenly;
+          flex-flow: column;
+        }
+        &--link{
+          display: flex;
+          justify-content: space-between;
+          flex-flow: column;
+          .group__link--edit{
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.3em 1em;
+            border-radius: 3px;
+            text-align: center;
+            border: solid 0.1px whitesmoke;
+            background: steelblue;
+            color: black;
+          }
+          .group__link--delete{
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.3em 1em;
+            border-radius: 3px;
+            text-align: center;
+            border: solid 0.1px whitesmoke;
+            background: steelblue;
+            color: black;
+          }
+        }
+      }
+    }
+    .select-group--mistake{
+      color: red;
+      font-size: 17px;
+      margin: auto;
+    }
+    .hidden-group{
+      width: 38.5em;
+      margin: auto;
+    }
+  }
+}
+
+
+
+
+
+.pagination{
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  margin-top: 8.4375em;
+  font-size: 1.125em;
+}
+.page-item{
+  border: solid 1px white;
+  padding: 0.3em 0.8em 0.3em 0.8em;
+}
+.page-link{
+  color: #FFCC00;
+  text-decoration: none;
+}
+
+
+
+
+
+.group-icon__select{
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+.group-icon--preview{
+  height: 8.5em;
+  width: 8.5em;
+}
+
+
+.group-user {
+  padding: 0 0 5px;
+  line-height: 3.5em;
+  font-size: 1em;
+  border-bottom: 1px solid #AAAAAA;
+  display: flex;
+  justify-content: center;
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  &__btn {
+    display: inline-block;
+    margin-left: 5em;
+    cursor: pointer;
+    white-space: nowrap;
+    &--add {
+      color: #008BBB;
+    }
+    &--remove {
+      color: #BA002F;
+    }
+  }
+}
+
+
+
+
+
+.user-search-not-remove{
+  display: inline-block;
+  margin-left: 5em;
+  color: #BA002F;
+  white-space: nowrap;
+}
+
+
+.form-field__search{
+  margin-bottom: 2em;
+}
+
+.search-field{
+  padding: 0 37% 0;
+}
+
+#user-search-result{
+  padding: 0 37% 0;
+}
+
+
+.link__back{
+  margin: 7em 0 5em;
   text-align: center;
 }
 
 
-
-
-.group-bar__blank{
-  display: flex;
-  justify-content: center;
-  &--button{
-    border-radius: 3px;
-    height: 2.7em;
-    width: 10em;
-    background: steelblue;
-    padding: 1.2em 0 0;
-    border-bottom: solid 6px #274A66;
-    font-size: 1.1em;
-    margin: 0 3% 0;
-  }
-  .group-bar__list--action{
-    color: black;
-    text-decoration: none;
-    font-weight: 600;
-  }
-}
-
-.group-bar__blank--button:active{
-  -webkit-transform: translateY(5px);
-  transform: translateY(5px);         //沈み込み
-  border-bottom: none;                //線を消す
-}
-
-
-
-
-.toppage-users{
-  z-index: 1;
-  padding: 0 17% 0;
-  .users-bar{
-    white-space: nowrap;    //はみ出しを折り返さない
-    overflow-x: auto;       //横方向のスクロール
-    width: 100%;
-    height: 100px;
-    &__avatar{
-      display: inline-block;
-      margin-right: 0.4em;
-      margin-left: 0.4em;
-      width: 6.5em;
-    }
-    &__name{
-      overflow: hidden;
-    }
-  }
-  .all-avatar{
-    height: 3.75em;
-    width: 3.75em;
-    border-radius: 50%;
-  }
-  .all-avatar__blank{
-    font-size: 3.75em;
-    padding-bottom: 6px;
-  }
-}
-
-.users-bar::-webkit-scrollbar{
-  display: none;
-}
-
-
-
-
-.toppage-notice{
-  color: black;
-  padding: 5% 20% 10%;
-  .notice-header{
-    font-size: 1.6em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-  }
-  .notice-box{
-    height: 30em;
-    width: 100%;
-    background: whitesmoke;
-    box-sizing: border-box;
-    text-align: left;
-    line-height: 2em;        //行間の高さ
-    border: solid 1px;
-    padding: 5%;
-    letter-spacing: 1px;
-    overflow-wrap: break-word;      //日本語の場合、単語の途中であっても表示範囲に合わせて文字が折り返され、英語の場合は単語途中での改行は行わず、区切りの良い単語で改行するが、単語の長さが幅を超える場合は改行を行う
-    &__content{
-      height: 100%;
-      overflow: auto;
-    }
-  }
-  .notice-box__content::-webkit-scrollbar{
-    display: none;
-  }
-  .notice-box__content--blank{
-    text-align: center;
-  }
+.javascript-back{
+  text-decoration: none;
+  color: white;
 }
