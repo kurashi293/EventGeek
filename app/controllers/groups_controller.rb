@@ -83,6 +83,17 @@ class GroupsController < ApplicationController
 
 
 
+  def category_search
+    @group = current_user.groups.all
+    @group_category = GroupCategory.all
+
+    @category_search = current_user.groups.where(group_category_id: "#{params[:category_id]}").page(params[:page]).per(30)
+
+    @advanced_search = current_user.groups.ransack(params[:q])
+  end
+
+
+
   def set_group
     @group = Group.find(params[:id])
   end
