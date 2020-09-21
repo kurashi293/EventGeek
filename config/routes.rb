@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     collection do
       get "incremental_search"
+      get "category_search"
     end
 
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
