@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   before_action :set_task_images, only: [:edit]
 
 
+
   def index
     @task = Task.all
     @task = Task.new
@@ -16,7 +17,7 @@ class TasksController < ApplicationController
   def create
     @task = @group.tasks.new(task_params)
     if @task.save
-      redirect_to group_tasks_path
+      redirect_to group_tasks_path(@group)
     else
       render :index
     end
@@ -36,7 +37,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to group_tasks_path
+      redirect_to group_tasks_path(@group)
     else
       set_task_images
       render :edit
@@ -47,7 +48,7 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to group_tasks_path
+      redirect_to group_tasks_path(@group)
     else
       render :index
     end
@@ -88,7 +89,6 @@ class TasksController < ApplicationController
     # 2.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.length == 3
     # 1.times{@task.task_images.build} if @task.task_images.present? && @task.task_images.length == 4
   end
-
 
 
 

@@ -6,16 +6,18 @@ class Status < ApplicationRecord
   accepts_nested_attributes_for :working_hour
   accepts_nested_attributes_for :position
 
-  belongs_to :transceiver
-  belongs_to :meal
-  belongs_to :wear
-  belongs_to :rank
-  belongs_to :user
+
+  # Rail5からbelongs_toのデフォルトが関連先の値を検査するようになった。Rails4と同様に関連先を検査しないようにするには、belongs_toにoptional: trueを付与する
+  # 今回はoptional: trueを付与しなくても問題はないが、must existというエラーメッセージを表示したくないのでoptional: trueを設定
+  belongs_to :transceiver, optional: true
+  belongs_to :meal, optional: true
+  belongs_to :wear, optional: true
+  belongs_to :rank, optional: true
+  belongs_to :user, optional: true
   belongs_to :group
 
 
-  validates :user_id, uniqueness: { message: "既に作成されたユーザーです" }
-  validates :user_id, :transceiver_id, :meal_id, :wear_id, :rank_id,  presence: { message: "選択してください" }, numericality: { only_integer: true, message: "無効な値です" }
+  validates :user_id, :transceiver_id, :meal_id, :wear_id, :rank_id,  presence: { message: "選択してください" }
   validates :transceiver_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 2, message: "有効な値を選択してください" }
   validates :meal_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, message: "有効な値を選択してください" }
   validates :wear_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, message: "有効な値を選択してください" }

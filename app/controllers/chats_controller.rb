@@ -15,7 +15,7 @@ class ChatsController < ApplicationController
   def create
     @chat = @group.chats.new(chat_params)
     if @chat.save
-      redirect_to group_chats_path(params[:group_id])
+      redirect_to group_chats_path(@group)
       # #④
       # respond_to do |format|           #ajaxのオプションでdataTypeをjsonに指定しているので非同期通信でjson形式のデータが送られてくる
       #   format.html { redirect_to "group_chats_path(params[:group_id])" }
@@ -32,7 +32,7 @@ class ChatsController < ApplicationController
   def destroy
     @chat = Chat.find(params[:id])
     if @chat.destroy
-      redirect_to group_chats_path
+      redirect_to group_chats_path(@group)
     else
       render :index
     end
