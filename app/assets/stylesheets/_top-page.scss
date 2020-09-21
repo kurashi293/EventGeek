@@ -330,6 +330,7 @@
       }
     }
   }
+
   // 一覧表示エリア
   .main-wrap{
     height: calc(100% - 5.8rem);
@@ -508,7 +509,6 @@
     }
   }
 }
-
 
 
 
@@ -838,6 +838,15 @@
           }
         }
       }
+
+      //ページネーション
+      .pagination{
+        font-size: 1.6rem;
+        .page-item{
+          border: solid 0.5px white;
+          padding: 0.4rem 1rem 0.4rem 1rem;
+        }
+      }
     }
   }
 }
@@ -959,6 +968,18 @@
         .hidden-group{
           width: 94vmin;
         }
+      }
+
+      //ページネーション
+      .pagination{
+        font-size: 4.5584vmin;
+        .page-item{
+          border: solid 0.5px white;
+          padding: 1.1396vmin 2.849vmin 1.1396vmin 2.849vmin;
+        }
+      }
+      .page-item.active{
+        box-shadow: 0 0 1.9943vmin 0.5698vmin #fafdff inset;
       }
     }
   }

@@ -1,0 +1,76 @@
+.toppage-wrap
+  = render "groups/header"
+  = render "groups/sidebar"
+
+  .main-wrap
+    %section.select-area
+      // ransackの検索結果があった場合の処理
+      - if @result.present?
+        - @result.order(created_at: :desc).each do |group|
+          .select-group{"data-category-id" => "#{group.group_category.id}"}
+            // グループ名
+            .select-group__name
+              = link_to group_path(group.id), class: "select-link" do
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - english = /\A[\w\s]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if group.name.match(japanese) && group.name.length > 18
+                  = group.name[0..17] << "..."
+                - elsif group.name.match(english) && group.name.length > 27
+                  = group.name[0..26] << "..."
+                - elsif group.name.match(all_characters) && group.name.length > 22
+                  = group.name[0..21] << "..."
+                - else
+                  = group.name
+                .select-group__name--border
+
+            // グループの補足情報
+            .select-group__detail
+              // 左側の画像
+              .select-group__detail--image
+                - if group.image.present?
+                  = image_tag group.image.url, class: "group__image--display"
+                - else
+                  = image_tag "https://truck-kinkisharyo.com/wp/wp-content/uploads/2019/01/noimage.jpg", class: "group__image--blank"
+
+              // 真ん中のグループ情報
+              .select-group__detail--more
+                .group__date
+                  作成日 &nbsp;
+                  = group.created_at.strftime("%Y/%m/%d")
+                .group__category
+                  = group.group_category.name
+                .group__users-count
+                  所属人数 &nbsp;
+                  = group.users.length
+                  人
+              // 右側のボタン
+              .select-group__detail--link
+                = link_to "Edit", edit_group_path(group), class: "group__link--edit"
+                = link_to "Delete", group_path(group), method: "delete", data: {confirm: "この操作を元に戻すことはできません。\n選択したグループを削除しますか？"}, class: "group__link--delete"
+
+        .hidden-group
+        .hidden-group
+        // グループが一つも存在しない場合の処理
+      - elsif @group.length == 0
+        .blank-box
+          .select-group-blank
+            グループが作成されていません
+            %br/
+            新規作成してください
+
+        // 検索で一致するグループが無い場合の処理
+      - else
+        .blank-box
+          .select-group-blank
+            検索条件に一致するグループはありません
+          = link_to "一覧へ戻る", groups_path, class: "back-to-top"
+
+    // ページネーション
+    = paginate @result, window: 2
