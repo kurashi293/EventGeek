@@ -1,0 +1,415 @@
+// Place all the styles related to the toppages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+
+// groups/indexページ
+.toppage-wrap{
+  height: 100%;
+  width: 100%;
+  background: black;
+  background: rgba($color: #000000, $alpha: 0.9);
+  color: white;
+  box-sizing: border-box;
+
+  // ヘッダー
+  .toppage-header{
+    height: 5.8rem;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom:  solid 0.5px #AAAAAA;
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    align-items: center;
+
+    .toppage-bars-icon{
+      margin-left: calc(2.5vw + 0.5rem);
+      font-size: 2.2rem;
+      cursor: pointer;
+    }
+    .toppage-bars-icon:hover{
+      color: #008BBB;
+    }
+    .toppage-arrow-left{
+      display: none;
+    }
+
+    &__title{
+      display: flex;
+      align-items: center;
+      margin-left: 2vw;
+      padding-left: 1rem;
+      font-family: 'Impact', sans-serif;
+      text-decoration: none;
+      font-size: 2.5rem;
+      color: #330066;
+      text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                  -0.1rem 0.1rem 0  #008BBB,
+                  0.1rem -0.1rem 0  #008BBB,
+                  -0.1rem -0.1rem 0  #008BBB;
+    }
+
+    // 詳細検索、新規作成ボタン
+    &__buttons{
+      margin: 0 2.5vw 0 auto;
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      .search-icon{
+        display: none;
+      }
+      .link-button{
+        min-width: 8rem;
+        box-sizing: border-box;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        color: #008BBB;
+        border: solid 1px #008BBB;
+        text-decoration: none;
+        text-align: center;
+        .th-list-icon{
+          display: none;
+        }
+        .folder-plus-icon{
+          display: none;
+        }
+      }
+      .link-button:hover{
+        color: #fafdff;
+        text-shadow: 1px 1px 0 black;
+        background: #008BBB;
+        box-shadow: 0 3px 7px 3px #fafdff;
+        opacity: 0.7;
+      }
+      .left-margin{
+        margin: 0 0 0 2vw;
+      }
+    }
+  }
+
+  // 詳細検索のモーダル
+  .search-modal{
+    height: 100vh;
+    width: 100vw;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 2.5vw 0 2.5vw;
+    background: #151515;
+    display: none;
+    z-index: 15;
+    overflow: auto;
+
+    //検索エリア
+    .search-area{
+      width: 60rem;
+      margin: 15vh auto 0 auto;
+      color: white;
+
+      //検索エリアを非表示にするリンク
+      &__link{
+        text-align: right;
+        .modal-close{
+          text-decoration: none;
+          outline: none;
+          color: white;
+          .window-close-icon{
+            font-size: 3rem;
+          }
+        }
+        .modal-close:hover{
+          color: #008BBB;
+        }
+      }
+
+      // 見出し
+      &__header{
+        font-family: 'Impact', sans-serif;
+        border-bottom: solid 0.2rem #AAAAAA;
+        text-align: left;
+        font-size: 2.3rem;
+        margin-bottom: 0.6rem;
+      }
+      &__description{
+        margin-bottom: 2.5rem;
+      }
+
+      // 検索フォーム
+      &__menue{
+        display: flex;
+        margin-bottom: 2.5rem;
+        align-items: center;
+
+        // 項目
+        .search-label{
+          width: 11rem;
+        }
+
+        // 検索・選択ボックス
+        &--item{
+
+          // f.search_field
+          .input-field{
+            width: 36rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+          }
+
+          // f.collection_select
+          .select-field{
+            width: 30rem;
+            height: 4.5rem;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            background: white;
+          }
+
+          // f.date_select
+          .date-select{
+            height: 3.5rem;
+            padding: 0.5rem;
+            margin: 0 0.3rem 0 0.3rem;
+          }
+
+          // スクリーンサイズが635px以下ならば、.date-selectに改行を適用させる要素
+          .hide-br{
+            display: none;
+          }
+        }
+      }
+
+      // 送信ボタン
+      &__submit{
+        margin-top: 5rem;
+        text-align: center;
+        .search-button{
+          width: 10rem;
+          height: 4.5rem;
+          box-sizing: border-box;
+          font-weight: bold;
+          background: black;
+          color: white;
+          border-color: #AAAAAA;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+.select-wrap{
+  overflow: auto;
+  height: 100vh;
+  width: 100%;
+  background: black;
+  .select-area{
+    display: flex;
+    flex-flow: wrap;
+    margin-top: 7.2em;
+    .select-group{
+      margin: auto;
+      color: white;
+      width: 38.5em;
+      padding: 2em;
+      box-sizing: border-box;
+      border-top: solid 0.5px #AAAAAA;
+      border-bottom:  solid 0.5px #AAAAAA;
+      &__name{
+        position: relative;
+        padding-left: 25px;
+        display: inline-block;
+        font-size: 1.25em;
+        margin-bottom: 1.8em;
+        white-space: nowrap;
+        .select-link{
+          text-align: left;
+          text-decoration: none;
+          color: white;
+        }
+        &--border::before{
+          position: absolute;
+          content: '';
+          bottom: -3px;
+          left: 0;
+          width: 0;
+          height: 0;
+          border: none;
+          border-left: solid 15px transparent;
+          border-bottom: solid 15px steelblue;
+        }
+        &--border::after{
+          position: absolute;
+          content: '';
+          bottom: -3px;
+          left: 10px;
+          width: 100%;
+          border-bottom: solid 3px steelblue;
+        }
+      }
+      &__detail{
+        display: flex;
+        justify-content: space-between;
+        &--image{
+          height: 7.5em;
+          width: 7.5em;
+          .group__image--display{
+            height: 7.5em;
+            width: 7.5em;
+          }
+          .group__image--blank{
+            height: 7.5em;
+            width: 7.5em;
+          }
+        }
+        &--more{
+          white-space: nowrap;
+          display: flex;
+          justify-content: space-evenly;
+          flex-flow: column;
+        }
+        &--link{
+          display: flex;
+          justify-content: space-between;
+          flex-flow: column;
+          .group__link--edit{
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.3em 1em;
+            border-radius: 3px;
+            text-align: center;
+            border: solid 0.1px whitesmoke;
+            background: steelblue;
+            color: black;
+          }
+          .group__link--delete{
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.3em 1em;
+            border-radius: 3px;
+            text-align: center;
+            border: solid 0.1px whitesmoke;
+            background: steelblue;
+            color: black;
+          }
+        }
+      }
+    }
+    .select-group--mistake{
+      color: red;
+      font-size: 17px;
+      margin: auto;
+    }
+    .hidden-group{
+      width: 38.5em;
+      margin: auto;
+    }
+  }
+}
+
+
+
+
+
+.pagination{
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  margin-top: 8.4375em;
+  font-size: 1.125em;
+}
+.page-item{
+  border: solid 1px white;
+  padding: 0.3em 0.8em 0.3em 0.8em;
+}
+.page-link{
+  color: #FFCC00;
+  text-decoration: none;
+}
+
+
+
+
+
+.group-icon__select{
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+.group-icon--preview{
+  height: 8.5em;
+  width: 8.5em;
+}
+
+
+.group-user {
+  padding: 0 0 5px;
+  line-height: 3.5em;
+  font-size: 1em;
+  border-bottom: 1px solid #AAAAAA;
+  display: flex;
+  justify-content: center;
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  &__btn {
+    display: inline-block;
+    margin-left: 5em;
+    cursor: pointer;
+    white-space: nowrap;
+    &--add {
+      color: #008BBB;
+    }
+    &--remove {
+      color: #BA002F;
+    }
+  }
+}
+
+
+
+
+
+.user-search-not-remove{
+  display: inline-block;
+  margin-left: 5em;
+  color: #BA002F;
+  white-space: nowrap;
+}
+
+
+.form-field__search{
+  margin-bottom: 2em;
+}
+
+.search-field{
+  padding: 0 37% 0;
+}
+
+#user-search-result{
+  padding: 0 37% 0;
+}
+
+
+.link__back{
+  margin: 7em 0 5em;
+  text-align: center;
+}
+
+
+.javascript-back{
+  text-decoration: none;
+  color: white;
+}

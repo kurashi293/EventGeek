@@ -1,34 +1,59 @@
-.select-wrap
-  %h1.form-title
-    SELECT GROUP
-  = search_form_for @search do |f|
-    %section.search-area
-      .search-area__header
-        = icon "fas", "search"
-        Search
-      .search-area__description
-        検索条件を指定してください。全項目に条件を指定しなくても検索できます。
-      .search-area__menue
-        .search-area__menue--label
-          = f.label :name, "Keyword", class: "label__keyword"
-        .search-area__menue--item
-          = f.search_field :name_cont, placeholder: "検索", class: "item__input"
-      .search-area__menue
-        .search-area__menue--label
-          = f.label :group_category_id, "Category", class: "label__category"
-        .search-area__menue--item
-          = f.collection_select(:group_category_id_eq, @group_category, :id, :name, {include_blank: "指定しない"}, class: "item__category")
-      .search-area__menue
-        .search-area__menue--date-label
-          = f.label :created_at, "Date", class: "label__date"
-        .search-area__menue--item
-          = f.date_select :created_at_gteq, { use_month_numbers: true, include_blank: true }, class: "item__date"
-          以降
-          &nbsp; &nbsp; ∼ &nbsp; &nbsp;
-          = f.date_select :created_at_lteq, { use_month_numbers: true, include_blank: true }, class: "item__date"
-          以前
-      .search-area__submit
-        = f.submit "search", class: "search__button"
+.toppage-wrap
+  // ヘッダー
+  .toppage-header
+    = icon "fa", "bars", class: "toppage-bars-icon"
+    = icon "fa", "arrow-left", class: "toppage-arrow-left"
+
+    %h1= link_to "Event Geek", groups_path, class: "toppage-header__title"
+
+    // 詳細検索、新規作成ボタン
+    .toppage-header__buttons
+      = icon "fa", "search", class: "search-icon"
+      = link_to "", class: "link-button calc-left-margin", id: "modal-open" do
+        = icon "fa", "th-list", class: "th-list-icon"
+        .link-button__text
+          Filter
+      = link_to new_group_path, class: "link-button left-margin" do
+        = icon "fa", "folder-plus", class: "folder-plus-icon"
+        .link-button__text
+          New Group
+
+  -# // ransackでの検索
+  = search_form_for @advanced_search, url: groups_path, method: "get" do |f|
+    .search-modal
+      // 検索エリア
+      %section.search-area
+        .search-area__link
+          = link_to "", class: "modal-close" do
+            = icon "fa", "window-close", class: "window-close-icon"
+        // 見出し
+        .search-area__header
+          Search
+        .search-area__description
+          検索条件を指定してください。全項目に条件を指定しなくても検索できます。
+
+        // 検索フォーム
+        .search-area__menue
+          = f.label :name, "Keyword", class: "search-label"
+          .search-area__menue--item
+            = f.search_field :name_cont, placeholder: "検索", class: "input-field", autofocus: true
+
+        .search-area__menue
+          = f.label :group_category_id, "Category", class: "search-label"
+          .search-area__menue--item
+            = f.collection_select(:group_category_id_eq, @group_category, :id, :name, {include_blank: "指定しない"}, class: "select-field")
+
+        .search-area__menue
+          = f.label :created_at, "Date", class: "search-label"
+          .search-area__menue--item
+            = f.date_select :created_at_gteq, { use_month_numbers: true, include_blank: true }, class: "date-select"
+            以降 &nbsp;
+            %br.hide-br
+            = f.date_select :created_at_lteq, { use_month_numbers: true, include_blank: true }, class: "date-select"
+            以前
+
+        .search-area__submit
+          = f.submit "search", class: "search-button"
 
     %section.select-area
       - if @result.present?

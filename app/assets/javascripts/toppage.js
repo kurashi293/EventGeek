@@ -1,16 +1,21 @@
-$(document).on('turbolinks:load', function(){
-  $('#hidden-content').hide();
-  $('.storage-awesome').click(function(){
-    $('#hidden-content').slideDown();
-  });
+// 詳細検索のモーダル
+$(document).on("click", "#modal-open", function(){
+  $('.search-modal').fadeIn("fast");
+
+  // スクリーンサイズが635px以下ならば、.date-selectに改行を適用させる処理
+  if (window.matchMedia( '(max-width: 635px)' ).matches) {
+    $(".hide-br").show();
+    $(".date-select").css("margin-bottom", "15px")
+  }
+  return false;     //親要素へのイベント伝播を止める
+});
+
+$(document).on("click", ".search-area__link", function(){
+  $('.search-modal').fadeOut("fast");
+  return false;
 });
 
 
-$(document).on('turbolinks:load', function(){
-  $('.slide-close').click(function(){
-    $('#hidden-content').slideUp();
-  });
-});
 
 
 $(document).on('turbolinks:load', function(){

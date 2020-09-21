@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
 
@@ -7,8 +8,8 @@ class GroupsController < ApplicationController
   def index
     @group = current_user.groups.all
     @group_category = GroupCategory.all
-    @search = current_user.groups.ransack(params[:q])
-    @result = @search.result.page(params[:page]).per(20)
+    @advanced_search = current_user.groups.ransack(params[:q])
+    @result = @advanced_search.result.page(params[:page]).per(30)
   end
 
 
