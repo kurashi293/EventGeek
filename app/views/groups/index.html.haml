@@ -6,6 +6,17 @@
 
     %h1= link_to "Event Geek", groups_path, class: "toppage-header__title"
 
+    // インクリメンタルサーチ
+    = form_with url: incremental_search_groups_path, method: "get", id: "search-form", local: true do |f|
+      .toppage-header__input
+        .wrapper
+          = f.text_field :keyword, id: "incremental-search", class: "input-field", autocomplete: "off", placeholder: "Search"
+          // 検索結果
+          .result-field
+            #incremental-search-result
+        %button{type: "submit", class: "input-submit"}
+          = icon "fa", "search"
+
     // 詳細検索、新規作成ボタン
     .toppage-header__buttons
       = icon "fa", "search", class: "search-icon"

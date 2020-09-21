@@ -52,6 +52,73 @@
                   -0.1rem -0.1rem 0  #008BBB;
     }
 
+    // インクリメンタルサーチ
+    &__input{
+      height: 3.2rem;
+      max-height: 3.2rem;
+      width: 45vw;
+      max-width: 55rem;
+      min-width: 33rem;
+      position: fixed;
+      top: 1.3rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 10;
+      display: flex;
+      display: -webkit-flex;
+      display: -ms-flex;
+      .wrapper{
+        width: 100%;
+        .input-field{
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0.5rem;
+        }
+
+        // 検索結果
+        .result-field{
+          width: 100%;
+          position: relative;
+          z-index: 10;
+          background: white;
+          color: #333333;
+          font-size: 1.5rem;
+          #incremental-search-result{
+
+            // 検索結果があった場合
+            .return_content{
+              width: 100%;
+              box-sizing: border-box;
+              padding: 1.25rem 0.5rem 1.25rem 0.5rem;
+              border-bottom: solid 0.5px #d6d6d6;;
+              cursor: pointer;
+              word-break: break-all;
+            }
+            .return_content:hover{
+              background: #d6d6d6;
+            }
+
+            //検索結果が無かった場合
+            .return_content_error{
+              width: 100%;
+              box-sizing: border-box;
+              padding: 1.25rem 0.5rem 1.25rem 0.5rem;
+              cursor: default;
+              word-break: break-all;
+            }
+          }
+        }
+      }
+      .input-submit{
+        box-sizing: border-box;
+        padding: 0 1rem 0 1rem;
+        cursor: pointer;
+      }
+      .input-submit:hover{
+        color: #008BBB;
+      }
+    }
+
     // 詳細検索、新規作成ボタン
     &__buttons{
       margin: 0 2.5vw 0 auto;
