@@ -1,0 +1,44 @@
+.group-related-wrap
+  .header
+    同じカテゴリー
+  // 配列をランダムにして先頭から20件取得する
+  - current_user.groups.shuffle.first(30).each do |group|
+    // ログインしているユーザーが所属している全グループのカテゴリーが、現在選択中のグループのカテゴリーと等しく
+    // ログインしているユーザーが所属している全グループの内、現在選択中のグループと等しくないグループを取り出す
+    - if current_user && group.group_category_id == @group.group_category_id && group != @group
+
+      // 各グループ情報の入れ物
+      = link_to group_path(group.id), class: "group-box" do
+        // サムネイル
+        .group-box__thumbnail
+          - if group.image.present?
+            = image_tag group.image.url, class: "register-image"
+          - else
+            = image_tag "https://truck-kinkisharyo.com/wp/wp-content/uploads/2019/01/noimage.jpg", class: "blank-image"
+
+        // グループ情報
+        .group-box__list
+          .name-section
+            // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+            - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+            // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+            - english = /\A[\w\s]+\z/
+
+            // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+            - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+            - if group.name.match(japanese) && group.name.length > 13
+              = group.name[0..12] << "..."
+            - elsif group.name.match(english) && group.name.length > 20
+              = group.name[0..19] << "..."
+            - elsif group.name.match(all_characters) && group.name.length > 15
+              = group.name[0..14] << "..."
+            - else
+              = group.name
+
+          .content-section
+            作成日 &nbsp;
+            = group.created_at.strftime("%Y/%m/%d")
+            %br/
+            = group.group_category.name

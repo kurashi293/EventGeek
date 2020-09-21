@@ -1,0 +1,125 @@
+.group-related-wrap{
+  width: 26.25vw;
+  padding: 1.1rem 0 0 0;
+
+  .header{
+    padding: 0 1.5rem 0 1.5rem;
+    border-bottom:  solid 0.5px #AAAAAA;
+    color: #333333;
+  }
+
+  // 各グループ情報の入れ物
+  .group-box{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    color: #333333;
+    text-decoration: none;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: stretch;
+
+    // サムネイル
+    &__thumbnail{
+      width: 40%;
+      .register-image{
+        height: 9rem;
+        width: 90%;
+      }
+      .blank-image{
+        height: 9rem;
+        width: 90%;
+      }
+    }
+
+    // グループ情報
+    &__list{
+      width: 60%;
+      display: flex;
+      flex-flow: column;
+      text-align: left;
+
+      // グループ名
+      .name-section{
+        word-break: break-all;
+        margin-bottom: 1rem;
+        border-bottom: solid 0.2rem steelblue;
+      }
+      .content-section{
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .group-box:hover{
+    opacity: 0.5;
+  }
+}
+
+
+
+
+
+// レスポンシブ（タブレット対応）
+@media screen and (max-width: 999px){
+
+  .group-related-wrap{
+    width: 100%;
+    padding: initial;
+
+    .header{
+      padding: initial;
+    }
+
+    // 各グループ情報の入れ物
+    .group-box{
+      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+      // サムネイル
+      &__thumbnail{
+        width: 30%;
+        .register-image{
+          max-width: 25rem;
+        }
+        .blank-image{
+          max-width: 25rem;
+        }
+      }
+
+      // グループ情報
+      &__list{
+        width: 70%;
+
+        // グループ名
+        .name-section{
+          border-bottom: initial;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+// レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .group-related-wrap{
+    .header{
+      padding: 0 3% 0 3%;
+      font-size: 1.4rem;
+    }
+
+    // 各グループ情報の入れ物
+    .group-box{
+      padding: 0.5rem 3% 0.5rem 3%;
+      // グループ情報
+      &__list{
+        // グループ名
+        .name-section{
+          border-bottom: solid 0.2rem steelblue;
+        }
+      }
+    }
+  }
+}
