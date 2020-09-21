@@ -1,0 +1,45 @@
+// サイドバー
+.side-bar
+  .container
+    = link_to groups_path, class: "container__link border-bottom" do
+      = icon "fas", "home"
+      .container__link--text HOME
+
+    %button{type: "submit", value: 1, class: "container__category active"}
+      音楽
+    %button{type: "submit", value: 2, class: "container__category"}
+      舞台
+    %button{type: "submit", value: 3, class: "container__category"}
+      プロモーション
+    %button{type: "submit", value: 4, class: "container__category"}
+      キャンペーン
+    %button{type: "submit", value: 5, class: "container__category"}
+      セミナー
+    %button{type: "submit", value: 6, class: "container__category"}
+      大会
+    %button{type: "submit", value: 7, class: "container__category"}
+      各種式典
+    %button{type: "submit", value: 8, class: "container__category"}
+      地域
+    %button{type: "submit", value: 9, class: "container__category"}
+      スポーツ
+    %button{type: "submit", value: 10, class: "container__category"}
+      子ども向け
+    %button{type: "submit", value: 11, class: "container__category"}
+      アウトドア
+    %button{type: "submit", value: 12, class: "container__category"}
+      パーティー
+    %button{type: "submit", value: 13, class: "container__category"}
+      施工と軽作業
+    %button{type: "submit", value: 14, class: "container__category"}
+      その他
+
+    = link_to user_path(current_user), class: "container__link border-top" do
+      = icon "fas", "user-cog"
+      .container__link--text MyPage
+    = link_to destroy_user_session_path, method: :delete, class: 'container__link' do
+      = icon "fa", "sign-out-alt"
+      .container__link--text Logout
+    = link_to user_path(current_user), method: :delete, data: {confirm: "この操作を元に戻すことはできません。\nこれまでの情報は全て失われます。\n本当に削除しますか？"}, class: "container__link" do
+      = icon "fa", "user-slash"
+      .container__link--text Delete Account

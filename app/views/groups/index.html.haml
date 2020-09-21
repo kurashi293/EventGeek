@@ -55,6 +55,8 @@
         .search-area__submit
           = f.submit "search", class: "search-button"
 
+    = render "groups/sidebar"
+
     %section.select-area
       - if @result.present?
         - @result.order(created_at: :desc).each do |group|

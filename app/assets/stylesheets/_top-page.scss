@@ -201,6 +201,68 @@
       }
     }
   }
+
+  // サイドバー
+  .side-bar{
+    height: calc(100% - 5.8rem);
+    width: 16rem;
+    box-sizing: border-box;
+    border-right: solid 0.5px #AAAAAA;
+    position: fixed;
+    top: 5.8rem;
+    overflow: auto;
+    background: #222222;
+    z-index: 5;
+
+    .container{
+      // リンク要素
+      &__link{
+        height: 4.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 1.5vw 0 1.5vw;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        font-size: 1.35rem;
+        white-space: nowrap;
+        &--text{
+          margin-left: 1rem;
+        }
+      }
+      &__link:hover{
+        background: white;
+        color: black;
+      }
+      &__link.border-bottom{
+        border-bottom:  solid 0.5px #AAAAAA;
+      }
+      &__link.border-top{
+        border-top:  solid 0.5px #AAAAAA;
+      }
+
+      // カテゴリー要素
+      &__category{
+        height: 4.5rem;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        text-align: left;
+        color: white;
+        font-size: 1.35rem;
+        box-sizing: border-box;
+        padding: 0 1.5vw 0 1.5vw;
+      }
+      &__category:hover{
+        background: white;
+        color: black;
+      }
+    }
+  }
 }
 
 
