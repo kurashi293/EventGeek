@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     post "/registration/create", :to => "users/registrations#create"
   end
 
-  root "toppages#index"
+
+  root "groups#index"
+
 
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     member do   #:usersにidを持たせたcompleateアクションを作成
@@ -20,7 +22,13 @@ Rails.application.routes.draw do
       get "new_password"
     end
   end
+
+
   resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    collection do
+      get "incremental_search"
+    end
+
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :statuses, only: [:index, :new, :create, :edit, :update]
     resources :chats, only: [:index, :create, :destroy]

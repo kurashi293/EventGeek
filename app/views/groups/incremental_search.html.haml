@@ -68,11 +68,11 @@
 
     = render "groups/sidebar"
 
-  // 一覧・選択のエリア
   .main-wrap
     %section.select-area
-      - if @group.present?
-        - @group.order(created_at: :desc).each do |group|
+      // ransackの検索結果があった場合の処理
+      - if @incremental_search.present?
+        - @incremental_search.order(created_at: :desc).each do |group|
           .select-group{"data-category-id" => "#{group.group_category.id}"}
             // グループ名
             .select-group__name
@@ -86,14 +86,14 @@
 
             // グループの補足情報
             .select-group__detail
-              // サムネイル
+              // 左側の画像
               .select-group__detail--image
                 - if group.image.present?
                   = image_tag group.image.url, class: "group__image--display"
                 - else
                   = image_tag "https://truck-kinkisharyo.com/wp/wp-content/uploads/2019/01/noimage.jpg", class: "group__image--blank"
 
-              // グループ情報
+              // 真ん中のグループ情報
               .select-group__detail--more
                 .group__date
                   作成日 &nbsp;
@@ -104,16 +104,15 @@
                   所属人数 &nbsp;
                   = group.users.length
                   人
-              // edit, deleteボタン
+              // 右側のボタン
               .select-group__detail--link
                 = link_to "Edit", edit_group_path(group), class: "group__link--edit"
                 = link_to "Delete", group_path(group), method: "delete", data: {confirm: "この操作を元に戻すことはできません。\n選択したグループを削除しますか？"}, class: "group__link--delete"
 
-        // 並びの整合性を保つための隠しブロック
         .hidden-group
         .hidden-group
         // グループが一つも存在しない場合の処理
-      - elsif current_user.groups.length == 0
+      - elsif @group.length == 0
         .blank-box
           .select-group-blank
             グループが作成されていません
