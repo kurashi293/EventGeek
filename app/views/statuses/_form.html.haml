@@ -1,0 +1,144 @@
+= form_with model: [@group, status], local: true do |f|
+  .form-area
+    // エラーメッセージ
+    = render "statuses/errors"
+
+    // 見出し
+    %h2.form-heading
+      Status
+    .form-lead
+      ※は必須項目
+
+    // 上部のテーブル
+    %table.form-table
+      %tbody
+        // ユーザー選択
+        %tr.form-table__row
+          %th.form-table__row--header
+            ※User
+          %td.form-table__row--data
+            = f.collection_select(:user_id, @group.users, :id, :name, {prompt: "----"}, class: "select-field")
+
+        // 会社名入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Company
+          = f.fields_for :company do |company|
+            %td.form-table__row--data
+              = company.text_field :name, autofocus: true, autocomplete: true, placeholder: "例) 株式会社イベント", class: "input-field"
+
+        // 稼働時間選択
+        %tr.form-table__row
+          %th.form-table__row--header
+            ※Working hours
+          = f.fields_for :working_hour do |hours|
+            %td.form-table__row--data
+              Start
+              = hours.time_select :start_at
+              %span.span
+              %br.working-hour-hide-br
+              End
+              = hours.time_select :end_at
+
+        // 休憩時間入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Break time
+          = f.fields_for :working_hour do |hours|
+            %td.form-table__row--data
+              = hours.number_field :break_at, min: 0, max: 600, class: "number-field"
+              min
+
+        // トランシーバー選択
+        %tr.form-table__row
+          %th.form-table__row--header
+            ※Transceiver
+          %td.form-table__row--data
+            = f.collection_select(:transceiver_id, Transceiver.all, :id, :state, {prompt: "----"}, class: "select-field")
+
+        // 食事選択
+        %tr.form-table__row
+          %th.form-table__row--header
+            ※Meal
+          %td.form-table__row--data
+            = f.collection_select(:meal_id, Meal.all, :id, :state, {prompt: "----"}, class: "select-field")
+
+        // 服装選択
+        %tr.form-table__row
+          %th.form-table__row--header
+            ※Wear
+          %td.form-table__row--data
+            = f.collection_select(:wear_id, Wear.all, :id, :clothes, {prompt: "----"}, class: "select-field")
+
+    // 見出し
+    %h2.form-heading.position-area
+      Position
+    .form-lead
+      ※は必須項目
+
+    // 下部のテーブル
+    %table.form-table
+      %tbody
+        // ランク選択
+        %tr.form-table__row
+          %th.form-table__row--header
+            ※Rank
+          %td.form-table__row--data
+            = f.collection_select(:rank_id, Rank.all, :id, :name, {prompt: "----"}, class: "select-field")
+
+        // 設営時のポジション入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Set up
+          = f.fields_for :position do |position|
+            %td.form-table__row--data
+              = position.text_field :set_up, autofocus: true, autocomplete: true, placeholder: "例) 設営", class: "input-field"
+
+        // 開場時のポジション入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Opening
+          = f.fields_for :position do |position|
+            %td.form-table__row--data
+              = position.text_field :opening, autofocus: true, autocomplete: true, placeholder: "例) 入場口受付", class: "input-field"
+
+        // 開演時のポジション入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Start
+          = f.fields_for :position do |position|
+            %td.form-table__row--data
+              = position.text_field :start, autofocus: true, autocomplete: true, placeholder: "例) 客席案内", class: "input-field"
+
+        // 休憩時のポジション入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Break
+          = f.fields_for :position do |position|
+            %td.form-table__row--data
+              = position.text_field :break, autofocus: true, autocomplete: true, placeholder: "例) 再入場対応", class: "input-field"
+
+        // 終演時のポジション入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            End
+          = f.fields_for :position do |position|
+            %td.form-table__row--data
+              = position.text_field :end, autofocus: true, autocomplete: true, placeholder: "例) 会場内客出し", class: "input-field"
+
+        // 撤去時のポジション入力
+        %tr.form-table__row
+          %th.form-table__row--header
+            Clean up
+          = f.fields_for :position do |position|
+            %td.form-table__row--data
+              = position.text_field :clean_up, autofocus: true, autocomplete: true, placeholder: "例) 撤去", class: "input-field"
+
+    // 送信ボタン
+    %button.submit-button
+      = icon "fa", "paper-plane", class: "paper-plane-icon"
+      %submit= f.submit "send", class: "form-submit"
+
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    = link_to "", :href => "javascript:history.back();", class: "history-back" do
+      = icon "fa", "arrow-left"
