@@ -1,11 +1,17 @@
 class MypagesController < ApplicationController
+
   before_action :set_group
 
 
+
   def index
-    @group_count = current_user.groups.length      ##ログインしているユーザーが持っているグループ数
-    @user_count = @group.users.length
+    @groups_count = current_user.groups.length      #ログインしているユーザーが持っているグループ数
+
+    @uncompleated_tasks_count = current_user.tasks.where.not(category_id: 3).length
+
+    @current_group_tasks_count = current_user.tasks.where(group_id: "#{@group.id}").length
   end
+
 
 
   def set_group

@@ -1,209 +1,138 @@
-// Place all the styles related to the accounts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+// share/accountページ
 .account-wrap{
-  height: calc(100vh - 69px);
+  height: calc(100% - 58px - 60px);
   width: 100%;
+  box-sizing: border-box;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
   position: fixed;
+  top: 5.8rem;
   overflow: auto;
+
+  // 基本情報のブロック
   .account-box{
-    margin-top: 7%;
-    display: flex;
-    margin-left: 13%;
-    &__side-bar{
-      width: 20%;
-      text-align: center;
-      font-size: 17px;
-      font-weight: 600;
-      li{
+    margin: auto;
+    width: 70rem;
+    height: auto;
+    background: whitesmoke;
+    box-sizing: border-box;
+    padding: 3rem 5rem 0 5rem;
+    border: solid 0.5px #ccc;
+    box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 3px 7px 3px rgba(0,0,0,0.5);
+
+    // ブロックの見出し
+    &__title{
+      font-size: 2rem;
+      color: #333333;
+      border-bottom: solid 0.1rem #AAAAAA;
+    }
+
+    // ブロック内の情報セクション
+    .account-data{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+
+      // 各項目と内容の行
+      &__row{
+        width: 100%;
+        height: auto;
         box-sizing: border-box;
-        flex-flow:column;
-        justify-content: space-evenly;
-        border: solid 1px whitesmoke;
-        background: steelblue;
-        padding-top: 10%;
-        height: 16.7%;
-        .my-list{
-          color: black;
-          text-decoration: none;
-          a{
-            color: black;
+        padding: 3rem 0 3rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        // 内容の項目
+        &--headline{
+          display: inline-block;
+          color: #333333;
+        }
+        &--avatar{
+          display: inline-block;
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          text-align: center;
+
+          // アバターを登録している場合
+          .registration-avatar--active{
+            height: 8rem;
+            width: 8rem;
+            border: solid 0.5px #ccc;
+            border-radius: 100%;
+            margin-bottom: 0.3rem;
+          }
+
+          // アバター未登録の場合
+          .registration-avatar--disabled{
+            font-size: 8rem;
+            margin-bottom: 0.3rem;
+            opacity: 0.3;
+          }
+
+          // ユーザー名
+          .registration-avatar--name{
+            margin-top: 0.2rem;
+            font-size: 1.8rem;
+            max-width: 35rem;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #333333;
           }
         }
+
+        // 変更ボタン
+        &--button{
+          display: inline-block;
+          font-size: 1.5rem;
+          padding: 0.3em 1em;
+          text-decoration: none;
+          color: steelblue;
+          border: solid 0.2rem steelblue;
+          background: whitesmoke;
+          border-radius: 0.2rem;
+        }
+        &--button:hover{
+          opacity: 0.5;
+        }
+        &--email{
+          display: inline-block;
+          max-width: 38rem;
+          white-space: nowrap;
+          overflow: hidden;
+          color: #333333;
+        }
+        &--password{
+          display: inline-block;
+          color: #333333;
+        }
+
+        // グループ情報のブロック
+        &--group-total{
+          display: inline-block;
+          color: #333333;
+        }
+        &--task-total{
+          display: inline-block;
+          max-width: 40rem;
+          overflow: hidden;
+          white-space: nowrap;
+          color: #333333;
+        }
+      }
+
+      // アンダーライン
+      #border-bottom{
+        border-bottom: solid 0.1rem #AAAAAA;
       }
     }
   }
-}
-
-
-.account-field{
-  margin-left: 0.2%;
-  width: 65%;
-  height: 65%;
-  background: whitesmoke;
-  padding: 3% 5% 3%;
-  box-sizing: border-box;
-  &__icon{
-    display: inline-block;
-    .pesonal-icon{
-      height: 5em;
-      width: 5em;
-      border-radius: 50%;
-      margin-bottom: 15%;
-    }
-    .account-icon::before{
-      font-size: 5em;
-    }
+  .account-box.margin{
+    margin-top: 5rem;
   }
-  &__name{
-    font-size: 18px;
-    white-space: nowrap;
-    overflow-x: scroll;
-  }
-  &__email{
-    max-width: 19.5em;
-    white-space: nowrap;
-    overflow-x: scroll;
-  }
-  &__email::-webkit-scrollbar{
-    display: none;
-  }
-}
-
-
-
-.new-email{
-  color: black;
-}
-
-
-.account-field__title{
-  font-size: 20px;
-}
-
-.account-field__border--top{
-  border-bottom: solid 1px #AAAAAA;
-  margin: 0.3% 0 1.5%;
-}
-
-
-.account-field__border--middle{
-  border-bottom: solid 1px #AAAAAA;
-  margin: 1.8% 0 5.5%;
-}
-
-.account-field__border--bottom{
-  border-bottom: solid 1px #AAAAAA;
-  margin: 5.5% 0 5.5%;
-}
-
-
-.account-field__data{
-  display: flex;
-  justify-content: space-between;
-  &--headline{
-    display: inline;
-    line-height: 8.8em;
-  }
-  &--contents{
-    display: inline-block;
-    margin-top: 0.5em;
-    max-width: 18.5em;
-    text-align: center;
-    width: 18.5em;
-  }
-  &--content{
-    display: inline-block;
-    margin-top: 0.5em;
-    max-width: 19.5em;
-    text-align: center;
-    width: 19.5em;
-  }
-}
-
-
-.account-update__button--top{
-  margin-top: 7.4%;
-  font-size: 15px;
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.3em 1em;
-  text-decoration: none;
-  color: steelblue;
-  border: solid 2px steelblue;
-  background: whitesmoke;
-  border-radius: 3px;
-  height: 3%;
-  width: 30px;
-  text-align: center;
-}
-
-
-.account-field__data--secure{
-  display: inline;
-  line-height: 2.6em;
-  text-align: center;
-}
-
-
-.account-update__button{
-  margin-top: 0.4%;
-  font-size: 15px;
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.3em 1em;
-  text-decoration: none;
-  color: steelblue;
-  border: solid 2px steelblue;
-  background: whitesmoke;
-  border-radius: 3px;
-  height: 3%;
-  width: 30px;
-  text-align: center;
-}
-
-
-
-
-
-.account-group{
-  margin-top: 7%;
-  width: 56.6%;
-  height: calc(100vh - 400 - 68 - 68 - 68);
-  background: whitesmoke;
-  padding: 3% 5% 3%;
-  box-sizing: border-box;
-  margin-left: 30.6%;
-  margin-bottom: 7%;
-  &__name{
-    max-width: 18.5em;
-    white-space: nowrap;
-    overflow-x: scroll;
-  }
-  &__name::-webkit-scrollbar{
-    display: none;
-  }
-}
-
-
-.account-group__border--top{
-  border-bottom: solid 1px #AAAAAA;
-  margin: 0.3% 0 5.5%;
-}
-
-.account-group__border--middle{
-  border-bottom: solid 1px #AAAAAA;
-  margin: 5.5% 0 5%;
-}
-
-
-.account-group__border--bottom{
-  border-bottom: solid 1px #AAAAAA;
-  margin: 5% 0 5%;
-}
-
-
-.account-icon{
-  margin-bottom: 22%;
 }
