@@ -31,6 +31,10 @@ Rails.application.routes.draw do
       get "advanced_search"
     end
 
+    member do
+      get "information"
+    end
+
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
     resources :statuses, only: [:index, :new, :create, :edit, :update]
     resources :chats, only: [:index, :create, :destroy]

@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :information]
   before_action :set_all_groups, only: [:incremental_search, :category_search, :advanced_search]
   before_action :set_category, only: [:index, :incremental_search, :category_search, :advanced_search]
   before_action :set_ransack, only: [:index, :incremental_search, :category_search, :advanced_search]
@@ -88,6 +88,11 @@ class GroupsController < ApplicationController
 
   def advanced_search
     @result = @advanced_search.result.page(params[:page]).per(30)
+  end
+
+
+
+  def information
   end
 
 
