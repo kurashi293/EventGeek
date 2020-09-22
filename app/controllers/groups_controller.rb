@@ -2,12 +2,14 @@ class GroupsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_all_groups, only: [:incremental_search, :category_search, :advanced_search]
+  before_action :set_category, only: [:index, :incremental_search, :category_search, :advanced_search]
+  before_action :set_ransack, only: [:index, :incremental_search, :category_search, :advanced_search]
 
 
 
   def index
-    @group = current_user.groups.all
-    @group_category = GroupCategory.all
+    @group = current_user.groups.all.page(params[:page]).per(30)
 
     return nil if params[:keyword] == ""
     @incremental_search = @group.where('name LIKE(?)', "%#{params[:keyword]}%").limit(20).page(params[:page]).per(30)
@@ -15,87 +17,101 @@ class GroupsController < ApplicationController
       format.html
       format.json
     end
-
-    @advanced_search = current_user.groups.ransack(params[:q])
-    @result = @advanced_search.result.page(params[:page]).per(30)
   end
+
 
 
   def new
     @group = Group.new
-    @group_category = GroupCategory.all
     @group.users << current_user
   end
 
 
+
   def create
     @group = Group.new(group_params)
-    @group_category = GroupCategory.all
     if @group.save
-      redirect_to group_path(@group)
+      redirect_to root_path
     else
       render :new
     end
   end
 
 
+
   def show
   end
 
 
+
   def edit
-    @group_category = GroupCategory.all
   end
+
 
 
   def update
     if @group.update(group_params)
-      redirect_to group_path(@group)
+      redirect_to root_path
     else
-      redirect_to edit_group_path(@group)
+      render :edit
     end
   end
+
 
 
   def destroy
     if @group.destroy
       redirect_to root_path
     else
-      render :show
+      render :index
     end
   end
 
 
 
   def incremental_search
-    @group = current_user.groups.all
-    @group_category = GroupCategory.all
-
     return nil if params[:keyword] == ""
     @incremental_search = @group.where('name LIKE(?)', "%#{params[:keyword]}%").limit(20).page(params[:page]).per(30)
     respond_to do |format|
       format.html
       format.json
     end
-
-    @advanced_search = current_user.groups.ransack(params[:q])
   end
 
 
 
   def category_search
-    @group = current_user.groups.all
-    @group_category = GroupCategory.all
-
     @category_search = current_user.groups.where(group_category_id: "#{params[:category_id]}").page(params[:page]).per(30)
+  end
 
-    @advanced_search = current_user.groups.ransack(params[:q])
+
+
+  def advanced_search
+    @result = @advanced_search.result.page(params[:page]).per(30)
   end
 
 
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+
+
+  def set_all_groups
+    @group = current_user.groups.all
+  end
+
+
+
+  def set_category
+    @group_category = GroupCategory.all
+  end
+
+
+
+  def set_ransack
+    @advanced_search = current_user.groups.ransack(params[:q])
   end
 
 

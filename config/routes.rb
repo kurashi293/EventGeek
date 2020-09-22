@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     collection do
       get "incremental_search"
       get "category_search"
+      get "advanced_search"
     end
 
     resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]

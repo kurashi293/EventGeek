@@ -5,8 +5,8 @@
   .main-wrap
     %section.select-area
       // ransackの検索結果があった場合の処理
-      - if @incremental_search.present?
-        - @incremental_search.order(created_at: :desc).each do |group|
+      - if @result.present?
+        - @result.order(created_at: :desc).each do |group|
           .select-group{"data-category-id" => "#{group.group_category.id}"}
             // グループ名
             .select-group__name
@@ -73,4 +73,4 @@
           = link_to "一覧へ戻る", groups_path, class: "back-to-top"
 
     // ページネーション
-    = paginate @incremental_search, window: 2
+    = paginate @result, window: 2
