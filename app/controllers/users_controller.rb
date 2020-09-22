@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
+
   before_action :set_user, only: [:confirmation, :compleate, :show, :new_icon, :new_email, :new_password, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:show]
 
 
   def index
-    return nil if params[:keyword] == ""         #キーワードに一致しなければnilを返す
-    @users = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)        #キーワードを含むユーザーを検索して@usersに代入。ただしログインしている自分は除く
+    return nil if params[:keyword] == ""   #キーワードに一致しなければnilを返す
+    @users = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)   #キーワードを含むユーザーを検索して@usersに代入。ただしログインしている自分は除く
     respond_to do |format|
       format.html
       format.json
@@ -13,43 +13,53 @@ class UsersController < ApplicationController
   end
 
 
+
   def show
-    @group_count = current_user.groups.count     #ログインしているユーザーが持っているグループ数
+    @groups_count = current_user.groups.length   #ログインしているユーザーが持っているグループ数
+
+    @uncompleated_tasks_count = current_user.tasks.where.not(category_id: 3).length
   end
+
 
 
   def new_icon
   end
 
 
+
   def new_email
   end
+
 
 
   def new_password
   end
 
 
+
   def edit
   end
+
 
 
   def update
     if current_user.update(user_params)
       redirect_to root_path
     else
-      render :sow
+      render :show
     end
   end
+
 
 
   def destroy
-    if @user.destroy
+    if current_user.destroy
       redirect_to registration_path
     else
-      render user_path
+      render :show
     end
   end
+
 
 
   def set_user

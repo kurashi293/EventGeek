@@ -1,137 +1,85 @@
-.account-wrap
-  .account-box
-    - if @group.present?
-      %ul.account-box__side-bar
-        %li.account-box__side-bar--list
-          = link_to "Select Group", groups_path, class: "my-list"
-        %li.account-box__side-bar--list
-          = link_to "New Group", new_group_path, class: "my-list"
-        %li.account-box__side-bar--list
-          = link_to "Edit Group", edit_group_path(@group), method: :get, class: "my-list"
-        %li.account-box__side-bar--list
-          = link_to "Delete Group", group_path(@group), method: "delete", data: {confirm: "現在参加中のグループ\n#{@group.name}を削除しますか？"}, class: "my-list"
-        %li.account-box__side-bar--list
-          = link_to "Logout", destroy_user_session_path, method: :delete, class: 'my-list'
-        %li.account-box__side-bar--list
-          = link_to "Delete User", user_path(current_user), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "my-list"
-    - else
-      %ul.account-box__side-bar
-        %li.account-box__side-bar--list
-          = link_to "Select Group", groups_path, class: "my-list"
-        %li.account-box__side-bar--list
-          = link_to "New Group", new_group_path, class: "my-list"
-        %li.account-box__side-bar--list
-          = link_to "Logout", destroy_user_session_path, method: :delete, class: 'my-list'
-        %li.account-box__side-bar--list
-          = link_to "Delete User", user_path(current_user), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "my-list"
-    .account-field
-      .account-field__title
-        会員登録情報
-      .account-field__border--top
-      .account-field__data
-        .account-field__data--headline
-          基本情報
-        .account-field__data--contents
-          - if current_user.avatar.present?
-            .account-field__icon
-              = image_tag current_user.avatar.url, class: "pesonal-icon"
-          - else
-            .account-field__icon
-              = icon "fas", "user-circle", class: "account-icon"
-          .account-field__name
-            = current_user.name
-        = link_to "変更", new_icon_user_path(current_user), class: "account-update__button--top"
-      .account-field__border--middle
-      .account-field__data
-        .account-field__data--secure
-          Email
-        .account-field__data--content
-          .account-field__email
-            = current_user.email
-        = link_to "変更", new_email_user_path(current_user), class: "account-update__button"
-      .account-field__border--bottom
-      .account-field__data
-        .account-field__data--secure
-          Password
-        .account-field__data--content
-          .account-field__password
-            セキュリティーのため非表示です
-        = link_to "変更", new_password_user_path(current_user), class: "account-update__button"
+= render "share/header"
 
-  .account-group
-    .account-field__title
+.account-wrap
+  // 基本情報
+  .account-box
+    %h2.account-box__title
+      会員登録情報
+    .account-data
+      // アバターとネーム
+      .account-data__row.border-bottom
+        .account-data__row--headline
+          基本情報
+        .account-data__row--avatar
+          - if current_user.avatar.present?
+            = image_tag current_user.avatar.url, class: "registration-avatar--active"
+          - else
+            = icon "fas", "user-circle", class: "registration-avatar--disabled"
+          .registration-avatar--name
+            = current_user.name
+        = link_to "変更", new_icon_user_path(current_user), class: "account-data__row--button"
+
+      // メールアドレス
+      .account-data__row.border-bottom
+        .account-data__row--headline
+          Email
+        .account-data__row--email
+          = current_user.email
+        = link_to "変更", new_email_user_path(current_user), class: "account-data__row--button"
+
+      // パスワード
+      .account-data__row
+        .account-data__row--headline
+          Password
+        .account-data__row--password
+          セキュリティーのため非表示です
+        = link_to "変更", new_password_user_path(current_user), class: "account-data__row--button"
+
+  // グループ情報
+  .account-box.margin
+    %h2.account-box__title
       グループ情報
-    .account-group__border--top
-    .account-field__data
-      .account-group__data--headline
-        所属しているグループ総数
-      .account-group__data--content
-        .account-group__group-count
-        = @group_count
-        グループ
-    .account-group__border--middle
-    - if @group.present?
-      .account-field__data
-        .account-group__data--secure
-          参加中のグループ名
-        .account-group__data--content
-          .account-group__name
-            = @group.name
-      .account-group__border--bottom
-      .account-field__data
-        .account-group__data--secure
-          参加中のグループ総人数
-        .account-group__data--content
-          .account-group__user-count
-            = @user_count
-            人
-    - else
-      .account-field__data
-        .account-field__data--secure
-          参加中のグループ名
-        .account-field__data--content
-          .account-group__name
-            参加中のグループはありません
-      .account-group__border--bottom
-      .account-field__data
-        .account-field__data--secure
-          参加中のグループ総人数
-        .account-field__data--content
-          .account-field__user-count
-            参加中のグループはありません
-  -# - if @group.present?
-  -#   .account-group
-  -#     .account-field__title
-  -#       タスク情報
-  -#     .account-group__border--top
-  -#     .account-field__data
-  -#       .account-group__data--headline
-  -#         担当しているタスク総数
-  -#       .account-group__data--content
-  -#         .account-group__group-count
-  -#           = current_user.tasks.length
-  -#           件
-  -# - if @group.present?
-  -#   .account-group
-  -#     .account-field__title
-  -#       ステータス情報
-  -#     .account-group__border--top
-  -#     .account-field__data
-  -#       .account-group__data--headline
-  -#         参加中のグループ
-  -#       .account-group__data--content
-  -#         .account-group__group-count
-  -# - if @group.present?
-  -#   .account-group
-  -#     .account-field__title
-  -#       チャット情報
-  -#     .account-group__border--top
-  -#     .account-field__data
-  -#       .account-group__data--headline
-  -#         送信したメッセージ総数
-  -#       .account-group__data--content
-  -#         .account-group__group-count
-  -#           = current_user.chats.length
-  -#           件
+    .account-data
+
+      // グループ総数
+      .account-data__row.border-bottom
+        .account-data__row--headline
+          所属しているグループ総数
+        .account-data__row--group-total
+          = @groups_count
+          グループ
+
+      // タスク総数
+      .account-data__row.border-bottom
+        .account-data__row--headline
+          担当タスク総数
+        .account-data__row--task-total
+          = current_user.tasks.length
+          件
+
+      // 未完了のタスク総数
+      - if @group.present?
+        .account-data__row.border-bottom
+          .account-data__row--headline
+            未完了の担当タスク総数
+          .account-data__row--task-total
+            = @uncompleated_tasks_count
+            件
+      - else
+        .account-data__row
+          .account-data__row--headline
+            未完了の担当タスク総数
+          .account-data__row--task-total
+            = @uncompleated_tasks_count
+            件
+
+      // グループ内でのタスク総数
+      - if @group.present?
+        .account-data__row
+          .account-data__row--headline
+            グループ内での担当タスク総数
+          .account-data__row--task-total
+            = @current_group_tasks_count
+            件
 
 = render "share/navigation"
