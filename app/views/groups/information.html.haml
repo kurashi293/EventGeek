@@ -1,0 +1,109 @@
+= render "share/header"
+
+// インフォメーション
+.information-wrap
+  %h2.information-heading
+    Information
+  // 全タブの入れ物
+  %ul.information-tabs
+    %li.active Group
+    %li Task
+    %li Status
+    %li Chat
+
+  - if @group.present?
+    // 全インフォメーションの入れ物
+    .information-container
+
+      // グループ情報
+      .main-box.active
+        - @group.group_users.order(created_at: :desc).each do |users|
+          .content
+            .content__time
+              = users.created_at.strftime("%Y/%m/%d %H:%M")
+            .content__text
+              = users.user.name
+              が追加されました
+        .content
+          .content__time
+            = @group.created_at.strftime("%Y/%m/%d %H:%M")
+          .content__text
+            = @group.name
+            が作成されました
+
+      // タスク情報
+      .main-box#switch
+        - if  @group.tasks.present?
+          - @group.tasks.order(created_at: :desc).each do |task|
+            .content
+              .content__time
+                = task.created_at.strftime("%Y/%m/%d %H:%M")
+              .content__text
+                - if current_user && task.user_ids.include?(current_user.id)
+                  = current_user.name
+                  さんが担当する
+                  %br/
+                  = task.title
+                  が作成されました
+                - else
+                  = task.title
+                  が作成されました
+        - else
+          .blank-content
+            お知らせはありません
+
+      // ステータス情報
+      .main-box#switch
+        - if  @group.statuses.present?
+          - @group.statuses.order(created_at: :desc).each do |status|
+            .content
+              .content__time
+                = status.created_at.strftime("%Y/%m/%d %H:%M")
+              .content__text
+                = status.user.name
+                のステータスが作成されました
+        - else
+          .blank-content
+            お知らせはありません
+
+      // チャット情報
+      .main-box#switch
+        - if  @group.chats.present?
+          - @group.chats.order(created_at: :desc).each do |chat|
+            .content
+              .content__time
+                = chat.created_at.strftime("%Y/%m/%d %H:%M")
+              .content__text
+                = chat.user.name
+                がチャットを更新しました
+        - else
+          .blank-content
+            お知らせはありません
+
+  - else
+    .information-container
+      .main-box.active
+        .blank-content
+          グループが選択されていません
+          %br/
+          新規作成または選択してください
+
+      .main-box#switch
+        .blank-content
+          グループが選択されていません
+          %br/
+          新規作成または選択してください
+
+      .main-box#switch
+        .blank-content
+          グループが選択されていません
+          %br/
+          新規作成または選択してください
+
+      .main-box#switch
+        .blank-content
+          グループが選択されていません
+          %br/
+          新規作成または選択してください
+
+= render "share/navigation"
