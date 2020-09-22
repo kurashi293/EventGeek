@@ -136,3 +136,170 @@
     margin-top: 5rem;
   }
 }
+
+
+
+
+
+// share/account レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+
+  .account-wrap{
+    padding: 3.5rem 5% 3.5rem 5%;
+
+    // 基本情報のブロック
+    .account-box{
+      width: 100%;
+      height: auto;
+      background: initial;
+      border: initial;
+      border: solid 0.5px #ccc;
+      text-align: center;
+      word-break: break-all;
+      padding: 2.5rem 0 0 0;
+
+      // ブロックの見出し
+      &__title{
+        margin-bottom: 2.5rem;
+        display: inline-block;
+        font-size: 2rem;
+        border-bottom: initial;
+        background: linear-gradient(transparent 70%, #a7d6ff 70%);   //下線
+      }
+
+      // ブロック内の情報セクション
+      .account-data{
+        justify-content: initial;
+
+        // 各項目と内容の行
+        &__row{
+          height: auto;
+          flex-flow: column;
+          padding: initial;
+
+          // 内容の項目
+          &--headline{
+            background: #EEEEEE;
+            width: 100%;
+            display: block;
+            text-align: center;
+            border-top: solid 0.5px #ccc;
+            border-bottom: solid 0.5px #ccc;
+            box-sizing: border-box;
+            padding: 1rem 0;
+
+          }
+          &--avatar{
+            margin-top: 2.5rem;
+
+            // ユーザー名
+            .registration-avatar--name{
+              width: 100%;
+              max-width: initial;
+              white-space: normal;
+              font-size: 1.6rem;
+            }
+          }
+
+          // 変更ボタン
+          &--button{
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+
+          }
+          &--email{
+            width: 100%;
+            max-width: initial;
+            white-space: normal;
+            margin-top: 2.5rem;
+            overflow-wrap: break-word;
+            font-size: 1.6rem;
+
+          }
+          &--password{
+            margin-top: 2.5rem;
+            font-size: 1.6rem;
+          }
+
+          // グループ情報のブロック
+          &--group-total{
+            padding: 2.5rem 0 2.5rem 0;
+            font-size: 1.6rem;
+          }
+          &--task-total{
+            padding: 2.5rem 0 2.5rem 0;
+            width: 100%;
+            max-width: initial;
+            white-space: normal;
+            overflow-wrap: break-word;
+            font-size: 1.6rem;
+          }
+        }
+
+        // アンダーライン
+        #border-bottom{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+// share/account レスポンシブ（通常サイズのスマホ対応）
+@media screen and (max-width: 481px){
+
+  .account-wrap{
+    height: calc(100% - 50px - 50px);
+    top: 5rem;
+    padding-top: 2rem;
+
+    // 基本情報のブロック
+    .account-box{
+      // ブロックの見出し
+      &__title{
+        font-size: 1.8rem;
+      }
+
+      // ブロック内の情報セクション
+      .account-data{
+        // 各項目と内容の行
+        &__row{
+          &--avatar{
+            // ユーザー名
+            .registration-avatar--name{
+              font-size: 1.4rem;
+            }
+          }
+
+          // 変更ボタン
+          &--button{
+            font-size: 1.3rem;
+
+          }
+          &--email{
+            font-size: 1.4rem;
+
+          }
+          &--password{
+            font-size: 1.4rem;
+          }
+
+          // グループ情報のブロック
+          &--group-total{
+            font-size: 1.4rem;
+          }
+          &--group-name{
+            font-size: 1.4rem;
+          }
+          &--members{
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
