@@ -7,7 +7,7 @@
       会員登録情報
     .account-data
       // アバターとネーム
-      .account-data__row#border-bottom
+      .account-data__row.border-bottom
         .account-data__row--headline
           基本情報
         .account-data__row--avatar
@@ -20,7 +20,7 @@
         = link_to "変更", new_icon_user_path(current_user), class: "account-data__row--button"
 
       // メールアドレス
-      .account-data__row#border-bottom
+      .account-data__row.border-bottom
         .account-data__row--headline
           Email
         .account-data__row--email
@@ -42,7 +42,7 @@
     .account-data
 
       // グループ総数
-      .account-data__row#border-bottom
+      .account-data__row.border-bottom
         .account-data__row--headline
           所属しているグループ総数
         .account-data__row--group-total
@@ -50,7 +50,7 @@
           グループ
 
       // タスク総数
-      .account-data__row#border-bottom
+      .account-data__row.border-bottom
         .account-data__row--headline
           担当タスク総数
         .account-data__row--task-total
@@ -58,19 +58,28 @@
           件
 
       // 未完了のタスク総数
-      .account-data__row#border-bottom
-        .account-data__row--headline
-          未完了の担当タスク総数
-        .account-data__row--task-total
-          = @uncompleated_tasks_count
-          件
+      - if @group.present?
+        .account-data__row.border-bottom
+          .account-data__row--headline
+            未完了の担当タスク総数
+          .account-data__row--task-total
+            = @uncompleated_tasks_count
+            件
+      - else
+        .account-data__row
+          .account-data__row--headline
+            未完了の担当タスク総数
+          .account-data__row--task-total
+            = @uncompleated_tasks_count
+            件
 
       // グループ内でのタスク総数
-      .account-data__row
-        .account-data__row--headline
-          グループ内での担当タスク総数
-        .account-data__row--task-total
-          = @current_group_tasks_count
-          件
+      - if @group.present?
+        .account-data__row
+          .account-data__row--headline
+            グループ内での担当タスク総数
+          .account-data__row--task-total
+            = @current_group_tasks_count
+            件
 
 = render "share/navigation"
