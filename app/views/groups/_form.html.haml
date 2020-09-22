@@ -1,48 +1,99 @@
-= form_with model: @group, local: true do |f|
-  = render "groups/errors"
-  .form-field
-    = f.label :name, "Group Name"
-    %br/
-    = f.text_field :name, autofocus: true, class: "input-field", placeholder: "例) 1/1  音楽イベント・駅前会場"
-  .form-icon__title
-    Icon
-    .form-description
-      ※設定は任意です
-      .form-field
-        = f.label :image, "ファイルを選択", class: "group-icon__select" do
-          = icon "fa", "image", class: "label__image"
-          = f.file_field :image, class: "input-file"
-  .form-field
-    = f.label :notice, "Group Notice"
-    %br/
-    = f.text_area :notice, autofocus: true, class: "input-field__text", placeholder: "共有事項を入力してください"
-  .form-field
-    = f.label :group_category, "Category"
-    %br/
-    = f.collection_select(:group_category_id, @group_category, :id, :name, {prompt: "----"}, class: "select-field")
-  .form-field
-    = f.label :add, "Add Member", class: 'form-field__label'
-    .form-field__search.clearfix
-      %input#user-search-field.input-field{placeholder: "追加したいユーザー名を入力してください", type: "text", name: "input"}
-    #user-search-result
-  .search-field
-    .form-field.clearfix
-      %label.form-field__label{:for => "chat_group_チャットメンバー"} グループメンバー
-      #group-users
-        - group.users.each do |user|
-          .group-user.clearfix{ id: "group-user-#{user.id}" }
-            = f.hidden_field :id, name: "group[user_ids][]", value: user.id
-            %p.group-user__name
-              - japanese = /\A[ぁ-んァ-ン一-龥]/
-              - english = /\A[\w\s]+\z/
-              = user.name[0..19] << "..." if user.name.match(japanese) && user.name.length > 20
-              = user.name[0..24] << "..." if user.name.match(english) && user.name.length > 25
-              = user.name unless user.name.match(japanese) && user.name.length > 20 or user.name.match(english) && user.name.length > 24
-            - if @group.user_ids.include?(current_user.id) && @group.user_ids.length == 1
-              .user-search-not-remove
-                削除不可
-            - else
-              %a.user-search-remove.group-user__btn.group-user__btn--remove{ 'data-user-id': user.id } 削除
-    .form-field.clearfix
-  .actions
-    = f.submit "send", class: "form-submit--black"
+= form_with model: group, local: true do |f|
+  .form-area
+    // エラーメッセージ
+    = render "groups/errors"
+
+    // 見出し
+    %h2.form-heading
+      Form
+    .form-lead
+      ※は必須項目
+
+    // フォーム
+    %table.form-table
+      %tbody
+      // グループ名
+      %tr.form-table__row
+        %th.form-table__row--header
+          = f.label :name, "※Group Name"
+        %td.form-table__row--data
+          = f.text_field :name, autofocus: true, class: "input-field", maxlength: "35", placeholder: "例) 1/1  音楽イベント・駅前会場"
+
+      // イメージ
+      %tr.form-table__row
+        %th.form-table__row--header
+          Image
+        %td.form-table__row--data
+          = f.label :image, class: "group-image-label" do
+            = icon "fa", "image", class: "image-icon"
+            = f.file_field :image, class: "group-input-file"
+
+      // 共有事項
+      %tr.form-table__row
+        %th.form-table__row--header
+          = f.label :notice, "Group Notice"
+        %td.form-table__row--data
+          = f.text_area :notice, autofocus: true, class: "text-area", placeholder: "共有事項を入力してください"
+
+      // カテゴリー
+      %tr.form-table__row
+        %th.form-table__row--header
+          = f.label :group_category, "※Category"
+        %td.form-table__row--data
+          = f.collection_select(:group_category_id, GroupCategory.all, :id, :name, {prompt: "----"}, class: "select-field")
+
+      // インクリメンタルサーチ
+      %tr.form-table__row
+        %th.form-table__row--header
+          = f.label :add, "Add Member", class: 'form-field__label'
+        // 検索ボックス
+        %td.form-table__row--data
+          %input#user-search-field.input-field{placeholder: "ユーザー名を入力してください", type: "text", name: "input", autocomplete: "off"}
+
+    // 検索結果一覧
+    .result-field
+      #user-search-result
+
+    // グループに所属・追加されたメンバーの一覧
+    .enable-member-field
+      .clearfix
+        %label.search-label{:for => "chat_group_チャットメンバー"} グループメンバー
+        #group-users
+          - group.users.each do |user|
+            .group-user.clearfix{ id: "group-user-#{user.id}" }
+              = f.hidden_field :id, name: "group[user_ids][]", value: "#{user.id}", class: "target"
+              %p.group-user__name
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、いずれかの1文字[] を1回以上繰り返す+
+                - japanese = /\A[ぁ-んァ-ン一-龥]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、単語構成文字\w  [a-zA-Z0-9_]と空白文字\s  [\t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - english = /\A[\w\s]+\z/
+
+                // 文字列の先頭\A ∼ 文字列の末尾\zが、ひらがな・カタカナ・漢字、単語構成文字\w  [a-zA-Z0-9_]、非単語構成文字\W  [^a-zA-Z0-9_]、空白文字\s  [\t\r\n\f]、非空白文字\S  [^ \t\r\n\f]のいずれかの1文字[] を1回以上繰り返す+
+                - all_characters = /\A[ぁ-んァ-ン一-龥\w\W\s\S]+\z/
+
+                - if user.name.match(japanese) && user.name.length > 12
+                  = user.name[0..11] << "..."
+                - elsif user.name.match(english) && user.name.length > 12
+                  = user.name[0..11] << "..."
+                - elsif user.name.match(all_characters) && user.name.length > 12
+                  = user.name[0..11] << "..."
+                - else
+                  = user.name
+
+                // グループに所属しているメンバーが自分のみだった場合に、自分自身を削除できないようにする処理
+              - if @group.user_ids.include?(current_user.id) && @group.user_ids.length == 1
+                .user-search-remove-disable
+                  削除不可
+              - else
+                %a.user-search-remove.group-user__btn.group-user__btn--remove{ "data-user-id": user.id } 削除
+      .clearfix
+
+    // 送信ボタン
+    %button.submit-button
+      = icon "fa", "paper-plane", class: "paper-plane-icon"
+      %submit= f.submit "send", class: "form-submit"
+
+    //javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+    = link_to "", :href => "javascript:history.back();", class: "history-back" do
+      = icon "fa", "arrow-left"
