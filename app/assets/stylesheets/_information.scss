@@ -106,3 +106,104 @@
     }
   }
 }
+
+
+
+
+
+// groups/information レスポンシブ（タブレット対応）
+@media screen and (max-width: 769px){
+  .information-wrap{
+    .information-heading{
+      width: 90%;
+      max-width: 69rem;
+    }
+
+    // 全タブの入れ物
+    .information-tabs{
+      width: 90%;
+      max-width: 69rem;
+    }
+
+    // 全インフォメーションの入れ物
+    .information-container{
+      width: 90%;
+      max-width: 69rem;
+    }
+  }
+}
+
+
+
+
+
+// groups/information レスポンシブ（スマホ対応）
+@media screen and (max-width: 481px){
+  .information-wrap{
+    height: calc(100% - 50px - 50px);
+    padding: 2rem 0 7.5rem 0;
+    top: 5rem;
+    .information-heading{
+      width: 95vmin;
+      max-width: initial;
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem;
+      border-bottom: solid 0.1rem #AAAAAA;
+    }
+
+    .nav-fixed{
+      margin: 0 auto 0 auto;
+      position: fixed;
+      top: 5rem;
+      right: 0;
+      left: 0;
+    }
+    // 全タブの入れ物
+    .information-tabs{
+      width: 100%;
+      max-width: initial;
+      font-size: 1.4rem;
+      li{
+        border: 2px solid #ccc;
+        padding: 0.7rem 0 0.7rem 0;
+      }
+    }
+
+    // 全インフォメーションの入れ物
+    .information-container{
+      width: 100%;
+      max-width: initial;
+
+      // 各インフォメーション
+      .main-box{
+        padding: 0 4.158vmin 0 4.158vmin;
+
+        // 内容
+        .content{
+          flex-flow: column;
+          padding: 1rem 0 1rem 0;
+          font-size: 1.4rem;
+          letter-spacing: initial;
+          &__time{
+            width: 100%;
+            min-width: initial;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+          }
+          &__text{
+            width: 100%;
+            display: block;
+          }
+        }
+
+        // グループ未選択時の内容
+        .blank-content{
+          padding: 2rem 0 2rem 0;
+          font-size: 1.4rem;
+          letter-spacing: initial;
+        }
+      }
+    }
+  }
+}
