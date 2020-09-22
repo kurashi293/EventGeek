@@ -243,3 +243,277 @@
     }
   }
 }
+
+
+
+
+
+// groups/form レスポンシブ（タブレット対応）
+// groups/new
+// groups/edit
+@media screen and (max-width: 769px){
+
+  .group-form-wrap{
+    .form-area{
+      padding: 0 5% 0 5%;
+
+      // フォームの見出し
+      .form-heading{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // テーブル本体
+      .form-table{
+        width: 100%;
+        max-width: 69rem;
+        &__row{
+
+          // 入力する内容
+          &--data{
+
+            // f.text_field
+            .input-field{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.text_area
+            .text-area{
+              width: 100%;
+              max-width: 36rem;
+            }
+
+            // f.collection_select
+            .select-field{
+              width: 100%;
+              max-width: 30rem;
+            }
+          }
+        }
+      }
+
+      // 送信ボタン
+      .submit-button{
+        height: 10.403vmin;
+        min-height: 7rem;
+        width: 10.403vmin;
+        min-width: 7rem;
+      }
+
+      // 検索結果で表示されたユーザーの一覧
+      .result-field{
+        width: 100%;
+        max-width: 69rem;
+      }
+
+      // グループに所属・追加されたメンバーの一覧
+      .enable-member-field{
+        width: 100%;
+        max-width: 69rem;
+      }
+    }
+  }
+}
+
+
+
+
+
+// groups/form レスポンシブ（通常サイズのスマホ対応）
+// groups/new
+// groups/edit
+@media screen and (max-width: 481px){
+
+  .group-form-wrap{
+    height: 5rem;
+    position: initial;
+    overflow: initial;
+    background: rgba($color: #000000, $alpha: 1.0);
+    padding: initial;
+    h1{
+      display: inline-block;
+      margin-top: 1.3rem;
+      .form-title{
+        font-size: 2rem;
+        margin-bottom: initial;
+        text-shadow: 0.1rem 0.1rem 0  #008BBB,
+                      -0.1rem 0.1rem 0  #008BBB,
+                      0.1rem -0.1rem 0  #008BBB,
+                      -0.1rem -0.1rem 0  #008BBB;
+      }
+    }
+
+    .form-area{
+      height: calc(100% - 50px);
+      width: 100%;
+      box-sizing: border-box;
+      position: fixed;
+      top: 5rem;
+      overflow: auto;
+      text-align: center;
+      padding: 2rem 5% 2rem 5%;
+      background: black;
+      background: rgba($color: #000000, $alpha: 0.9);
+      color: white;
+      border-top: solid 0.05rem #AAAAAA;
+      border-bottom: solid 0.05rem #AAAAAA;
+      // エラーメッセージ
+      .group-alert{
+        margin-bottom: 3rem;
+        font-size: 1.4rem;
+      }
+
+      // フォームの見出し
+      .form-heading{
+        width: 100%;
+        max-width: initial;
+        border-bottom: solid 0.1rem #AAAAAA;
+        font-size: 1.8rem;
+      }
+
+      // 見出しの補足
+      .form-lead{
+        max-width: initial;
+        font-size: 1.3rem;
+      }
+
+      // テーブル本体
+      .form-table{
+        width: 100%;
+        max-width: initial;
+        &__row{
+          width: 100%;
+
+          // 項目・見出し
+          &--header{
+            width: 100%;
+            display: block;
+            min-width: initial;
+            font-size: 1.4rem;
+            text-align: center;
+            box-sizing: border-box;
+            padding: initial;
+            margin-bottom: 0.4rem;
+          }
+
+          // 入力する内容
+          &--data{
+            width: 100%;
+            display: block;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: initial;
+            margin-bottom: 3.5rem;
+
+            // f.text_field
+            .input-field{
+              width: 85%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.text_area
+            .text-area{
+              width: 85%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.collection_select
+            .select-field{
+              width: 75%;
+              max-width: initial;
+              height: 4rem;
+            }
+
+            // f.file_field
+            .group-image-label{
+              display: initial;
+              align-items: center;
+
+              // イメージ選択のアイコン
+              .image-icon{
+                font-size: 3rem;
+                margin: auto;
+              }
+              .image-icon:hover{
+                opacity: 0.5;
+              }
+              .group-input-file{
+                display: none;
+              }
+
+              // 選択画像のプレビュー
+              .group_preview_box{
+                text-align: center;
+
+                // 中身
+                .group_img_selected{
+                  height: 33vmin;
+                  width: 33vmin;
+                }
+                #close-icon{
+                  font-size: 1.8rem;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // 送信ボタン
+      .submit-button{
+        height: 3rem;
+        min-height: initial;
+        width: 5.5rem;
+        min-width: initial;
+        position: fixed;
+        top: 1rem;
+        right: 5%;
+        border-radius: 1rem;
+        .paper-plane-icon{
+          display: none;
+        }
+      }
+
+      // javascriptのhistory.backでユーザーの訪問履歴を参照し、一つ前のページに戻る
+      .history-back{
+        display: inline-block;
+        color: white;
+        position: fixed;
+        left: 5%;
+        top: 1.65rem;
+        font-size: 1.7rem;
+      }
+
+      // 検索結果で表示されたユーザーの一覧
+      .result-field{
+        max-width: initial;
+        font-size: 1.4rem;
+        margin-top: initial;
+        margin-bottom: 3.5rem;
+      }
+
+      // グループに所属・追加されたメンバーの一覧
+      .enable-member-field{
+        max-width: initial;
+        font-size: 1.4rem;
+      }
+
+      // 検索結果で表示されたユーザー個別のブロック
+      .group-user {
+        padding: 2rem 0 2rem 0;
+        &__name{
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
