@@ -1,16 +1,27 @@
 .form-wrap
   %h1= link_to "Account Update", groups_path, class: "form-title-link"
+
   = form_with model: @user, url: {controller: "users", action:"update"} do |f|
     .form-area
-
       .common-block
         .common-block__heading
           Avatar
           .common-block__heading--description
             ※設定は任意です
-        = f.label :avatar, class: "avatar-label" do
-          = icon "fa", "image", class: "image-icon"
-          = f.file_field :avatar, class: "input-file"
+
+          // アバターが既に登録されていた場合
+        - if current_user.avatar.present?
+          = f.label :avatar, class: "avatar-label" do
+            %i= image_tag current_user.avatar.url, class: "current_user-avatar"
+            = f.file_field :avatar, class: "input-file"
+            .avatar-paragraph
+              .avatar-inform Re-select
+
+          // アバターが登録されていない場合
+        - else
+          = f.label :avatar, class: "avatar-label" do
+            = icon "fa", "image", class: "image-icon"
+            = f.file_field :avatar, class: "input-file"
 
       .common-block
         = f.submit "send", class: "form-submit", id: "overlay-color"
