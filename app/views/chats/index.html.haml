@@ -10,9 +10,9 @@
     //フォーム
     .chat-form
       = f.text_area :message, class: "chat-form__text-area", placeholder: "type a message"
-      = f.label :image, class: "chat-form__image" do
-        = icon "fas", "image", class: "chat-form__image--icon"
-        = f.file_field :image, class: "chat-form__image--hidden-field"
+      = f.label :image, class: "chat-form__image-label" do
+        = icon "fas", "image", class: "image-icon"
+        = f.file_field :image, class: "chat-file-field"
       = f.submit "send", class: "chat-form__send"
 
 = render "/share/navigation"
