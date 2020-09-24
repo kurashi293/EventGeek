@@ -243,7 +243,9 @@
           // 編集画面での登録済みアバター
           .current_user-avatar{
             height: 33vmin;
+            min-height: 9.5rem;
             width: 33vmin;
+            min-width: 9.5rem;
           }
           .avatar-paragraph{
             margin-top: 1rem;
@@ -260,7 +262,9 @@
           .preview_box{
             .img_selected{
               height: 33vmin;
+              min-height: 9.5rem;
               width: 33vmin;
+              min-width: 9.5rem;
             }
             .img_paragraph{
               margin-top: 1rem;

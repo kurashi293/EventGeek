@@ -1105,12 +1105,6 @@
           text-align: left;
         }
 
-        // fi.file_fieldのブロックのみ適用
-        .file-field{
-          display: flex;
-          justify-content: space-between;
-        }
-
         // 入力する内容
         &--data{
           width: 100%;
@@ -1136,56 +1130,6 @@
 
           .text-area::placeholder{
             padding-top: 0.35rem;
-          }
-
-          // f.file_field
-          .task-image-label{
-            // イメージ選択のアイコン
-            .task-image-icon{
-              font-size: 4rem;
-              cursor: pointer;
-            }
-            .task-image-icon:hover{
-              opacity: 0.5;
-            }
-            .input-files{
-              display: none;
-            }
-
-            // 選択画像のプレビュー
-            .task_preview_box{
-              text-align: center;
-
-              // 中身
-              .imgs_selected{
-                height: 9.5rem;
-                width: 9.5rem;
-                cursor: pointer;
-              }
-
-              .imgs_paragraph{
-                margin-top: 1.5rem;
-                .imgs_delete{
-                  box-sizing: border-box;
-                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-                  color:  #BA002F;
-                  text-decoration: none;
-                  border: solid 1px #BA002F;
-                }
-
-                .imgs_inform{
-                  display: inline;
-                  box-sizing: border-box;
-                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-                  color: #008BBB;
-                  border: solid 1px  #008BBB;
-                  font-size: 1.5rem;
-                }
-              }
-            }
-          }
-          .hide-block{
-            display: none;
           }
 
           // チェックボックスのモーダルを表示するボタン
@@ -1308,6 +1252,61 @@
             padding: 0.5rem;
             box-sizing: border-box;
             background: white;
+          }
+        }
+        // fi.file_fieldのブロックのみ適用
+        .file-field{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          .task-image-label{
+            // イメージ選択のアイコン
+            .task-image-icon{
+              font-size: 4rem;
+              cursor: pointer;
+            }
+            .task-image-icon:hover{
+              opacity: 0.5;
+            }
+            .input-files{
+              display: none;
+            }
+
+            // 選択画像のプレビュー
+            .task_preview_box{
+              text-align: center;
+
+              // 中身
+              .imgs_selected{
+                height: 9.5rem;
+                width: 9.5rem;
+                cursor: pointer;
+              }
+
+              .imgs_paragraph{
+                margin-top: 1.5rem;
+                .imgs_delete{
+                  box-sizing: border-box;
+                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                  color:  #BA002F;
+                  text-decoration: none;
+                  border: solid 1px #BA002F;
+                }
+
+                .imgs_inform{
+                  display: inline;
+                  box-sizing: border-box;
+                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                  color: #008BBB;
+                  border: solid 1px  #008BBB;
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+          .hide-block{
+            display: none;
           }
         }
       }
@@ -1504,42 +1503,6 @@
             margin-bottom: 0.4rem;
           }
 
-          // fi.file_fieldのブロックのみ適用
-          .file-field{
-            display: flex;
-            // f.file_field
-            .task-image-label{
-              width: 8.5rem;
-              min-width: 8.5rem;
-              // イメージ選択のアイコン
-              .task-image-icon{
-                font-size: 3rem;
-              }
-
-              // 選択画像のプレビュー
-              .task_preview_box{
-                // 中身
-                .imgs_selected{
-                  height: 8.5rem;
-                  width: 8.5rem;
-                }
-                .imgs_paragraph{
-                  margin-top: 1rem;
-                  .imgs_delete{
-                    font-size: 1.4rem;
-                  }
-                  .imgs_inform{
-                    font-size: 1.4rem;
-                  }
-                }
-              }
-            }
-            .hide-block{
-              width: 8.5rem;
-              min-width: 8.5rem;
-            }
-          }
-
           // 入力する内容
           &--data{
             width: 100%;
@@ -1618,6 +1581,39 @@
               max-width: initial;
             }
           }
+          // fi.file_fieldのブロックのみ適用
+          .file-field{
+            .task-image-label{
+              width: 9.5rem;
+              min-width: initial;
+              // イメージ選択のアイコン
+              .task-image-icon{
+                font-size: 3rem;
+              }
+
+              // 選択画像のプレビュー
+              .task_preview_box{
+                // 中身
+                .imgs_selected{
+                  height: 9.5rem;
+                  width: 9.5rem;
+                }
+                .imgs_paragraph{
+                  margin-top: 1rem;
+                  .imgs_delete{
+                    font-size: 1.4rem;
+                  }
+                  .imgs_inform{
+                    font-size: 1.4rem;
+                  }
+                }
+              }
+            }
+            .hide-block{
+              width: 9.5rem;
+              min-width: initial;
+            }
+          }
         }
       }
 
@@ -1654,7 +1650,7 @@
 
 
 // tasks/edit レスポンシブ（最小サイズのスマホ対応）
-@media screen and (max-width: 285px){
+@media screen and (max-width: 316px){
 
   .task-edit-wrap{
     .form-area{
@@ -1663,33 +1659,7 @@
         &__row{
           // f.file_field
           .file-field{
-            flex-wrap: wrap;
-            .task-image-label{
-              width: 29.82456vmin;
-              min-width: 5rem;
-              // 選択画像のプレビュー
-              .task_preview_box{
-                // 中身
-                .imgs_selected{
-                  height: 29.82456vmin;
-                  width: 29.82456vmin;
-                  min-width: 5rem;
-                }
-                .imgs_paragraph{
-                  margin-top: 1rem;
-                  .imgs_delete{
-                    font-size: 4.91228vmin;
-                  }
-                  .imgs_inform{
-                    font-size: 4.91228vmin;
-                  }
-                }
-              }
-            }
-            .hide-block{
-              width: 29.82456vmin;
-              min-width: 5rem;
-            }
+            justify-content: space-evenly;
           }
         }
       }

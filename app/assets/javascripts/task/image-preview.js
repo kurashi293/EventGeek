@@ -134,4 +134,9 @@ $(document).on('turbolinks:load', function(){
     var targets = $('.task-image-label').slice(0, 3);
     targets.css("margin-bottom", "35px");
   }
+
+  if(window.location.href.match(/\/groups\/\d+\/tasks\/\d+\/edit/) && window.matchMedia( '(max-width: 316px)' ).matches){
+    var targets = $('.task-image-label').slice(0, 4);
+    targets.css("margin-bottom", "35px",);
+  }
 });

@@ -318,7 +318,9 @@
       .chat_preview_box{
         .img_selected{
           height: 41.58vmin;
+          min-height: 9.5rem;
           width: 41.58vmin;
+          min-width: 9.5rem;
         }
         .img_paragraph{
           margin-top: 1rem;

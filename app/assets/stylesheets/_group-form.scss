@@ -474,7 +474,9 @@
               // 編集画面での登録済み画像
               .current-group-image{
                 height: 33vmin;
+                min-height: 9.5rem;
                 width: 33vmin;
+                min-width: 9.5rem;
               }
               .group-image-paragraph{
                 margin-top: 1rem;
@@ -502,7 +504,9 @@
                 // 中身
                 .img_selected{
                   height: 33vmin;
+                  min-height: 9.5rem;
                   width: 33vmin;
+                  min-width: 9.5rem;
                 }
                 .img_paragraph{
                   margin-top: 1rem;

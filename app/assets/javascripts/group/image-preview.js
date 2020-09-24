@@ -44,9 +44,9 @@ $(document).on('change', ".group-input-file", function(){
 
   // changeイベントが発火した時、avatar-labelにimg要素が既にあったら
   if(find_img.length){
-    //avatar-labelのimg要素の次以降の兄弟要素を削除
+    // group-image-labelのimg要素の次以降の兄弟要素を削除
     find_img.nextAll().remove();
-    // avatar-labelのimg要素を削除
+    // group-image-labelのimg要素を削除
     find_img.remove();
     $(".group_preview_box").remove();
   }
@@ -59,7 +59,7 @@ $(document).on('change', ".group-input-file", function(){
   // 変数label（changeイベントが起こったgroup-image-label要素）の最後に変数preview_boxを追加する
   label.append(preview_box);
   // 変数label（changeイベントが起こったgroup-image-label要素）からクラス名がgroup-image-iconの要素を特定し、document上から消す
-  label.find("group-image-icon").hide();
+  label.find(".group-image-icon").hide();
 
 
 
@@ -69,8 +69,8 @@ $(document).on('change', ".group-input-file", function(){
     // 最後にfilereaderのresultプロパティーで、読み取り操作が完了したファイルの内容を返す
     label.find('img').attr('src', filereader.result);
 
-    // preview_box_delete関数に処理を繋げる
-    preview_box_delete(label);
+    // group_preview_box_delete関数に処理を繋げる
+    group_preview_box_delete(label);
   }
 
   // readAsDataURLメソッドはユーザーによって指定されたファイルを読み込むために使用。
@@ -82,7 +82,7 @@ $(document).on('change', ".group-input-file", function(){
 
 
 // 画像削除
-function preview_box_delete(label){
+function group_preview_box_delete(label){
   label.find("a.img_delete").on('click',function(){
     $(this).parent().find('input[type=file]').val('');
     $(this).parent().find('.group_preview_box, br').remove();
