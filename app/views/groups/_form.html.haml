@@ -24,9 +24,19 @@
         %th.form-table__row--header
           Image
         %td.form-table__row--data
-          = f.label :image, class: "group-image-label" do
-            = icon "fa", "image", class: "image-icon"
-            = f.file_field :image, class: "group-input-file"
+          // イメージが既に登録されていた場合
+          - if @group.image.present?
+            = f.label :image, class: "group-image-label" do
+              %i= image_tag @group.image.url, class: "current-group-image"
+              = f.file_field :image, class: "group-input-file"
+              .group-image-paragraph
+                .group-image-inform Re-select
+
+            // イメージが登録されていない場合
+          - else
+            = f.label :image, class: "group-image-label" do
+              = icon "fa", "image", class: "group-image-icon"
+              = f.file_field :image, class: "group-input-file"
 
       // 共有事項
       %tr.form-table__row

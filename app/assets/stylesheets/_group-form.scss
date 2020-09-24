@@ -110,13 +110,32 @@
             display: flex;
             align-items: center;
             display: inline-block;
+            text-align: center;
+
+            // 編集画面での登録済み画像
+            .current-group-image{
+              height: 12rem;
+              width: 12rem;
+              cursor: pointer;
+            }
+            .group-image-paragraph{
+              margin-top: 1.5rem;
+              .group-image-inform{
+                display: inline;
+                box-sizing: border-box;
+                padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                color: #008BBB;
+                border: solid 1px  #008BBB;
+                font-size: 1.5rem;
+              }
+            }
 
             // イメージ選択のアイコン
-            .image-icon{
+            .group-image-icon{
               font-size: 4rem;
               cursor: pointer;
             }
-            .image-icon:hover{
+            .group-image-icon:hover{
               opacity: 0.5;
             }
             .group-input-file{
@@ -129,16 +148,30 @@
               text-align: center;
 
               // 中身
-              .group_img_selected{
+              .img_selected{
                 height: 12rem;
                 width: 12rem;
+                cursor: pointer;
               }
-              .group_img_delete{
-                color:  #BA002F;
-                text-decoration: none;
-              }
-              #close-icon{
-                font-size: 2.2rem;
+
+              .img_paragraph{
+                margin-top: 1.5rem;
+                .img_delete{
+                  box-sizing: border-box;
+                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                  color:  #BA002F;
+                  text-decoration: none;
+                  border: solid 1px #BA002F;
+                }
+
+                .img_inform{
+                  display: inline;
+                  box-sizing: border-box;
+                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                  color: #008BBB;
+                  border: solid 1px  #008BBB;
+                  font-size: 1.5rem;
+                }
               }
             }
           }
@@ -438,12 +471,26 @@
               display: initial;
               align-items: center;
 
+              // 編集画面での登録済み画像
+              .current-group-image{
+                height: 33vmin;
+                min-height: 9.5rem;
+                width: 33vmin;
+                min-width: 9.5rem;
+              }
+              .group-image-paragraph{
+                margin-top: 1rem;
+                .group-image-inform{
+                  font-size: 1.4rem;
+                }
+              }
+
               // イメージ選択のアイコン
-              .image-icon{
+              .group-image-icon{
                 font-size: 3rem;
                 margin: auto;
               }
-              .image-icon:hover{
+              .group-image-icon:hover{
                 opacity: 0.5;
               }
               .group-input-file{
@@ -455,12 +502,20 @@
                 text-align: center;
 
                 // 中身
-                .group_img_selected{
+                .img_selected{
                   height: 33vmin;
+                  min-height: 9.5rem;
                   width: 33vmin;
+                  min-width: 9.5rem;
                 }
-                #close-icon{
-                  font-size: 1.8rem;
+                .img_paragraph{
+                  margin-top: 1rem;
+                  .img_delete{
+                    font-size: 1.4rem;
+                  }
+                  .img_inform{
+                    font-size: 1.4rem;
+                  }
                 }
               }
             }

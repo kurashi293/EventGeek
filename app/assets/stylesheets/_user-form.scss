@@ -75,6 +75,25 @@
       .avatar-label{
         display: block;
 
+        // 編集画面での登録済みアバター
+        .current_user-avatar{
+          height: 12rem;
+          width: 12rem;
+          border-radius: 100%;
+          cursor: pointer;
+        }
+        .avatar-paragraph{
+          margin-top: 1.5rem;
+          .avatar-inform{
+            display: inline;
+            box-sizing: border-box;
+            padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+            color: #008BBB;
+            border: solid 1px  #008BBB;
+            font-size: 1.5rem;
+          }
+        }
+
         // アバター選択のアイコン
         .image-icon{
           font-size: 4rem;
@@ -88,17 +107,33 @@
         }
 
         // 選択画像のプレビュー
-        .img_selected{
-          height: 12rem;
-          width: 12rem;
-          border-radius: 100%;
-        }
-        .img_delete{
-          color:  #BA002F;
-          text-decoration: none;
-        }
-        #close-icon{
-          font-size: 2.2rem;
+        .preview_box{
+          .img_selected{
+            height: 12rem;
+            width: 12rem;
+            border-radius: 100%;
+            cursor: pointer;
+          }
+
+          .img_paragraph{
+            margin-top: 1.5rem;
+            .img_delete{
+              box-sizing: border-box;
+              padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+              color:  #BA002F;
+              text-decoration: none;
+              border: solid 1px #BA002F;
+            }
+
+            .img_inform{
+              display: inline;
+              box-sizing: border-box;
+              padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+              color: #008BBB;
+              border: solid 1px  #008BBB;
+              font-size: 1.5rem;
+            }
+          }
         }
       }
 
@@ -137,6 +172,7 @@
 
       // ログインページへのリンク
       .login-link{
+        font-size: 1.43rem;
         color: #008BBB;
         text-underline-position: under;
       }
@@ -204,17 +240,41 @@
 
         // f.file_field
         .avatar-label{
+          // 編集画面での登録済みアバター
+          .current_user-avatar{
+            height: 33vmin;
+            min-height: 9.5rem;
+            width: 33vmin;
+            min-width: 9.5rem;
+          }
+          .avatar-paragraph{
+            margin-top: 1rem;
+            .avatar-inform{
+              font-size: 1.4rem;
+            }
+          }
+
           .image-icon{
             font-size: 3rem;
           }
 
           // 選択画像のプレビュー
-          .img_selected{
-            height: 33vmin;
-            width: 33vmin;
-          }
-          #close-icon{
-            font-size: 1.8rem;
+          .preview_box{
+            .img_selected{
+              height: 33vmin;
+              min-height: 9.5rem;
+              width: 33vmin;
+              min-width: 9.5rem;
+            }
+            .img_paragraph{
+              margin-top: 1rem;
+              .img_delete{
+                font-size: 1.4rem;
+              }
+              .img_inform{
+                font-size: 1.4rem;
+              }
+            }
           }
         }
 
@@ -226,7 +286,7 @@
 
         // ログインページへのリンク
         .login-link{
-          font-size: 1.4rem;
+          font-size: 1.3rem;
         }
       }
       .copyright{

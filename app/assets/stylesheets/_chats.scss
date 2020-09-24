@@ -116,21 +116,21 @@
     &__text-area::placeholder{    //placeholderの擬似要素で中身を装飾
       padding-top: 0.7rem;
     }
-    &__image{
-      &--icon{
+    &__image-label{
+      .image-icon{
         font-size: 4.5rem;
         background: #FFF;
         cursor: pointer;
       }
-      &--icon:hover{
+      .image-icon:hover{
         opacity: 0.5;
       }
-      &--hidden-field {
+      .chat-file-field {
         display: none;
       }
 
       // フォーム選択画像のプレビュー
-      .preview-container{
+      .chat_preview_box{
         display: none;
         position: absolute;
         bottom: 50%;
@@ -138,19 +138,31 @@
         transform: translate(-50%, -50%);
         z-index: 15;
         text-align: center;
-        &__heading{
-          color: #333333;
-        }
-        &__image{
+        .img_selected{
           height: 20rem;
           width: 20rem;
+          cursor: pointer;
         }
-        &__caption{
-          text-decoration: none;
-          color: #BA002F;
-        }
-        #close-icon{
-          font-size: 2.2rem;
+
+        .img_paragraph{
+          margin-top: 1.5rem;
+          .img_delete{
+            box-sizing: border-box;
+            padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+            color:  #BA002F;
+            text-decoration: none;
+            border: solid 1px #BA002F;
+          }
+
+          .img_inform{
+            display: inline;
+            box-sizing: border-box;
+            padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+            color: #008BBB;
+            border: solid 1px  #008BBB;
+            font-size: 1.5rem;
+          }
+
         }
       }
     }
@@ -198,10 +210,10 @@
   .chat-wrap{
     //フォーム
     .chat-form {
-      &__image{
+      &__image-label{
         // フォーム選択画像のプレビュー
-        .preview-container{
-          &__image{
+        .chat_preview_box{
+          .img_selected{
             height: 26.0078vmin;
             width: 26.0078vmin;
           }
@@ -296,21 +308,30 @@
         padding-top: 0.35rem;
         font-size: 1.3rem;
       }
-      &__image{
-        &--icon{
+      &__image-label{
+        .image-icon{
           font-size: 3.5rem;
         }
       }
 
       // フォーム選択画像のプレビュー
-      .preview-container{
-        &__image{
+      .chat_preview_box{
+        .img_selected{
           height: 41.58vmin;
+          min-height: 9.5rem;
           width: 41.58vmin;
+          min-width: 9.5rem;
         }
-        #close-icon{
-          font-size: 1.8rem;
+        .img_paragraph{
+          margin-top: 1rem;
+          .img_delete{
+            font-size: 1.4rem;
+          }
+          .img_inform{
+            font-size: 1.4rem;
+          }
         }
+
       }
       &__send {
         height: 3.5rem;
@@ -383,13 +404,6 @@
     .chat-form {
       &__text-area::placeholder{    //placeholderの擬似要素で中身を装飾
         font-size: 5.179vmin;
-      }
-
-      // フォーム選択画像のプレビュー
-      .preview-container{
-        &__heading{
-          font-size: 5.976vmin;
-        }
       }
       &__send {
         font-size: 5.179vmin;
