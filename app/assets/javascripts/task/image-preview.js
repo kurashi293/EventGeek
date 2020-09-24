@@ -109,3 +109,19 @@ $(document).on('mouseleave','.imgs_selected',function(){
   preview_box.find(".imgs_inform").remove();
   preview_box.find(".imgs_delete").show();
 });
+
+
+
+
+
+$(document).on('turbolinks:load', function(){
+  if (window.location.href.match(/\/groups\/\d+\/tasks\/\d+\/edit/) && window.matchMedia( '(max-width: 769px)' ).matches) {
+    var target = $('.task-image-label').eq(0);
+    target.css("margin-bottom", "35px");
+  }
+
+  if(window.location.href.match(/\/groups\/\d+\/tasks\/\d+\/edit/) && window.matchMedia( '(max-width: 635px)' ).matches){
+    var targets = $('.task-image-label').slice(0, 3);
+    targets.css("margin-bottom", "35px");
+  }
+});

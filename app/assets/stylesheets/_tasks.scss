@@ -1102,16 +1102,14 @@
             padding-top: 0.35rem;
           }
 
-
           // f.file_field
-          .task-label{
-
+          .task-image-label{
             // イメージ選択のアイコン
-            .image-icon{
+            .task-image-icon{
               font-size: 4rem;
               cursor: pointer;
             }
-            .image-icon:hover{
+            .task-image-icon:hover{
               opacity: 0.5;
             }
             .input-files{
@@ -1119,22 +1117,39 @@
             }
 
             // 選択画像のプレビュー
-            .preview_boxes{
+            .task_preview_box{
               text-align: center;
 
               // 中身
-              .images_selected{
+              .imgs_selected{
                 height: 9.5rem;
                 width: 9.5rem;
+                cursor: pointer;
               }
-              .images_delete{
-                color:  #BA002F;
-                text-decoration: none;
-              }
-              #closes-icon{
-                font-size: 2.2rem;
+
+              .imgs_paragraph{
+                margin-top: 1.5rem;
+                .imgs_delete{
+                  box-sizing: border-box;
+                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                  color:  #BA002F;
+                  text-decoration: none;
+                  border: solid 1px #BA002F;
+                }
+
+                .imgs_inform{
+                  display: inline;
+                  box-sizing: border-box;
+                  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                  color: #008BBB;
+                  border: solid 1px  #008BBB;
+                  font-size: 1.5rem;
+                }
               }
             }
+          }
+          .hide-block{
+            display: none;
           }
 
           // チェックボックスのモーダルを表示するボタン
@@ -1340,22 +1355,24 @@
               max-width: 36rem;
             }
 
-            // f.file_field
-            .task-label{
-              // 選択画像のプレビュー
-              .preview_boxes{
-                // 中身
-                .images_selected{
-                  height: 12.35vw;
-                  width: 12.35vw;
-                }
-              }
-            }
-
             // f.collection_select
             .select-field{
               width: 100%;
               max-width: 30rem;
+            }
+          }
+          // f.file_field
+          .file-field{
+            flex-wrap: wrap;
+            .task-image-label{
+              width: 10rem;
+              min-width: 10rem;
+              text-align: center;
+            }
+            .hide-block{
+              width: 10rem;
+              min-width: 10rem;
+              display: inline-block;
             }
           }
         }
@@ -1454,7 +1471,37 @@
           // fi.file_fieldのブロックのみ適用
           .file-field{
             display: flex;
-            justify-content: space-between;
+            // f.file_field
+            .task-image-label{
+              width: 8.5rem;
+              min-width: 8.5rem;
+              // イメージ選択のアイコン
+              .task-image-icon{
+                font-size: 3rem;
+              }
+
+              // 選択画像のプレビュー
+              .task_preview_box{
+                // 中身
+                .imgs_selected{
+                  height: 8.5rem;
+                  width: 8.5rem;
+                }
+                .imgs_paragraph{
+                  margin-top: 1rem;
+                  .imgs_delete{
+                    font-size: 1.4rem;
+                  }
+                  .imgs_inform{
+                    font-size: 1.4rem;
+                  }
+                }
+              }
+            }
+            .hide-block{
+              width: 8.5rem;
+              min-width: 8.5rem;
+            }
           }
 
           // 入力する内容
@@ -1478,27 +1525,6 @@
               width: 85%;
               max-width: initial;
               height: 4rem;
-            }
-
-            // f.file_field
-            .task-label{
-              // イメージ選択のアイコン
-              .image-icon{
-                font-size: 3rem;
-              }
-
-              // 選択画像のプレビュー
-              .preview_boxes{
-
-                // 中身
-                .images_selected{
-                  height: 18vmin;
-                  width: 18vmin;
-                }
-                #closes-icon{
-                  font-size: 1.8rem;
-                }
-              }
             }
 
             // チェックボックスのモーダルを表示するボタン
@@ -1582,6 +1608,54 @@
         left: 5%;
         top: 1.65rem;
         font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+
+
+
+
+// tasks/edit レスポンシブ（最小サイズのスマホ対応）
+@media screen and (max-width: 285px){
+
+  .task-edit-wrap{
+    .form-area{
+      // テーブル本体
+      .form-table{
+        &__row{
+          // f.file_field
+          .file-field{
+            flex-wrap: wrap;
+            .task-image-label{
+              width: 29.82456vmin;
+              min-width: 5rem;
+              // 選択画像のプレビュー
+              .task_preview_box{
+                // 中身
+                .imgs_selected{
+                  height: 29.82456vmin;
+                  width: 29.82456vmin;
+                  min-width: 5rem;
+                }
+                .imgs_paragraph{
+                  margin-top: 1rem;
+                  .imgs_delete{
+                    font-size: 4.91228vmin;
+                  }
+                  .imgs_inform{
+                    font-size: 4.91228vmin;
+                  }
+                }
+              }
+            }
+            .hide-block{
+              width: 29.82456vmin;
+              min-width: 5rem;
+            }
+          }
+        }
       }
     }
   }
