@@ -20,14 +20,17 @@
           = f.label :content, "※Task Content"
         = f.text_area :content, class: "text-area", autofocus: true, required: true, placeholder: "詳細を入力してください"
 
+      // イメージ
       .common-block
         .common-label
           = f.label :image
         .file-field
           = f.fields_for :task_images do |fi|
-            = fi.label :image, class: "task-label" do
-              = icon "fa", "image", class: "image-icon"
+            = fi.label :image, class: "task-image-label" do
+              = icon "fa", "image", class: "task-image-icon"
               = fi.file_field :image, class: "input-files"
+          .hide-block
+          .hide-block
 
       .common-block
         .common-label

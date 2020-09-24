@@ -115,6 +115,16 @@ $(document).on('mouseleave','.imgs_selected',function(){
 
 
 $(document).on('turbolinks:load', function(){
+  if(window.location.href.match(/\/groups\/\d+\/tasks/)){
+    var targets = $('.task-image-label').slice(0, 3);
+    targets.css("margin-bottom", "35px");
+  }
+
+  if(window.location.href.match(/\/groups\/\d+\/tasks/) && window.matchMedia( '(max-width: 405px)' ).matches){
+    var targets = $('.task-image-label').slice(0, 4);
+    targets.css("margin-bottom", "35px");
+  }
+
   if (window.location.href.match(/\/groups\/\d+\/tasks\/\d+\/edit/) && window.matchMedia( '(max-width: 769px)' ).matches) {
     var target = $('.task-image-label').eq(0);
     target.css("margin-bottom", "35px");
