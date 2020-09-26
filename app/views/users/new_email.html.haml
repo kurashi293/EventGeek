@@ -6,7 +6,7 @@
       .common-block
         .common-label
           = f.label :email, "New Email"
-        = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
+        = f.email_field :email, autofocus: false, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
 
       .common-block
         = f.submit "send", class: "form-submit", id: "overlay-color"

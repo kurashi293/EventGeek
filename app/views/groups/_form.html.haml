@@ -17,7 +17,7 @@
         %th.form-table__row--header
           = f.label :name, "※Group Name"
         %td.form-table__row--data
-          = f.text_field :name, autofocus: true, class: "input-field", maxlength: "35", placeholder: "例) 1/1  音楽イベント・駅前会場"
+          = f.text_field :name, autofocus: false, class: "input-field", maxlength: "35", placeholder: "例) 1/1  音楽イベント・駅前会場"
 
       // イメージ
       %tr.form-table__row
@@ -43,7 +43,7 @@
         %th.form-table__row--header
           = f.label :notice, "Group Notice"
         %td.form-table__row--data
-          = f.text_area :notice, autofocus: true, class: "text-area", placeholder: "共有事項を入力してください"
+          = f.text_area :notice, autofocus: false, class: "text-area", placeholder: "共有事項を入力してください"
 
       // カテゴリー
       %tr.form-table__row

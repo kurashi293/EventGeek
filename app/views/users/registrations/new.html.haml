@@ -8,7 +8,7 @@
       .common-block
         .common-label
           = f.label :name
-        = f.text_field :name, autofocus: true, maxlength: "20", class: "input-field", placeholder: "Eventer", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
+        = f.text_field :name, autofocus: false, maxlength: "20", class: "input-field", placeholder: "Eventer", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
 
       .common-block
         .common-block__heading
@@ -22,7 +22,7 @@
       .common-block
         .common-label
           = f.label :email
-        = f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
+        = f.email_field :email, autofocus: false, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
 
       .common-block
         .common-label

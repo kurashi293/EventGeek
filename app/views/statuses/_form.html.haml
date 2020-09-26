@@ -25,7 +25,7 @@
             Company
           = f.fields_for :company do |company|
             %td.form-table__row--data
-              = company.text_field :name, autofocus: true, autocomplete: true, placeholder: "例) 株式会社イベント", class: "input-field"
+              = company.text_field :name, autofocus: false, autocomplete: true, placeholder: "例) 株式会社イベント", class: "input-field"
 
         // 稼働時間選択
         %tr.form-table__row
@@ -92,7 +92,7 @@
             Set up
           = f.fields_for :position do |position|
             %td.form-table__row--data
-              = position.text_field :set_up, autofocus: true, autocomplete: true, placeholder: "例) 設営", class: "input-field"
+              = position.text_field :set_up, autofocus: false, autocomplete: true, placeholder: "例) 設営", class: "input-field"
 
         // 開場時のポジション入力
         %tr.form-table__row
@@ -100,7 +100,7 @@
             Opening
           = f.fields_for :position do |position|
             %td.form-table__row--data
-              = position.text_field :opening, autofocus: true, autocomplete: true, placeholder: "例) 入場口受付", class: "input-field"
+              = position.text_field :opening, autofocus: false, autocomplete: true, placeholder: "例) 入場口受付", class: "input-field"
 
         // 開演時のポジション入力
         %tr.form-table__row
@@ -108,7 +108,7 @@
             Start
           = f.fields_for :position do |position|
             %td.form-table__row--data
-              = position.text_field :start, autofocus: true, autocomplete: true, placeholder: "例) 客席案内", class: "input-field"
+              = position.text_field :start, autofocus: false, autocomplete: true, placeholder: "例) 客席案内", class: "input-field"
 
         // 休憩時のポジション入力
         %tr.form-table__row
@@ -116,7 +116,7 @@
             Break
           = f.fields_for :position do |position|
             %td.form-table__row--data
-              = position.text_field :break, autofocus: true, autocomplete: true, placeholder: "例) 再入場対応", class: "input-field"
+              = position.text_field :break, autofocus: false, autocomplete: true, placeholder: "例) 再入場対応", class: "input-field"
 
         // 終演時のポジション入力
         %tr.form-table__row
@@ -124,7 +124,7 @@
             End
           = f.fields_for :position do |position|
             %td.form-table__row--data
-              = position.text_field :end, autofocus: true, autocomplete: true, placeholder: "例) 会場内客出し", class: "input-field"
+              = position.text_field :end, autofocus: false, autocomplete: true, placeholder: "例) 会場内客出し", class: "input-field"
 
         // 撤去時のポジション入力
         %tr.form-table__row
@@ -132,7 +132,7 @@
             Clean up
           = f.fields_for :position do |position|
             %td.form-table__row--data
-              = position.text_field :clean_up, autofocus: true, autocomplete: true, placeholder: "例) 撤去", class: "input-field"
+              = position.text_field :clean_up, autofocus: false, autocomplete: true, placeholder: "例) 撤去", class: "input-field"
 
     // 送信ボタン
     %button.submit-button
