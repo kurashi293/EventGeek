@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_group
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_task_images, only: [:edit]
