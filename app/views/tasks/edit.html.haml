@@ -20,14 +20,14 @@
             %th.form-table__row--header
               = f.label :title, "※Task Title"
             %td.form-table__row--data
-              = f.text_field :title, class: "input-field", autofocus: true, placeholder: "例) 会場の設営"
+              = f.text_field :title, class: "input-field", autofocus: false, placeholder: "例) 会場の設営"
 
           // タスクの内容入力
           %tr.form-table__row
             %th.form-table__row--header
               = f.label :content, "※Task Content"
             %td.form-table__row--data
-              = f.text_area :content, class: "text-area", autofocus: true, placeholder: "詳細を入力してください"
+              = f.text_area :content, class: "text-area", autofocus: false, placeholder: "詳細を入力してください"
 
           // イメージ
           %tr.form-table__row

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!, only: [:show, :new_icon, :new_email, :new_password, :edit, :update]
   before_action :set_user, only: [:confirmation, :compleate, :show, :new_icon, :new_email, :new_password, :edit, :update, :destroy]
 
 
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
 
 
   def destroy
-    if current_user.destroy
+    if @user.destroy
       redirect_to registration_path
     else
       render :show

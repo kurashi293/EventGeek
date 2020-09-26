@@ -40,6 +40,12 @@ class GroupsController < ApplicationController
 
 
   def show
+    # ログインしているユーザーが所属している全グループのカテゴリーが、現在選択中のグループのカテゴリーと等しく
+    # ログインしているユーザーが所属している全グループの内、現在選択中のグループと等しくないグループを取り出す
+    @same_category_groups = current_user.groups.where(group_category_id: "#{@group.group_category_id}").where.not(id: "#{@group.id}")
+
+    # 上記の処理は下記と同等
+    # - if current_user && group.group_category_id == @group.group_category_id && group != @group
   end
 
 

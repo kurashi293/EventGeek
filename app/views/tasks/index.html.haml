@@ -13,12 +13,12 @@
       .common-block
         .common-label
           = f.label :title, "※Task Title"
-        = f.text_field :title, class: "input-field", autofocus: true, placeholder: "例) 会場の設営", required: true
+        = f.text_field :title, class: "input-field", autofocus: false, placeholder: "例) 会場の設営", required: true
 
       .common-block
         .common-label
           = f.label :content, "※Task Content"
-        = f.text_area :content, class: "text-area", autofocus: true, required: true, placeholder: "詳細を入力してください"
+        = f.text_area :content, class: "text-area", autofocus: false, required: true, placeholder: "詳細を入力してください"
 
       // イメージ
       .common-block

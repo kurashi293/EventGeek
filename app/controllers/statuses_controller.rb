@@ -1,5 +1,6 @@
 class StatusesController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_group
   before_action :set_status, only: [:edit, :update]
 
