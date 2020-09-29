@@ -3,6 +3,8 @@ class StatusesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group
   before_action :set_status, only: [:edit, :update]
+  before_action :selected_users, only: [:new, :edit]
+  before_action :new_user_array, only: [:edit]
 
 
 
@@ -18,6 +20,8 @@ class StatusesController < ApplicationController
     @status.build_company
     @status.build_working_hour
     @status.build_position
+
+    @url = request.fullpath
   end
 
 
@@ -29,6 +33,7 @@ class StatusesController < ApplicationController
     if @status.save
       redirect_to group_statuses_path(@group)
     else
+      selected_users
       render :new
     end
   end
@@ -44,6 +49,8 @@ class StatusesController < ApplicationController
     if @status.update(status_params)
       redirect_to group_statuses_path(@group)
     else
+      selected_users
+      new_user_array
       render :edit
     end
   end
@@ -58,6 +65,20 @@ class StatusesController < ApplicationController
 
   def set_status
     @status = Status.find(params[:id])
+  end
+
+
+
+  def selected_users
+    @excluded_users = User.joins(:groups, :statuses).where(groups: {id: "#{@group.id}"}, statuses: {group_id: "#{@group.id}"})
+    @select_users = @group.users - @excluded_users
+  end
+
+
+
+  def new_user_array
+    @edit_user = User.where(id: "#{@status.user_id}")
+    @select_users = @edit_user + @select_users
   end
 
 

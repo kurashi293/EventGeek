@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :task_users, dependent: :destroy
   has_many :tasks, through: :task_users
   has_many :chats, dependent: :destroy
-  has_one  :status, dependent: :destroy
+  has_many  :statuses, dependent: :destroy
 
   mount_uploader :avatar, ImageUploader, dependent: :destroy
 
