@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
   before_action :set_all_groups, only: [:incremental_search, :category_search, :advanced_search]
   before_action :set_category, only: [:index, :incremental_search, :category_search, :advanced_search]
   before_action :set_ransack, only: [:index, :incremental_search, :category_search, :advanced_search]
+  before_action :set_reference_url, only: [:new, :edit]
 
 
 
@@ -51,6 +52,7 @@ class GroupsController < ApplicationController
 
 
   def edit
+    $reference_group = Group.find(params[:id])
   end
 
 
@@ -123,6 +125,12 @@ class GroupsController < ApplicationController
 
   def set_ransack
     @advanced_search = current_user.groups.ransack(params[:q])
+  end
+
+
+
+  def set_reference_url
+    $reference_url = request.fullpath
   end
 
 
