@@ -38,4 +38,5 @@
           作成日 &nbsp;
           = group.created_at.strftime("%Y/%m/%d")
           %br/
-          = group.group_category.name
+          所属人数 &nbsp;
+          #{group.users.length}  人
