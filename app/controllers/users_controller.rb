@@ -6,11 +6,19 @@ class UsersController < ApplicationController
 
   def index
     return nil if params[:keyword] == ""   #キーワードに一致しなければnilを返す
-    @users = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)   #キーワードを含むユーザーを検索して@usersに代入。ただしログインしている自分は除く
+
+    if $reference_group.present? && $reference_url == edit_group_path($reference_group)
+      @excluded_users = User.joins(:groups).where(groups: {id: $reference_group})
+      @user = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)
+      @users = @user - @excluded_users
+    else
+      @users = User.where('name LIKE(?)',"%#{params[:keyword]}%").where.not(id: current_user.id)   #キーワードを含むユーザーを検索して@usersに代入。ただしログインしている自分は除く
+    end
     respond_to do |format|
       format.html
       format.json
     end
+
   end
 
 
