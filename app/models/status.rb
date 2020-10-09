@@ -17,9 +17,9 @@ class Status < ApplicationRecord
   belongs_to :group
 
 
-  validates :user_id, :transceiver_id, :meal_id, :wear_id, :rank_id,  presence: { message: "選択してください" }
-  validates :transceiver_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 2, message: "有効な値を選択してください" }
-  validates :meal_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, message: "有効な値を選択してください" }
-  validates :wear_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, message: "有効な値を選択してください" }
-  validates :rank_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 6, message: "有効な値を選択してください" }
+  validates :user_id, :transceiver_id, :meal_id, :wear_id, :rank_id, presence: { message: "が選択されていません" }
+  validates :transceiver_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 2, message: "の有効な値を選択してください" }
+  validates :meal_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, message: "の有効な値を選択してください" }
+  validates :wear_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9, message: "の有効な値を選択してください" }
+  validates :rank_id, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 6, message: "の有効な値を選択してください" }
 end

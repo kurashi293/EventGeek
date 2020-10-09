@@ -7,12 +7,12 @@
 
       .common-block
         .common-label
-          = f.label :email
+          = f.label :email, "Email"
         = f.email_field :email, autofocus: false, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
 
       .common-block
         .common-label
-          = f.label :password
+          = f.label :password, "Password"
         = f.password_field :password, autocomplete: "current-password", class: "input-field", placeholder: '6文字以上', required: true
       - if devise_mapping.rememberable?
         .common-block

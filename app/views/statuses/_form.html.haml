@@ -17,7 +17,7 @@
           %th.form-table__row--header
             ※User
           %td.form-table__row--data
-            = f.collection_select(:user_id, @select_users, :id, :name, {prompt: "----"}, class: "select-field")
+            = f.collection_select(:user_id, @select_users, :id, :name, {prompt: "----"}, class: "select-field", required: true)
 
         // 会社名入力
         %tr.form-table__row
@@ -34,11 +34,11 @@
           = f.fields_for :working_hour do |hours|
             %td.form-table__row--data
               Start
-              = hours.time_select :start_at
+              = hours.time_select :start_at, required: true
               %span.span
               %br.working-hour-hide-br
               End
-              = hours.time_select :end_at
+              = hours.time_select :end_at, required: true
 
         // 休憩時間入力
         %tr.form-table__row
@@ -54,21 +54,21 @@
           %th.form-table__row--header
             ※Transceiver
           %td.form-table__row--data
-            = f.collection_select(:transceiver_id, Transceiver.all, :id, :state, {prompt: "----"}, class: "select-field")
+            = f.collection_select(:transceiver_id, Transceiver.all, :id, :state, {prompt: "----"}, class: "select-field", required: true)
 
         // 食事選択
         %tr.form-table__row
           %th.form-table__row--header
             ※Meal
           %td.form-table__row--data
-            = f.collection_select(:meal_id, Meal.all, :id, :state, {prompt: "----"}, class: "select-field")
+            = f.collection_select(:meal_id, Meal.all, :id, :state, {prompt: "----"}, class: "select-field", required: true)
 
         // 服装選択
         %tr.form-table__row
           %th.form-table__row--header
             ※Wear
           %td.form-table__row--data
-            = f.collection_select(:wear_id, Wear.all, :id, :clothes, {prompt: "----"}, class: "select-field")
+            = f.collection_select(:wear_id, Wear.all, :id, :clothes, {prompt: "----"}, class: "select-field", required: true)
 
     // 見出し
     %h2.form-heading.position-area
@@ -84,7 +84,7 @@
           %th.form-table__row--header
             ※Rank
           %td.form-table__row--data
-            = f.collection_select(:rank_id, Rank.all, :id, :name, {prompt: "----"}, class: "select-field")
+            = f.collection_select(:rank_id, Rank.all, :id, :name, {prompt: "----"}, class: "select-field", required: true)
 
         // 設営時のポジション入力
         %tr.form-table__row

@@ -51,7 +51,7 @@
       .common-block
         .common-label
           = f.label :deadline, "※Deadline"
-        = f.datetime_field :deadline, class: "select-field"
+        = f.datetime_field :deadline, class: "select-field", required: true
 
       = f.hidden_field :category_id, value: 1, class: "hidden-field"
 

@@ -78,6 +78,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'font-awesome-sass'
 gem 'devise'
+gem 'rails-i18n'
 gem 'pry-rails'
 gem "ancestry"
 gem 'ransack'

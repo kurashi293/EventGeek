@@ -7,7 +7,7 @@
 
       .common-block
         .common-label
-          = f.label :name
+          = f.label :name, "Name"
         = f.text_field :name, autofocus: false, maxlength: "20", class: "input-field", placeholder: "Eventer", required: true     #required: trueでtype: inputの空の入力を判別してエラーメッセージを表示してくれる
 
       .common-block
@@ -21,17 +21,17 @@
 
       .common-block
         .common-label
-          = f.label :email
+          = f.label :email, "Email"
         = f.email_field :email, autofocus: false, autocomplete: "email", class: "input-field", placeholder: 'xxx@event.com', required: true
 
       .common-block
         .common-label
-          = f.label :password
+          = f.label :password, "Password"
         = f.password_field :password, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
 
       .common-block
         .common-label
-          = f.label :password_confirmation
+          = f.label :password_confirmation, "Password confirmation"
         = f.password_field :password_confirmation, autocomplete: "new-password", class: "input-field", placeholder: '6文字以上', required: true
 
       .common-block

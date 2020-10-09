@@ -17,7 +17,7 @@
         %th.form-table__row--header
           = f.label :name, "※Group Name"
         %td.form-table__row--data
-          = f.text_field :name, autofocus: false, class: "input-field", maxlength: "35", placeholder: "例) 1/1  音楽イベント・駅前会場"
+          = f.text_field :name, autofocus: false, class: "input-field", maxlength: "35", placeholder: "例) 1/1  音楽イベント・駅前会場", required: true
 
       // イメージ
       %tr.form-table__row
@@ -50,7 +50,7 @@
         %th.form-table__row--header
           = f.label :group_category, "※Category"
         %td.form-table__row--data
-          = f.collection_select(:group_category_id, GroupCategory.all, :id, :name, {prompt: "----"}, class: "select-field")
+          = f.collection_select(:group_category_id, GroupCategory.all, :id, :name, {prompt: "----"}, class: "select-field", required: true)
 
       // インクリメンタルサーチ
       %tr.form-table__row
