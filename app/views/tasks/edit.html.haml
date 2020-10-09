@@ -20,14 +20,14 @@
             %th.form-table__row--header
               = f.label :title, "※Task Title"
             %td.form-table__row--data
-              = f.text_field :title, class: "input-field", autofocus: false, placeholder: "例) 会場の設営"
+              = f.text_field :title, class: "input-field", autofocus: false, placeholder: "例) 会場の設営", required: true
 
           // タスクの内容入力
           %tr.form-table__row
             %th.form-table__row--header
               = f.label :content, "※Task Content"
             %td.form-table__row--data
-              = f.text_area :content, class: "text-area", autofocus: false, placeholder: "詳細を入力してください"
+              = f.text_area :content, class: "text-area", autofocus: false, placeholder: "詳細を入力してください", required: true
 
           // イメージ
           %tr.form-table__row
@@ -55,7 +55,7 @@
                   .checkbox-field__head
                     %check.checkbox-field__head--left Select all
                     %check.checkbox-field__head--right Deselect all
-                  = f.collection_check_boxes :user_ids, @group.users.all, :id, :name
+                  = f.collection_check_boxes :user_ids, @group.users.all, :id, :name, required: true
                   .checkbox-field__foot
                     %button.checkbox-field__foot--button Decision
 
@@ -64,14 +64,14 @@
             %th.form-table__row--header
               = f.label :deadline, "※Deadline"
             %td.form-table__row--data
-              = f.datetime_field :deadline, class: "select-field"
+              = f.datetime_field :deadline, class: "select-field", required: true
 
           // カテゴリー入力
           %tr.form-table__row
             %th.form-table__row--header
               = f.label :category_id, "※Category"
             %td.form-table__row--data
-              = f.collection_select(:category_id, Category.all, :id, :name, {prompt: "----"}, class: "select-field")
+              = f.collection_select(:category_id, Category.all, :id, :name, {prompt: "----"}, class: "select-field", required: true)
 
       // 送信ボタン
       %button.submit-button
