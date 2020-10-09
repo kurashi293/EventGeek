@@ -16,16 +16,16 @@ class User < ApplicationRecord
 
   validates_presence_of :avatar, allow_blank: true   #allow_blank: trueで空の入力（値無し）を許可する
 
-  validates :name, presence: { message: "入力してください" }
-  validates :name, uniqueness: { message: "既に存在するアカウントです" }
-  validates :name, length: { maximum: 20, message: "20文字以内で入力してください" }
+  validates :name, presence: { message: "を入力してください" }
+  validates :name, uniqueness: { message: "は既に使用されています" }
+  validates :name, length: { maximum: 20, message: "は20文字以内で入力してください" }
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥\w\s]+\z/
-  validates :name, format: { with: VALID_NAME_REGEX, message: "無効な名前です" }
+  validates :name, format: { with: VALID_NAME_REGEX, message: "は無効な値です" }
 
-  validates :email, presence: { message: "入力してください" }
+  validates :email, presence: { message: "を入力してください" }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX, message: "無効なメールアドレスです" }
-  validates :email, uniqueness: { message: "既に存在するメールアドレスです" }
+  validates :email, format: { with: VALID_EMAIL_REGEX, message: "は無効な値です" }
+  validates :email, uniqueness: { message: "は既に使用されています" }
 
   # validates :password, presence: { message: "入力してください" }
   # validates :password, uniqueness: { message: "既に存在するパスワードです" }
